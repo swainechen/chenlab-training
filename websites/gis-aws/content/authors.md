@@ -11,6 +11,8 @@ disableToc: true
 
 - **Austin Cherian** - Labs & content
 
-##### Technical Reviewers
+#### Technical Reviewers
 
 - **Sarah Catherine Geiger**
+
+- **Suma Tiruvayipati**
