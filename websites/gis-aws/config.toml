@@ -1,0 +1,76 @@
+baseURL = "https://aws.amazon.com/"
+languageCode = "en-us"
+title = "AWS HPC Workshops"
+theme = "hugo-theme-learn"
+uglyurls = true
+sectionPagesMenu = "main"
+pygmentsCodeFences = true
+googleAnalytics = "UA-148357634-1"
+
+
+[blackfriday]
+hrefTargetBlank = true
+
+[params]
+#editURL = "https://aws.amazon.com/"
+themeVariant = "mine"
+showVisitedLinks = true
+description = "AWS HPC Workshops"
+disableSearch = false
+disableAssetsBusting = false
+disableLanguageSwitchingButton = true
+disableShortcutsTitle = false
+
+
+[outputs]
+home = [ "HTML", "AMP", "RSS", "JSON"]
+page = [ "HTML", "AMP"]
+
+
+[privacy]
+  [privacy.disqus]
+    disable = false
+  [privacy.googleAnalytics]
+    anonymizeIP = false
+    disable = false
+    respectDoNotTrack = true
+    useSessionStorage = false
+  [privacy.instagram]
+    disable = false
+    simple = false
+  [privacy.twitter]
+    disable = false
+    enableDNT = false
+    simple = false
+  [privacy.vimeo]
+    disable = false
+    simple = false
+  [privacy.youtube]
+    disable = false
+    privacyEnhanced = false
+
+#[[menu.shortcuts]]
+#name = "<i class='fab fa-github'></i> Github"
+#url = "https://aws.amazon.com/"
+#weight = 10
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-bookmark'></i> AWS"
+url = "https://aws.amazon.com/"
+weight = 10
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-users'></i> Authors"
+url = "/authors.html"
+weight = 20
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-envelope'></i> Feedback / Questions?"
+url = "mailto:tbd.com"
+weight = 30
+
+
+#[[menu.shortcuts]]
+#name = "<i class='fas fa-tags'></i> Tags"
+#url = "/tags"
+#weight = 40
