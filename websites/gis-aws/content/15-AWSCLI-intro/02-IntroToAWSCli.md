@@ -40,26 +40,26 @@ The command fails with a region not specified or a permissions error as it requi
 
 For general use, the aws configure command is the fastest way to set up your AWS CLI installation.
 
-3.	run the **aws configure** command
+1.	run the **aws configure** command
 
 ```bash
 aws configure
 ```
 
-4.	Enter your accounts **aws access key id**
+2.	Enter your accounts **aws access key id**
 
 ```bash
 aws_access_key_id=[Access Key ID]
 ```
 
-5.	Enter your account **aws secret key**
+3.	Enter your account **aws secret key**
 
 ```bash
 aws_secret_access_key=[Secret Access Key]
 
 ```
 
-6.	Enter a **Default region name**
+4.	Enter a **Default region name**
 
 ```bash
 Default region name=us-east-1
@@ -68,7 +68,7 @@ Default region name=us-east-1
 Hit enter to accept the defaults for  **output format**
 
 
-7.	Let us rerun the ec2 describe-instances command again and check the output.
+5.	Let us rerun the ec2 describe-instances command again and check the output.
 
 ```bash
 aws ec2 describe-instances
@@ -76,7 +76,7 @@ aws ec2 describe-instances
 
 The command now runs and shows as output a description of all the EC2 instances in the account for the specified region.
 
-8.	Let us run another command to have a look at the key-pairs we have for the region selected.
+6.	Let us run another command to have a look at the key-pairs we have for the region selected.
 
 ```bash
 aws ec2 describe-key-pairs
