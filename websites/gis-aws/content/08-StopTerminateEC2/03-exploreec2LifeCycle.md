@@ -14,14 +14,14 @@ To view the current instance state of an EC2 Instance:
 
 2.	Choose EC2 to open the **EC2 Dashboard**.
 
-3.	In the left navigation pane select **Intances** under the **Instances** section.
+3.	In the left navigation pane select **Instances** under the **Instances** section.
 
-4.	To see the current instance state select your earlier created  EC2 Instance and observe the value under the **Instance state** column. It should be either indicating - Running, Stopped or Terminated.
+4.	To see the current instance state select your created EC2 Instance and observe the value under the **Instance state** column. The status will indicate Running, Stopped or Terminated.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2InstanceState.png)
 
 
-Here is the state diagram of an EC2 instance. Also notice that the state affects the costs while using EC2. For more information see [Instance Lifecycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html)
+Below is a diagram of an EC2 instance lifecycle. Note that the instance state affects the costs while using EC2. For more information see [Instance Lifecycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html)
 
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2Lifecycle.png)

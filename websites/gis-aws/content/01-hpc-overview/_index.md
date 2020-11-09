@@ -19,7 +19,7 @@ Today, more cloud-based HPC applications run on AWS than on any other cloud. -->
 Welcome to the AWS-GIS training on cloud computing for genomics researchers.
 
 
-This series of workshops is designed to get you familiar with the concepts and best practices to understand AWS components that help to build setup a compute server on the cloud and run a genomics workload.
+This series of workshops will familiarize you with the components of Amazon Web Services and best practices to setup a cloud compute server and run genomics workloads using AWS.
 
 **Target audience and requirements**:
 
@@ -28,5 +28,4 @@ This series of workshops is designed to get you familiar with the concepts and b
 - Little to no exposure to cloud computing. We will cover fundamental AWS concepts and not advanced topics such as AWS Batch.
 - No bioinformatics training will be provided in this course.
 
-**Background**: Your team has been asked to align raw reads from bacterial genome sequences. We are going to do this on AWS. You will be uploading data onto AWS storage services and subsequently run the Analyses tools on the AWS compute services.
-
+**Background**: Your team has been asked to align raw reads from bacterial genome sequences. You will run your analysis on AWS compute services and upload the data onto AWS storage services.”

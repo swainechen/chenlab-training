@@ -5,12 +5,13 @@ weight: 300
 pre: "<b>VII ⁃ </b>"
 tags: ["HPC", "Overview", "Batch"]
 ---
-We will now run some sample analyses tasks
+We will now run some sample code.
 
-First let us run some commands to check for the tools:
+**First, let's check our tools:**
+
 
 ```bash
-which star
+which bwa
 ```
 
 Output shows where bwa is installed.
@@ -25,7 +26,7 @@ Output shows where samtools is installed.
 **Basic Analyses**
 
 
-Get reference sequence
+1. Get reference sequence
 
 ```bash
 mkdir /tmp/outbreaks/SG-M1
@@ -43,7 +44,8 @@ gunzip GCF_001275545.2_ASM127554v2_genomic.fna.gz
 mv GCF_001275545.2_ASM127554v2_genomic.fna SG-M1.fna
 ```
 
-**Map and call SNPs**
+2. Map and call SNPs
+
 ```bash
 bwa index SG-M1.fna
 ```
@@ -67,16 +69,13 @@ Mapping takes ~5 min on a t2.medium. Sorting takes ~2 min, lofreq ~1 min. If nee
 ```bash
 seqtk sample SRR6327950_1.fastq.gz 0.25 | gzip -c > SRR6327950-reduced_1.fastq.gz
 ```
-
 ```bash
 seqtk sample SRR6327950_2.fastq.gz 0.25 | gzip -c > SRR6327950-reduced_2.fastq.gz
 ```
 
-Assembly (takes ~4 min then will run out of RAM):
+3. Assembly (takes ~4 min then will run out of RAM):
 ```bash
 spades.py -t 2 -1 SRR6327950_1.fastq.gz -2 SRR6327950_2.fastq.gz -o SRR6327950_spades
 ```
 
 **NOTE**: This assembly above will complete on a t3a.large, takes about 5 hours.
-
-

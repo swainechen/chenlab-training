@@ -6,18 +6,18 @@ tags = ["tutorial", "dashboard", "ParallelCluster"]
 
 We will now terminate the EC2 instance.
 
-**NOTE**:that we have already created an Image of the instance in the previous section of the workshop.
+**NOTE**: Ensure your previous EC2 image was successful; we'll be using it in the next portion of the workshop. In this segment, you will be terminating your EC2 instance. This is permanent and irreversible. However, using this EC2 image, it is possible to spin up an identical machine. In general, be very cautious when terminating machines.
 
-1.	Select the EC2 instance from the list of instances. Click on **Actions** and choose and click on **Instance State** and further choose and click on **Terminate**
+1.	Select the EC2 instance from the list of instances. Click on **Actions** and choose and click on **Instance State** and further choose and click on **Terminate**.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2InstanceTerminate.png)
 
 
-2.	On the Terminate Instance dialog, observe the note **Associated resources may incur costs after these instances are terminsated** and further clickon the **Delete EBS volume** to read the additional note.To porceed  select **Yes, terminate**.
+2.	On the Terminate Instance dialog, observe the note "Associated resources may incur costs after these instances are terminated" and click  **Delete EBS Volume**. Read the additional note. To proceed, select **Yes, terminate**.
 
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2InstanceTerminateConfirm.png)
 
 The instance will now be terminated.
 
-3.	After a minute view the **Instance State** of the instance, it will indicate as **Terminated**
+3.	After a minute view the **Instance State** of the instance, it will indicate **Terminated**.

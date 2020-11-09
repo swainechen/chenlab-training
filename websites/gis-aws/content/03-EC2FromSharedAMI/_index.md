@@ -6,7 +6,7 @@ pre: "<b>III ⁃ </b>"
 tags: ["HPC", "Introduction", "EC2", "Optional"]
 ---
 
-This workshop section walks you through setting up your own EC2 Linux Instance which you will use to run an Analyses in later sections of the workshop.
+This workshop section walks you through setting up your own EC2 Linux Instance which you will use to run analyses in later sections of the workshop.
 
 Specifically, you learn how to:
 

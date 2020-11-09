@@ -101,9 +101,9 @@ Are you sure you want to continue connecting (yes/no)?
 
 You will now be logged into the Instance.
 
-**NOTE**: you might need to change the permissions of the key file by running the chmod commannd as follows
+**NOTE**: you might need to change the permissions of the key file by running the chmod commannd as follows. Edit to match your path and key pair name. 
 ```bash
-chmod 600 /path/my-key-pair.pem
+sudo chmod 600 /path/my-key-pair.pem
 ```
 
 For detailed directions on these please have a look at the following links:

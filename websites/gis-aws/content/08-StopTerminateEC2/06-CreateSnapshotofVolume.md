@@ -15,16 +15,16 @@ tags = ["tutorial", "dashboard", "ParallelCluster"]
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2VolumeCreateSnapshotScreen.png)
 
 
-3.	Click on **Add Tag** to provide a unique Name tag for better identificaiton of the snapshot. Enter "Name" in the **Key** field and a unique value in the **Value** fild.
+3.	Click on **Add Tag** to provide a unique name tag for better identificaiton of the snapshot. Enter "Name" in the **Key** field and a unique value in the **Value** fild.
 
-**NOTE**: for the purpose of this training provide [firtname+initials-EBS] as the value.
+**NOTE**: for the purpose of this training, use your previous tag and provide [firstname-EBS] as the value.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EBSVolumeSnapshot.png)
 
 4.	Click on **Create Snapshot**
 
 
-5.	A Snapshot creation task will be started and a messag indicating the same will be displayed. click on **Close** button.
+5.	A Snapshot creation task will be started and a message indicating the same will be displayed. Click on the **Close** button.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2VolumeCreateSnapshotSuccess.png)
 
