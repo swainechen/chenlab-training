@@ -21,11 +21,11 @@ We will now create an image of the EC2 Instance.
 
 An image creation task is started in the backgroud and you would see a message indicating "Successfully created ..." on the top of the EC2 Dashboard page.
 
-**NOTE**:Incase you had not stopped the instance and were still logged into the instance, the Instance would have rebooted and your ssh session would need to be restarted to connect back to the instance.
+**NOTE**: In case you had not stopped the instance and were still logged into the instance, the Instance would have rebooted and your ssh session would need to be restarted to connect back to the instance.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2CreateImageSuccess.png)
 
-3.	Pause for a minute to let the image creation taks to progress. To check if the image has been created choose and click on **AMIs** under the **Images** section in the left Navigation pane to view all the AMI's created earlier as well as the new one being created.
+3.	Pause for a minute to let the image creation task to progress. To check if the image has been created choose and click on **AMIs** under the **Images** section in the left Navigation pane to view all the AMI's created earlier as well as the new one being created.
 
 You will see that the new AMI is either being created or already created and ready for use with the name supplied in the **Create Image** page.
 

@@ -24,6 +24,6 @@ Choose the **Region** drop-down menu, then choose and click on a region to selec
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/aws-console.png)
 
-Incase you have already logged in and moved beyond this first page, and need to get to the services search - you can get back to the home page by clicking on the AWS icon on the top right corner or click the **Services** drop drown to get the **All Services** page.
+In case you have already logged in and moved beyond this first page, and need to get to the services search - you can get back to the home page by clicking on the AWS icon on the top right corner or click the **Services** drop-down to get the **All Services** page.
 
 ![AWS All Services](/images/hpc-aws-parallelcluster-workshop/ConsoleServices.png) 

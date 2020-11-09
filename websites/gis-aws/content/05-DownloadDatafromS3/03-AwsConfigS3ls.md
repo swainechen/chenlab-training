@@ -17,7 +17,7 @@ aws s3 ls
 The output will list all the S3 buckets associated with the account.
 
 
-For the prupose of this workshop we will be using a **named profile** with AWS CLI which is a collection of settings and credentials that you can apply to a AWS CLI command. When you specify a profile to run a command, the specific settings and credentials associated with the profile are used to run that command.This is typically followed when credentials are shared to access resources. We will be using a named profile to use AWS CLI to access the S3 bucket folders shared with us for this workshop.
+For the prupose of this workshop we will be using a **named profile** with AWS CLI which is a collection of settings and credentials that you can apply to a AWS CLI command. When you specify a profile to run a command, the specific settings and credentials associated with the profile are used to run that command. This is typically followed when credentials are shared to access resources. We will be using a named profile to use AWS CLI to access the S3 bucket folders shared with us for this workshop.
 
 
 2.	Enter the AWS CLI command to configure AWS Credentials with a profile named "training" :

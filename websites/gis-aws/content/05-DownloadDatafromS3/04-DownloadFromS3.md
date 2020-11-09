@@ -6,7 +6,7 @@ weight = 50
 tags = ["tutorial", "aws console", "ec2"]
 +++
 
-Now that you have access to shared S3 buckets we are now ready to downlod data from S3 buckets to your machine.
+Now that you have access to shared S3 buckets we are now ready to download data from S3 buckets to your machine.
 
 1.	Run the command to list all the S3 buckets
 
@@ -15,7 +15,7 @@ aws --profile training s3 ls
 ```
 you will find the bucket named **slchen-lab-transfer** in the list, this bucket contains multiple folders. 
 
-**NOTE**:Only a specific few folders may have been shared,
+**NOTE**: Only a specific few folders may have been shared,
 
 We will now copy files from a specific location within this folder to your machine
 

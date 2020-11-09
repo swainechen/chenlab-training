@@ -4,7 +4,7 @@ weight = 90
 tags = ["tutorial", "cloud9", "s3"]
 +++
 
-The operating system of your local computer determines the options that you have to connect from your local computer to your Linux instance. Here are dierctions to connect from Windows Using PuTTY or OpenSSH, From Linux & MacOS-X using ssh client and from Windows Subsystem for Linux (WSL) using ssh clinet. 
+The operating system of your local computer determines the options that you have to connect from your local computer to your Linux instance. Here are directions to connect from Windows Using PuTTY or OpenSSH, From Linux & MacOS-X using ssh client and from Windows Subsystem for Linux (WSL) using ssh client. 
 
 
 
@@ -23,7 +23,7 @@ We will now use the private **.ppk** file of the key pair generated earlier to o
 
 5. 	In the **Private key file for authentication** field click **Browse** and browse in the **.ppk** file downloaded when creating the key pair earlier.
 
-6. 	Next in the left navgation pane click on **Session** (**scroll up if you need to**) and and further click on **Save** to save the session.
+6. 	Next in the left navigation pane click on **Session** (**scroll up if you need to**) and and further click on **Save** to save the session.
 
 7.	Next click on **Open** to start the SSH session.
 

@@ -6,33 +6,39 @@ tags = ["tutorial", "cloud9", "s3"]
 
 Let us run a few Linux commands to install a few software packages
 
-From apt **(kraken)**:
+From apt **(nmap)**: just to install a network tool
 
 ```bash
-sudo yum install kraken
+sudo yum install nmap
 ```
 
-From source **(abricate)**:
+From source **(seqtk)**:
 ```bash
 sudo su -
+```
+```bash
+yum install git
 ```
 ```bash
 cd /usr/local/src
 ```
 ```bash
-git clone https://github.com/tseemann/abricate.git
+git clone https://github.com/lh3/seqtk.git
 ```
 ```bash
-cd abricate/
+cd seqtk/
 ```
 ```bash
-ln -s /usr/local/src/abricate/bin/* /usr/local/bin
+make
 ```
 ```bash
-abricate --check
+yum install gcc zlib-devel
 ```
 ```bash
-abricate --setupdb
+make
+```
+```bash
+./seqtk
 ```
 
 
