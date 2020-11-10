@@ -6,17 +6,17 @@ pre: "<b>XIV ⁃ </b>"
 tags: ["HPC", "EFA", "Elastic Fabric Adapter", "Network", "MPI"]
 ---
 
-Costs are an imporant consideration while running on workloads on the cloud. Being cognizant about how services incur costs would help in large savings as well as help you realize adpting policies and more sophisticated services that are better tailored for the specific workload you are running. It is a good practice to understnad how the usage of specific features a specific service can lead to ssave costs.
+Costs are an important consideration while running workloads on the cloud. Being cognizant about how services incur costs would help in large savings as well as help you realize adopting policies and more sophisticated services that are better tailored for the specific workload you are running. It is a good practice to understand how the usage of specific features of a service can help save costs.
 
-In this section if the workshop we will provide an introduction to costs on AWS as well as demonstrate how costs could be saved for specific services taking the services like EC2 and EBS that we have just used in the previous sections of the workshop:
+Here we will provide an introduction to the costs on AWS as well as demonstrate how costs could be saved for specific services like EC2 and EBS. 
 
-In this section you will :
+This section will present:
 
-- Brief intorduction to Billing 
+- A brief introduction to Billing. 
 
-- Introduction to Cost Explorer
+- Introduction to Cost Explorer.
 
-- Understanding how to project costs
+- How to understand project costs?
 
-- Resources to look up pricing on services 
+- Resources to look at pricing on services. 
 

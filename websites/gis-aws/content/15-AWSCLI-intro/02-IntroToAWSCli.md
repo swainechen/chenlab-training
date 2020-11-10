@@ -8,7 +8,7 @@ tags = ["tutorial", "Prerequisite", "ec2"]
 
 The [AWS CLI](https://aws.amazon.com/cli/) allows you to manage services using the command line and control services through scripts. Many users choose to conduct some level of automation using the AWS CLI.
 
-Open a Terminal window and paste the following command. AWS CLI is already installed on your machine, but this will initiate an update. 
+Connect to an EC2 instance and paste the following command. AWS CLI is already installed on your machine, but this will initiate an update. 
 
 ```bash
 sudo apt update && sudo apt upgrade; dpkg --list | grep awscli

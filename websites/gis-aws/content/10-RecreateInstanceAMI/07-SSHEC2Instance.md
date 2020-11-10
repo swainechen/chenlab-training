@@ -4,7 +4,7 @@ weight = 90
 tags = ["tutorial", "cloud9", "s3"]
 +++
 
-The operating system of your local computer determines the options that you have to connect from your local computer to your Linux instance. Here are the directions for **Putty**. Click on the links to select the directions for other ssh cients:
+The operating system of your local computer determines the options that you have to connect from your local computer to your Linux instance. Here are the directions for **Putty**. Click on the links to select the directions for other ssh clients:
 [Windows Susbsystem for Linux](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/WSL.html),
 [MacOS-X ssh Client](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html),
 [Linux ssh client](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
@@ -12,7 +12,7 @@ The operating system of your local computer determines the options that you have
 
 **Directions for PuTTY**
 
-We will now use the key pair with the PuTTy SSH clinet to open a SSH session to the EC2 instance.
+We will now use the key pair with the PuTTy SSH client to open an SSH session to the EC2 instance.
 
 1.	Start the PuTTy application.
 

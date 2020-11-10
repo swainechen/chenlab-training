@@ -10,7 +10,7 @@ We will now launch an EC2 Linux based instance.
 
 ![EC2LaunchInstance](/images/hpc-aws-parallelcluster-workshop/EC2LaunchInstance.png)
 
-2.	In the the **Step1: Choose an Amazon Machine Image(AMI)** enter the AMI id shared for the training into the **Search for an AMI...** search box.
+2.	In the the **Step1: Choose an Amazon Machine Image(AMI)** enter the AMI id shared for the training into the **Search for an AMI...** search box. The **AMI** may differ from the one pictured; refer to instructor's directions.
 
 ![EC2SelectAMI](/images/hpc-aws-parallelcluster-workshop/EC2SearchAMI.png)
 

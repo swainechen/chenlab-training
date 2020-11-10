@@ -8,9 +8,9 @@ tags: ["HPC", "EFA", "Elastic Fabric Adapter", "Network", "MPI"]
 
 We will now create an S3 bucket and upload our result and related data files to the S3 bucket, we will subsequently share a folder in the S3 bucket with another user for them to access and download the data.
 
-In the section of the workshop you will:
+In this section of the workshop you will:
 
-1.	Create an S3 bucket
+1.	Create an S3 bucket.
 
 2.	Upload the files to the bucket.
 

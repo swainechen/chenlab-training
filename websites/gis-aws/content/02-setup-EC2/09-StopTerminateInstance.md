@@ -10,7 +10,7 @@ Now let us stop and terminate the instance
 
 2.	Choose **EC2** to open the **EC2 Dashboard**.
 
-3.	Click on **Instances** under the **Instances** section in the left Navigation pane to view all the Instances that are Running, Stopped and Terminated.
+3.	Click on **Instances** under the **Instances** section in the left Navigation pane to view all the instances that are Running, Stopped and Terminated.
 
 4.	Select the instance created and click on **Actions** button and further choose and click on **Instance State** and futher choose and click on **Stop instance**
 

@@ -67,15 +67,15 @@ lofreq call -f SG-M1.fna -r NZ_CP012419.2:400000-500000 SRR6327950-sort.bam > SR
 Mapping takes ~5 min on a t2.medium. Sorting takes ~2 min, lofreq ~1 min. If need to downsample:
 
 ```bash
-seqtk sample SRR6327950_1.fastq.gz 0.25 | gzip -c > SRR6327950-reduced_1.fastq.gz
+seqtk sample /tmp/fastq/SRR6327950/SRR6327950_1.fastq.gz 0.25 | gzip -c > SRR6327950-reduced_1.fastq.gz
 ```
 ```bash
-seqtk sample SRR6327950_2.fastq.gz 0.25 | gzip -c > SRR6327950-reduced_2.fastq.gz
+seqtk sample /tmp/fastq/SRR6327950/SRR6327950_2.fastq.gz 0.25 | gzip -c > SRR6327950-reduced_2.fastq.gz
 ```
 
 3. Assembly (takes ~4 min then will run out of RAM):
 ```bash
-spades.py -t 2 -1 SRR6327950_1.fastq.gz -2 SRR6327950_2.fastq.gz -o SRR6327950_spades
+spades.py -t 2 -1 /tmp/fastq/SRR6327950/SRR6327950_1.fastq.gz -2 /tmp/fastq/SRR6327950/SRR6327950_2.fastq.gz -o SRR6327950_spades
 ```
 
 **NOTE**: This assembly above will complete on a t3a.large, takes about 5 hours.

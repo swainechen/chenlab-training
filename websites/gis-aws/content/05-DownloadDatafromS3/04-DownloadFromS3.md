@@ -24,7 +24,7 @@ Before that, lets create a folder on your machine to where the data will be copi
 2.	Run the following commands to create a directory to hold the data and further cd to that directory.
 
 ```bash
-/tmp/fastq/SRR6327950
+mkdir /tmp/fastq/SRR6327950
 ```
 
 ```bash

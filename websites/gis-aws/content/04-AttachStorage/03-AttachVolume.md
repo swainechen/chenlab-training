@@ -27,4 +27,4 @@ If attached successfully - In the list of displayed volumes you should see your 
 
 ![Copy Paste](/images/hpc-aws-parallelcluster-workshop/Ec2AttachedVolume.png)
 
-**Important**: Note down the specific device name for the next step of mounting the volume. **NOTE**: Newer Linux kernels may rename your devices to **/dev/xvdf through /dev/xvdp** internally, even when the device name entered here (and shown in the details) is /dev/sdf through /dev/sdp.
+**Important**: Note down the specific device name for the next step of mounting the volume. The drive name may differ from what's shown. **NOTE**: Newer Linux kernels may rename your devices to **/dev/xvdf through /dev/xvdp** internally, even when the device name entered here (and shown in the details) is /dev/sdf through /dev/sdp.
