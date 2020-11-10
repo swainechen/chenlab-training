@@ -40,13 +40,13 @@ We will now launch an EC2 Linux based instance.
 ![EC2ChooseInstancetype](/images/hpc-aws-parallelcluster-workshop/EC2AddStorage.png)
 
 
-8.	On **Step 5** page, you can choose a friendly name for your instance by clicking "Add Tag", and entering "Name" for the Key part and "[Your Name] Linux Server" for the Value part. This Name key, more correctly known as a tag, will appear in the console once the instance launches. It makes it easy to keep track of running machines in a complex environment. Click **Next: Configure Security Group**
+8.	On **Step 5** page, you can choose a friendly name for your instance by clicking "Add Tag", and entering "[your initials]-training" for the Key part and "[Your initials]-linux-machine" for the Value part. This Name key, more correctly known as a tag, will appear in the console once the instance launches. It makes it easy to keep track of running machines in a complex environment. Click **Next: Configure Security Group**
 
 ![EC2AddTags](/images/hpc-aws-parallelcluster-workshop/EC2AddTags.png)
 
 9.	On **Step 6** page, you will be prompted to create a new security group, which will be your firewall rules. Provide a name for your new security group.
 
-**NOTE** for the purpose of this lab use your "[Your Name]-sec-group" for uniqueness and easy searchability.
+**NOTE** for the purpose of this lab use your "[Your initials]-sec-group" for uniqueness and easy searchability.
 
 ![EC2ConfigSecGroups](/images/hpc-aws-parallelcluster-workshop/EC2ConfigSecGroups.png)
 

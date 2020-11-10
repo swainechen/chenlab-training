@@ -25,7 +25,7 @@ tags = ["tutorial", "Prerequisite", "ec2"]
 ![Copy Paste](/images/hpc-aws-parallelcluster-workshop/CreateVolume.png)
 
 
-5.	Click on **Add Tag** to uniquely tag the resource. Provide a value "Name" for the **Key** and a unique name for the **Value**.
+5.	Click on **Add Tag** to uniquely tag the resource. Provide your unique key for **Key** and "[your initials]-EBS" for the value.
 **NOTE**:For the purposes of the lab please use your [Name+Lastname-EBS] as the **Value**  
 
 ![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2VolumeTag.png)
