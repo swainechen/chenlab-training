@@ -6,7 +6,7 @@ tags = ["tutorial", "cloud9", "s3"]
 
 Let us run a few Linux commands to install a few software packages
 
-From apt **(nmap)**: just to install a network tool
+From yum **(nmap)**: just to install a network tool
 
 ```bash
 sudo yum install nmap
@@ -31,12 +31,14 @@ cd seqtk/
 ```bash
 make
 ```
+If it failed, good! It was supposed to. Now install gcc zlib-devel: 
 ```bash
 yum install gcc zlib-devel
 ```
 ```bash
 make
 ```
+Now the command should be recognized! Try seqtk again:
 ```bash
 ./seqtk
 ```

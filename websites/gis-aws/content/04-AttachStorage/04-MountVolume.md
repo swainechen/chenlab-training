@@ -34,30 +34,31 @@ sudo mkfs -t ext4 /dev/xvdf
 
 **NOTE**: This file-system formatting step is only for a new device, **DO NOT** run this step while mounting an existing volume as it will wipe out all data on the device.
 
-5.	Create a directory of your choice to mount our new ext4 volume. I am using the name "newvolume"
+5.	Create a directory of your choice to mount our new ext4 volume. I am using the name "volume1"
 
 ```bash	
 sudo mkdir /mnt/volume1
 ```
 
 
-6.	Mount the volume to “newvolume” directory using the following command.
+6.	Mount the volume to “volume1” directory using the following command.
 
 ```bash
 sudo mount /dev/xvdf /mnt/volume1
 ```
 
 
-7.	cd into newvolume directory and check the disk space for confirming the volume mount.
+7.	cd into volume1 directory and check the disk space for confirming the volume mount.
 
 ```bash
 cd /volume1
 df -h .
 ```
+The above command would show the free space in the volume1 directory.
 
-8.	The above command would show the free space in the newvolume directory.
+**NOTE**: At this point, the drive is owned by root and not user. If you would like to edit files in this directory you'll need to change ownership with **chown**. We'll go over this later. 
 
-9.	To unmount the volume, you have to use the following command.
+8.	To unmount the volume, you have to use the following command.
 
 ```bash
 umount /dev/xvdf
