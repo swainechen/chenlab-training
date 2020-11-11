@@ -2,7 +2,7 @@
 title = "a. Terminating Instances and Deleting Resources"
 date = 2020-11-11T10:46:30-04:00
 draft = false
-weight = 40
+weight = 50
 tags = ["tutorial", "ec2"]
 +++
 
@@ -19,11 +19,11 @@ It'll still be visible for a bit, but then the entry will be deleted.
 
 If you delete a bucket, it and its contents are gone forever. If you enabled versioning, those versions are gone, too. As with termination, be *absolutely sure* you're ready to delete these resources. 
 
->> show how to delete bucket<<
+-  show how to delete bucket
 
 **Deleting Snapshots and Images**
 
->> show how to delete snapshots and images <<
+- show how to delete snapshots and images
 
 **Are we done yet?**
 
