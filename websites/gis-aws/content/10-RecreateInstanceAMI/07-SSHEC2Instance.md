@@ -20,17 +20,17 @@ We will now use the key pair with the PuTTy SSH client to open an SSH session to
 
 3.	To save the session (so we dont have to repeat the configuration everytime) provide a name in the **Saved Sessions** field.
 
-4.	In the left navigation pane under **Connections** clickon **SSH** and next click on **Auth**.
+4.	In the left navigation pane under **Connections** click on **SSH** and next click on **Auth**.
 
 5.	In the **Private key file for authentication** field click **Browse** and browse in the **.ppk** file downloaded when creating the key pair earlier.
 
-6.	Next in the left navgation pane click on **Session** (**scroll up if you need to**) and and further click on **Save** to save the session.
+6.	Next in the left navigation pane click on **Session** (**scroll up if you need to**) and and further click on **Save** to save the session.
 
 7.	Next click on **Open** to start the SSH session.
 
 8.	PuTTy will now attempt to start an SSH Session.
 
-**NOTE**: You will get a security Alert **The Servers host key is not cached in the registry**, click on **Yes** to continue.
+**NOTE**: You will get a security alert **The Servers host key is not cached in the registry**, click on **Yes** to continue.
 
 9.	You will now be presented with the **login as** prompt.
 

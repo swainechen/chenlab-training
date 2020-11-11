@@ -20,24 +20,24 @@ tags = ["tutorial", "dashboard", "ParallelCluster"]
 
 If you get an error, change the bucket name until a unique name is accepted.
 
-Next select the region form the **Region** field.
+Next, select the region form the **Region** field.
 **NOTE**: S3 is a regional service and not associated with any specific availability zone.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3CreateBucket1.png)
 
-Click on **Next**
+Click on **Next**.
 
-On the **Configuration options** section provide a Key-Value for the Tag, e.g. Key="Bucket" Value=[firstname+initials-S3], leave the rest of the configuration options with default values and click on **Next**
+On the **Configuration options** section provide a Key-Value for the Tag, e.g. Key="Bucket" Value=[firstname+initials-S3], leave the rest of the configuration options with default values, and click **Next**.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3CreateBucket2.png)
 
 
 On the **Set permissions** section read through the **Block public access (bucket settings)** to get an idea on bucket access policies.
-Leave the **Block all public access** as checked which is the default configuration.
+Leave **Block all public access** checked (this is the default configuration).
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3CreateBucket3.png)
 
-Click on **Next**
+Click on **Next**.
 
 On the **Review** section do a quick review of the configurations selected.
 
@@ -47,6 +47,6 @@ Next click **Create bucket**
 
 The Bucket will now be created.
 
-5.	On the list of buckets scroll through the list of buckets and verify that your new bucket has been created. Selecting the bucket will also display the buckets Properties, Permissions & Managment configurations. 
+5.	On the list of buckets, scroll and verify that your new bucket has been created. Selecting the bucket will also display the bucket properties, permissions & management configurations. 
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3SelectBucket.png)

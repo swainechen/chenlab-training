@@ -6,7 +6,7 @@ pre: "<b>XIII ⁃ </b>"
 tags: ["HPC", "EFA", "Elastic Fabric Adapter", "Network", "MPI"]
 ---
 
-In many cases it is more convenient to provide not just the data files but also the whole environment to process or reproduce results. In addition to this, it is also important to support collaborators to run their own analyses but not have to go through re-builing the setup.
+In many cases it is more convenient to provide not just the data files but also the whole environment to process or reproduce results. This will enable collaborators to run their own analyses without re-building your setup or environment.
 
 In such cases we could share the AMI as well as the snapshot of the EBS volume with a specific account.
 

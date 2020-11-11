@@ -6,16 +6,16 @@ tags = ["tutorial", "dashboard", "ParallelCluster"]
 
 1.	Login to your EC2 Instance.
 
-2.	List the available disks using the following command
+2.	List the available disks using the following command:
 
 ```bash
 lsblk
 ```
 	
 The output will list the disk you attached to your instance.
-**NOTE**: Newer Linux kernels may rename your devices to **/dev/xvdf** through **/dev/xvdp** internally, even when the device name entered here (and shown in the details) is /dev/sdf through /dev/sdp.
+**NOTE**: Newer Linux kernels may rename your devices to **/dev/xvdf** through **/dev/xvdp** internally, even when the device name entered here (and shown in the details) is /dev/sdf through /dev/sdp. To identify your disk for mounting, you can also check the size and whether there is an existing mount point. 
 
-3.	Check for an unmounted filesystem of your specified size. For example: "nvem1n1" as shown below.
+3.  For example, **nvem1n1** is our disk, shown below. Not only does it have the proper size, but there is no preexisting mount point.
 
 ```bash
 NAME        MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
@@ -24,15 +24,13 @@ nvme0n1     259:0    0  150G  0 disk
 nvme1n1     259:2    0   10G  0 disk
 ```
 
-4.	Check if the volume has any data using the following command.
+4.	Check if the volume has any data using the following command, using the diskidentified in step 3:
 
 ```bash
 sudo file -s /dev/nvme1n1
 ```
 
-Where "nvem1n1" is the device you noted from the previous section after attaching the device to the EC2 Instance.
-
-        If the above command output shows "/dev/nvem1n1: data", it means your volume is empty.
+If the above command output shows "/dev/nvem1n1: data", it means your volume is empty.
 
 5.	Create a directory of your choice to mount our new ext4 volume. Let's use the name "volume1".
 
@@ -40,7 +38,7 @@ Where "nvem1n1" is the device you noted from the previous section after attachin
 sudo mkdir /mnt/volume1
 ```
 
-6.	Mount the volume to “volume1” directory using the following command.
+6.	Mount the volume to “volume1” directory using the following command:
 
 ```bash
 sudo mount /dev/nvem1n1 /mnt/volume1
@@ -62,6 +60,3 @@ df -h .
 ```bash
 chown -R user /mnt/volume1
 ```
-
-
-

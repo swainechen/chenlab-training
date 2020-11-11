@@ -12,28 +12,28 @@ tags = ["tutorial", "dashboard", "ParallelCluster"]
 
 2.	Choose and click on **S3** to open the **Amazon S3** Console.
 
-3.	Scroll through the list of buckets and choose and click on the bucket name created. **NOTE**: make sure you click on the bucket name link and not just select the bucket using the checkbox.
+3.	Scroll through the list of buckets and click on the bucket name created. **NOTE**: make sure you click on the bucket name link, and not just select the bucket using the checkbox.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3SelectBucketLink.png)
 
-4.	Click on the **Upload** button.
+4.	Click the **Upload** button.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3UploadClickUpload.png)
 
-5.	Either drag and drop files or click on **Add Files** to browse and select the files to be uploaded.
+5.	Either drag and drop files or click  **Add Files** to browse and select the files to be uploaded.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3UploadAddFiles.png)
 
-6.	Click on **Upload**
+6.	Click on **Upload**.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3UploadAddFilesUpload.png)
 
-The files will be uploaded to the S3 folder and the file object names would appear in the list box of the objects.
+The files will be uploaded to the S3 folder and the file object names will appear in the list of the objects.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3UploadAddFilesUploaded.png)
 
 
-**We will now use AWS CLI to list objects, upload and download files from an EC2 instance:**
+**We will now use AWS CLI to list objects, upload, and download files from an EC2 instance:**
 
 **NOTE**: Make sure you have configured the AWS CLI credentials (Refer to section V.a for AWS CLI configure commands).
 
@@ -46,13 +46,14 @@ aws s3 ls
 
 Output will be a list of buckets including the new bucket which was created above.
 
-8.	Run AWS CLI command to list the contents of the bucket
+8.	Run AWS CLI command to list the contents of the bucket:
 
 ```bash
 aws s3 ls s3://{Bucket Name}
 ```
 
-Verify that the output includes files uploaded in the previous step via the console.
+Verify that the output includes your uploaded files.
+
 
 **We will now download files from the S3 bucket:**
 
@@ -62,9 +63,10 @@ To download files we will use the AWS CLI **s3 cp** command.
 aws s3 cp s3://{Bucket Name}/{object name} ./
 ```
 
-Verify the download by listing the directory and confirm the object present in the list-box of objects for the bucket.
+Verify the download by listing the directory and confirm the object is present.
 
 For more detailed steps on AWS CLI for S3 refer to section VI (**Download data shared using Amazon S3**) of the workshop.
+
 
 **We will now upload files to the S3 bucket**
 
@@ -74,11 +76,8 @@ For more detailed steps on AWS CLI for S3 refer to section VI (**Download data s
 aws s3 cp ./{your-file} s3://{Bucket Name}/
 ```
 
-9.	After the copy is completed. Verify the contents of the S3 bucket.
+9.	Verify the contents of the S3 bucket after the copy is completed via command line (below) or by using the AWS Console.
 
 ```bash
 aws s3 ls s3://{Bucket Name}
 ```
-
-Verify the output includes the uploaded file. You could optionally use the AWS Console to view the bucket contents.
-

@@ -13,9 +13,9 @@ Access the calculator by navigating to - https://calculator.aws/#/  [or Click he
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/SMC.png)
 
-To get started click on **Create estimate**
+To get started click on **Create estimate**.
 
-Futher to select a specific service enter the service name in the **AWS services** search box and click on **Configure**
+Futher to select a specific service enter the service name in the **AWS services** search box and click on **Configure**.
 
 
 For more details on how to use the calculator more effectively, navigate to - https://docs.aws.amazon.com/pricing-calculator/latest/userguide/getting-started.html     [**or click here**](https://docs.aws.amazon.com/pricing-calculator/latest/userguide/getting-started.html)

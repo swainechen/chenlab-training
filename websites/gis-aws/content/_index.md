@@ -15,4 +15,4 @@ HPC on AWS removes the long wait times and lost productivity often associated wi
 
 Today, more cloud-based HPC applications run on AWS than on any other cloud.
 
-Select a workshop from the left panel or continue to *AWS HPC Overview*.
+Select a workshop from the left panel or continue to *AWS-GIS Training Overview*.

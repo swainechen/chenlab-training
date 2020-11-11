@@ -25,9 +25,9 @@ Every AWS service has its own web page with a **pricing** section to provide mor
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/OnDemandPricing.png)
  
 
-2.	On the **Amazon EC2 On-Demand Pricing** page you could explore the pricing for EC2 instance per hour for various Operating-Systems. Notice that the pricing is applicable to a regional level.
+2.	On the **Amazon EC2 On-Demand Pricing** page you could explore the pricing for EC2 instance per hour for various Operating Systems. Notice that the pricing is applicable to a regional level.
 
-3.	To view the pricing for a specific region click on the **Region** drop-down and select the specific region, the pricing list will dynamically change to reflect the pricing for that region.
+3.	To view the pricing for a specific region click on the **Region** drop-down and select the specific region; the pricing list will dynamically change to reflect the pricing for that region.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/OnDemandPricingRegion.png)
  
