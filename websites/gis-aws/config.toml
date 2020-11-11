@@ -67,7 +67,7 @@ weight = 20
 
 [[menu.shortcuts]]
 name = "<i class='fas fa-envelope'></i> Feedback / Questions?"
-url = "mailto:tbd.com"
+url = "mailto:slchen@gis.a-star.edu.sg"
 weight = 30
 
 
