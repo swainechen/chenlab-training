@@ -1,8 +1,8 @@
 ---
 title: "Cleaning up"
 date: 2019-01-24T09:05:54Z
-weight: 200
-pre: "<b>V ⁃ </b>"
+weight: 600 
+pre: "<b>XV ⁃ </b>"
 tags: ["HPC", "Overview", "Batch"]
 ---
 
