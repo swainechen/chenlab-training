@@ -32,10 +32,10 @@ cp -ax /tmp/outbreaks /mnt/volume1/
 
 6.	Click on **Actions** button and further choose and click on  **Instance State** and further choose and click on **Stop**
 
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2StopInstance.png)
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2StopInstance-2.png)
 
 7.	On the Dialog box click on **Stop** to confirm stopping the instance.
 
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2StopConfirm.png)
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2StopConfirm-2.png)
 
 8.	Note that the instance will now attempt to stop, and after a short duration the **Instance State** will change to **Stopped**

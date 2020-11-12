@@ -53,7 +53,7 @@ The AMI image id will now appear.
 
 **NOTE** for the purpose of this lab use your "[your-initials]-sec-group" for uniqueness and easy searchability.
 
-![EC2ConfigSecGroups](/images/hpc-aws-parallelcluster-workshop/EC2ConfigSecGroups.png)
+![EC2ConfigSecGroups](/images/hpc-aws-parallelcluster-workshop/EC2ConfigSecGroups-2.png)
 
 11.	Confirm an existing SSH rule exists which allows TCP port 22. To accept connections from Anywhere select the drop-down box under the **Source** column and select **Anywhere** which will corrospond to **0.0.0.0/0, ::/0**.
 
@@ -66,7 +66,7 @@ The AMI image id will now appear.
 
 14.	Select the key pair that you created in the beginning of this lab from the drop-down and check the **I acknowledge** checkbox. Then click the **Launch Instances** button.
 
-![EC2ConfigSecGroups](/images/hpc-aws-parallelcluster-workshop/EC2SelectKeypair.png)
+![EC2ConfigSecGroups](/images/hpc-aws-parallelcluster-workshop/EC2SelectKeypair-2.png)
 
 
 Your instance will now be starting, which may take a moment you will be shown the **Launch Status** page with the message that your **instances are now launching**
@@ -74,4 +74,4 @@ Your instance will now be starting, which may take a moment you will be shown th
 
 15.	On the lower right of the page click on **View Instances** to view the list of EC2 instances.  The instance will go through and initialization process. Once your instance has launched, you will see your Linux server as well as the Availability Zone the instance is in, and the publicly routable DNS name.
 
-![EC2ViewInstances](/images/hpc-aws-parallelcluster-workshop/EC2ViewInstances.png)
+![EC2ViewInstances](/images/hpc-aws-parallelcluster-workshop/EC2ViewInstances-2.png)

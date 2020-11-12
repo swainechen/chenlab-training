@@ -10,13 +10,13 @@ We will now terminate the EC2 instance.
 
 1.	Select the EC2 instance from the list of instances. Click on **Actions** and choose and click on **Instance State** and further choose and click on **Terminate**.
 
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2InstanceTerminate.png)
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2InstanceTerminate-2.png)
 
 
 2.	On the Terminate Instance dialog, observe the note "Associated resources may incur costs after these instances are terminated" and click  **Delete EBS Volume**. Read the additional note. To proceed, select **Yes, terminate**.
 
 
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2InstanceTerminateConfirm.png)
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2InstanceTerminateConfirm-2.png)
 
 The instance will now be terminated.
 

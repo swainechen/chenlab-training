@@ -28,7 +28,7 @@ We will now share the AMI we earlier created with another collaborator.
 
 6.	In the **Modify Image Permissions** dialog type in the AWS Account Number in the **AWS Account Number** field and click on **Add Permissions**. Be absolutely sure to clarify the correct AWS Account Number with your collaborator.
 
-Observe that by defalut, the image is set to Private. Keep that option checked, and enter the AWS Account Number in the space provided below. This will ensure that your image is still private (not available to public access), but the specific account mentioned will have access.  
+Observe that by default, the image is set to Private. Keep that option checked, and enter the AWS Account Number in the space provided below. This will ensure that your image is still private (not available to public access), but the specific account mentioned will have access.  
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2AMIPermissionsDialog1.png)
 
