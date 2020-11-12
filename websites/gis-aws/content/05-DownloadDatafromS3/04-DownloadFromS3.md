@@ -34,11 +34,11 @@ cd /tmp/fastq/SRR6327950
 3.	Run the AWS CLI command to copy files from the S3 bucket to the directory just created
 
 ```bash
-aws --profile training s3 cp s3://slchen-lab-transfer/GIS-training/SRR6327950/SRR6327950_1.fastq.gz .
+aws --profile training s3 cp s3://slchen-lab-transfer/GIS-training/SRR6327950/SRR6327950_1.fastq.gz . --region ap-southeast-1
 ```
 
 ```bash
-aws --profile training s3 cp s3://slchen-lab-transfer/GIS-training/SRR6327950/SRR6327950_2.fastq.gz .
+aws --profile training s3 cp s3://slchen-lab-transfer/GIS-training/SRR6327950/SRR6327950_2.fastq.gz . --region ap-southeast-1
 ```
 
 4.	Verify the MD5 checksum as you would normally do.

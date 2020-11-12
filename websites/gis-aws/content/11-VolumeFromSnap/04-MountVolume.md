@@ -58,5 +58,5 @@ df -h .
 10.	You will need to set ownership of this drive from root to user with **chown**.
 
 ```bash
-chown -R user /mnt/volume1
+sudo chown -R user /mnt/volume1
 ```
