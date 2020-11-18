@@ -11,7 +11,7 @@ Now that you have access to shared S3 buckets we are now ready to download data 
 1.	Run the command to list all the S3 buckets
 
 ```bash
-aws --profile training s3 ls
+aws --profile training s3 ls --region ap-southeast-1
 ```
 you will find the bucket named **slchen-lab-transfer** in the list, this bucket contains multiple folders. 
 

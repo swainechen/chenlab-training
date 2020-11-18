@@ -31,3 +31,10 @@ You will see that the new AMI is either being created or already created and rea
 
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2AMI.png)
+
+4.	Select the AMI instance we just created, click on Actions button, next click on Add/Edit Tags. Make sure to uniquely tag your image which will later allow easy searchability of your resource.
+
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2AMI2.png)
+
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2AMIAddTags.png)
+
