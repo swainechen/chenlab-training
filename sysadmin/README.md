@@ -7,7 +7,7 @@ This is based on:
 
 Setting up a system is split into the following steps (that progressively get more and more specific / bespoke:
 
-* General system updates
+* [General system updates](system.md)
 * R and Bioconductor
 * Python
 * Common bioinformatics software
