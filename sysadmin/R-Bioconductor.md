@@ -1,0 +1,34 @@
+# Setting up R and Bioconductor
+R is one of the big engines for bioinformatics research these days. This will install the latest stable version of R along with the latest Bioconductor (as of May, 2021).
+
+The default Ubuntu repositories for the LTS releases are not designed to keep up with the latest versions of software like R. So we'll follow the [advice of CRAN](https://cran.r-project.org/bin/linux/ubuntu/) and use their repositories.
+
+```
+sudo su -
+apt install --no-install-recommends r-base
+# then we'll run R as root - and check the default install location for packages
+R
+.libPaths()
+```
+
+Basic initial update - this takes about 5 min on a t3a.small:
+```
+update.packages(ask=F)
+```
+
+Install some regular R packages (this takes about 30 min):
+```
+install.packages(c("apcluster", "d3r", "devtools", "fields", "fpc", "genoPlotR", "gplots", "hexbin", "PopGenome", "r2d3", "randomcoloR", "RMySQL", "Rtsne", "scatterD3", "shiny", "shinydashboard", "svglite", "tidyverse", "tsne")
+```
+
+Install Bioconductor (following the [standard instructions](https://www.bioconductor.org/install/))
+```
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install()
+```
+
+Then install some Bioconductor packages:
+```
+BiocManager::install(c("Biostrings", "ComplexHeatmap", "DESeq2", "edgeR", "ggtree", "IRanges", "SNPRelate", "SRAdb", "Sushi"))
+```
