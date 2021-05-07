@@ -1,11 +1,15 @@
 # Initial "New Car" Setup and General Sysadmin
+Starting from a bare system image means we have to do some initial updates and get all the software installed. General system stuff will be done here, as well as a few preparatory steps that will be needed for installing some more specific bioinformatics tools later.
+
+First, initial updates:
 ```
 sudo su -
 apt update
 apt upgrade -y
 ```
+Everything after this will be run as root - we're doing sysadmin! You can also add `sudo` in front of all these commands below if you're staying as the default `ubuntu` user.
 
-Add some repositories we'll need later
+Add some repositories we'll need later:
 ```
 apt install software-properties-common dirmngr
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
