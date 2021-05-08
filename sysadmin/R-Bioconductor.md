@@ -6,19 +6,22 @@ The default Ubuntu repositories for the LTS releases are not designed to keep up
 ```
 sudo su -
 apt install --no-install-recommends r-base
-# then we'll run R as root - and check the default install location for packages
+# then we'll run R as root
 R
-.libPaths()
 ```
 
-Basic initial update - this takes about 5 min on a t3a.small:
+It's good to check where things are going to go first. Then do a basic initial update. This takes about 5 min on a t3a.small instance:
 ```
+.libPaths()
 update.packages(ask=F)
 ```
 
 Install some regular R packages (this takes about 30 min):
 ```
-install.packages(c("apcluster", "d3r", "devtools", "fields", "fpc", "genoPlotR", "gplots", "hexbin", "PopGenome", "r2d3", "randomcoloR", "RMySQL", "Rtsne", "scatterD3", "shiny", "shinydashboard", "svglite", "tidyverse", "tsne")
+install.packages(c("apcluster", "d3r", "devtools", "fields", "fpc",
+"genoPlotR", "gplots", "hexbin", "PopGenome", "r2d3", "randomcoloR",
+"RMySQL", "Rtsne", "scatterD3", "shiny", "shinydashboard", "svglite",
+"tidyverse", "tsne")
 ```
 
 Install Bioconductor (following the [standard instructions](https://www.bioconductor.org/install/))
@@ -30,5 +33,6 @@ BiocManager::install()
 
 Then install some Bioconductor packages:
 ```
-BiocManager::install(c("Biostrings", "ComplexHeatmap", "DESeq2", "edgeR", "ggtree", "IRanges", "SNPRelate", "SRAdb", "Sushi"))
+BiocManager::install(c("Biostrings", "ComplexHeatmap", "DESeq2",
+"edgeR", "ggtree", "IRanges", "SNPRelate", "SRAdb", "Sushi"))
 ```
