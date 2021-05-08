@@ -12,7 +12,7 @@ Note that the version numbers are included in the commands below - you'll have t
 ## Overview
 ### Standard installs
 #### General
-* [BLAST+](#BLAST+)
+* [BLAST+](#BLAST)
 * [HYPHY](#HYPHY)
 * [meme](#meme)
 * [samtools](#samtools-including-htslib)
@@ -22,6 +22,7 @@ Note that the version numbers are included in the commands below - you'll have t
 * [bwa](#bwa)
 * [deML](#deML)
 * [fastp](#fastp)
+* [lacer](#lacer)
 * [minimap](#minimap)
 * [porechop](#porechop)
 * [poretools](#poretools)
@@ -35,9 +36,11 @@ Note that the version numbers are included in the commands below - you'll have t
 * [miniasm](#miniasm)
 * [racon](#racon)
 * [sga](#sga)
+* [skesa](#skesa)
 * [SPAdes](#SPAdes)
 * [velvet](#velvet)
-* [unicycler](#unicycler)
+* [Trycycler](#Trycycler)
+* [Unicycler](#Unicycler)
 * [OPERA](#OPERA)
 * [GapCloser](#GapCloser)
 * [Contiguity](#Contiguity)
@@ -70,7 +73,7 @@ Note that the version numbers are included in the commands below - you'll have t
 ## Detailed instructions
 
 ### General
-* [BLAST+](#BLAST+)
+* [BLAST+](#BLAST)
 * [HYPHY](#HYPHY)
 * [meme](#meme)
 * [samtools](#samtools-including-htslib)
@@ -221,6 +224,7 @@ Note a couple useful pieces of information for the hts libraries:
 * [bwa](#bwa)
 * [deML](#deML)
 * [fastp](#fastp)
+* [lacer](#lacer)
 * [minimap](#minimap)
 * [porechop](#porechop)
 * [poretools](#poretools)
@@ -303,8 +307,16 @@ which bwa
 bwa
 ```
 
-#### deML
-#### fastp
+#### [deML](https://github.com/grenaud/deML)
+
+#### [fastp](https://github.com/OpenGene/fastp)
+Ubuntu LTS version: 0.20.0
+Github version: 0.20.1
+
+#### [lacer](https://github.com/swainechen/lacer)
+This is a base quality score recalibrator.
+It does not require knowledge of common SNPs and therefore is the only program that can generally recalibrate base quality scores on any organism (programs like GATK's BaseRecalibrator were designed primarily for human sequencing data, for example, and therefore only work well on data from a limited set of organisms).
+This means that base quality recalibration, leading to more accurate trimming and SNP calling, can now be used on any organism (specifically including bacteria).
 
 #### [minimap](https://github.com/lh3/minimap2)
 The Ubuntu Focal (20.04) LTS repositories have version 2.17.
@@ -346,7 +358,7 @@ sudo pip3 install seqmagick
 seqmagick -V
 ```
 
-#### seqtk
+#### [seqtk](https://github.com/lh3/seqtk)
 This is another useful utility for mangling sequence files.
 This seems to not be updated so frequently as well. Therefore, the Ubuntu LTS repositories have the latest version that's available as a release on the github site (version 1.3). So I'd recomment using the Ubuntu packaged version.
 
@@ -386,9 +398,11 @@ seqtk
 * [miniasm](#miniasm)
 * [racon](#racon)
 * [sga](#sga)
+* [skesa](#skesa)
 * [SPAdes](#SPAdes)
 * [velvet](#velvet)
-* [unicycler](#unicycler)
+* [Trycycler](#Trycycler)
+* [Unicycler](#Unicycler)
 * [OPERA](#OPERA)
 * [GapCloser](#GapCloser)
 * [Contiguity](#Contiguity)
@@ -398,7 +412,17 @@ seqtk
 #### miniasm
 #### racon
 #### sga
-#### SPAdes
+
+#### [skesa](https://github.com/ncbi/SKESA)
+Ubuntu LTS version: 2.3.0
+Github version: 2.4.0
+
+We'll install the latest Github version.
+
+#### [SPAdes](https://cab.spbu.ru/software/spades/)
+Ubuntu LTS version: 3.13.1
+Online version: 3.15.2
+However, Unicycler needs a version no later than 3.13.0. We'll install the latest online version for regular use, then do a second install with the older version for Unicycler.
 
 #### [velvet](https://github.com/dzerbino/velvet/tree/master)
 This is a popular assembler.
@@ -440,8 +464,15 @@ The last line for the VelvetOpt perl libraries goes to `/usr/local/lib/site_perl
 This should work on a stock Ubuntu install.
 You can check the options for this by running `perl -e 'print join ("\n", @INC), "\n";'` - this is the default search path for perl modules, and it just needs to be in one of those places (though something under `/usr/local/` is a good idea).
 
-#### unicycler
-#### OPERA
+#### [Trycycler](https://github.com/rrwick/Trycycler/wiki)
+
+#### [Unicycler](https://github.com/rrwick/Unicycler)
+Ubuntu LTS version: 0.4.8
+Github version: 0.4.9
+
+We'll use the latest Github version.
+
+#### [OPERA](https://github.com/CSB5/OPERA-MS)
 #### GapCloser
 #### Contiguity
 
@@ -489,7 +520,7 @@ for i in *; do ln -s /usr/local/src/lofreq_star-2.1.5_linux-x86-64/bin/$i /usr/l
 #### BRIG
 #### EasyFig
 #### SeqFindr
-#### slcview
+#### [slcview](https://github.com/swainechen/slcview)
 
 ### Customized installs
 * [ASCP](#ASCP)
@@ -512,9 +543,9 @@ echo 'export PATH=$PATH:/home/ubuntu/.aspera/connect/bin' >> /home/ubuntu/.bashr
 ```
 Note that, if needed, the standard key required is at `/home/ubuntu/.aspera/connect/etc/asperaweb_id_dsa.openssh`.
 
-#### FinIS
+#### [FinIS](https://sourceforge.net/p/finis/wiki/FinIS%20wiki/)
 
-#### genome-tools
+#### [genome-tools](https://github.com/swainechen/genome-tools)
 
-#### SRST2
+#### [SRST2](https://github.com/katholt/srst2)
 
