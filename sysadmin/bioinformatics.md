@@ -11,8 +11,10 @@ Note that the version numbers are included in the commands below - you'll have t
 
 ## Standard installs
 ### General
-* [BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
+* [BLAST+](#BLAST+)
+* [HYPHY](#HYPHY)
 
+#### [BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
 The Ubuntu repositories have this, but it's at version 2.9.0-2. The current version right now is at 2.11.0-1. Generally for most users, BLAST has been pretty stable, but here's how to update it if you need the latest version (you'll have to repeat these for each update as well after you do this manual install).
 
 First check on what we already have and where it is
@@ -47,7 +49,23 @@ for i in *; do ln -s /usr/local/src/ncbi-blast-2.11.0+/bin/$i /usr/local/bin; do
 
 You can verify that the default version is what you expect with the commands in the first block above. You may also want to remove the older Ubuntu version to avoid any potential confusion: `sudo apt purge ncbi-blast+ ncbi-blast+-legacy blast2`.
 
-* [HYPHY](https://github.com/veg/hyphy)
+#### [HYPHY](https://github.com/veg/hyphy)
+I haven't had great luck with conda, and this setup is intended to be used for a single person or to drive a specific pipeline. Therefore, we'll compile HYPHY from source using the latest release tarball.
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/veg/hyphy/archive/refs/tags/2.5.31.tar.gz
+tar xvzf 2.5.31.tar.gz
+cd hyphy-2.5.31
+# check the instructions
+less README.md
+
+# then do the installation. We have openMPI installed from the initial system setup
+cmake .
+make HYPHYMPI
+# this defaults to install to /usr/local
+make install
+```
 
 * [meme](http://meme-suite.org/meme/)
 
