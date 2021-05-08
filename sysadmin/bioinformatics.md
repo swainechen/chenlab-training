@@ -6,50 +6,58 @@ I've split this section into two parts - software that can be installed a relati
 * [Software requiring some customization](#customized-installs)
 
 ## Standard installs
-* samtools
-* blast+
+### General
 * ASCP
-* meme
-* HYPHY
+* blast+
 * genome-tools
+* HYPHY
+* meme
+* samtools
 
+### Read processing
+* bowtie
+* bwa
+* deML
+* fastp
+* porechop
+* poretools
+* seqmagick
+* seqtk
+* Trimmomatic
+
+### Assembly
+* a5 assembler
+* canu
+* miniasm
+* minimap
+* racon
+* sga
+* SPAdes
+* velvet
+* unicycler
+* OPERA
+* GapCloser
+* Contiguity
+
+### Post-processing, variant calling
+* GATK
+* graphmap
+* lofreq
+* pilon
+* nanopolish
+
+# Annotation and classification
+* abricate
+* Kraken
+* prokka
+* SeqSero
+
+### Visualization
 * slcview
 * BRIG
 * EasyFig
 * SeqFindr
 
-* Trimmomatic
-* deML
-* porechop
-* poretools
-
-* seqmagick
-* seqtk
-* fastp
-* a5 assembler
-* sga
-* velvet
-* SPAdes
-* canu
-* unicycler
-* racon
-* minimap
-* miniasm
-
-* OPERA
-* GapCloser
-* Contiguity
-
-* graphmap
-* pilon
-* nanopolish
-* GATK
-* lofreq
-
-* Kraken
-* prokka
-* abricate
-* SeqSero
-
 ## Customized installs
 * FinIS
+* SRST2
