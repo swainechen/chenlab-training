@@ -47,7 +47,9 @@ for i in *; do ln -s /usr/local/src/ncbi-blast-2.11.0+/bin/$i /usr/local/bin; do
 You can verify that the default version is what you expect with the commands in the first block above. You may also want to remove the older Ubuntu version to avoid any potential confusion: `sudo apt purge ncbi-blast+ ncbi-blast+-legacy blast2`.
 
 * HYPHY
+
 * meme
+
 * [samtools](http://www.htslib.org/) (including htslib)
 The HTSlib / samtools suite provides core tools and libraries that are also used by many other bioinformatics software tools. Again there is a version in the Ubuntu repositories (1.10), but the current version as of this writing is 1.12. This may or may not matter for what you're doing. If it does, here's how to update it.
 
@@ -82,7 +84,24 @@ make
 make install
 ```
 
-Again, you can go back above to verify what version you're now using by default (you may need to do a `hash -r` to have bash update program locations). Also, you can remove the version from the Ubuntu repositories if you want to avoid potential confusion: `sudo apt purge samtools libhts3`.
+Then bcftools:
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/samtools/bcftools/releases/download/1.12/bcftools-1.12.tar.bz2
+tar xvjf bcftools-1.12.tar.bz2
+cd bcftools-1.12
+# always check the basic docs
+less README
+less INSTALL
+# do the main configuration and installation
+./configure
+make
+# the default prefix is to install to /usr/local already
+make install
+```
+
+Again, you can go back above to verify what version you're now using by default (you may need to do a `hash -r` to have bash update program locations). Also, you can remove the version from the Ubuntu repositories if you want to avoid potential confusion: `sudo apt purge samtools libhts3 bcftools`.
 
 Note a couple useful pieces of information for the hts libraries:
 ```
@@ -92,9 +111,77 @@ Note a couple useful pieces of information for the hts libraries:
 
 ### Read processing
 * bowtie
-* bwa
+* [bwa](https://github.com/lh3/bwa)
+This isn't being updated so much though so I prefer to use the Ubuntu repositories, which have the same main version as the current release (as of May 2021) on the github repository (0.7.17).
+
+From the Ubuntu repositories (*Recommended*):
+```
+sudo apt install bwa
+
+# check where it is and the version
+which bwa
+bwa
+```
+
+From the github release tarball:
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/lh3/bwa/releases/download/v0.7.17/bwa-0.7.17.tar.bz2
+tar xvzf bwa-0.7.17.tar.bz2
+cd bwa-0.7.17
+make
+ln -s /usr/local/src/bwa/bwa /usr/local/bin
+
+# check where it is and the version
+which bwa
+bwa
+```
+
+From the github repository:
+```
+sudo su -
+cd /usr/local/src
+git clone https://github.com/lh3/bwa.git
+cd bwa
+make
+ln -s /usr/local/src/bwa/bwa /usr/local/bin
+
+# check where it is and the version
+which bwa
+bwa
+```
+
 * deML
 * fastp
+* [minimap](https://github.com/lh3/minimap2)
+The Ubuntu Focal (20.04) LTS repositories have version 2.17.
+The current release version (May 2021) in github is 2.18.
+As this is under active development, we'll have to keep up with new releases (similar instructions to below).
+
+From the Ubuntu repositories:
+```
+sudo apt install minimap2
+
+# check where it is and the version
+which minimap2
+minimap2
+```
+
+From the github release tarball (*Recommended*):
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/lh3/minimap2/releases/download/v2.18/minimap2-2.18_x64-linux.tar.bz2
+tar xvjf minimap2-2.18_x64-linux.tar.bz2
+ln -s /usr/local/src/minimap2-2.18_x64-linux/minimap2 /usr/local/bin
+ln -s /usr/local/src/minimap2-2.18_x64-linux/minimap2.1 /usr/local/man/man1/
+
+# check where it is and the version
+which minimap2
+minimap2
+```
+
 * porechop
 * poretools
 * seqmagick
@@ -105,7 +192,6 @@ Note a couple useful pieces of information for the hts libraries:
 * a5 assembler
 * canu
 * miniasm
-* minimap
 * racon
 * sga
 * SPAdes
