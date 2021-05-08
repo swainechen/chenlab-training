@@ -47,9 +47,31 @@ for i in *; do ln -s /usr/local/src/ncbi-blast-2.11.0+/bin/$i /usr/local/bin; do
 
 You can verify that the default version is what you expect with the commands in the first block above. You may also want to remove the older Ubuntu version to avoid any potential confusion: `sudo apt purge ncbi-blast+ ncbi-blast+-legacy blast2`.
 
-* HYPHY
+* [HYPHY](https://github.com/veg/hyphy)
 
-* meme
+* [meme](http://meme-suite.org/meme/)
+
+Current version is 5.3.3.
+```
+sudo su -
+cd /usr/local/src
+wget https://meme-suite.org/meme/meme-software/5.3.3/meme-5.3.3.tar.gz
+tar xvzf meme-5.3.3.tar.gz
+cd meme-5.3.3
+
+# always good to check the docs
+less README
+less INSTALL
+
+# this one we have to explicitly set the prefix
+./configure --prefix=/usr/local --enable-build-libxml2 --enable-build-libxslt
+# check everything looks ok for the output from the configure script, then:
+make
+# this has a test suite which is good to do
+make test
+
+Math::CDF XML::Compile::SOAP11 XML::Compile::WSDL11 XML::Compile::Transport::SOAPHTTP Log::Log4perl 
+```
 
 * [samtools](http://www.htslib.org/) (including htslib)
 
