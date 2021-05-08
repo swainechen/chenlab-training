@@ -19,9 +19,9 @@ update.packages(ask=F)
 Install some regular R packages (this takes about 30 min):
 ```
 install.packages(c("apcluster", "d3r", "devtools", "fields", "fpc",
-"genoPlotR", "gplots", "hexbin", "PopGenome", "r2d3", "randomcoloR",
-"RMySQL", "Rtsne", "scatterD3", "shiny", "shinydashboard", "svglite",
-"tidyverse", "tsne")
+  "genoPlotR", "gplots", "hexbin", "PopGenome", "r2d3", "randomcoloR",
+  "RMySQL", "Rtsne", "scatterD3", "shiny", "shinydashboard", "svglite",
+  "tidyverse", "tsne")
 ```
 
 Install Bioconductor (following the [standard instructions](https://www.bioconductor.org/install/))
@@ -33,6 +33,6 @@ BiocManager::install()
 
 Then install some Bioconductor packages:
 ```
-BiocManager::install(c("Biostrings", "ComplexHeatmap", "DESeq2",
-"edgeR", "ggtree", "IRanges", "SNPRelate", "SRAdb", "Sushi"))
+BiocManager::install(c("Biostrings", "ComplexHeatmap", "DESeq2", "edgeR",
+  "ggtree", "IRanges", "SNPRelate", "SRAdb", "Sushi"))
 ```
