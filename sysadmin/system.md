@@ -9,10 +9,11 @@ apt upgrade -y
 ```
 Everything after this will be run as root - we're doing sysadmin! You can also add `sudo` in front of all these commands below if you're staying as the default `ubuntu` user.
 
-_I should note that this isn't the best practice. The [standard recommendation](https://tldp.org/HOWTO/Software-Building-HOWTO-3.html) is to only use sudo or the root account when it's absolutely needed. There are a couple ways to do this:
+### Use of sudo and the root account
+I should note that running all this stuff as root isn't the best practice. The [standard recommendation](https://tldp.org/HOWTO/Software-Building-HOWTO-3.html) is to only use sudo or the root account when it's absolutely needed. There are a couple ways to do this:
 - download into /home/ubuntu/src, build there, then sudo install
 - make a `staff` or `admin` or `src` group, add the `ubuntu` user to that group, `chown -R root:staff /usr/local/src` (or even the whole `/usr/local` tree), then do all the builds as ubuntu +/- the install as root
-Here, though, we're doing the simple version to just run around as root. This takes away a layer of potential problems and if you're on a fresh cloud machine, it's not a huge deal to mess something up since there really shouldn't be other users you're concerned about and you can just make a new instance._
+Here, though, we're doing the simple version to just run around as root. This takes away a layer of potential problems and if you're on a fresh cloud machine, it's not a huge deal to mess something up since there really shouldn't be other users you're concerned about and you can just make a new instance.
 
 ## Software Repositories and PPAs
 Add some repositories we'll need later:
