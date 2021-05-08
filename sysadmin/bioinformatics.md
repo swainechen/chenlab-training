@@ -1,7 +1,7 @@
 # Bioinformatics software
 Bioinformatics is moving very fast. It's hard to keep up with version changes, and because of some details of academic funding and training, there is a lot of variation in organization and design.
 
-I've split this section into two parts - software that can be installed a relatively "standard" unix-like manner, and those that require some custom updates or custom configuration.
+From a setup point of view, there are two categories of software out there. Some software that can be installed in a relatively "standard" unix-like manner, while others require some custom updates or custom configuration (sometimes for compilation, nonstandard paths, or for needing special libraries / data to be downloaded).
 * [Software that follows a standard installation](#standard-installs)
 * [Software requiring some customization](#customized-installs)
 
@@ -9,14 +9,15 @@ Generally the strategy is to keep all the downloads and sources in /usr/local/sr
 
 Note that the version numbers are included in the commands below - you'll have to update those to whatever the current version is at the time.
 
-## Standard installs
-### General
+## Overview
+### Standard installs
+#### General
 * [BLAST+](#BLAST+)
 * [HYPHY](#HYPHY)
 * [meme](#meme)
 * [samtools](#samtools-including-htslib)
 
-### Read processing
+#### Read processing
 * [bowtie](#bowtie)
 * [bwa](#bwa)
 * [deML](#deML)
@@ -28,7 +29,7 @@ Note that the version numbers are included in the commands below - you'll have t
 * [seqtk](#seqtk)
 * [Trimmomatic](#Trimmomatic)
 
-### Assembly
+#### Assembly
 * [a5 assembler](#a5-assembler)
 * [canu](#canu)
 * [miniasm](#miniasm)
@@ -41,30 +42,38 @@ Note that the version numbers are included in the commands below - you'll have t
 * [GapCloser](#GapCloser)
 * [Contiguity](#Contiguity)
 
-### Post-processing, variant calling
+#### Post-processing, variant calling
 * [GATK](#GATK)
 * [graphmap](#graphmap)
 * [lofreq](#lofreq)
 * [pilon](#pilon)
 * [nanopolish](#nanopolish)
 
-### Annotation and classification
+#### Annotation and classification
 * [abricate](#abricate)
 * [Kraken](#Kraken)
 * [prokka](#prokka)
 * [SeqSero](#SeqSero)
 
-### Visualization
+#### Visualization
 * [BRIG](#BRIG)
 * [EasyFig](#EasyFig)
 * [SeqFindr](#SeqFindr)
 * [slcview](#slcview)
 
-## Customized installs
+### Customized installs
 * [ASCP](#ASCP)
 * [FinIS](#FinIS)
 * [genome-tools](#genome-tools)
 * [SRST2](#SRST2)
+
+## Detailed instructions
+
+### General
+* [BLAST+](#BLAST+)
+* [HYPHY](#HYPHY)
+* [meme](#meme)
+* [samtools](#samtools-including-htslib)
 
 #### [BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
 The Ubuntu repositories have this, but it's at version 2.9.0-2. The current version right now is at 2.11.0-1. Generally for most users, BLAST has been pretty stable, but here's how to update it if you need the latest version (you'll have to repeat these for each update as well after you do this manual install).
@@ -219,7 +228,40 @@ Note a couple useful pieces of information for the hts libraries:
 * [seqtk](#seqtk)
 * [Trimmomatic](#Trimmomatic)
 
-#### [bowtie]
+#### [bowtie2](https://github.com/BenLangmead/bowtie2)
+This is one of the well known short read mappers.
+[SRST2](#SRST2) uses this but has some version requirements (2.2.9).
+The Ubuntu focal LTS repositories include bowtie2 at version 2.3.5.1.
+The latest (May 2021) online at github is version 2.4.2.
+
+We'll install the latest release from github as the default. Installing the older 2.2.9 will be dealt with in the [SRST2](#SRST2) section.
+
+Install from the Ubuntu repositories:
+```
+sudo apt install bowtie2
+
+# check where it is and the version - this should be /usr/bin/bowtie2
+which bowtie2
+bowtie2 --version
+```
+
+Install from the SourceForge release:
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/BenLangmead/bowtie2/releases/download/v2.4.2/bowtie2-2.4.2-linux-x86_64.zip
+unzip bowtie2-2.4.2-linux-x86_64.zip
+cd bowtie2-2.4.2-linux-x86_64
+
+# always check the docs
+less README.md
+for i in bowtie*; do ln -s /usr/local/src/bowtie2-2.4.2-linux-x86_64/$i /usr/local/bin; done
+
+# check where it is and the version - this should be /usr/local/bin/bowtie2
+which bowtie2
+bowtie2 --version
+```
+
 #### [bwa](https://github.com/lh3/bwa)
 This isn't being updated so much though so I prefer to use the Ubuntu repositories, which have the same main version as the current release (as of May 2021) on the github repository (0.7.17).
 
@@ -294,8 +336,48 @@ minimap2
 
 #### porechop
 #### poretools
-#### seqmagick
+
+#### [seqmagick](https://fhcrc.github.io/seqmagick/)
+This is a useful utility for converting between sequence formats.
+This can be installed with pip (pip3 for python3).
+Installing as root as for other software, this will also be available for the ubuntu user (and others).
+```
+sudo pip3 install seqmagick
+seqmagick -V
+```
+
 #### seqtk
+This is another useful utility for mangling sequence files.
+This seems to not be updated so frequently as well. Therefore, the Ubuntu LTS repositories have the latest version that's available as a release on the github site (version 1.3). So I'd recomment using the Ubuntu packaged version.
+
+From the Ubuntu repositories (*Recommended*):
+```
+sudo apt install seqtk
+
+# check where it is and the version
+which seqtk
+seqtk
+```
+
+From the github release tarball:
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/lh3/seqtk/archive/refs/tags/v1.3.tar.gz
+tar xvzf v1.3.tar.gz
+cd seqtk-1.3
+# check the docs
+less README.md
+
+# make and install
+make
+ln -s /usr/local/src/seqtk-1.3/seqtk /usr/local/bin
+
+# check where it is and the version
+which seqtk
+seqtk
+```
+
 #### Trimmomatic
 
 ### Assembly
@@ -317,7 +399,47 @@ minimap2
 #### racon
 #### sga
 #### SPAdes
-#### velvet
+
+#### [velvet](https://github.com/dzerbino/velvet/tree/master)
+This is a popular assembler.
+It hasn't been updated in a while, so the Ubuntu repositories have the latest release version (1.2.10).
+However, the compile parameters are important and not great in the Ubuntu packaged version (they use `MAXKMERLENGTH=31` up to `MAXKMERLENGTH=127`).
+You can install the `velvet-long` package to have it compiled with the `LONGSEQUENCES` option.
+However, all the binaries now have suffixes like `_127` and `_long`.
+So we'll compile this from the github release tarball.
+
+From the Ubuntu repositories:
+```
+sudo apt install velvet velvet-long
+
+# check where it is and the version
+which velvetg
+ls `which velvetg`*
+velvetg
+```
+
+From the github repository (*Recommended*):
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/dzerbino/velvet/archive/refs/tags/v1.2.10.tar.gz
+tar xvzf v1.2.10.tar.gz
+cd velvet-1.2.10
+# check the docs
+less README.txt
+# the info on compile options is in the pdf manual, online at https://github.com/dzerbino/velvet/blob/master/Manual.pdf
+# we are not specifying BIGASSEMBLY, which is generally not needed for bacterial assemblies...
+make 'MAXKMERLENGTH=255' 'LONGSEQUENCES=1'
+for i in velvetg velveth; do ln -s /usr/local/src/velvet-1.2.10/$i /usr/local/bin; done
+# also pull in some contrib utilities, one of which needs a perl library
+ln -s /usr/local/src/velvet/contrib/VelvetOptimiser-2.2.4/VelvetOptimiser.pl /usr/local/bin
+ln -s /usr/local/src/velvet/contrib/shuffleSequences_fasta/shuffleSeq* /usr/local/bin
+ln -s /usr/local/src/velvet/contrib/VelvetOptimiser-2.2.4/VelvetOpt/ /usr/local/lib/site_perl/
+```
+The last line for the VelvetOpt perl libraries goes to `/usr/local/lib/site_perl`.
+This should work on a stock Ubuntu install.
+You can check the options for this by running `perl -e 'print join ("\n", @INC), "\n";'` - this is the default search path for perl modules, and it just needs to be in one of those places (though something under `/usr/local/` is a good idea).
+
 #### unicycler
 #### OPERA
 #### GapCloser
@@ -332,7 +454,18 @@ minimap2
 
 #### GATK
 #### graphmap
-#### lofreq
+
+#### [lofreq](https://csb5.github.io/lofreq/)
+This is a very good variant caller with a strong theoretical basis (uses all quality information in a model-based algorithm). We'll install from the release tarball.
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/CSB5/lofreq/raw/master/dist/lofreq_star-2.1.5_linux-x86-64.tgz
+tar xvzf lofreq_star-2.1.5_linux-x86-64.tgz
+cd lofreq_star-2.1.5_linux-x86-64/bin
+for i in *; do ln -s /usr/local/src/lofreq_star-2.1.5_linux-x86-64/bin/$i /usr/local/bin; done
+```
+
 #### pilon
 #### nanopolish
 
@@ -358,7 +491,7 @@ minimap2
 #### SeqFindr
 #### slcview
 
-## Customized installs
+### Customized installs
 * [ASCP](#ASCP)
 * [FinIS](#FinIS)
 * [genome-tools](#genome-tools)
