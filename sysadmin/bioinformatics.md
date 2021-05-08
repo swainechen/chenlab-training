@@ -16,6 +16,56 @@ Note that the version numbers are included in the commands below - you'll have t
 * [meme](#meme)
 * [samtools](#samtools-including-htslib)
 
+### Read processing
+* [bowtie](#bowtie)
+* [bwa](#bwa)
+* [deML](#deML)
+* [fastp](#fastp)
+* [minimap](#minimap)
+* [porechop](#porechop)
+* [poretools](#poretools)
+* [seqmagick](#seqmagick)
+* [seqtk](#seqtk)
+* [Trimmomatic](#Trimmomatic)
+
+### Assembly
+* [a5 assembler](#a5-assembler)
+* [canu](#canu)
+* [miniasm](#miniasm)
+* [racon](#racon)
+* [sga](#sga)
+* [SPAdes](#SPAdes)
+* [velvet](#velvet)
+* [unicycler](#unicycler)
+* [OPERA](#OPERA)
+* [GapCloser](#GapCloser)
+* [Contiguity](#Contiguity)
+
+### Post-processing, variant calling
+* [GATK](#GATK)
+* [graphmap](#graphmap)
+* [lofreq](#lofreq)
+* [pilon](#pilon)
+* [nanopolish](#nanopolish)
+
+### Annotation and classification
+* [abricate](#abricate)
+* [Kraken](#Kraken)
+* [prokka](#prokka)
+* [SeqSero](#SeqSero)
+
+### Visualization
+* [BRIG](#BRIG)
+* [EasyFig](#EasyFig)
+* [SeqFindr](#SeqFindr)
+* [slcview](#slcview)
+
+## Customized installs
+* [ASCP](#ASCP)
+* [FinIS](#FinIS)
+* [genome-tools](#genome-tools)
+* [SRST2](#SRST2)
+
 #### [BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
 The Ubuntu repositories have this, but it's at version 2.9.0-2. The current version right now is at 2.11.0-1. Generally for most users, BLAST has been pretty stable, but here's how to update it if you need the latest version (you'll have to repeat these for each update as well after you do this manual install).
 
@@ -158,9 +208,19 @@ Note a couple useful pieces of information for the hts libraries:
 ```
 
 ### Read processing
-* bowtie
-* [bwa](https://github.com/lh3/bwa)
+* [bowtie](#bowtie)
+* [bwa](#bwa)
+* [deML](#deML)
+* [fastp](#fastp)
+* [minimap](#minimap)
+* [porechop](#porechop)
+* [poretools](#poretools)
+* [seqmagick](#seqmagick)
+* [seqtk](#seqtk)
+* [Trimmomatic](#Trimmomatic)
 
+#### [bowtie]
+#### [bwa](https://github.com/lh3/bwa)
 This isn't being updated so much though so I prefer to use the Ubuntu repositories, which have the same main version as the current release (as of May 2021) on the github repository (0.7.17).
 
 From the Ubuntu repositories (*Recommended*):
@@ -201,10 +261,10 @@ which bwa
 bwa
 ```
 
-* deML
-* fastp
-* [minimap](https://github.com/lh3/minimap2)
+#### deML
+#### fastp
 
+#### [minimap](https://github.com/lh3/minimap2)
 The Ubuntu Focal (20.04) LTS repositories have version 2.17.
 The current release version (May 2021) in github is 2.18.
 As this is under active development, we'll have to keep up with new releases (similar instructions to below).
@@ -232,46 +292,79 @@ which minimap2
 minimap2
 ```
 
-* porechop
-* poretools
-* seqmagick
-* seqtk
-* Trimmomatic
+#### porechop
+#### poretools
+#### seqmagick
+#### seqtk
+#### Trimmomatic
 
 ### Assembly
-* a5 assembler
-* canu
-* miniasm
-* racon
-* sga
-* SPAdes
-* velvet
-* unicycler
-* OPERA
-* GapCloser
-* Contiguity
+* [a5 assembler](#a5-assembler)
+* [canu](#canu)
+* [miniasm](#miniasm)
+* [racon](#racon)
+* [sga](#sga)
+* [SPAdes](#SPAdes)
+* [velvet](#velvet)
+* [unicycler](#unicycler)
+* [OPERA](#OPERA)
+* [GapCloser](#GapCloser)
+* [Contiguity](#Contiguity)
+
+#### a5 assembler
+#### canu
+#### miniasm
+#### racon
+#### sga
+#### SPAdes
+#### velvet
+#### unicycler
+#### OPERA
+#### GapCloser
+#### Contiguity
 
 ### Post-processing, variant calling
-* GATK
-* graphmap
-* lofreq
-* pilon
-* nanopolish
+* [GATK](#GATK)
+* [graphmap](#graphmap)
+* [lofreq](#lofreq)
+* [pilon](#pilon)
+* [nanopolish](#nanopolish)
+
+#### GATK
+#### graphmap
+#### lofreq
+#### pilon
+#### nanopolish
 
 ### Annotation and classification
-* abricate
-* Kraken
-* prokka
-* SeqSero
+* [abricate](#abricate)
+* [Kraken](#Kraken)
+* [prokka](#prokka)
+* [SeqSero](#SeqSero)
+
+#### abricate
+#### Kraken
+#### prokka
+#### SeqSero
 
 ### Visualization
-* slcview
-* BRIG
-* EasyFig
-* SeqFindr
+* [BRIG](#BRIG)
+* [EasyFig](#EasyFig)
+* [SeqFindr](#SeqFindr)
+* [slcview](#slcview)
+
+#### BRIG
+#### EasyFig
+#### SeqFindr
+#### slcview
 
 ## Customized installs
-* [ASCP](from http://downloads.asperasoft.com/connect2/)
+* [ASCP](#ASCP)
+* [FinIS](#FinIS)
+* [genome-tools](#genome-tools)
+* [SRST2](#SRST2)
+
+#### [ASCP](from http://downloads.asperasoft.com/connect2/)
 
 This is useful for fast downloads, such as from ENA or Genbank. This seems to be easiest to install as the user (ubuntu).
 ```
@@ -286,9 +379,9 @@ echo 'export PATH=$PATH:/home/ubuntu/.aspera/connect/bin' >> /home/ubuntu/.bashr
 ```
 Note that, if needed, the standard key required is at `/home/ubuntu/.aspera/connect/etc/asperaweb_id_dsa.openssh`.
 
-* FinIS
+#### FinIS
 
-* genome-tools
+#### genome-tools
 
-* SRST2
+#### SRST2
 
