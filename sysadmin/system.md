@@ -31,7 +31,9 @@ apt install -y automake awscli cmake cython evince gnuplot-nox imagemagick
   snakemake zlib1g-dev
 
 # some initial software
-apt install -y bcftools cd-hit clonalframeml fastdnaml fastqc fasttree gubbins kraken njplot ncbi-entrez-direct ncbi-tools-bin paml soapdenovo2 vcftools mauve-aligner mummer
+apt install -y cd-hit clonalframeml fastdnaml fastqc fasttree
+  gubbins kraken njplot ncbi-entrez-direct ncbi-tools-bin paml soapdenovo2
+  vcftools mauve-aligner mummer
 ```
 
 Generally we would try to install system packages and relatively stable software from the Ubuntu repositories - this helps with security updates and keeping things organized on the system. One quirk at the time of this writing (May 2021) is that the Ubuntu awscli package is at 1.17.14-1, and there ends up being a library issue (see [here](https://github.com/boto/boto3/issues/2596)) - so we'll use pip3 to do the install (currently at version 1.19.69). (Note that version 2 of the awscli suite seems to require manual install (i.e. therefore requiring manual updates...).)
