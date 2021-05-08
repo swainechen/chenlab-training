@@ -12,6 +12,7 @@ Note that the version numbers are included in the commands below - you'll have t
 ## Standard installs
 ### General
 * [BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
+
 The Ubuntu repositories have this, but it's at version 2.9.0-2. The current version right now is at 2.11.0-1. Generally for most users, BLAST has been pretty stable, but here's how to update it if you need the latest version (you'll have to repeat these for each update as well after you do this manual install).
 
 First check on what we already have and where it is
@@ -51,6 +52,7 @@ You can verify that the default version is what you expect with the commands in 
 * meme
 
 * [samtools](http://www.htslib.org/) (including htslib)
+
 The HTSlib / samtools suite provides core tools and libraries that are also used by many other bioinformatics software tools. Again there is a version in the Ubuntu repositories (1.10), but the current version as of this writing is 1.12. This may or may not matter for what you're doing. If it does, here's how to update it.
 
 Figuring out what version you have currently:
@@ -112,6 +114,7 @@ Note a couple useful pieces of information for the hts libraries:
 ### Read processing
 * bowtie
 * [bwa](https://github.com/lh3/bwa)
+
 This isn't being updated so much though so I prefer to use the Ubuntu repositories, which have the same main version as the current release (as of May 2021) on the github repository (0.7.17).
 
 From the Ubuntu repositories (*Recommended*):
@@ -155,6 +158,7 @@ bwa
 * deML
 * fastp
 * [minimap](https://github.com/lh3/minimap2)
+
 The Ubuntu Focal (20.04) LTS repositories have version 2.17.
 The current release version (May 2021) in github is 2.18.
 As this is under active development, we'll have to keep up with new releases (similar instructions to below).
@@ -222,6 +226,7 @@ minimap2
 
 ## Customized installs
 * [ASCP](from http://downloads.asperasoft.com/connect2/)
+
 This is useful for fast downloads, such as from ENA or Genbank. This seems to be easiest to install as the user (ubuntu).
 ```
 # make sure you're in a user (ubuntu) shell and not root
