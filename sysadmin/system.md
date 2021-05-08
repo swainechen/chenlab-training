@@ -9,6 +9,7 @@ apt upgrade -y
 ```
 Everything after this will be run as root - we're doing sysadmin! You can also add `sudo` in front of all these commands below if you're staying as the default `ubuntu` user.
 
+## Software Repositories and PPAs
 Add some repositories we'll need later:
 ```
 apt install software-properties-common dirmngr
@@ -17,10 +18,11 @@ add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran4
 apt update
 ```
 
+## Standard Ubuntu Packages (from the repositories)
 Install regular ubuntu packages that we'll need for later. This took about 30 min on a t3a.small AWS instance.
 ```
-apt install -y automake awscli cmake cython evince gnuplot-nox imagemagick \
-  libbio-samtools-perl libcairo2-dev libcurl4-openssl-dev \
+apt install -y automake awscli cmake cpanminus cython evince gnuplot-nox \
+  imagemagick libbio-samtools-perl libcairo2-dev libcurl4-openssl-dev \
   libdatetime-format-dateparse-perl libdatetime-format-dbi-perl \
   libfile-type-perl libfile-which-perl libhdf5-dev libhtml-template-perl \
   libimage-magick-perl libjemalloc-dev libjson-perl liblzma-dev \
@@ -35,6 +37,44 @@ apt install -y cd-hit clonalframeml fastdnaml fastqc fasttree \
   gubbins kraken njplot ncbi-entrez-direct ncbi-tools-bin paml soapdenovo2 \
   vcftools mauve-aligner mummer
 ```
+
+## Perl 
+
+Many modules are available in the Ubuntu repositories. These may be older versions, but generally for our purposes these will be "stable enough" for us, and the auto-updating and security fixes are important.
+
+For those modules that aren't available already, it's useful to set up CPAN to manage the installs. [CPAN Instructions](http://www.cpan.org/modules/INSTALL.html)
+
+Here we'll install just two modules that help with some of the other software later (i.e. meme, lacer): `Math::CDF` `PDL::Parallel::threads`
+
+First, `Math::CDF`:
+```
+sudo su -
+cpanm Math::CDF
+
+# check it works - the following command should give no error if things are ok
+perl -e 'use Math::CDF'
+```
+
+The next module, `PDL::Parallel::threads`, is required for `lacer`. This has a little bug and requires some tweaking, documented [here](https://github.com/run4flat/PDL-Parallel-threads/issues/1).
+```
+sudo su -
+cnapm PDL::Parallel::threads
+# will see an error. It should point you to a build.log, go to that directory
+# the directory below is what I had - the last part will be different for you
+cd /root/.cpanm/work/1620464035.165032/
+# edit Build.PL as per https://github.com/run4flat/PDL-Parallel-threads/issues/1
+# this was on line 8 for me
+
+perl Build.PL
+./Build
+./Build test
+./Build install
+
+# test to see if it works - no error and no output for the following if ok
+perl -e 'use PDL::Parallel::threads'
+```
+
+## AWS Utilities
 
 Generally we would try to install system packages and relatively stable software from the Ubuntu repositories - this helps with security updates and keeping things organized on the system. One quirk at the time of this writing (May 2021) is that the Ubuntu awscli package is at 1.17.14-1, and there ends up being a library issue (see [here](https://github.com/boto/boto3/issues/2596)) - so we'll use pip3 to do the install (currently at version 1.19.69). (Note that version 2 of the awscli suite seems to require manual install (i.e. therefore requiring manual updates...).)
 ```

@@ -69,8 +69,13 @@ less INSTALL
 make
 # this has a test suite which is good to do
 make test
+# some meme?? tests fail if you run as root
+# they also fail if you don't have enough slots for the MPI version, i.e. CPUs
+make install
 
-Math::CDF XML::Compile::SOAP11 XML::Compile::WSDL11 XML::Compile::Transport::SOAPHTTP Log::Log4perl 
+# then, as per instructions, add things to your path (for the user, not necessarily root)
+echo '# path for meme' >> /home/ubuntu/.bashrc
+echo 'export PATH=$PATH:/usr/local/libexec/meme-5.3.3' >> /home/ubuntu/.bashrc
 ```
 
 * [samtools](http://www.htslib.org/) (including htslib)
@@ -257,7 +262,8 @@ wget https://d3gcli72yxqn2z.cloudfront.net/connect_latest/v4/bin/ibm-aspera-conn
 tar xvzf ibm-aspera-connect-3.11.2.63-linux-g2.12-64.tar.gz
 ./ibm-aspera-connect-3.11.2.63-linux-g2.12-64.sh
 # update your path to include this (for ex. in .bashrc)
-echo 'export PATH=$PATH:/home/ubuntu/.aspera/connect/bin' >> .bashrc
+echo '# path for ascp' >> /home/ubuntu/.bashrc
+echo 'export PATH=$PATH:/home/ubuntu/.aspera/connect/bin' >> /home/ubuntu/.bashrc
 ```
 Note that, if needed, the standard key required is at `/home/ubuntu/.aspera/connect/etc/asperaweb_id_dsa.openssh`.
 
