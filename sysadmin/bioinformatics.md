@@ -24,7 +24,7 @@ Note that the version numbers are included in the commands below - you'll have t
 * [fastp](#fastp)
 * [lacer](#lacer)
 * [minimap](#minimap)
-* [porechop](#porechop)
+* [Porechop](#Porechop)
 * [poretools](#poretools)
 * [seqmagick](#seqmagick)
 * [seqtk](#seqtk)
@@ -226,7 +226,7 @@ Note a couple useful pieces of information for the hts libraries:
 * [fastp](#fastp)
 * [lacer](#lacer)
 * [minimap](#minimap)
-* [porechop](#porechop)
+* [Porechop](#Porechop)
 * [poretools](#poretools)
 * [seqmagick](#seqmagick)
 * [seqtk](#seqtk)
@@ -269,7 +269,7 @@ bowtie2 --version
 #### [bwa](https://github.com/lh3/bwa)
 This isn't being updated so much though so I prefer to use the Ubuntu repositories, which have the same main version as the current release (as of May 2021) on the github repository (0.7.17).
 
-From the Ubuntu repositories (*Recommended*):
+From the Ubuntu repositories (**Recommended**):
 ```
 sudo apt install bwa
 
@@ -406,7 +406,7 @@ which minimap2
 minimap2
 ```
 
-From the github release tarball (*Recommended*):
+From the github release tarball (**Recommended**):
 ```
 sudo su -
 cd /usr/local/src
@@ -420,8 +420,47 @@ which minimap2
 minimap2
 ```
 
-#### porechop
+#### [Porechop](https://github.com/rrwick/Porechop)
+This is a tool for adapter trimming for Oxford Nanopore sequencing data.
+It seems to work, but officially is no longer supported.
+Since it hasn't been updated in a while, the Ubuntu version is up-to-date with what's on Github, so use that version.
+
+Install from the Ubuntu Focal LTS repositories:
+```
+sudo apt install porechop
+
+# check it runs ok
+porechop --version
+```
+
+Install from Github:
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/rrwick/Porechop/archive/refs/tags/v0.2.4.tar.gz
+tar xvzf v0.2.4.tar.gz
+cd Porechop-0.2.4
+# check the docs
+less README.md
+
+# the install script defaults to /usr/local already
+python3 setup.py install
+
+# check it runs ok
+porechop --version
+```
+
 #### poretools
+These are utilities to work with Oxford Nanopore sequencing data.
+This hasn't been updated in a while, so the Ubuntu repositories have the same version as the latest releast on Github.
+
+Install from the Ubuntu Focal LTS repositories:
+```
+sudo apt install poretools
+
+# check it runs ok
+poretools --version
+```
 
 #### [seqmagick](https://fhcrc.github.io/seqmagick/)
 This is a useful utility for converting between sequence formats.
@@ -436,7 +475,7 @@ seqmagick -V
 This is another useful utility for mangling sequence files.
 This seems to not be updated so frequently as well. Therefore, the Ubuntu LTS repositories have the latest version that's available as a release on the github site (version 1.3). So I'd recomment using the Ubuntu packaged version.
 
-From the Ubuntu repositories (*Recommended*):
+From the Ubuntu repositories (**Recommended**):
 ```
 sudo apt install seqtk
 
@@ -464,7 +503,55 @@ which seqtk
 seqtk
 ```
 
-#### Trimmomatic
+#### [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)
+Ubuntu focal LTS version: 0.39
+Online version: 0.39
+
+Since the latest version is already in the Ubuntu repositories, we'll use that.
+This provides bash wrappers to run `trimmomatic.jar`.
+```
+sudo apt install trimmomatic
+
+# check where it is and the version
+TrimmomaticPE
+TrimmomaticSE
+
+# can be useful to see what files were included - for ex. what adapter sequence files are included and where they are stored
+dpkg -L trimmomatic
+```
+
+#### [BBMap](https://sourceforge.net/projects/bbmap/)
+Ubuntu focal LTS version: 38.79
+SourceForge version: 38.90
+
+This is another mapper (BBMap) that has a read trimmer as well (BBDuk), along with a few other utilities.
+Since the SourceForge version is newer, we'll prefer that.
+
+From the Ubuntu repositories:
+```
+sudo apt install bbmap
+
+# check where it is and the version
+bbmap.sh
+bbduk.sh
+```
+
+From the SourceForge release tarball:
+```
+sudo su -
+cd /usr/local/src
+# the URL again is generated
+# you may need to get a new URL by clicking from https://sourceforge.net/projects/bbmap/
+wget 'https://downloads.sourceforge.net/project/bbmap/BBMap_38.90.tar.gz?ts=gAAAAABglrnyrwR2Q1MnHROncBIoOt3unY2XNT7spAMQTg8KopS73pB07gOriP7rcnn1yqmDMctWFxcJPSV9x0-K8AUaV6hXJw%3D%3D&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fbbmap%2Ffiles%2Flatest%2Fdownload' -O BBMap_38.90.tar.gz
+tar xvzf BBMap_38.90.tar.gz
+cd bbmap
+# check the docs
+less README.md
+less docs/readme.txt
+
+# we follow what the Ubuntu maintainers did and only link the scripts for bbduk, bbmap, bbnorm, bloomfilter, dedupe, and reformat
+for i in bbduk bbmap bbnorm bloomfilter dedupe reformat; do ln -s /usr/local/src/bbmap/$i.sh /usr/local/bin; done
+```
 
 ### Assembly
 * [a5 assembler](#a5-assembler)
@@ -516,7 +603,7 @@ ls `which velvetg`*
 velvetg
 ```
 
-From the github repository (*Recommended*):
+From the github repository (**Recommended**):
 ```
 sudo su -
 cd /usr/local/src
