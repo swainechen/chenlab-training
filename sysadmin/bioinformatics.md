@@ -13,6 +13,8 @@ Note that the version numbers are included in the commands below - you'll have t
 ### General
 * [BLAST+](#BLAST+)
 * [HYPHY](#HYPHY)
+* [meme](#meme)
+* [samtools](#samtools-including-htslib)
 
 #### [BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
 The Ubuntu repositories have this, but it's at version 2.9.0-2. The current version right now is at 2.11.0-1. Generally for most users, BLAST has been pretty stable, but here's how to update it if you need the latest version (you'll have to repeat these for each update as well after you do this manual install).
@@ -67,8 +69,7 @@ make HYPHYMPI
 make install
 ```
 
-* [meme](http://meme-suite.org/meme/)
-
+#### [meme](http://meme-suite.org/meme/)
 Current version is 5.3.3.
 ```
 sudo su -
@@ -96,7 +97,7 @@ echo '# path for meme' >> /home/ubuntu/.bashrc
 echo 'export PATH=$PATH:/usr/local/libexec/meme-5.3.3' >> /home/ubuntu/.bashrc
 ```
 
-* [samtools](http://www.htslib.org/) (including htslib)
+#### [samtools](http://www.htslib.org/) (including htslib)
 
 The HTSlib / samtools suite provides core tools and libraries that are also used by many other bioinformatics software tools. Again there is a version in the Ubuntu repositories (1.10), but the current version as of this writing is 1.12. This may or may not matter for what you're doing. If it does, here's how to update it.
 
