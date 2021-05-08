@@ -113,12 +113,12 @@ for i in *; do ln -s /usr/local/src/ncbi-blast-2.11.0+/bin/$i /usr/local/bin; do
 
 You can verify that the default version is what you expect with the commands in the first block above. You may also want to remove the older Ubuntu version to avoid any potential confusion: `sudo apt purge ncbi-blast+ ncbi-blast+-legacy blast2`.
 
-#### [HYPHY](https://Github.com/veg/hyphy)
+#### [HYPHY](https://github.com/veg/hyphy)
 I haven't had great luck with conda, and this setup is intended to be used for a single person or to drive a specific pipeline. Therefore, we'll compile HYPHY from source using the latest release tarball.
 ```
 sudo su -
 cd /usr/local/src
-wget https://Github.com/veg/hyphy/archive/refs/tags/2.5.31.tar.gz
+wget https://github.com/veg/hyphy/archive/refs/tags/2.5.31.tar.gz
 tar xvzf 2.5.31.tar.gz
 cd hyphy-2.5.31
 # check the instructions
@@ -176,7 +176,7 @@ Installing the latest version (check the version numbers throughout). We'll inst
 ```
 sudo su -
 cd /usr/local/src
-wget https://Github.com/samtools/samtools/releases/download/1.12/samtools-1.12.tar.bz2
+wget https://github.com/samtools/samtools/releases/download/1.12/samtools-1.12.tar.bz2
 tar xvjf samtools-1.12.tar.bz2
 cd samtools-1.12
 # always check the basic docs
@@ -198,7 +198,7 @@ Then bcftools:
 ```
 sudo su -
 cd /usr/local/src
-wget https://Github.com/samtools/bcftools/releases/download/1.12/bcftools-1.12.tar.bz2
+wget https://github.com/samtools/bcftools/releases/download/1.12/bcftools-1.12.tar.bz2
 tar xvjf bcftools-1.12.tar.bz2
 cd bcftools-1.12
 # always check the basic docs
@@ -232,13 +232,13 @@ Note a couple useful pieces of information for the hts libraries:
 * [seqtk](#seqtk)
 * [Trimmomatic](#Trimmomatic)
 
-#### [bowtie2](https://Github.com/BenLangmead/bowtie2)
+#### [bowtie2](https://github.com/BenLangmead/bowtie2)
 This is one of the well known short read mappers.
 [SRST2](#SRST2) uses this but has some version requirements (2.2.9).
 The Ubuntu focal LTS repositories include bowtie2 at version 2.3.5.1.
-The latest (May 2021) online at Github is version 2.4.2.
+The latest (May 2021) online at GitHub is version 2.4.2.
 
-We'll install the latest release from Github as the default. Installing the older 2.2.9 will be dealt with in the [SRST2](#SRST2) section.
+We'll install the latest release from GitHub as the default. Installing the older 2.2.9 will be dealt with in the [SRST2](#SRST2) section.
 
 Install from the Ubuntu repositories:
 ```
@@ -249,11 +249,11 @@ which bowtie2
 bowtie2 --version
 ```
 
-Install from the Github release (**Recommended**):
+Install from the GitHub release (**Recommended**):
 ```
 sudo su -
 cd /usr/local/src
-wget https://Github.com/BenLangmead/bowtie2/releases/download/v2.4.2/bowtie2-2.4.2-linux-x86_64.zip
+wget https://github.com/BenLangmead/bowtie2/releases/download/v2.4.2/bowtie2-2.4.2-linux-x86_64.zip
 unzip bowtie2-2.4.2-linux-x86_64.zip
 cd bowtie2-2.4.2-linux-x86_64
 
@@ -266,8 +266,8 @@ which bowtie2
 bowtie2 --version
 ```
 
-#### [bwa](https://Github.com/lh3/bwa)
-This isn't being updated so much though so I prefer to use the Ubuntu repositories, which have the same main version as the current release (as of May 2021) on the Github repository (0.7.17).
+#### [bwa](https://github.com/lh3/bwa)
+This isn't being updated so much though so I prefer to use the Ubuntu repositories, which have the same main version as the current release (as of May 2021) on the GitHub repository (0.7.17).
 
 From the Ubuntu repositories (**Recommended**):
 ```
@@ -278,11 +278,11 @@ which bwa
 bwa
 ```
 
-From the Github release tarball:
+From the GitHub release tarball:
 ```
 sudo su -
 cd /usr/local/src
-wget https://Github.com/lh3/bwa/releases/download/v0.7.17/bwa-0.7.17.tar.bz2
+wget https://github.com/lh3/bwa/releases/download/v0.7.17/bwa-0.7.17.tar.bz2
 tar xvzf bwa-0.7.17.tar.bz2
 cd bwa-0.7.17
 make
@@ -293,11 +293,11 @@ which bwa
 bwa
 ```
 
-From the Github repository:
+From the GitHub repository:
 ```
 sudo su -
 cd /usr/local/src
-git clone https://Github.com/lh3/bwa.git
+git clone https://github.com/lh3/bwa.git
 cd bwa
 make
 ln -s /usr/local/src/bwa/bwa /usr/local/bin
@@ -307,16 +307,16 @@ which bwa
 bwa
 ```
 
-#### [deML](https://Github.com/grenaud/deML)
-Github release version: 1.1.3
+#### [deML](https://github.com/grenaud/deML)
+GitHub release version: 1.1.3
 
 This is a maximum likelihood demultiplexer that is useful for when you have designed a custom multiplexing strategy. This happens a lot with Tn-seq experiments, for example.
 
-There seem to be some updates since the last release, and the 1.1.3 release tarball doesn't seem to compile, seems to be some issues with changing paths. So we'll install from a clone of the current Github repository.
+There seem to be some updates since the last release, and the 1.1.3 release tarball doesn't seem to compile, seems to be some issues with changing paths. So we'll install from a clone of the current GitHub repository.
 ```
 sudo su -
 cd /usr/local/src
-git clone https://Github.com/grenaud/deML.git
+git clone https://github.com/grenaud/deML.git
 cd deML
 # check the docs
 less README.md
@@ -328,16 +328,16 @@ ln -s /usr/local/src/deML/src/deML /usr/local/bin
 deML
 ```
 
-#### [fastp](https://Github.com/OpenGene/fastp)
+#### [fastp](https://github.com/OpenGene/fastp)
 Ubuntu LTS version: 0.20.0
-Github version: 0.20.1
+GitHub version: 0.20.1
 
-We'll install the Github version. (The Ubuntu version of course is straightforward with an `apt install fastp`).
+We'll install the GitHub version. (The Ubuntu version of course is straightforward with an `apt install fastp`).
 
 ```
 sudo su -
 cd /usr/local/src
-wget https://Github.com/OpenGene/fastp/archive/refs/tags/v0.20.1.tar.gz
+wget https://github.com/OpenGene/fastp/archive/refs/tags/v0.20.1.tar.gz
 tar xvzf v0.20.1.tar.gz
 cd fastp-0.20.1/
 # check the docs
@@ -350,8 +350,8 @@ ln -s /usr/local/src/fastp-0.20.1/fastp /usr/local/bin
 fastp
 ```
 
-#### [lacer](https://Github.com/swainechen/lacer)
-Github version: 0.424
+#### [lacer](https://github.com/swainechen/lacer)
+GitHub version: 0.424
 
 This is a base quality score recalibrator (the "Q" in FASTQ files).
 It does not require knowledge of common SNPs and therefore is the only program that can generally recalibrate base quality scores on any organism (programs like GATK's BaseRecalibrator were designed primarily for human sequencing data, for example, and therefore only work well on data from a limited set of organisms).
@@ -363,7 +363,7 @@ There are some Perl dependencies - if you've done everything in the [initial sys
 ```
 sudo su -
 cd /usr/local/src
-git clone https://Github.com/swainechen/lacer.git
+git clone https://github.com/swainechen/lacer.git
 cd lacer
 # check the docs
 less README.md
@@ -392,9 +392,9 @@ gcc -I$SAMTOOLS -I$HTSLIB lacepr.c -L$SAMTOOLS -L$HTSLIB -lbam -l:libhts.a -lz -
 ln -s /usr/local/src/lacer/lacepr/lacepr /usr/local/bin
 ```
 
-#### [minimap](https://Github.com/lh3/minimap2)
+#### [minimap](https://github.com/lh3/minimap2)
 The Ubuntu Focal (20.04) LTS repositories have version 2.17.
-The current release version (May 2021) in Github is 2.18.
+The current release version (May 2021) in GitHub is 2.18.
 As this is under active development, we'll have to keep up with new releases (similar instructions to below).
 
 From the Ubuntu repositories:
@@ -406,11 +406,11 @@ which minimap2
 minimap2
 ```
 
-From the Github release tarball (**Recommended**):
+From the GitHub release tarball (**Recommended**):
 ```
 sudo su -
 cd /usr/local/src
-wget https://Github.com/lh3/minimap2/releases/download/v2.18/minimap2-2.18_x64-linux.tar.bz2
+wget https://github.com/lh3/minimap2/releases/download/v2.18/minimap2-2.18_x64-linux.tar.bz2
 tar xvjf minimap2-2.18_x64-linux.tar.bz2
 ln -s /usr/local/src/minimap2-2.18_x64-linux/minimap2 /usr/local/bin
 ln -s /usr/local/src/minimap2-2.18_x64-linux/minimap2.1 /usr/local/man/man1/
@@ -420,10 +420,10 @@ which minimap2
 minimap2
 ```
 
-#### [Porechop](https://Github.com/rrwick/Porechop)
+#### [Porechop](https://github.com/rrwick/Porechop)
 This is a tool for adapter trimming for Oxford Nanopore sequencing data.
 It seems to work, but officially is no longer supported.
-Since it hasn't been updated in a while, the Ubuntu version is up-to-date with what's on Github, so use that version.
+Since it hasn't been updated in a while, the Ubuntu version is up-to-date with what's on GitHub, so use that version.
 
 Install from the Ubuntu Focal LTS repositories:
 ```
@@ -433,11 +433,11 @@ sudo apt install porechop
 porechop --version
 ```
 
-Install from Github:
+Install from GitHub:
 ```
 sudo su -
 cd /usr/local/src
-wget https://Github.com/rrwick/Porechop/archive/refs/tags/v0.2.4.tar.gz
+wget https://github.com/rrwick/Porechop/archive/refs/tags/v0.2.4.tar.gz
 tar xvzf v0.2.4.tar.gz
 cd Porechop-0.2.4
 # check the docs
@@ -452,7 +452,7 @@ porechop --version
 
 #### poretools
 These are utilities to work with Oxford Nanopore sequencing data.
-This hasn't been updated in a while, so the Ubuntu repositories have the same version as the latest releast on Github.
+This hasn't been updated in a while, so the Ubuntu repositories have the same version as the latest releast on GitHub.
 
 Install from the Ubuntu Focal LTS repositories:
 ```
@@ -462,7 +462,7 @@ sudo apt install poretools
 poretools --version
 ```
 
-#### [seqmagick](https://fhcrc.Github.io/seqmagick/)
+#### [seqmagick](https://fhcrc.github.io/seqmagick/)
 This is a useful utility for converting between sequence formats.
 This can be installed with pip (pip3 for python3).
 Installing as root as for other software, this will also be available for the ubuntu user (and others).
@@ -471,9 +471,9 @@ sudo pip3 install seqmagick
 seqmagick -V
 ```
 
-#### [seqtk](https://Github.com/lh3/seqtk)
+#### [seqtk](https://github.com/lh3/seqtk)
 This is another useful utility for mangling sequence files.
-This seems to not be updated so frequently as well. Therefore, the Ubuntu LTS repositories have the latest version that's available as a release on the Github site (version 1.3). So I'd recomment using the Ubuntu packaged version.
+This seems to not be updated so frequently as well. Therefore, the Ubuntu LTS repositories have the latest version that's available as a release on the GitHub site (version 1.3). So I'd recomment using the Ubuntu packaged version.
 
 From the Ubuntu repositories (**Recommended**):
 ```
@@ -484,11 +484,11 @@ which seqtk
 seqtk
 ```
 
-From the Github release tarball:
+From the GitHub release tarball:
 ```
 sudo su -
 cd /usr/local/src
-wget https://Github.com/lh3/seqtk/archive/refs/tags/v1.3.tar.gz
+wget https://github.com/lh3/seqtk/archive/refs/tags/v1.3.tar.gz
 tar xvzf v1.3.tar.gz
 cd seqtk-1.3
 # check the docs
@@ -574,24 +574,24 @@ for i in bbduk bbmap bbnorm bloomfilter dedupe reformat; do ln -s /usr/local/src
 #### racon
 #### sga
 
-#### [skesa](https://Github.com/ncbi/SKESA)
+#### [skesa](https://github.com/ncbi/SKESA)
 Ubuntu LTS version: 2.3.0
-Github version: 2.4.0
+GitHub version: 2.4.0
 
-We'll install the latest Github version.
+We'll install the latest GitHub version.
 
 #### [SPAdes](https://cab.spbu.ru/software/spades/)
 Ubuntu LTS version: 3.13.1
 Online version: 3.15.2
 However, Unicycler needs a version no later than 3.13.0. We'll install the latest online version for regular use, then do a second install with the older version for Unicycler.
 
-#### [velvet](https://Github.com/dzerbino/velvet/tree/master)
+#### [velvet](https://github.com/dzerbino/velvet/tree/master)
 This is a popular assembler.
 It hasn't been updated in a while, so the Ubuntu repositories have the latest release version (1.2.10).
 However, the compile parameters are important and not great in the Ubuntu packaged version (they use `MAXKMERLENGTH=31` up to `MAXKMERLENGTH=127`).
 You can install the `velvet-long` package to have it compiled with the `LONGSEQUENCES` option.
 However, all the binaries now have suffixes like `_127` and `_long`.
-So we'll compile this from the Github release tarball.
+So we'll compile this from the GitHub release tarball.
 
 From the Ubuntu repositories:
 ```
@@ -603,16 +603,16 @@ ls `which velvetg`*
 velvetg
 ```
 
-From the Github repository (**Recommended**):
+From the GitHub repository (**Recommended**):
 ```
 sudo su -
 cd /usr/local/src
-wget https://Github.com/dzerbino/velvet/archive/refs/tags/v1.2.10.tar.gz
+wget https://github.com/dzerbino/velvet/archive/refs/tags/v1.2.10.tar.gz
 tar xvzf v1.2.10.tar.gz
 cd velvet-1.2.10
 # check the docs
 less README.txt
-# the info on compile options is in the pdf manual, online at https://Github.com/dzerbino/velvet/blob/master/Manual.pdf
+# the info on compile options is in the pdf manual, online at https://github.com/dzerbino/velvet/blob/master/Manual.pdf
 # we are not specifying BIGASSEMBLY, which is generally not needed for bacterial assemblies...
 make 'MAXKMERLENGTH=255' 'LONGSEQUENCES=1'
 for i in velvetg velveth; do ln -s /usr/local/src/velvet-1.2.10/$i /usr/local/bin; done
@@ -625,15 +625,15 @@ The last line for the VelvetOpt perl libraries goes to `/usr/local/lib/site_perl
 This should work on a stock Ubuntu install.
 You can check the options for this by running `perl -e 'print join ("\n", @INC), "\n";'` - this is the default search path for perl modules, and it just needs to be in one of those places (though something under `/usr/local/` is a good idea).
 
-#### [Trycycler](https://Github.com/rrwick/Trycycler/wiki)
+#### [Trycycler](https://github.com/rrwick/Trycycler/wiki)
 
-#### [Unicycler](https://Github.com/rrwick/Unicycler)
+#### [Unicycler](https://github.com/rrwick/Unicycler)
 Ubuntu LTS version: 0.4.8
-Github version: 0.4.9
+GitHub version: 0.4.9
 
-We'll use the latest Github version.
+We'll use the latest GitHub version.
 
-#### [OPERA](https://Github.com/CSB5/OPERA-MS)
+#### [OPERA](https://github.com/CSB5/OPERA-MS)
 #### GapCloser
 #### Contiguity
 
@@ -647,12 +647,12 @@ We'll use the latest Github version.
 #### GATK
 #### graphmap
 
-#### [lofreq](https://csb5.Github.io/lofreq/)
+#### [lofreq](https://csb5.github.io/lofreq/)
 This is a very good variant caller with a strong theoretical basis (uses all quality information in a model-based algorithm). We'll install from the release tarball.
 ```
 sudo su -
 cd /usr/local/src
-wget https://Github.com/CSB5/lofreq/raw/master/dist/lofreq_star-2.1.5_linux-x86-64.tgz
+wget https://github.com/CSB5/lofreq/raw/master/dist/lofreq_star-2.1.5_linux-x86-64.tgz
 tar xvzf lofreq_star-2.1.5_linux-x86-64.tgz
 cd lofreq_star-2.1.5_linux-x86-64/bin
 for i in *; do ln -s /usr/local/src/lofreq_star-2.1.5_linux-x86-64/bin/$i /usr/local/bin; done
@@ -681,7 +681,7 @@ for i in *; do ln -s /usr/local/src/lofreq_star-2.1.5_linux-x86-64/bin/$i /usr/l
 #### BRIG
 #### EasyFig
 #### SeqFindr
-#### [slcview](https://Github.com/swainechen/slcview)
+#### [slcview](https://github.com/swainechen/slcview)
 
 ### Customized installs
 * [ASCP](#ASCP)
@@ -706,7 +706,7 @@ Note that, if needed, the standard key required is at `/home/ubuntu/.aspera/conn
 
 #### [FinIS](https://sourceforge.net/p/finis/wiki/FinIS%20wiki/)
 
-#### [genome-tools](https://Github.com/swainechen/genome-tools)
+#### [genome-tools](https://github.com/swainechen/genome-tools)
 
-#### [SRST2](https://Github.com/katholt/srst2)
+#### [SRST2](https://github.com/katholt/srst2)
 
