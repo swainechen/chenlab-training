@@ -308,15 +308,89 @@ bwa
 ```
 
 #### [deML](https://github.com/grenaud/deML)
+Github release version: 1.1.3
+
+This is a maximum likelihood demultiplexer that is useful for when you have designed a custom multiplexing strategy. This happens a lot with Tn-seq experiments, for example.
+
+There seem to be some updates since the last release, and the 1.1.3 release tarball doesn't seem to compile, seems to be some issues with changing paths. So we'll install from a clone of the current github repository.
+```
+sudo su -
+cd /usr/local/src
+git clone https://github.com/grenaud/deML.git
+cd deML
+# check the docs
+less README.md
+
+make
+ln -s /usr/local/src/deML/src/deML /usr/local/bin
+
+# check the binary runs ok
+deML
+```
 
 #### [fastp](https://github.com/OpenGene/fastp)
 Ubuntu LTS version: 0.20.0
 Github version: 0.20.1
 
+We'll install the github version. (The Ubuntu version of course is straightforward with an `apt install fastp`).
+
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/OpenGene/fastp/archive/refs/tags/v0.20.1.tar.gz
+tar xvzf v0.20.1.tar.gz
+cd fastp-0.20.1/
+# check the docs
+less README.md
+
+make
+ln -s /usr/local/src/fastp-0.20.1/fastp /usr/local/bin
+
+# check the binary runs ok
+fastp
+```
+
 #### [lacer](https://github.com/swainechen/lacer)
-This is a base quality score recalibrator.
+Github version: 0.424
+
+This is a base quality score recalibrator (the "Q" in FASTQ files).
 It does not require knowledge of common SNPs and therefore is the only program that can generally recalibrate base quality scores on any organism (programs like GATK's BaseRecalibrator were designed primarily for human sequencing data, for example, and therefore only work well on data from a limited set of organisms).
 This means that base quality recalibration, leading to more accurate trimming and SNP calling, can now be used on any organism (specifically including bacteria).
+
+The main program is just a perl script. There's a fast and stripped-down `lacepr` program that does the basics of what GATK's PrintReads does.
+
+There are some Perl dependencies - if you've done everything in the [initial system setup](system.md), all of these should be available already.
+```
+sudo su -
+cd /usr/local/src
+git clone https://github.com/swainechen/lacer.git
+cd lacer
+# check the docs
+less README.md
+
+ln -s /usr/local/src/lacer/lacer.pl /usr/local/bin
+```
+
+To get lacepr to compile and install, we need an older version of samtools (up to 1.9). There were many changes starting in samtools/htslib version 1.10 that haven't been incorporated into lacepr yet.
+```
+sudo su -
+cd /usr/local/src/lacer/lacepr
+# compile and install lacepr
+# as is, this works for samtools 1.6 - 1.9
+# check the docs first
+less INSTALL
+
+# get and compile samtools 1.9
+wget https://sourceforge.net/projects/samtools/files/samtools/1.9/samtools-1.9.tar.bz2/download -O samtools-1.9.tar.bz2
+tar xvjf samtools-1.9.tar.bz2
+cd samtools-1.9
+make
+cd /usr/local/src/lacer/lacepr
+SAMTOOLS=/usr/local/src/lacer/lacepr/samtools-1.9
+HTSLIB=/usr/local/src/lacer/lacepr/samtools-1.9/htslib-1.9
+gcc -I$SAMTOOLS -I$HTSLIB lacepr.c -L$SAMTOOLS -L$HTSLIB -lbam -l:libhts.a -lz -lpthread -lm -llzma -lbz2 -o lacepr
+ln -s /usr/local/src/lacer/lacepr/lacepr /usr/local/bin
+```
 
 #### [minimap](https://github.com/lh3/minimap2)
 The Ubuntu Focal (20.04) LTS repositories have version 2.17.
