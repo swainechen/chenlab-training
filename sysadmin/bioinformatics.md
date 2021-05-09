@@ -697,7 +697,7 @@ for i in *; do ln -s /usr/local/src/lofreq_star-2.1.5_linux-x86-64/bin/$i /usr/l
 * [genome-tools](#genome-tools)
 * [SRST2](#SRST2)
 
-#### [ASCP](from http://downloads.asperasoft.com/connect2/)
+#### [ASCP](http://downloads.asperasoft.com/connect2/)
 
 This is useful for fast downloads, such as from ENA or Genbank. This seems to be easiest to install as the user (ubuntu).
 ```
@@ -713,8 +713,54 @@ echo 'export PATH=$PATH:/home/ubuntu/.aspera/connect/bin' >> /home/ubuntu/.bashr
 Note that, if needed, the standard key required is at `/home/ubuntu/.aspera/connect/etc/asperaweb_id_dsa.openssh`.
 
 #### [FinIS](https://sourceforge.net/p/finis/wiki/FinIS%20wiki/)
+FinIS is an assembly finisher, which generally is used after the [OPERA](#OPERA) scaffolder.
+This is on SourceForge at v0.3.
+This is somewhat complex to get running, as it hasn't been updated in a while.
+It seems to suffer from some changes in C++ conventions since 2014, and also was last tested on [MOSEK](https://www.mosek.com/) 6 (this is currently at 9).
+I've provided a compiled binary that will run on the Ubuntu images at AWS. Note this still needs MOSEK 6:
+[FinIS binary]()
+```
+sudo su -
+cd /usr/local/bin
+wget #link_to_FinIS
+
+# download MOSEK 6 - https://www.mosek.com/downloads/6/
+cd /usr/local/src
+wget https://download.mosek.com/stable/6/mosektoolslinux64x86.tar.gz
+tar xvzf mosektoolslinux64x86.tar.gz
+# this has some binaries and libraries
+# technically only the libraries are needed though for FinIS
+# binaries
+for i in lmgrd lmutil mampl mosek MOSEKLM moseksi mskdgopt mskexpopt mskscopt msktestlic; do ln -s /usr/local/src/mosek/6/tools/platform/linux64x86/bin/$i /usr/local/bin/; done
+# libraries
+for i in libiomp5.so libmosek64.so libmosek64.so.6.0 libmosekglb64.so.6.0 libmosekglbnoomp64.so.6.0 libmosekjava6_0.so libmoseknoomp64.so libmoseknoomp64.so.6.0 libmosekxx6_0.so libscopt.so; do ln -s /usr/local/src/mosek/6/tools/platform/linux64x86/bin/$i /usr/local/lib/; done
+# then LD_LIBRARY_PATH needs to get set
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/bin
+echo "# for MOSEK 6" >> /home/ubuntu/.bashrc
+echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/bin" >> /home/ubuntu/.bashrc
+
+# we can verify this with test data that comes with the FinIS source
+# again this is on SourceForge, you may need to generate your own direct link
+# by clicking starting from https://sourceforge.net/projects/finis/files/v0.3/
+cd /usr/local/src
+wget 'https://downloads.sourceforge.net/project/finis/v0.3/v0.3.tar.gz?ts=gAAAAABgl49QRj_nAX5gccQ9FeGwccNWKR_QnNWBbNTwV1HGd2cpWueqjuolVNhg8C27rHgE0kQdAd0IeYzGRkmTyTvowuvqsQ%3D%3D&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Ffinis%2Ffiles%2Fv0.3%2Fv0.3.tar.gz%2Fdownload' -O v0.3.tar.gz
+tar xvzf v0.3.tar.gz
+mv v0.3 FinIS-0.3
+cd FinIS-0.3
+
+# there are two test datasets provided
+FinIS test_dataset/velvet/conf.config
+
+# the soap config file needs to drop the num_threads and mosek_runtime lines
+# these seem to have changed as well - comment these two out and the test
+# should run fine - note this requires more memory (~4GB) than
+# a t3a.small instance has (2GB) however
+FinIS test_dataset/soap/conf.config
+```
 
 #### [genome-tools](https://github.com/swainechen/genome-tools)
+This is the first open source project I wrote - it was a set of scripts to help manage the data files for multiple genomes.
+Some of the file formats have changed but I still find this useful, particularly if you have just a few individual genomes you use frequently (for me, there are just a few E. coli strains I use heavily).
 
 #### [SRST2](https://github.com/katholt/srst2)
-
+This is a popular short read analysis program, good for calling MLSTs, resistances, and serotypes directly from short reads.
