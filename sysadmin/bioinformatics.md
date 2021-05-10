@@ -761,6 +761,67 @@ FinIS test_dataset/soap/conf.config
 #### [genome-tools](https://github.com/swainechen/genome-tools)
 This is the first open source project I wrote - it was a set of scripts to help manage the data files for multiple genomes.
 Some of the file formats have changed but I still find this useful, particularly if you have just a few individual genomes you use frequently (for me, there are just a few E. coli strains I use heavily).
+There are also a few useful scripts included.
+The main setup is pretty standard, but then you need to add data.
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/swainechen/genome-tools/archive/refs/tags/1.3.tar.gz
+tar xvzf 1.3.tar.gz
+cd genome-tools-1.3
+# check the docs
+less INSTALL
+./setup.pl
+# accept all defaults, and copy Orgmap.pm to /usr/local/lib/site_perl
+
+# download some genomes and make them available
+```
 
 #### [SRST2](https://github.com/katholt/srst2)
 This is a popular short read analysis program, good for calling MLSTs, resistances, and serotypes directly from short reads.
+The README on GitHub recommends installing from the git repository directly.
+This requires Python 2, most obviously due to changes in the `print` syntax.
+`pip` is not available for Python 2 in Ubuntu Focal, so we have to install this a bit manually.
+We will also have to install the Python 2 version of scipy, which isn't in the Ubuntu repositories any more.
+This also requires older samtools and bowtie2 versions.
+Then there's some customization with environment variables and setting up the reference databases.
+```
+sudo su -
+cd /usr/local/src
+wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
+python2 get-pip.py
+pip install scipy
+git clone https://github.com/katholt/srst2
+pip install srst2/
+
+# install samtools 0.1.18
+sudo su -
+cd /usr/local/src
+wget https://github.com/samtools/samtools/archive/refs/tags/0.1.18.tar.gz
+cd samtools-0.1.18
+# check the docs
+less INSTALL
+make
+# don't link the binaries to /usr/local/bin - this is only going to be used for SRST2
+
+# install bowtie2 2.2.9
+sudo su -
+cd /usr/local/src
+# this is the binaries, so no compilation needed
+wget https://github.com/BenLangmead/bowtie2/releases/download/v2.2.9/bowtie2-2.2.9-linux-x86_64.zip
+unzip bowtie2-2.2.9-linux-x86_64.zip
+cd bowtie2-2.2.9
+# check the docs
+less MANUAL
+
+# environment variables
+export SRST2_SAMTOOLS=/usr/local/src/samtools-0.1.18/samtools
+export SRST2_BOWTIE2=/usr/local/src/bowtie2-2.2.9/bowtie2
+export SRST2_BOWTIE2_BUILD=/usr/local/src/bowtie2-2.2.9/bowtie2-build
+
+# environment variables for the ubuntu user
+echo "# For SRST2" >> /home/ubuntu/.bashrc
+echo "export SRST2_SAMTOOLS=/usr/local/src/samtools-0.1.18/samtools" >> /home/ubuntu/.bashrc
+echo "export SRST2_BOWTIE2=/usr/local/src/bowtie2-2.2.9/bowtie2" >> /home/ubuntu/.bashrc
+echo "export SRST2_BOWTIE2_BUILD=/usr/local/src/bowtie2-2.2.9/bowtie2-build" >> /home/ubuntu/.bashrc
+```
