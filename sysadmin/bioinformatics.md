@@ -737,7 +737,7 @@ for i in libiomp5.so libmosek64.so libmosek64.so.6.0 libmosekglb64.so.6.0 libmos
 # then LD_LIBRARY_PATH needs to get set
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/bin
 echo "# for MOSEK 6" >> /home/ubuntu/.bashrc
-echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/bin" >> /home/ubuntu/.bashrc
+echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib" >> /home/ubuntu/.bashrc
 
 # we can verify this with test data that comes with the FinIS source
 # again this is on SourceForge, you may need to generate your own direct link
