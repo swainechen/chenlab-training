@@ -813,6 +813,7 @@ unzip bowtie2-2.2.9-linux-x86_64.zip
 cd bowtie2-2.2.9
 # check the docs
 less MANUAL
+# don't link the binaries to /usr/local/bin - this is only going to be used for SRST2
 
 # environment variables
 export SRST2_SAMTOOLS=/usr/local/src/samtools-0.1.18/samtools
