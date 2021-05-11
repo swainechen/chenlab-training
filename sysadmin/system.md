@@ -185,6 +185,15 @@ while (-f "$date"."_$i.log") {
 print "$date", "_$i.log";
 ```
 
+With these changes, you can save a command log by just typing `log` before actually logging off.
+
+#### Screen
+This is a hugely useful tool for working on a remote machine.
+It solves lots of problems with connection timeouts on long-running processes and provides many other features.
+I highly recommend you learn to use this.
+Basically, as soon as I start on a new machine, I run `screen` first, and then every time I log in it's a simple `screen -dr` and I'm back to where I left off.
+
+I refer you to the [screen](https://www.gnu.org/software/screen/) [documentation](https://www.gnu.org/software/screen/manual/) and [these](https://opensource.com/article/17/3/introduction-gnu-screen) [useful](https://linuxize.com/post/how-to-use-linux-screen/) [primers](https://tpaschalis.github.io/gnu-screen-primer/#:~:text=GNU%20Screen%20is%20a%20command,processes%20independently%20from%20each%20other.).
 
 #### Non-interactive shells
 This can be a big "gotcha" when you're trying to automate tasks. You set everything up, test it all while logged in, make an AMI, and then launch it with some userdata to run your scripts / pipeline. And it doesn't work.
