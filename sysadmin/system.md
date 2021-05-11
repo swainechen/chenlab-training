@@ -275,8 +275,13 @@ lsblk
 # loses some meaning when everything is virtual
 ```
 
-#### Make a partition and filesystem
+#### Make a filesystem
 Note this only applies to a new EBS volume. Don't do this to a volume restored from a snapshot (unless you really know what you're doing!).
+
+Also, traditionally you would have to also partition your drive.
+This is less relevant with the virtualization on the cloud, but you still can do it.
+I won't cover it here, but the difference between devices like `/dev/sda` and `/dev/sda1` is that the former is the whole drive device, and the latter is a partition (and you could have `/dev/sda2`, `/dev/sda3`, etc.).
+The newer machines on AWS now generally use devices named like `/dev/nvme0n1` (whole drive) and `/dev/nvme0n1p1` (partition).
 ```
 # check if there's already a file system
 # note that <device name> would be something like /dev/nvme0n1p1
