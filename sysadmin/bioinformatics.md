@@ -22,9 +22,10 @@ Note that the version numbers are included in the commands below - you'll have t
 #### General
 * [BLAST+](#BLAST)
 * [HYPHY](#HYPHY)
+* [Kingfisher](#Kingfisher)
 * [meme](#meme)
 * [samtools](#samtools-including-htslib)
-* [Kingfisher](#Kingfisher)
+* [sra-tools](#sra-tools)
 
 #### Read processing
 * [bowtie](#bowtie)
@@ -84,9 +85,10 @@ Note that the version numbers are included in the commands below - you'll have t
 ### General
 * [BLAST+](#BLAST)
 * [HYPHY](#HYPHY)
+* [Kingfisher](#Kingfisher)
 * [meme](#meme)
 * [samtools](#samtools-including-htslib)
-* [Kingfisher](#Kingfisher)
+* [sra-tools](#sra-tools)
 
 #### [BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
 The Ubuntu repositories have this, but it's at version 2.9.0-2. The current version right now is at 2.11.0-1. Generally for most users, BLAST has been pretty stable, but here's how to update it if you need the latest version (you'll have to repeat these for each update as well after you do this manual install).
@@ -169,6 +171,22 @@ echo '# path for meme' >> /home/ubuntu/.bashrc
 echo 'export PATH=$PATH:/usr/local/libexec/meme-5.3.3' >> /home/ubuntu/.bashrc
 ```
 
+#### [Kingfisher](https://github.com/wwood/kingfisher-download)
+This is a convenient tool for downloading public data sets, such as from GenBank or ENA.
+Again, I haven't had a lot of good experience with conda.
+Fortunately, this only requires one additional library to install (extern).
+```
+sudo su -
+pip3 install extern
+cd /usr/local/src
+git clone https://github.com/wwood/kingfisher-download
+cd kingfisher-download
+# check the docs
+less README.md
+ln -s /usr/local/src/kingfisher-download/bin/kingfisher /usr/local/bin
+```
+If you've installed [ASCP](#ASCP) as described in this guide, you can use the `-m ena-ascp` method as well as the more standard methods.
+
 #### [samtools](http://www.htslib.org/) (including htslib)
 
 The HTSlib / samtools suite provides core tools and libraries that are also used by many other bioinformatics software tools. Again there is a version in the Ubuntu repositories (1.10), but the current version as of this writing is 1.12. This may or may not matter for what you're doing. If it does, here's how to update it.
@@ -229,8 +247,7 @@ Note a couple useful pieces of information for the hts libraries:
 /usr/local/include/htslib
 ```
 
-#### [Kingfisher](https://github.com/wwood/kingfisher-download)
-This is a convenient tool for downloading public data sets, such as from GenBank or ENA.
+#### [sra-tools](https://github.com/ncbi/sra-tools)
 
 ### Read processing
 * [bowtie](#bowtie)
