@@ -831,3 +831,11 @@ echo "export SRST2_SAMTOOLS=/usr/local/src/samtools-0.1.18/samtools" >> /home/ub
 echo "export SRST2_BOWTIE2=/usr/local/src/bowtie2-2.2.9/bowtie2" >> /home/ubuntu/.bashrc
 echo "export SRST2_BOWTIE2_BUILD=/usr/local/src/bowtie2-2.2.9/bowtie2-build" >> /home/ubuntu/.bashrc
 ```
+
+SRST2 requires reference libraries.
+Some are included in the source distribution.
+To keep with following "standard" locations, I put these into `/usr/local/lib/SRST2`.
+I also have a few utility scripts to help manage these.
+```
+# Setting up SRST2 reference libraries
+```
