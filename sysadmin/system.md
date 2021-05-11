@@ -1,6 +1,15 @@
 # Initial "New Car" Setup and General Sysadmin
 Starting from a bare system image means we have to do some initial updates and get all the software installed. General system stuff will be done here, as well as a few preparatory steps that will be needed for installing some more specific bioinformatics tools later.
 
+## Sections:
+* [First steps](#First-steps)
+* [Software Repositories and PPAs](#Software-Repositories-and-PPAs)
+* [Standard Ubuntu Packages](#Standard-Ubuntu-Packages)
+* [Perl](#Perl)
+* [AWS Utilities](#AWS-Utilities)
+* [User environment](#User-environment
+
+## First steps
 First, initial updates (this is the standard updating I do on machines, you can stick this into cron, but I like to make sure updates aren't happening during some long-running process. Userdata for AWS instances is also a good place to do an initial update on startup):
 ```
 sudo su -
@@ -25,8 +34,8 @@ add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran4
 apt update
 ```
 
-## Standard Ubuntu Packages (from the repositories)
-Install regular ubuntu packages that we'll need for later. This took about 30 min on a t3a.small AWS instance.
+## Standard Ubuntu Packages
+Install regular Ubuntu packages from the base repositories that we'll need for later. This took about 30 min on a t3a.small AWS instance.
 ```
 apt install -y automake awscli cmake cpanminus cython evince gnuplot-nox \
   imagemagick libbio-samtools-perl libcairo2-dev libcurl4-openssl-dev \
