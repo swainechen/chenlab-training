@@ -139,7 +139,8 @@ Some of the software in this guide requires some additional paths due to difficu
 
 Two other things you sometimes see on a path are:
 * `/home/ubuntu/bin` (or equivalent, may be set as `~/bin`)
-* `.` (i.e. the current directory
+* `.` (i.e. the current directory)
+
 On a multiuser system, I often would include my own personal bin directory.
 This setup guide is assuming you're on the cloud and basically have your own machine, and root permissions - in which case, I prefer to just manage /usr/local/bin.
 The inclusion of `.`, the current directory, can be convenient when you're starting out, but leads to some [potential](http://www.faqs.org/faqs/unix-faq/faq/part2/section-13.html) [attacks](https://superuser.com/questions/156582/why-is-not-in-the-path-by-default).
