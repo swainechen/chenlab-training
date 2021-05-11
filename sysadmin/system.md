@@ -224,11 +224,17 @@ You can just comment these out so that there is no difference between interactiv
 (Brief note, sometimes you'll see this on machines where you can log in and run something successfully, but if you do an `ssh user@host -c 'command'` then that will fail. One of the first things to check is the environment, and specifically your `PATH` or `LD_LIBRARY_PATH` or other variables.)
 
 ### SSH keys
-The basics are well laid out [in](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2) [other](https://upcloud.com/community/tutorials/use-ssh-keys-authentication/) [places](https://www.ssh.com/academy/ssh/public-key-authentication).
+The basics are well laid out [in](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2) [other](https://upcloud.com/community/tutorials/use-ssh-keys-authentication/) [websites](https://www.ssh.com/academy/ssh/public-key-authentication).
 Here are the common tasks, for a more full explanation check out the links in the previous sentence.
 #### Create a new public/private key pair:
 ```
-ssh-keygen [ -f output_keyfile ]
+ssh-keygen
+# for more options
+ssh-keygen -f <output_keyfile>
+# i.e. ssh-keygen -f mykeyfile
+# this will generate two files:
+# mykeyfile - this is the private key
+# mykeyfile.put - this is the public key
 chmod 0400 <output_keyfile>
 ```
 #### Add a new public key to enable login
@@ -257,14 +263,15 @@ Note this only applies to a new EBS volume. Don't do this to a volume restored f
 # note that <device name> would be something like /dev/nvme0n1p1
 sudo file -s <device name>
 # if you see "<device name>: data" then there's no file system yet
-# BE VERY CAREFUL YOU HAVE THE RIGHT DEVICE NAME HERE!! Otherwise you may blow away your root drive or (worse) another data drive!
+# BE VERY CAREFUL YOU HAVE THE RIGHT DEVICE NAME HERE!!
+# Otherwise you may blow away your root drive or (worse) another data drive!
 sudo mkfs.ext4 <device name>
 sudo file -s <device name>
 # now you should see filesystem info
 ```
 
 #### Mount a filesystem
-The traditional place to put these things is in `/mnt`. It's good to plan ahead and use some sustainable / sensible names, so I call things `/mnt/volume1`, `/mnt/volume2`/, etc.
+The traditional place to put these things is in `/mnt`. It's good to plan ahead and use some sustainable / sensible names, so I call things `/mnt/volume1`, `/mnt/volume2`, etc.
 ```
 ls -l /mnt
 # if needed, make a directory for a mount point
