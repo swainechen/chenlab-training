@@ -103,7 +103,9 @@ Many of us spend a lot of time on the command line. It's worth it for your wrist
 
 ### Bash
 #### Command Prompt
-A good command prompt can be very helpful. I picked this up from an old slashdot.org post long ago and have only made minor tweaks. You can play with the ANSI color codes and wrap this in an `case \`hostname -s` in` statement to give you a different color on different machines if you're using a few regularly!
+A good command prompt can be very helpful.
+I picked this one up from an old slashdot.org post long ago and have only made minor tweaks.
+You can play with the [ANSI color codes](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797) (here's a [howto](https://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html)) and wrap this in an `case \`hostname -s` in` statement to give you a different color on different machines if you're using a few regularly!
 
 This just can go into your `.bashrc` (there's an if statement at lines 59-63 in the default Ubuntu `.bashrc`, you'll probably want to modify that if statement as well). 
 ```
