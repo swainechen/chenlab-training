@@ -24,6 +24,7 @@ Note that the version numbers are included in the commands below - you'll have t
 * [HYPHY](#HYPHY)
 * [meme](#meme)
 * [samtools](#samtools-including-htslib)
+* [Kingfisher](#Kingfisher)
 
 #### Read processing
 * [bowtie](#bowtie)
@@ -85,6 +86,7 @@ Note that the version numbers are included in the commands below - you'll have t
 * [HYPHY](#HYPHY)
 * [meme](#meme)
 * [samtools](#samtools-including-htslib)
+* [Kingfisher](#Kingfisher)
 
 #### [BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
 The Ubuntu repositories have this, but it's at version 2.9.0-2. The current version right now is at 2.11.0-1. Generally for most users, BLAST has been pretty stable, but here's how to update it if you need the latest version (you'll have to repeat these for each update as well after you do this manual install).
@@ -226,6 +228,9 @@ Note a couple useful pieces of information for the hts libraries:
 /usr/local/lib/libhts.a
 /usr/local/include/htslib
 ```
+
+#### [Kingfisher](https://github.com/wwood/kingfisher-download)
+This is a convenient tool for downloading public data sets, such as from GenBank or ENA.
 
 ### Read processing
 * [bowtie](#bowtie)

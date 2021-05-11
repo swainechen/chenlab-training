@@ -87,3 +87,126 @@ Generally we would try to install system packages and relatively stable software
 ```
 pip3 install awscli
 ```
+
+## User environment
+
+Many of us spend a lot of time on the command line. It's worth it for your wrists and for your productivity to optimize your environment. Here are a few things I have set up in my shell.
+
+### Bash
+#### Command Prompt
+A good command prompt can be very helpful. I picked this up from an old slashdot.org post long ago and have only made minor tweaks. You can play with the ANSI color codes and wrap this in an `case \`hostname -s` in` statement to give you a different color on different machines if you're using a few regularly!
+
+This just can go into your `.bashrc` (there's an if statement at lines 59-63 in the default Ubuntu `.bashrc`, you'll probably want to modify that if statement as well). 
+```
+PS1="\[\033[00m\]\!\\[\033[0m\]|\`if [[ \$? = "0" ]]; then echo "\\[\\033[32m\\]"; else echo "\\[\\033[31m\\]"; fi\`\u@\h:\[\033[36m\]\`if [[ `pwd|wc -c|tr -d " "` > 18 ]]; then echo "\\W"; else echo "\\w"; fi\`\$\[\033[0m\] "; echo -ne "\033]0;`hostname -s`:`pwd`\007"
+```
+This prompt gives you command number, username, host, and current path.
+The color of the user@host part is green if the last command had an exit code of 0 (success) and red if not.
+
+#### Bash options
+The standard one to set is `noclobber` for safety!
+There are quite a few others that you should probably explore - [tldp link](https://tldp.org/LDP/abs/html/options.html)
+
+```
+echo "# for safety" >> /home/ubuntu/.bashrc
+echo "set -o noclobber" >> /home/ubuntu/.bashrc
+```
+
+#### Path
+Many software packages outside the standard repositories (i.e. like most biology software) would try to avoid problems with unknown potential configurations by just putting all files in one directory, then telling you to add something to your path.
+
+This is fine from a practical point of view at first, but with a lot of software can get unwieldy to manage and slow to search (in extreme cases).
+All the setup in this guide aims to keep the path pretty minimal and standard.
+
+The default `PATH` is typically:
+```
+echo $PATH
+# /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+```
+
+Some of the software in this guide requires some additional paths due to difficulties in getting them "nicely" installed into a standard tree.
+
+Two other things you sometimes see on a path are:
+* `/home/ubuntu/bin` (or equivalent, may be set as `~/bin`)
+* `.` (i.e. the current directory
+On a multiuser system, I often would include my own personal bin directory.
+This setup guide is assuming you're on the cloud and basically have your own machine, and root permissions - in which case, I prefer to just manage /usr/local/bin.
+The inclusion of `.`, the current directory, can be convenient when you're starting out, but leads to some [potential](http://www.faqs.org/faqs/unix-faq/faq/part2/section-13.html) [attacks](https://superuser.com/questions/156582/why-is-not-in-the-path-by-default).
+Most of these again are more relevant in a multiuser setting, but it's good to have good habits, and you may find yourself in such a setting at some point anyway.
+I don't include `.` in my path, and you just get used to adding the `./` whenever you need it explicitly.
+
+#### Aliases
+These can save you a lot of time. One I picked up that I use constantly is `m`, which is an alias for `less`. Lots of people use common `ls` aliases like `l`, `ll`, `lrt`, or `lrtail`.
+
+Here's a list of the common ones I have - these go into `/home/ubuntu/.bash_aliases` (if you use this filename, the default Ubuntu `.bashrc` will load them automatically):
+```
+eval `dircolors -b`
+alias md=mkdir
+alias rd=rmdir
+
+alias ll='ls --show-control-chars --color=auto -F -l'
+alias la='ls --show-control-chars -A'
+alias l='ls --show-control-chars --color=auto -CF'
+alias lrtail='ls --show-control-chars --color=auto -F -ltr | tail'
+alias dir='ls --show-control-chars --color=auto --format=vertical'
+alias vdir='ls --show-control-chars --color=auto --format=long'
+alias m='less'
+alias lrt='ls --show-control-chars --color=auto -F -ltr'
+alias ..='cd ..'
+alias ...='cd ..;cd ..'
+alias pu='pushd'
+alias po='popd'
+alias pd='pushd'
+
+alias rm='rm -i'
+alias mv='mv -i'
+alias cp='cp -i'
+
+alias log='history > `logfilename.pl`'
+```
+
+I have a simple `logfilename.pl` script to set filenames - this can go into `/usr/local/bin`, make sure it's executable:
+```
+#!/usr/bin/perl
+#
+# log command history
+#
+use warnings;
+use strict;
+
+my $date = `date +%F`;
+chomp $date;
+
+my $i = 1;
+while (-f "$date"."_$i.log") {
+  $i++;
+}
+
+print "$date", "_$i.log";
+```
+
+
+#### Non-interactive shells
+This can be a big "gotcha" when you're trying to automate tasks. You set everything up, test it all while logged in, make an AMI, and then launch it with some userdata to run your scripts / pipeline. And it doesn't work.
+
+One of the subtleties is that (by default) a different environment is set when you are in an interactive vs. noninteractive shell. For more information, here are some [links](https://tldp.org/LDP/abs/html/intandnonint.html).
+
+Again, on a machine that you fully control, and that you're going to replicate, I find it easier to just remove this layer of complexity. I only do this for the ubuntu user, as some system / maintenance scripts are designed to run non-interactively.
+
+On the default Ubuntu 20.04 (Focal) AMI at AWS (which this whole site is based on), there are just a few lines at the top of the default `.bashrc` that detect whether you're on an interactive shell and shorcuts out if you are not - these are lines 5-9 in the version I'm looking at:
+```
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+```
+You can just comment these out so that there is no difference between interactive and non-interactive shells.
+
+(Brief note, sometimes you'll see this on machines where you can log in and run something successfully, but if you do an `ssh user@host -c 'command'` then that will fail. One of the first things to check is the environment, and specifically your `PATH` or `LD_LIBRARY_PATH` or other variables.)
+
+### SSH keys
+
+### Extra data storage
+
+### 
