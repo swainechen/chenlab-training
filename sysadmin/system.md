@@ -138,6 +138,7 @@ Many software packages outside the standard repositories (i.e. like most biology
 
 This is fine from a practical point of view at first, but with a lot of software can get unwieldy to manage and slow to search (in extreme cases).
 All the setup in this guide aims to keep the path pretty minimal and standard.
+Where it seems more sensible to add something to the `PATH`, this is included in the instructions in this guide, and those are done at the end of `/home/ubuntu/.bashrc`.
 
 The default `PATH` is typically:
 ```
