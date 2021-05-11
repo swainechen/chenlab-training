@@ -8,6 +8,16 @@ Starting from a bare system image means we have to do some initial updates and g
 * [Perl](#Perl)
 * [AWS Utilities](#AWS-Utilities)
 * [User environment](#User-environment)
+  - [Bash](#Bash)
+    - [Command Prompt](#Command-Prompt)
+    - [Bash options](#Bash-options)
+    - [Path](#Path)
+    - [Aliases](#Aliases)
+    - [Editors](#Editors)
+    - [Screen](#Screen)
+    - [Non-interactive shells](#Non-interactive-shells)
+  - [SSH Keys](#SSH-Keys)
+  - [Extra data storage](#Extra-data-storage)
 
 ## First steps
 First, initial updates (this is the standard updating I do on machines, you can stick this into cron, but I like to make sure updates aren't happening during some long-running process. Userdata for AWS instances is also a good place to do an initial update on startup):
