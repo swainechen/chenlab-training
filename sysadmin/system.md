@@ -176,6 +176,7 @@ alias cp='cp -i'
 
 alias log='history > `logfilename.pl`'
 ```
+I also usually make this file for the root user too.
 
 I have a simple `logfilename.pl` script to set filenames - this can go into `/usr/local/bin`, make sure it's executable:
 ```
@@ -198,6 +199,21 @@ print "$date", "_$i.log";
 ```
 
 With these changes, you can save a command log by just typing `log` before actually logging off.
+
+#### Editors
+The editor is one of the most commonly used programs when working on a command line.
+This is relatively easy to set and you should do it - if you're administering your own machine, I recommend setting this up for both your default user (ubuntu) and the root account.
+Commands below are for the ubuntu user only.
+```
+echo "# Editor" >> /home/ubuntu/.bashrc
+# Pick one of the following three lines - or modify accordingly if you use another one
+# note that the stock Ubuntu image doesn't have emacs installed
+# that can be installed with "sudo apt install emacs"
+echo "export EDITOR=/usr/bin/vim"
+echo "export EDITOR=/usr/bin/emacs"
+echo "export EDITOR=/usr/bin/nano"
+```
+Then also be sure to set your own preferences, whether that's in `/home/ubuntu/.vimrc`, `/home/ubuntu/.emacs`, `/home/ubuntu/.nanorc`, or the appropriate other configuration file for your editor of choice.
 
 #### Screen
 This is a hugely useful tool for working on a remote machine.
