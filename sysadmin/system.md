@@ -7,7 +7,7 @@ Starting from a bare system image means we have to do some initial updates and g
 * [Standard Ubuntu Packages](#Standard-Ubuntu-Packages)
 * [Perl](#Perl)
 * [AWS Utilities](#AWS-Utilities)
-* [User environment](#User-environment
+* [User environment](#User-environment)
 
 ## First steps
 First, initial updates (this is the standard updating I do on machines, you can stick this into cron, but I like to make sure updates aren't happening during some long-running process. Userdata for AWS instances is also a good place to do an initial update on startup):
@@ -224,7 +224,54 @@ You can just comment these out so that there is no difference between interactiv
 (Brief note, sometimes you'll see this on machines where you can log in and run something successfully, but if you do an `ssh user@host -c 'command'` then that will fail. One of the first things to check is the environment, and specifically your `PATH` or `LD_LIBRARY_PATH` or other variables.)
 
 ### SSH keys
+The basics are well laid out [in](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2) [other](https://upcloud.com/community/tutorials/use-ssh-keys-authentication/) [places](https://www.ssh.com/academy/ssh/public-key-authentication).
+Here are the common tasks, for a more full explanation check out the links in the previous sentence.
+#### Create a new public/private key pair:
+```
+ssh-keygen [ -f output_keyfile ]
+chmod 0400 <output_keyfile>
+```
+#### Add a new public key to enable login
+```
+cat <output_keyfile.pub> >> /home/ubuntu/.ssh/authorized_keys
+```
 
 ### Extra data storage
+Data just keeps growing. You will likely need to add more storage at some point.
+The AWS console has it's own instructions on how to create an EBS volume and attach it to a running instance.
+Once it's attached to your machine, the common things are:
+#### Figure out the device name
+```
+lsblk
+# Look under "NAME" for things like sda, sda1, sdb, sdc, nvme0n1, nvme0n1p1
+# remember that those are under /dev, i.e. /dev/sda, /dev/nvme0n1p1, etc.
+# sda is canonically the whole disk (in physical terms), sda1 the partition
+# similarly, nvme0n1 is like a disk, and nvmen1p1 a partition, though this
+# loses some meaning when everything is virtual
+```
 
-### 
+#### Make a partition and filesystem
+Note this only applies to a new EBS volume. Don't do this to a volume restored from a snapshot (unless you really know what you're doing!).
+```
+# check if there's already a file system
+# note that <device name> would be something like /dev/nvme0n1p1
+sudo file -s <device name>
+# if you see "<device name>: data" then there's no file system yet
+# BE VERY CAREFUL YOU HAVE THE RIGHT DEVICE NAME HERE!! Otherwise you may blow away your root drive or (worse) another data drive!
+sudo mkfs.ext4 <device name>
+sudo file -s <device name>
+# now you should see filesystem info
+```
+
+#### Mount a filesystem
+The traditional place to put these things is in `/mnt`. It's good to plan ahead and use some sustainable / sensible names, so I call things `/mnt/volume1`, `/mnt/volume2`/, etc.
+```
+ls -l /mnt
+# if needed, make a directory for a mount point
+sudo mkdir /mnt/volume1
+sudo mount <device name> /mnt/volume1
+# this would typically be "sudo mount /dev/nvme0n1p1 /mnt/volume1
+# if this is the first time, you may need to give permission to the ubuntu user
+sudo chown ubuntu:ubuntu /mnt/volume1
+ls -l /mnt/volume1
+```
