@@ -820,15 +820,19 @@ Note that, if needed, the standard key required is at `/home/ubuntu/.aspera/conn
 
 #### [FinIS](https://sourceforge.net/p/finis/wiki/FinIS%20wiki/)
 FinIS is an assembly finisher, which generally is used after the [OPERA](#OPERA) scaffolder.
-This is on SourceForge at v0.3.
-This is somewhat complex to get running, as it hasn't been updated in a while.
-It seems to suffer from some changes in C++ conventions since 2014, and also was last tested on [MOSEK](https://www.mosek.com/) 6 (this is currently at 9).
-I've provided a compiled binary that will run on the Ubuntu images at AWS. Note this still needs MOSEK 6:
-[FinIS binary]()
+This is on SourceForge at v0.3, and a binary is included.
+It requires [MOSEK](https://www.mosek.com/) 6 (this is currently at 9).
 ```
 sudo su -
-cd /usr/local/bin
-wget #link_to_FinIS
+cd /usr/local/src
+# FinIS is on SourceForge, you may need to generate your own direct link
+# by clicking starting from https://sourceforge.net/projects/finis/files/v0.3/
+wget 'https://downloads.sourceforge.net/project/finis/v0.3/v0.3.tar.gz?ts=gAAAAABgl49QRj_nAX5gccQ9FeGwccNWKR_QnNWBbNTwV1HGd2cpWueqjuolVNhg8C27rHgE0kQdAd0IeYzGRkmTyTvowuvqsQ%3D%3D&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Ffinis%2Ffiles%2Fv0.3%2Fv0.3.tar.gz%2Fdownload' -O v0.3.tar.gz
+tar xvzf v0.3.tar.gz
+mv v0.3 FinIS-0.3
+cd FinIS-0.3
+# link the binary
+ln -s /usr/local/src/FinIS-0.3/finis /usr/local/bin
 
 # download MOSEK 6 - https://www.mosek.com/downloads/6/
 cd /usr/local/src
@@ -846,14 +850,6 @@ echo "# for MOSEK 6" >> /home/ubuntu/.bashrc
 echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib" >> /home/ubuntu/.bashrc
 
 # we can verify this with test data that comes with the FinIS source
-# again this is on SourceForge, you may need to generate your own direct link
-# by clicking starting from https://sourceforge.net/projects/finis/files/v0.3/
-cd /usr/local/src
-wget 'https://downloads.sourceforge.net/project/finis/v0.3/v0.3.tar.gz?ts=gAAAAABgl49QRj_nAX5gccQ9FeGwccNWKR_QnNWBbNTwV1HGd2cpWueqjuolVNhg8C27rHgE0kQdAd0IeYzGRkmTyTvowuvqsQ%3D%3D&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Ffinis%2Ffiles%2Fv0.3%2Fv0.3.tar.gz%2Fdownload' -O v0.3.tar.gz
-tar xvzf v0.3.tar.gz
-mv v0.3 FinIS-0.3
-cd FinIS-0.3
-
 # there are two test datasets provided
 FinIS test_dataset/velvet/conf.config
 
