@@ -949,7 +949,7 @@ Instructions for keeping an old version of samtools (0.1.18) can be found in the
 
 #### GATK
 
-#### [GraphMap2]
+#### [GraphMap2](https://github.com/lbcb-sci/graphmap2)
 GitHub release version: 0.6.4
 This is a mapper that was designed for Oxford Nanopore and PacBio reads.
 This pulls in some other modules with git, so it's easier to clone the repository as recommended.
@@ -983,6 +983,25 @@ for i in *; do ln -s /usr/local/src/lofreq_star-2.1.5_linux-x86-64/bin/$i /usr/l
 ```
 
 #### [medaka](https://github.com/nanoporetech/medaka)
+This is a sequence polisher for Oxford Nanopore data.
+There are a few ways to install this.
+The recommended build uses a virtual environment in python.
+Of the choices, though, for a single user machine, I would prefer using `pip` over this.
+
+```
+# the following will automatically pull in quite a few other dependencies
+sudo pip3 install medaka
+
+# check where it went
+which medaka
+ls -lrt /usr/local/bin
+
+# test it
+medaka
+medaka_consensus
+medaka_variant
+medaka_haploid_variant
+```
 
 #### [nanopolish](https://github.com/jts/nanopolish)
 Ubuntu version: 0.11.3
