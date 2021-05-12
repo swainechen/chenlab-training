@@ -51,16 +51,17 @@ Note that the version numbers are included in the commands below - you'll have t
 * [velvet](#velvet)
 * [Trycycler](#Trycycler)
 * [Unicycler](#Unicycler)
-* [OPERA](#OPERA)
+* [OPERA-LG](#OPERA-LG)
 * [GapCloser](#GapCloser)
 * [Contiguity](#Contiguity)
 
 #### Post-processing, variant calling
+* [BLASR](#BLASR)
 * [GATK](#GATK)
-* [graphmap](#graphmap)
+* [GraphMap2](#GraphMap2)
 * [lofreq](#lofreq)
-* [pilon](#pilon)
 * [nanopolish](#nanopolish)
+* [pilon](#pilon)
 
 #### Annotation and classification
 * [abricate](#abricate)
@@ -621,7 +622,7 @@ for i in bbduk bbmap bbnorm bloomfilter dedupe reformat; do ln -s /usr/local/src
 * [velvet](#velvet)
 * [Trycycler](#Trycycler)
 * [Unicycler](#Unicycler)
-* [OPERA](#OPERA)
+* [OPERA-LG](#OPERA-LG)
 * [GapCloser](#GapCloser)
 * [Contiguity](#Contiguity)
 
@@ -664,7 +665,7 @@ saute
 #### [SPAdes](https://cab.spbu.ru/software/spades/)
 Ubuntu LTS version: 3.13.1
 Online version: 3.15.2
-However, Unicycler needs a version no later than 3.13.0. We'll install the latest online version for regular use, then do a second install with the older version for Unicycler.
+However, [Unicycler](#Unicycler) needs a version no later than 3.13.0. We'll install the latest online version for regular use, then do a second install with the older version for Unicycler.
 
 The latest version from https://cab.spbu.ru/software/spades/ as default (i.e. in `/usr/local/bin`)
 ```
@@ -683,7 +684,7 @@ for i in *; do ln -s /usr/local/src/SPAdes-3.15.2-Linux/bin/$i /usr/local/bin; d
 # check it works ok
 ```
 
-The older 3.13.0 version for Unicycler - this can be downloaded at the [SPAdes GitHub repository](https://github.com/ablab/spades)
+The older 3.13.0 version for [Unicycler](#Unicycler) - this can be downloaded at the [SPAdes GitHub repository](https://github.com/ablab/spades)
 We will keep this in /usr/local/src and will need to specify the full path in order to use it:
 ```
 sudo su -
@@ -744,19 +745,90 @@ GitHub version: 0.4.9
 
 We'll use the latest GitHub version.
 
-#### [OPERA](https://github.com/CSB5/OPERA-MS)
+Ubuntu version:
+```
+sudo apt install unicycler
+
+# test it out
+unicycler
+```
+
+GitHub version (**Recommended**):
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/rrwick/Unicycler/archive/refs/tags/v0.4.9.tar.gz
+tar xvzf v0.4.9.tar.gz
+cd Unicycler-0.4.9
+# check the docs
+less README.md
+
+# the install automatically goes to /usr/local/bin
+python3 setup.py install
+
+# test it out
+unicycler
+unicycler --help_all
+# unicycler --spades_path /usr/local/src/SPAdes-3.13.0-Linux/bin/spades.py <other options>
+```
+Note for this you'll probably have to specify `--spades_path /usr/local/src/SPAdes-3.13.0-Linux/bin/spades.py` to use the correct older version of [SPAdes](#SPAdes) (see that section in this guide).
+
+#### [OPERA-LG](https://sourceforge.net/p/operasf/wiki/The%20OPERA%20wiki/)
+This is a scaffolder that can be run after you do your primary assembly (with SOAP, velvet, etc.).
+
+```
+sudo su -
+cd /usr/local/src
+# this is on SourceForge, again you might have to get your own direct link by clicking from https://sourceforge.net/projects/operasf/files/OPERA-LG%20version%202.0.6/OPERA-LG_v2.0.6.tar.gz/download
+wget 'https://downloads.sourceforge.net/project/operasf/OPERA-LG%20version%202.0.6/OPERA-LG_v2.0.6.tar.gz?ts=gAAAAABgm8W1f35V0V9XSqvQRztfQyjbS0e2qaEtdS660mhxxJ4GBG8Io1tgWoM2kOAKkS0HfeDnkQFCbnEGzx33NcJGIIJaUQ%3D%3D&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Foperasf%2Ffiles%2FOPERA-LG%2520version%25202.0.6%2FOPERA-LG_v2.0.6.tar.gz%2Fdownload' -O OPERA-LG_v2.0.6.tar.gz
+tar xvzf OPERA-LG_v2.0.6.tar.gz
+cd OPERA-LG_v2.0.6
+# check the docs
+less README
+
+# there are already precompiled binaries, so just link them in
+cd bin
+for i in *; do ln -s /usr/local/src/OPERA-LG_v2.0.6/bin/$i /usr/local/bin; done
+```
+Note that the wiki says that this depends on samtools <=0.1.19 and blasr <=1.3.1.
+Instructions for keeping an old version of samtools (0.1.18) can be found in the [SRST2](#SRST2) section, and the location of the binaries should be `/usr/local/src/samtools-0.1.18`.
+
 #### GapCloser
 #### Contiguity
 
 ### Post-processing, variant calling
+* [BLASR](#BLASR)
 * [GATK](#GATK)
-* [graphmap](#graphmap)
+* [GraphMap2](#GraphMap2)
 * [lofreq](#lofreq)
-* [pilon](#pilon)
 * [nanopolish](#nanopolish)
+* [pilon](#pilon)
+
+#### [BLASR](https://github.com/PacificBiosciences/blasr)
 
 #### GATK
-#### graphmap
+
+#### [GraphMap2]
+GitHub release version: 0.6.4
+This is a mapper that was designed for Oxford Nanopore and PacBio reads.
+This pulls in some other modules with git, so it's easier to clone the repository as recommended.
+
+```
+sudo su -
+cd /usr/local/src
+git clone https://github.com/lbcb-sci/graphmap2 
+cd graphmap2
+# read the docs
+less README.md
+less INSTALL.md
+
+# compile
+make modules
+make
+
+# link the binary
+ln -s /usr/local/src/graphmap2/bin/Linux-x64/graphmap2 /usr/local/bin
+```
 
 #### [lofreq](https://csb5.github.io/lofreq/)
 This is a very good variant caller with a strong theoretical basis (uses all quality information in a model-based algorithm). We'll install from the release tarball.
@@ -769,8 +841,104 @@ cd lofreq_star-2.1.5_linux-x86-64/bin
 for i in *; do ln -s /usr/local/src/lofreq_star-2.1.5_linux-x86-64/bin/$i /usr/local/bin; done
 ```
 
-#### pilon
-#### nanopolish
+#### [nanopolish](https://github.com/jts/nanopolish)
+Ubuntu version: 0.11.3
+GitHub version: 0.13.3
+
+This is a signal-level polisher for Oxford Nanopore data.
+We'll use the GitHub version since it's newer.
+This seems to be intended to be built from a cloned git repository, so that the source for dependencies is automatically pulled in.
+
+Ubuntu version:
+```
+sudo apt install nanopolish
+```
+
+GitHub version (**Recommended**):
+```
+sudo su -
+cd /usr/local/src
+git clone --recursive https://github.com/jts/nanopolish.git
+cd nanopolish
+# check the docs
+less README.md
+
+# build and link the binary
+make
+ln -s /usr/local/src/nanopolish/nanopolish /usr/local/bin
+
+# test it out
+nanopolish
+```
+
+#### [pilon](https://github.com/broadinstitute/pilon/wiki)
+Ubuntu version: 1.23
+GitHub version: 1.24
+
+This is a sequence polisher that is popular for refining assemblies with short read sequencing data.
+This comes as just a `jar` file.
+There are differing opinions as to where to put `jar` files to keep things organized.
+As the ones related to bioinformatics are usually like "programs", I typically put them in /usr/local/bin with other executables.
+Another option would be to write a simple shell script that calls `java` with all the right options, including the full path to the `jar` file, but that will hide some of the details and require some translation from online documentation.
+The `jar` files are usually specified with a full path anyway so it doesn't really matter that much, so long as you know where it is.
+
+From the Ubuntu repositories:
+```
+sudo apt install pilon
+```
+N.B. This Ubuntu version puts the jar file in `/usr/share/java/pilon.jar`.
+There's also a script at `/usr/bin/pilon`:
+```
+#! /bin/sh
+set -e
+
+# export JAVA_HOME=/usr/lib/jvm/default-java
+export JAVA_CMD=java
+
+# Include the wrappers utility script
+. /usr/lib/java-wrappers/java-wrappers.sh
+
+# For memory setting see https://github.com/rrwick/Unicycler/issues/63
+run_java -Xms128M -Xmx16384m -jar /usr/share/java/pilon.jar "$@"
+```
+
+From the website (**Recommended**)
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/broadinstitute/pilon/releases/download/v1.24/pilon-1.24.jar
+# the instructions you'll see online refer to pilon.jar, so we'll link it as such
+ln -s /usr/local/src/pilon-1.24.jar /usr/local/bin/pilon.jar
+
+# test it out
+java -jar /usr/local/bin/pilon.jar
+```
+Unicycler is looking for a binary called `pilon`, so we can modify the Ubuntu package's script:
+```
+sudo su -
+# you can copy and paste what's below, I've escaped the necessary characters
+cat << EOF > /usr/local/bin/pilon
+#! /bin/sh
+set -e
+
+# export JAVA_HOME=/usr/lib/jvm/default-java
+export JAVA_CMD=java
+
+# Include the wrappers utility script
+. /usr/lib/java-wrappers/java-wrappers.sh
+
+# For memory setting see https://github.com/rrwick/Unicycler/issues/63
+run_java -Xms128M -Xmx16384m -jar /usr/local/bin/pilon.jar "\$@"
+EOF
+
+# make it executable
+chmod +x /usr/local/bin/pilon
+
+# test it
+pilon
+```
+However, note that calling the `pilon` script asks for 16GB of heap space, which you may have to modify depending on your machine's RAM.
+That said, this script was for Unicycler and that seems to need the space as per the [referenced link](https://github.com/rrwick/Unicycler/issues/63).
 
 ### Annotation and classification
 * [abricate](#abricate)
@@ -819,7 +987,7 @@ echo 'export PATH=$PATH:/home/ubuntu/.aspera/connect/bin' >> /home/ubuntu/.bashr
 Note that, if needed, the standard key required is at `/home/ubuntu/.aspera/connect/etc/asperaweb_id_dsa.openssh`.
 
 #### [FinIS](https://sourceforge.net/p/finis/wiki/FinIS%20wiki/)
-FinIS is an assembly finisher, which generally is used after the [OPERA](#OPERA) scaffolder.
+FinIS is an assembly finisher, which generally is used after the [OPERA-LG](#OPERA-LG) scaffolder.
 This is on SourceForge at v0.3, and a binary is included.
 It requires [MOSEK](https://www.mosek.com/) 6 (this is currently at 9).
 ```
