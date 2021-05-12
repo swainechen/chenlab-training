@@ -248,6 +248,31 @@ Note a couple useful pieces of information for the hts libraries:
 ```
 
 #### [sra-tools](https://github.com/ncbi/sra-tools)
+These are useful tools for using data in the GenBank Sequence Read Archives.
+They provide precompiled binaries on their GitHub page.
+```
+sudo su -
+cd /usr/local/src
+wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.11.0/sratoolkit.2.11.0-ubuntu64.tar.gz
+tar xvzf sratoolkit.2.11.0-ubuntu64.tar.gz 
+cd sratoolkit.2.11.0-ubuntu64
+# check the docs
+less README.md
+less README-blastn
+less README-vdb-config
+
+# link in the binaries - only take the parents, not the version-named ones
+for i in `ls -1 | grep -v '\.2$' | grep -v '2.11.0$'`; do \
+  ln -s /usr/local/src/sratoolkit.2.11.0-ubuntu64/bin/$i /usr/local/bin; 
+done
+# this needs to be configured once (both root and ubuntu), even if accepting the defaults
+vdb-config -i
+# type 'x' to just exit with default configuration
+# now go back to being the ubuntu user, probably exit from the su shell
+vdb-config -i
+# type 'x' to exit with default configuration
+# this should leave a file in /home/ubuntu/.ncbi/user-settings.mkfg
+```
 
 ### Read processing
 * [bowtie](#bowtie)
