@@ -43,9 +43,10 @@ Note that the version numbers are included in the commands below - you'll have t
 #### Assembly
 * [a5 assembler](#a5-assembler)
 * [canu](#canu)
+* [Flye](#Flye)
 * [miniasm](#miniasm)
-* [racon](#racon)
-* [sga](#sga)
+* [raven](#raven)
+* [SGA](#SGA)
 * [skesa](#skesa)
 * [SPAdes](#SPAdes)
 * [velvet](#velvet)
@@ -60,8 +61,10 @@ Note that the version numbers are included in the commands below - you'll have t
 * [GATK](#GATK)
 * [GraphMap2](#GraphMap2)
 * [lofreq](#lofreq)
+* [medaka](#medaka)
 * [nanopolish](#nanopolish)
 * [pilon](#pilon)
+* [racon](#racon)
 
 #### Annotation and classification
 * [abricate](#abricate)
@@ -325,7 +328,7 @@ bowtie2 --version
 ```
 
 #### [bwa](https://github.com/lh3/bwa)
-This isn't being updated so much though so I prefer to use the Ubuntu repositories, which have the same main version as the current release (as of May 2021) on the GitHub repository (0.7.17).
+This isn't being updated so much so I prefer to use the Ubuntu repositories, which have the same main version as the current release (as of May 2021) on the GitHub repository (0.7.17).
 
 From the Ubuntu repositories (**Recommended**):
 ```
@@ -614,9 +617,10 @@ for i in bbduk bbmap bbnorm bloomfilter dedupe reformat; do ln -s /usr/local/src
 ### Assembly
 * [a5 assembler](#a5-assembler)
 * [canu](#canu)
+* [Flye](#Flye)
 * [miniasm](#miniasm)
-* [racon](#racon)
-* [sga](#sga)
+* [raven](#raven)
+* [SGA](#SGA)
 * [skesa](#skesa)
 * [SPAdes](#SPAdes)
 * [velvet](#velvet)
@@ -626,11 +630,145 @@ for i in bbduk bbmap bbnorm bloomfilter dedupe reformat; do ln -s /usr/local/src
 * [GapCloser](#GapCloser)
 * [Contiguity](#Contiguity)
 
-#### a5 assembler
-#### canu
-#### miniasm
-#### racon
-#### sga
+#### [a5 assembler]
+This is an assembler designed for Illumina short read sequencing, stitching together a few tools.
+The requirements are covered in other sections of this guide:
+* [bwa](#bwa)
+* [samtools](#samtools)
+* [SGA](#SGA)
+* [bowtie](#bowtie2)
+* [Trimmomatic](#Trimmomatic)
+
+```
+sudo su -
+cd /usr/local/src
+# this project is on SourceForge, so you may need to regenerate the direct link below by clicking starting at https://sourceforge.net/projects/ngopt/files/latest/download
+wget 'https://downloads.sourceforge.net/project/ngopt/a5_miseq_linux_20160825.tar.gz?ts=gAAAAABgnAz6WvH-pOx65oLmdQNesYbL38ifqyQIc0Cd2se1eQlL1LsJq-Et2BhXxvzP9I2t6RF9I3FDBJ4UxY_oLsq9FbXdUg%3D%3D&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fngopt%2Ffiles%2Flatest%2Fdownload' -O a5_miseq_linux_20160825.tar.gz
+tar xvzf a5_miseq_linux_20160825.tar.gz
+# check the docs
+less README.txt
+
+# this figures out the real directory and will find the binaries it needs when run, so we just need to link the main perl script to /usr/local/bin
+ln -s /usr/local/src/a5_miseq_linux_20160825/bin/a5_pipeline.pl /usr/local/bin
+
+# test it
+cd /usr/local/src/a5_miseq_linux_20160825
+./test.a5.sh
+```
+
+#### [canu]
+Ubuntu version: 1.9
+GitHub version: 2.1.1
+
+This is an assembler designed for noisy long-read sequencing (i.e. Oxford Nanopore and PacBio).
+We'll install the GitHub version since it's newer than the one in the Ubuntu repositories.
+
+Install from Ubuntu repositories:
+```
+sudo apt install canu
+```
+
+Install from GitHub (**Recommended**):
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/marbl/canu/releases/download/v2.1.1/canu-2.1.1.tar.xz
+tar xvJf canu-2.1.1.tar.xz
+cd canu-2.1.1
+# check the docs
+less README.md
+
+# build and link the binaries
+cd /usr/local/src/canu-2.1.1/src
+make
+# this will find the full path despite the symlink, where it will then find the other binaries it needs, so we only need the canu binary linked into /usr/local/bin
+ln -s /usr/local/src/canu-2.1.1/build/bin/canu /usr/local/bin
+
+# test it
+canu
+```
+
+#### [Flye](https://github.com/fenderglass/Flye)
+This is another assembler for long read sequencing (i.e. Oxford Nanopore and PacBio).
+
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/fenderglass/Flye/archive/refs/tags/2.8.3.tar.gz
+tar xvzf 2.8.3.tar.gz
+cd Flye-2.8.3
+# check the docs
+less README.md
+
+# build and install into /usr/local - default for the setup script
+python3 setup.py install
+
+# test it
+flye
+python3 /usr/local/src/Flye-2.8.3/flye/tests/test_toy.py
+```
+
+#### [miniasm](https://github.com/lh3/miniasm)
+Ubuntu version: 0.3
+GitHub version: 0.3
+
+This is an assembler designed for noisy long reads (i.e. Oxford Nanopore and PacBio) with speed in mind.
+This hasn't been updated in a while so we'll go with the Ubuntu repository, as it has the most current version.
+
+Install from Ubuntu repositories (**Recommended**):
+```
+sudo apt-get install miniasm
+```
+
+Install from GitHub:
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/lh3/miniasm/archive/refs/tags/v0.3.tar.gz
+tar xvzf v0.3.tar.gz
+cd miniasm-0.3
+# check the docs
+less README.md
+
+# make and link the binary
+make
+ln -s /usr/local/src/miniasm-0.3/miniasm /usr/local/bin
+ln -s /usr/local/src/miniasm-0.3/minidot /usr/local/bin
+```
+
+#### [raven](https://github.com/lbcb-sci/raven)
+This is another assembler for long reads (Oxford Nanopore and PacBio).
+
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/lbcb-sci/raven/archive/refs/tags/1.5.0.tar.gz
+tar xvzf 1.5.0.tar.gz
+cd raven-1.5.0
+# check the docs
+less README.md
+
+# build and link the binaries
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release ..
+make
+ln -s /usr/local/src/raven-1.5.0/build/bin/raven /usr/local/bin
+
+# test it
+raven
+/usr/local/src/raven-1.5.0/build/bin/raven_test
+```
+
+#### [SGA](https://github.com/jts/sga)
+Ubuntu version: 0.10.15
+GitHub version: 0.10.15
+
+Since this hasn't been updated in a while, and the versions are the same, we'll go with the Ubuntu version.
+
+```
+sudo apt-get install sga
+```
 
 #### [skesa](https://github.com/ncbi/SKESA)
 Ubuntu LTS version: 2.3.0
@@ -739,6 +877,7 @@ You can check the options for this by running `perl -e 'print join ("\n", @INC),
 
 #### [Trycycler](https://github.com/rrwick/Trycycler/wiki)
 
+
 #### [Unicycler](https://github.com/rrwick/Unicycler)
 Ubuntu LTS version: 0.4.8
 GitHub version: 0.4.9
@@ -801,8 +940,10 @@ Instructions for keeping an old version of samtools (0.1.18) can be found in the
 * [GATK](#GATK)
 * [GraphMap2](#GraphMap2)
 * [lofreq](#lofreq)
+* [medaka](#medaka)
 * [nanopolish](#nanopolish)
 * [pilon](#pilon)
+* [racon](#racon)
 
 #### [BLASR](https://github.com/PacificBiosciences/blasr)
 
@@ -840,6 +981,8 @@ tar xvzf lofreq_star-2.1.5_linux-x86-64.tgz
 cd lofreq_star-2.1.5_linux-x86-64/bin
 for i in *; do ln -s /usr/local/src/lofreq_star-2.1.5_linux-x86-64/bin/$i /usr/local/bin; done
 ```
+
+#### [medaka](https://github.com/nanoporetech/medaka)
 
 #### [nanopolish](https://github.com/jts/nanopolish)
 Ubuntu version: 0.11.3
@@ -939,6 +1082,40 @@ pilon
 ```
 However, note that calling the `pilon` script asks for 16GB of heap space, which you may have to modify depending on your machine's RAM.
 That said, this script was for Unicycler and that seems to need the space as per the [referenced link](https://github.com/rrwick/Unicycler/issues/63).
+
+#### [racon](https://github.com/lbcb-sci/racon)
+Ubuntu version: 1.4.10
+GitHub version: 1.4.21
+
+This is a polisher / consensus module for uncorrected long reads (i.e. Oxford Nanopore and PacBio).
+We'll use the GitHub version since it's newer than the one in the Ubuntu repositories.
+
+Install from Ubuntu repositories:
+```
+sudo apt-get install racon
+```
+
+Install from GitHub (**Recommended**):
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/lbcb-sci/racon/releases/download/1.4.21/racon-v1.4.21.tar.gz
+tar xvzf racon-v1.4.21.tar.gz
+cd racon-v1.4.21
+# check the docs
+less README.md
+
+# build and link the binaries
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release ..
+make
+ln -s /usr/local/src/racon-v1.4.21/build/bin/racon /usr/local/bin
+
+# test it
+racon
+```
+
 
 ### Annotation and classification
 * [abricate](#abricate)
