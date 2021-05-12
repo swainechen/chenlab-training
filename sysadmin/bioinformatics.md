@@ -41,7 +41,7 @@ Note that the version numbers are included in the commands below - you'll have t
 * [Trimmomatic](#Trimmomatic)
 
 #### Assembly
-* [a5 assembler](#a5-assembler)
+* [A5 assembler](#A5-assembler)
 * [canu](#canu)
 * [Flye](#Flye)
 * [miniasm](#miniasm)
@@ -615,7 +615,7 @@ for i in bbduk bbmap bbnorm bloomfilter dedupe reformat; do ln -s /usr/local/src
 ```
 
 ### Assembly
-* [a5 assembler](#a5-assembler)
+* [A5 assembler](#A5-assembler)
 * [canu](#canu)
 * [Flye](#Flye)
 * [miniasm](#miniasm)
@@ -630,7 +630,7 @@ for i in bbduk bbmap bbnorm bloomfilter dedupe reformat; do ln -s /usr/local/src
 * [GapCloser](#GapCloser)
 * [Contiguity](#Contiguity)
 
-#### [a5 assembler]
+#### [A5 assembler](https://sourceforge.net/p/ngopt/wiki/A5PipelineREADME/)
 This is an assembler designed for Illumina short read sequencing, stitching together a few tools.
 The requirements are covered in other sections of this guide:
 * [bwa](#bwa)
@@ -656,7 +656,7 @@ cd /usr/local/src/a5_miseq_linux_20160825
 ./test.a5.sh
 ```
 
-#### [canu]
+#### [canu](https://github.com/marbl/canu)
 Ubuntu version: 1.9
 GitHub version: 2.1.1
 
