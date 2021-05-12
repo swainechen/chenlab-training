@@ -69,7 +69,9 @@ Note that the version numbers are included in the commands below - you'll have t
 * [SeqSero](#SeqSero)
 
 #### Visualization
+* [bandage](#bandage)
 * [BRIG](#BRIG)
+* [Circos](#Circos)
 * [EasyFig](#EasyFig)
 * [SeqFindr](#SeqFindr)
 * [slcview](#slcview)
@@ -505,7 +507,7 @@ python3 setup.py install
 porechop --version
 ```
 
-#### poretools
+#### [poretools](https://github.com/arq5x/poretools)
 These are utilities to work with Oxford Nanopore sequencing data.
 This hasn't been updated in a while, so the Ubuntu repositories have the same version as the latest releast on GitHub.
 
@@ -633,12 +635,66 @@ for i in bbduk bbmap bbnorm bloomfilter dedupe reformat; do ln -s /usr/local/src
 Ubuntu LTS version: 2.3.0
 GitHub version: 2.4.0
 
-We'll install the latest GitHub version.
+This is a set of assemblers (SKESA and SAUTE) with some companion programs. SKESA in particular was designed for microbial genomes.
+
+We'll install the latest GitHub release version (tagged as "Update for NGS v.2.11.0" as of May, 2021 - but this is v2.4.0 of SKESA (the 2.11.0 is for the NGS bit)).
+We'll take the source and compile.
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/ncbi/SKESA/archive/refs/tags/skesa.2.4.0_saute.1.3.0_1.tar.gz
+tar xvzf skesa.2.4.0_saute.1.3.0_1.tar.gz
+cd SKESA-skesa.2.4.0_saute.1.3.0_1
+# check the docs
+less README.md
+
+# build - there are some assumptions for the full make where it tries to
+# build ngs-sdk, even though we already have it installed, leading to a compile
+# error. For now use the nongs version
+make -f Makefile.nongs
+
+# link the binaries
+for i in skesa saute saute_prot gfa_connector kmercounter; do ln -s /usr/local/src/SKESA-skesa.2.4.0_saute.1.3.0_1/$i /usr/local/bin; done
+
+# test that it works
+skesa
+saute
+```
 
 #### [SPAdes](https://cab.spbu.ru/software/spades/)
 Ubuntu LTS version: 3.13.1
 Online version: 3.15.2
 However, Unicycler needs a version no later than 3.13.0. We'll install the latest online version for regular use, then do a second install with the older version for Unicycler.
+
+The latest version from https://cab.spbu.ru/software/spades/ as default (i.e. in `/usr/local/bin`)
+```
+sudo su -
+cd /usr/local/src
+wget https://cab.spbu.ru/files/release3.15.2/SPAdes-3.15.2-Linux.tar.gz
+tar xvzf SPAdes-3.15.2-Linux.tar.gz
+cd SPAdes-3.15.2-Linux
+# check the docs
+less share/spades/README.md
+
+# link in the binaries
+cd bin
+for i in *; do ln -s /usr/local/src/SPAdes-3.15.2-Linux/bin/$i /usr/local/bin; done
+
+# check it works ok
+```
+
+The older 3.13.0 version for Unicycler - this can be downloaded at the [SPAdes GitHub repository](https://github.com/ablab/spades)
+We will keep this in /usr/local/src and will need to specify the full path in order to use it:
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/ablab/spades/releases/download/v3.13.0/SPAdes-3.13.0-Linux.tar.gz
+tar xvzf SPAdes-3.13.0-Linux.tar.gz
+cd SPAdes-3.13.0-Linux
+
+# this was a binary distribution, so it should be done - just check the version
+/usr/local/src/SPAdes-3.13.0-Linux/bin/spades.py
+```
 
 #### [velvet](https://github.com/dzerbino/velvet/tree/master)
 This is a popular assembler.
@@ -728,14 +784,18 @@ for i in *; do ln -s /usr/local/src/lofreq_star-2.1.5_linux-x86-64/bin/$i /usr/l
 #### SeqSero
 
 ### Visualization
+* [bandage](#bandage)
 * [BRIG](#BRIG)
+* [Circos](#Circos)
 * [EasyFig](#EasyFig)
 * [SeqFindr](#SeqFindr)
 * [slcview](#slcview)
 
-#### BRIG
-#### EasyFig
-#### SeqFindr
+#### [Bandage](https://rrwick.github.io/Bandage/)
+#### [BRIG]
+#### [Circos](http://circos.ca/)
+#### [EasyFig]
+#### [SeqFindr]
 #### [slcview](https://github.com/swainechen/slcview)
 
 ### Customized installs
@@ -745,8 +805,7 @@ for i in *; do ln -s /usr/local/src/lofreq_star-2.1.5_linux-x86-64/bin/$i /usr/l
 * [SRST2](#SRST2)
 
 #### [ASCP](http://downloads.asperasoft.com/connect2/)
-
-This is useful for fast downloads, such as from ENA or Genbank. This seems to be easiest to install as the user (ubuntu).
+This is useful for fast downloads, such as from ENA or Genbank. This seems to be best (and easiest) to install as the user (ubuntu).
 ```
 # make sure you're in a user (ubuntu) shell and not root
 cd /home/ubuntu
