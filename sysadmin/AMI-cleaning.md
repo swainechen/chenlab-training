@@ -40,12 +40,12 @@ shred -u .ssh/*
 ```
 sudo su -
 shred -u .*history .*hsts .gitconfig .lesshst .viminfo
-rm -rf snap .cache .cpan*
+rm -rf snap .cache .cpan* .vim
 history -c
 exit
 # now as ubuntu
 shred -u .*history .*hsts .gitconfig .lesshst .viminfo .sudo_as_admin_successful
-rm -rf .cache .config .local .mozilla
+rm -rf .cache .config .local .mozilla .vim .keras
 history -c
 exit
 ```

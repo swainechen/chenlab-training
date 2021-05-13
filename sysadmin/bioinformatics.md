@@ -1116,7 +1116,21 @@ sudo apt install blasr
 blasr --help
 ```
 
-#### GATK
+#### [GATK](https://gatk.broadinstitute.org/hc/en-us)
+```
+cd /usr/local/src
+wget https://github.com/broadinstitute/gatk/releases/download/4.2.0.0/gatk-4.2.0.0.zip
+unzip gatk-4.2.0.0.zip
+cd gatk-4.2.0.0
+# check the docs
+less README.md
+
+# the main gatk invocation script will figure out the original directory, so we can just link this in to /usr/local/bin
+ln -s /usr/local/src/gatk-4.2.0/gatk /usr/local/bin
+
+# test it
+gatk --help
+```
 
 #### [GraphMap2](https://github.com/lbcb-sci/graphmap2)
 GitHub release version: 0.6.4
@@ -1389,5 +1403,3 @@ I also have a few utility scripts to help manage these.
 #### [EasyFig]
 #### [SeqFindr]
 #### [slcview](https://github.com/swainechen/slcview)
-
-### Customized installs
