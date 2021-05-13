@@ -32,6 +32,7 @@ Note that the version numbers are included in the commands below - you'll have t
 * [HYPHY](#HYPHY)
 * [Kingfisher](#Kingfisher)
 * [meme](#meme)
+* [pbbam](#pbbam)
 * [samtools](#samtools-including-htslib)
 * [sra-tools](#sra-tools)
 
@@ -54,6 +55,7 @@ Note that the version numbers are included in the commands below - you'll have t
 * [Flye](#Flye)
 * [miniasm](#miniasm)
 * [raven](#raven)
+* [redbean](#redbean)
 * [SGA](#SGA)
 * [skesa](#skesa)
 * [SPAdes](#SPAdes)
@@ -98,6 +100,7 @@ Note that the version numbers are included in the commands below - you'll have t
 * [HYPHY](#HYPHY)
 * [Kingfisher](#Kingfisher)
 * [meme](#meme)
+* [pbbam](#pbbam)
 * [samtools](#samtools-including-htslib)
 * [sra-tools](#sra-tools)
 
@@ -205,6 +208,42 @@ less README.md
 ln -s /usr/local/src/kingfisher-download/bin/kingfisher /usr/local/bin
 ```
 If you've installed [ASCP](#ASCP) as described in this guide, you can use the `-m ena-ascp` method as well as the more standard methods.
+
+#### [pbbam](https://github.com/PacificBiosciences/pbbam)
+Ubuntu LTS version: 1.0.6<br/>
+GitHub version: 1.6.0
+
+This is a set of tools for handling the specific bam files that PacBio used to use.
+
+We'll install the latest release version from GitHub, as it's quite a bit newer than what's in the Ubuntu repositories.
+
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/PacificBiosciences/pbbam/archive/refs/tags/v1.6.0.tar.gz
+tar xvzf v1.6.0.tar.gz
+cd pbbam-1.6.0
+# check the docs
+less README.md
+less INSTALL.md
+
+# build and test - use meson and ninja
+mkdir build
+cd build
+meson --prefix /usr/local/ -Denable-tests=true ..
+make
+ninja test
+# there are some git errors because we used a release tarball, but everything else works
+ninja install
+# this installs some shared libraries in /usr/local/lib (among other things in /usr/local), so we need to update LD_LIBRARY_PATH
+echo "# For pbbam" >> /home/ubuntu/.bashrc
+echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/x86_64-linux-gnu" >> /home/ubuntu/.bashrc
+
+# test it
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/x86_64-linux-gnu
+pbmerge
+pbindex
+```
 
 #### [samtools](http://www.htslib.org/) (including htslib)
 
@@ -661,6 +700,7 @@ for i in bbduk bbmap bbnorm bloomfilter dedupe reformat; do ln -s /usr/local/src
 * [Flye](#Flye)
 * [miniasm](#miniasm)
 * [raven](#raven)
+* [redbean](#redbean)
 * [SGA](#SGA)
 * [skesa](#skesa)
 * [SPAdes](#SPAdes)
@@ -802,6 +842,21 @@ raven
 /usr/local/src/raven-1.5.0/build/bin/raven_test
 ```
 
+#### [redbean](https://github.com/ruanjue/wtdbg2)
+This is another assembler for long reads (Oxford Nanopore and PacBio).
+
+Installing the latest release (2.5) from GitHub - this is just a binary package:
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/ruanjue/wtdbg2/releases/download/v2.5/wtdbg-2.5_x64_linux.tgz
+tar xvzf wtdbg-2.5_x64_linux.tgz
+cd wtdbg-2.5_x64_linux
+# no docs to see here!
+# link the binaries and test
+for i in *; do ln -s /usr/local/src/wtdbg-2.5_x64_linux/$i /usr/local/bin; done
+```
+
 #### [SGA](https://github.com/jts/sga)
 Ubuntu LTS version: 0.10.15<br/>
 GitHub version: 0.10.15
@@ -918,7 +973,25 @@ This should work on a stock Ubuntu install.
 You can check the options for this by running `perl -e 'print join ("\n", @INC), "\n";'` - this is the default search path for perl modules, and it just needs to be in one of those places (though something under `/usr/local/` is a good idea).
 
 #### [Trycycler](https://github.com/rrwick/Trycycler/wiki)
+This is a method to produce a consensus assembly. It was also designed to help with assembly of long read sequencing (Oxford Nanopore and PacBio).
 
+Looking at the installation methods, I prefer to take the latest release to build and install. We'll use `pip3` for the installation itself.
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/rrwick/Trycycler/archive/refs/tags/v0.5.0.tar.gz
+tar xvzf v0.5.0.tar.gz
+cd Trycycler-0.5.0
+# check the docs
+less README.md
+less requirements.txt
+
+# install (defaults to /usr/local/bin for the binary)
+pip3 install /usr/local/src/Trycycler-0.5.0/
+
+# test it
+trycycler --help
+```
 
 #### [Unicycler](https://github.com/rrwick/Unicycler)
 Ubuntu LTS version: 0.4.8<br/>
@@ -1029,6 +1102,19 @@ FinIS test_dataset/soap/conf.config
 * [racon](#racon)
 
 #### [BLASR](https://github.com/PacificBiosciences/blasr)
+Ubuntu LTS version: 5.3.3
+GitHub version: 5.3.5
+
+This requires the [pbbam](#pbbam) tools to be installed.
+The build is a little unique as it requires `meson` and `ninja`, but both of these are easy to install from the Ubuntu repositories (and have been included in the [General Sysadmin](system.md) section under [Standard Ubuntu Packages](system.md#Standard-Ubuntu-Packages).
+There seems to be some issue with specifying include directories. For now, just install the Ubuntu version.
+
+```
+sudo apt install blasr
+
+# test it
+blasr --help
+```
 
 #### GATK
 
