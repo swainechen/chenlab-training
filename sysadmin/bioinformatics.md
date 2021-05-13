@@ -2,10 +2,17 @@
 Bioinformatics is moving very fast. It's hard to keep up with version changes, and because of some details of academic funding and training, there is a lot of variation in organization and design.
 
 From a setup point of view, there are two categories of software out there. Some software that can be installed in a relatively "standard" unix-like manner, while others require some custom updates or custom configuration (sometimes for compilation, nonstandard paths, or for needing special libraries / data to be downloaded).
-* [Software that follows a standard installation](#standard-installs)
-* [Software requiring some customization](#customized-installs)
 
 Generally the strategy is to keep all the downloads and sources in /usr/local/src and then link into /usr/local/bin or other appropriate directories in /usr/local.
+Also, software tends to go through a lifecycle where there are lots of updates, then eventually it stabilizes and/or becomes less updated for whatever reason.
+The standard Ubuntu LTS (Focal, 20.04 in this case) repositories don't keep up with the latest software - they are made to support system stability, and the latest versions are incorporated into the interim point releases (like 20.10, 21.04, etc).
+So for some of these software packages, you have a choice between installing from the Ubuntu repositories and installing from a binary or source release.
+
+Some considerations for installing from Ubuntu - you'll get automatic updates with your system, including security updates, the setup is about as pain-free as it can be, uninstallation is clean and easy, and it's easier to track versions for reproducibility. However, you may get stuck at an old version. For some software, that isn't a big deal, because it's not changing much; for others, it can mean that you simply aren't able to do things or some bugs won't have been fixed.
+
+Installing from a binary or source package has the opposite characteristics. You can ensure you're using the latest version, including the latest updates to the "live" codebase, but you may have to do adaptation of the installation to your system, compiling can sometimes require troubleshooting, uninstallation can be difficult to do cleanly, and you may not always know how to mark which version you're using (especially if you are routinely updating to the current git source tree instead of using a release version).
+
+I've made some recommendations for the software below based on these considerations. There are no hard and fast rules, and for most I provide instructions for multiple ways to install these packages.
 
 ### Another reminder about using `sudo` and the root account:
 The commands below are written to do most things as root - this is not the best practice. The [standard recommendation](https://tldp.org/HOWTO/Software-Building-HOWTO-3.html) is to only use sudo or the root account when it's absolutely needed. There are a couple ways to do this:
@@ -18,16 +25,17 @@ Here, though, we're doing the simple version to just run around as root. This ta
 Note that the version numbers are included in the commands below - you'll have to update those to whatever the current version is at the time.
 
 ## Overview
-### Standard installs
-#### General
+### General
+* [ASCP](#ASCP)
 * [BLAST+](#BLAST)
+* [genome-tools](#genome-tools)
 * [HYPHY](#HYPHY)
 * [Kingfisher](#Kingfisher)
 * [meme](#meme)
 * [samtools](#samtools-including-htslib)
 * [sra-tools](#sra-tools)
 
-#### Read processing
+### Read processing
 * [bowtie](#bowtie)
 * [bwa](#bwa)
 * [deML](#deML)
@@ -40,7 +48,7 @@ Note that the version numbers are included in the commands below - you'll have t
 * [seqtk](#seqtk)
 * [Trimmomatic](#Trimmomatic)
 
-#### Assembly
+### Assembly
 * [A5 assembler](#A5-assembler)
 * [canu](#canu)
 * [Flye](#Flye)
@@ -52,11 +60,11 @@ Note that the version numbers are included in the commands below - you'll have t
 * [velvet](#velvet)
 * [Trycycler](#Trycycler)
 * [Unicycler](#Unicycler)
-* [OPERA-LG](#OPERA-LG)
+* [FinIS](#FinIS)
 * [GapCloser](#GapCloser)
-* [Contiguity](#Contiguity)
+* [OPERA-LG](#OPERA-LG)
 
-#### Post-processing, variant calling
+### Post-processing, variant calling
 * [BLASR](#BLASR)
 * [GATK](#GATK)
 * [GraphMap2](#GraphMap2)
@@ -66,13 +74,14 @@ Note that the version numbers are included in the commands below - you'll have t
 * [pilon](#pilon)
 * [racon](#racon)
 
-#### Annotation and classification
+### Annotation and classification
 * [abricate](#abricate)
 * [Kraken](#Kraken)
 * [prokka](#prokka)
 * [SeqSero](#SeqSero)
+* [SRST2](#SRST2)
 
-#### Visualization
+### Visualization
 * [bandage](#bandage)
 * [BRIG](#BRIG)
 * [Circos](#Circos)
@@ -80,21 +89,31 @@ Note that the version numbers are included in the commands below - you'll have t
 * [SeqFindr](#SeqFindr)
 * [slcview](#slcview)
 
-### Customized installs
-* [ASCP](#ASCP)
-* [FinIS](#FinIS)
-* [genome-tools](#genome-tools)
-* [SRST2](#SRST2)
-
 ## Detailed instructions
 
 ### General
+* [ASCP](#ASCP)
 * [BLAST+](#BLAST)
+* [genome-tools](#genome-tools)
 * [HYPHY](#HYPHY)
 * [Kingfisher](#Kingfisher)
 * [meme](#meme)
 * [samtools](#samtools-including-htslib)
 * [sra-tools](#sra-tools)
+
+#### [ASCP](http://downloads.asperasoft.com/connect2/)
+This is useful for fast downloads, such as from ENA or Genbank. This seems to be best (and easiest) to install as the user (ubuntu).
+```
+# make sure you're in a user (ubuntu) shell and not root
+cd /home/ubuntu
+wget https://d3gcli72yxqn2z.cloudfront.net/connect_latest/v4/bin/ibm-aspera-connect-3.11.2.63-linux-g2.12-64.tar.gz
+tar xvzf ibm-aspera-connect-3.11.2.63-linux-g2.12-64.tar.gz
+./ibm-aspera-connect-3.11.2.63-linux-g2.12-64.sh
+# update your path to include this (for ex. in .bashrc)
+echo '# path for ascp' >> /home/ubuntu/.bashrc
+echo 'export PATH=$PATH:/home/ubuntu/.aspera/connect/bin' >> /home/ubuntu/.bashrc
+```
+Note that, if needed, the standard key required is at `/home/ubuntu/.aspera/connect/etc/asperaweb_id_dsa.openssh`.
 
 #### [BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
 The Ubuntu repositories have this, but it's at version 2.9.0-2. The current version right now is at 2.11.0-1. Generally for most users, BLAST has been pretty stable, but here's how to update it if you need the latest version (you'll have to repeat these for each update as well after you do this manual install).
@@ -131,6 +150,25 @@ for i in *; do ln -s /usr/local/src/ncbi-blast-2.11.0+/bin/$i /usr/local/bin; do
 
 You can verify that the default version is what you expect with the commands in the first block above. You may also want to remove the older Ubuntu version to avoid any potential confusion: `sudo apt purge ncbi-blast+ ncbi-blast+-legacy blast2`.
 
+#### [genome-tools](https://github.com/swainechen/genome-tools)
+This is the first open source project I wrote - it was a set of scripts to help manage the data files for multiple genomes.
+Some of the file formats have changed but I still find this useful, particularly if you have just a few individual genomes you use frequently (for me, there are just a few E. coli strains I use heavily).
+There are also a few useful scripts included.
+The main setup is pretty standard, but then you need to add data.
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/swainechen/genome-tools/archive/refs/tags/1.3.tar.gz
+tar xvzf 1.3.tar.gz
+cd genome-tools-1.3
+# check the docs
+less INSTALL
+./setup.pl
+# accept all defaults, and copy Orgmap.pm to /usr/local/lib/site_perl
+
+# download some genomes and make them available
+```
+
 #### [HYPHY](https://github.com/veg/hyphy)
 I haven't had great luck with conda, and this setup is intended to be used for a single person or to drive a specific pipeline. Therefore, we'll compile HYPHY from source using the latest release tarball.
 ```
@@ -147,34 +185,6 @@ cmake .
 make HYPHYMPI
 # this defaults to install to /usr/local
 make install
-```
-
-#### [meme](http://meme-suite.org/meme/)
-Current version is 5.3.3.
-```
-sudo su -
-cd /usr/local/src
-wget https://meme-suite.org/meme/meme-software/5.3.3/meme-5.3.3.tar.gz
-tar xvzf meme-5.3.3.tar.gz
-cd meme-5.3.3
-
-# always good to check the docs
-less README
-less INSTALL
-
-# this one we have to explicitly set the prefix
-./configure --prefix=/usr/local --enable-build-libxml2 --enable-build-libxslt
-# check everything looks ok for the output from the configure script, then:
-make
-# this has a test suite which is good to do
-make test
-# some meme?? tests fail if you run as root
-# they also fail if you don't have enough slots for the MPI version, i.e. CPUs
-make install
-
-# then, as per instructions, add things to your path (for the user, not necessarily root)
-echo '# path for meme' >> /home/ubuntu/.bashrc
-echo 'export PATH=$PATH:/usr/local/libexec/meme-5.3.3' >> /home/ubuntu/.bashrc
 ```
 
 #### [Kingfisher](https://github.com/wwood/kingfisher-download)
@@ -251,6 +261,34 @@ Note a couple useful pieces of information for the hts libraries:
 ```
 /usr/local/lib/libhts.a
 /usr/local/include/htslib
+```
+
+#### [meme](http://meme-suite.org/meme/)
+Current version is 5.3.3.
+```
+sudo su -
+cd /usr/local/src
+wget https://meme-suite.org/meme/meme-software/5.3.3/meme-5.3.3.tar.gz
+tar xvzf meme-5.3.3.tar.gz
+cd meme-5.3.3
+
+# always good to check the docs
+less README
+less INSTALL
+
+# this one we have to explicitly set the prefix
+./configure --prefix=/usr/local --enable-build-libxml2 --enable-build-libxslt
+# check everything looks ok for the output from the configure script, then:
+make
+# this has a test suite which is good to do
+make test
+# some meme?? tests fail if you run as root
+# they also fail if you don't have enough slots for the MPI version, i.e. CPUs
+make install
+
+# then, as per instructions, add things to your path (for the user, not necessarily root)
+echo '# path for meme' >> /home/ubuntu/.bashrc
+echo 'export PATH=$PATH:/usr/local/libexec/meme-5.3.3' >> /home/ubuntu/.bashrc
 ```
 
 #### [sra-tools](https://github.com/ncbi/sra-tools)
@@ -627,6 +665,7 @@ for i in bbduk bbmap bbnorm bloomfilter dedupe reformat; do ln -s /usr/local/src
 * [Trycycler](#Trycycler)
 * [Unicycler](#Unicycler)
 * [OPERA-LG](#OPERA-LG)
+* [FinIS](#FinIS)
 * [GapCloser](#GapCloser)
 * [Contiguity](#Contiguity)
 
@@ -932,8 +971,49 @@ for i in *; do ln -s /usr/local/src/OPERA-LG_v2.0.6/bin/$i /usr/local/bin; done
 Note that the wiki says that this depends on samtools <=0.1.19 and blasr <=1.3.1.
 Instructions for keeping an old version of samtools (0.1.18) can be found in the [SRST2](#SRST2) section, and the location of the binaries should be `/usr/local/src/samtools-0.1.18`.
 
+#### [FinIS](https://sourceforge.net/p/finis/wiki/FinIS%20wiki/)
+FinIS is an assembly finisher, which generally is used after the [OPERA-LG](#OPERA-LG) scaffolder.
+This is on SourceForge at v0.3, and a binary is included.
+It requires [MOSEK](https://www.mosek.com/) 6 (this is currently at 9).
+```
+sudo su -
+cd /usr/local/src
+# FinIS is on SourceForge, you may need to generate your own direct link
+# by clicking starting from https://sourceforge.net/projects/finis/files/v0.3/
+wget 'https://downloads.sourceforge.net/project/finis/v0.3/v0.3.tar.gz?ts=gAAAAABgl49QRj_nAX5gccQ9FeGwccNWKR_QnNWBbNTwV1HGd2cpWueqjuolVNhg8C27rHgE0kQdAd0IeYzGRkmTyTvowuvqsQ%3D%3D&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Ffinis%2Ffiles%2Fv0.3%2Fv0.3.tar.gz%2Fdownload' -O v0.3.tar.gz
+tar xvzf v0.3.tar.gz
+mv v0.3 FinIS-0.3
+cd FinIS-0.3
+# link the binary
+ln -s /usr/local/src/FinIS-0.3/finis /usr/local/bin
+
+# download MOSEK 6 - https://www.mosek.com/downloads/6/
+cd /usr/local/src
+wget https://download.mosek.com/stable/6/mosektoolslinux64x86.tar.gz
+tar xvzf mosektoolslinux64x86.tar.gz
+# this has some binaries and libraries
+# technically only the libraries are needed though for FinIS
+# binaries
+for i in lmgrd lmutil mampl mosek MOSEKLM moseksi mskdgopt mskexpopt mskscopt msktestlic; do ln -s /usr/local/src/mosek/6/tools/platform/linux64x86/bin/$i /usr/local/bin/; done
+# libraries
+for i in libiomp5.so libmosek64.so libmosek64.so.6.0 libmosekglb64.so.6.0 libmosekglbnoomp64.so.6.0 libmosekjava6_0.so libmoseknoomp64.so libmoseknoomp64.so.6.0 libmosekxx6_0.so libscopt.so; do ln -s /usr/local/src/mosek/6/tools/platform/linux64x86/bin/$i /usr/local/lib/; done
+# then LD_LIBRARY_PATH needs to get set
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/bin
+echo "# for MOSEK 6" >> /home/ubuntu/.bashrc
+echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib" >> /home/ubuntu/.bashrc
+
+# we can verify this with test data that comes with the FinIS source
+# there are two test datasets provided
+FinIS test_dataset/velvet/conf.config
+
+# the soap config file needs to drop the num_threads and mosek_runtime lines
+# these seem to have changed as well - comment these two out and the test
+# should run fine - note this requires more memory (~4GB) than
+# a t3a.small instance has (2GB) however
+FinIS test_dataset/soap/conf.config
+```
+
 #### GapCloser
-#### Contiguity
 
 ### Post-processing, variant calling
 * [BLASR](#BLASR)
@@ -1141,107 +1221,12 @@ racon
 * [Kraken](#Kraken)
 * [prokka](#prokka)
 * [SeqSero](#SeqSero)
+* [SRST2](#SRST2)
 
 #### abricate
 #### Kraken
 #### prokka
 #### SeqSero
-
-### Visualization
-* [bandage](#bandage)
-* [BRIG](#BRIG)
-* [Circos](#Circos)
-* [EasyFig](#EasyFig)
-* [SeqFindr](#SeqFindr)
-* [slcview](#slcview)
-
-#### [Bandage](https://rrwick.github.io/Bandage/)
-#### [BRIG]
-#### [Circos](http://circos.ca/)
-#### [EasyFig]
-#### [SeqFindr]
-#### [slcview](https://github.com/swainechen/slcview)
-
-### Customized installs
-* [ASCP](#ASCP)
-* [FinIS](#FinIS)
-* [genome-tools](#genome-tools)
-* [SRST2](#SRST2)
-
-#### [ASCP](http://downloads.asperasoft.com/connect2/)
-This is useful for fast downloads, such as from ENA or Genbank. This seems to be best (and easiest) to install as the user (ubuntu).
-```
-# make sure you're in a user (ubuntu) shell and not root
-cd /home/ubuntu
-wget https://d3gcli72yxqn2z.cloudfront.net/connect_latest/v4/bin/ibm-aspera-connect-3.11.2.63-linux-g2.12-64.tar.gz
-tar xvzf ibm-aspera-connect-3.11.2.63-linux-g2.12-64.tar.gz
-./ibm-aspera-connect-3.11.2.63-linux-g2.12-64.sh
-# update your path to include this (for ex. in .bashrc)
-echo '# path for ascp' >> /home/ubuntu/.bashrc
-echo 'export PATH=$PATH:/home/ubuntu/.aspera/connect/bin' >> /home/ubuntu/.bashrc
-```
-Note that, if needed, the standard key required is at `/home/ubuntu/.aspera/connect/etc/asperaweb_id_dsa.openssh`.
-
-#### [FinIS](https://sourceforge.net/p/finis/wiki/FinIS%20wiki/)
-FinIS is an assembly finisher, which generally is used after the [OPERA-LG](#OPERA-LG) scaffolder.
-This is on SourceForge at v0.3, and a binary is included.
-It requires [MOSEK](https://www.mosek.com/) 6 (this is currently at 9).
-```
-sudo su -
-cd /usr/local/src
-# FinIS is on SourceForge, you may need to generate your own direct link
-# by clicking starting from https://sourceforge.net/projects/finis/files/v0.3/
-wget 'https://downloads.sourceforge.net/project/finis/v0.3/v0.3.tar.gz?ts=gAAAAABgl49QRj_nAX5gccQ9FeGwccNWKR_QnNWBbNTwV1HGd2cpWueqjuolVNhg8C27rHgE0kQdAd0IeYzGRkmTyTvowuvqsQ%3D%3D&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Ffinis%2Ffiles%2Fv0.3%2Fv0.3.tar.gz%2Fdownload' -O v0.3.tar.gz
-tar xvzf v0.3.tar.gz
-mv v0.3 FinIS-0.3
-cd FinIS-0.3
-# link the binary
-ln -s /usr/local/src/FinIS-0.3/finis /usr/local/bin
-
-# download MOSEK 6 - https://www.mosek.com/downloads/6/
-cd /usr/local/src
-wget https://download.mosek.com/stable/6/mosektoolslinux64x86.tar.gz
-tar xvzf mosektoolslinux64x86.tar.gz
-# this has some binaries and libraries
-# technically only the libraries are needed though for FinIS
-# binaries
-for i in lmgrd lmutil mampl mosek MOSEKLM moseksi mskdgopt mskexpopt mskscopt msktestlic; do ln -s /usr/local/src/mosek/6/tools/platform/linux64x86/bin/$i /usr/local/bin/; done
-# libraries
-for i in libiomp5.so libmosek64.so libmosek64.so.6.0 libmosekglb64.so.6.0 libmosekglbnoomp64.so.6.0 libmosekjava6_0.so libmoseknoomp64.so libmoseknoomp64.so.6.0 libmosekxx6_0.so libscopt.so; do ln -s /usr/local/src/mosek/6/tools/platform/linux64x86/bin/$i /usr/local/lib/; done
-# then LD_LIBRARY_PATH needs to get set
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/bin
-echo "# for MOSEK 6" >> /home/ubuntu/.bashrc
-echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib" >> /home/ubuntu/.bashrc
-
-# we can verify this with test data that comes with the FinIS source
-# there are two test datasets provided
-FinIS test_dataset/velvet/conf.config
-
-# the soap config file needs to drop the num_threads and mosek_runtime lines
-# these seem to have changed as well - comment these two out and the test
-# should run fine - note this requires more memory (~4GB) than
-# a t3a.small instance has (2GB) however
-FinIS test_dataset/soap/conf.config
-```
-
-#### [genome-tools](https://github.com/swainechen/genome-tools)
-This is the first open source project I wrote - it was a set of scripts to help manage the data files for multiple genomes.
-Some of the file formats have changed but I still find this useful, particularly if you have just a few individual genomes you use frequently (for me, there are just a few E. coli strains I use heavily).
-There are also a few useful scripts included.
-The main setup is pretty standard, but then you need to add data.
-```
-sudo su -
-cd /usr/local/src
-wget https://github.com/swainechen/genome-tools/archive/refs/tags/1.3.tar.gz
-tar xvzf 1.3.tar.gz
-cd genome-tools-1.3
-# check the docs
-less INSTALL
-./setup.pl
-# accept all defaults, and copy Orgmap.pm to /usr/local/lib/site_perl
-
-# download some genomes and make them available
-```
 
 #### [SRST2](https://github.com/katholt/srst2)
 This is a popular short read analysis program, good for calling MLSTs, resistances, and serotypes directly from short reads.
@@ -1300,3 +1285,20 @@ I also have a few utility scripts to help manage these.
 ```
 # Setting up SRST2 reference libraries
 ```
+
+### Visualization
+* [bandage](#bandage)
+* [BRIG](#BRIG)
+* [Circos](#Circos)
+* [EasyFig](#EasyFig)
+* [SeqFindr](#SeqFindr)
+* [slcview](#slcview)
+
+#### [Bandage](https://rrwick.github.io/Bandage/)
+#### [BRIG]
+#### [Circos](http://circos.ca/)
+#### [EasyFig]
+#### [SeqFindr]
+#### [slcview](https://github.com/swainechen/slcview)
+
+### Customized installs
