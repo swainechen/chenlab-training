@@ -116,6 +116,9 @@ echo 'export PATH=$PATH:/home/ubuntu/.aspera/connect/bin' >> /home/ubuntu/.bashr
 Note that, if needed, the standard key required is at `/home/ubuntu/.aspera/connect/etc/asperaweb_id_dsa.openssh`.
 
 #### [BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
+Ubuntu LTS version: 2.9.0-2<br/>
+Online version: 2.11.0-1
+
 The Ubuntu repositories have this, but it's at version 2.9.0-2. The current version right now is at 2.11.0-1. Generally for most users, BLAST has been pretty stable, but here's how to update it if you need the latest version (you'll have to repeat these for each update as well after you do this manual install).
 
 First check on what we already have and where it is
@@ -428,7 +431,7 @@ deML
 ```
 
 #### [fastp](https://github.com/OpenGene/fastp)
-Ubuntu LTS version: 0.20.0
+Ubuntu LTS version: 0.20.0<br/>
 GitHub version: 0.20.1
 
 We'll install the GitHub version. (The Ubuntu version of course is straightforward with an `apt install fastp`).
@@ -603,7 +606,7 @@ seqtk
 ```
 
 #### [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)
-Ubuntu focal LTS version: 0.39
+Ubuntu focal LTS version: 0.39<br/>
 Online version: 0.39
 
 Since the latest version is already in the Ubuntu repositories, we'll use that.
@@ -620,7 +623,7 @@ dpkg -L trimmomatic
 ```
 
 #### [BBMap](https://sourceforge.net/projects/bbmap/)
-Ubuntu focal LTS version: 38.79
+Ubuntu focal LTS version: 38.79<br/>
 SourceForge version: 38.90
 
 This is another mapper (BBMap) that has a read trimmer as well (BBDuk), along with a few other utilities.
@@ -696,7 +699,7 @@ cd /usr/local/src/a5_miseq_linux_20160825
 ```
 
 #### [canu](https://github.com/marbl/canu)
-Ubuntu version: 1.9
+Ubuntu LTS version: 1.9<br/>
 GitHub version: 2.1.1
 
 This is an assembler designed for noisy long-read sequencing (i.e. Oxford Nanopore and PacBio).
@@ -748,7 +751,7 @@ python3 /usr/local/src/Flye-2.8.3/flye/tests/test_toy.py
 ```
 
 #### [miniasm](https://github.com/lh3/miniasm)
-Ubuntu version: 0.3
+Ubuntu LTS version: 0.3<br/>
 GitHub version: 0.3
 
 This is an assembler designed for noisy long reads (i.e. Oxford Nanopore and PacBio) with speed in mind.
@@ -800,7 +803,7 @@ raven
 ```
 
 #### [SGA](https://github.com/jts/sga)
-Ubuntu version: 0.10.15
+Ubuntu LTS version: 0.10.15<br/>
 GitHub version: 0.10.15
 
 Since this hasn't been updated in a while, and the versions are the same, we'll go with the Ubuntu version.
@@ -810,7 +813,7 @@ sudo apt-get install sga
 ```
 
 #### [skesa](https://github.com/ncbi/SKESA)
-Ubuntu LTS version: 2.3.0
+Ubuntu LTS version: 2.3.0<br/>
 GitHub version: 2.4.0
 
 This is a set of assemblers (SKESA and SAUTE) with some companion programs. SKESA in particular was designed for microbial genomes.
@@ -840,7 +843,7 @@ saute
 ```
 
 #### [SPAdes](https://cab.spbu.ru/software/spades/)
-Ubuntu LTS version: 3.13.1
+Ubuntu LTS version: 3.13.1<br/>
 Online version: 3.15.2
 However, [Unicycler](#Unicycler) needs a version no later than 3.13.0. We'll install the latest online version for regular use, then do a second install with the older version for Unicycler.
 
@@ -918,7 +921,7 @@ You can check the options for this by running `perl -e 'print join ("\n", @INC),
 
 
 #### [Unicycler](https://github.com/rrwick/Unicycler)
-Ubuntu LTS version: 0.4.8
+Ubuntu LTS version: 0.4.8<br/>
 GitHub version: 0.4.9
 
 We'll use the latest GitHub version.
@@ -1084,7 +1087,7 @@ medaka_haploid_variant
 ```
 
 #### [nanopolish](https://github.com/jts/nanopolish)
-Ubuntu version: 0.11.3
+Ubuntu LTS version: 0.11.3<br/>
 GitHub version: 0.13.3
 
 This is a signal-level polisher for Oxford Nanopore data.
@@ -1114,7 +1117,7 @@ nanopolish
 ```
 
 #### [pilon](https://github.com/broadinstitute/pilon/wiki)
-Ubuntu version: 1.23
+Ubuntu LTS version: 1.23<br/>
 GitHub version: 1.24
 
 This is a sequence polisher that is popular for refining assemblies with short read sequencing data.
@@ -1183,7 +1186,7 @@ However, note that calling the `pilon` script asks for 16GB of heap space, which
 That said, this script was for Unicycler and that seems to need the space as per the [referenced link](https://github.com/rrwick/Unicycler/issues/63).
 
 #### [racon](https://github.com/lbcb-sci/racon)
-Ubuntu version: 1.4.10
+Ubuntu LTS version: 1.4.10<br/>
 GitHub version: 1.4.21
 
 This is a polisher / consensus module for uncorrected long reads (i.e. Oxford Nanopore and PacBio).
