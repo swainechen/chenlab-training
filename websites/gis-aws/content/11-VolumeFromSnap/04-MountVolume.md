@@ -15,7 +15,7 @@ lsblk
 The output will list the disk you attached to your instance.
 **NOTE**: Newer Linux kernels may rename your devices to **/dev/xvdf** through **/dev/xvdp** internally, even when the device name entered here (and shown in the details) is /dev/sdf through /dev/sdp. To identify your disk for mounting, you can also check the size and whether there is an existing mount point. 
 
-3.  For example, **nvem1n1** is our disk, shown below. Not only does it have the proper size, but there is no preexisting mount point.
+3.  For example, **nvme1n1** is our disk, shown below. Not only does it have the proper size, but there is no preexisting mount point.
 
 ```bash
 NAME        MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
@@ -30,7 +30,7 @@ nvme1n1     259:2    0   10G  0 disk
 sudo file -s /dev/nvme1n1
 ```
 
-If the above command output shows "/dev/nvem1n1: data", it means your volume is empty.
+If the above command output shows "/dev/nvme1n1: data", it means your volume is empty.
 
 5.	Create a directory of your choice to mount our new ext4 volume. Let's use the name "volume1".
 
@@ -41,7 +41,7 @@ sudo mkdir /mnt/volume1
 6.	Mount the volume to “volume1” directory using the following command:
 
 ```bash
-sudo mount /dev/nvem1n1 /mnt/volume1
+sudo mount /dev/nvme1n1 /mnt/volume1
 ```
 
 7.	cd into volume1 directory and check the disk space for confirming the volume mount.
