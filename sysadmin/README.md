@@ -9,4 +9,9 @@ Setting up a system is split into the following steps (that progressively get mo
 
 * [General system updates](system.md)
 * [R and Bioconductor](R-Bioconductor.md)
-* [Common bioinformatics software](bioinformatics.md)
+* [Bioinformatics software](bioinformatics.md)
+
+## Cleaning an AMI for release
+Some tasks need to be done to clean up an AMI for public use.
+This isn't so useful for most users but is here just in case.
+* [AMI Cleaning](AMI-cleaning.md)

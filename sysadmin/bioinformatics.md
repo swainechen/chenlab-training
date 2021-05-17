@@ -2,10 +2,17 @@
 Bioinformatics is moving very fast. It's hard to keep up with version changes, and because of some details of academic funding and training, there is a lot of variation in organization and design.
 
 From a setup point of view, there are two categories of software out there. Some software that can be installed in a relatively "standard" unix-like manner, while others require some custom updates or custom configuration (sometimes for compilation, nonstandard paths, or for needing special libraries / data to be downloaded).
-* [Software that follows a standard installation](#standard-installs)
-* [Software requiring some customization](#customized-installs)
 
 Generally the strategy is to keep all the downloads and sources in /usr/local/src and then link into /usr/local/bin or other appropriate directories in /usr/local.
+Also, software tends to go through a lifecycle where there are lots of updates, then eventually it stabilizes and/or becomes less updated for whatever reason.
+The standard Ubuntu LTS (Focal, 20.04 in this case) repositories don't keep up with the latest software - they are made to support system stability, and the latest versions are incorporated into the interim point releases (like 20.10, 21.04, etc).
+So for some of these software packages, you have a choice between installing from the Ubuntu repositories and installing from a binary or source release.
+
+Some considerations for installing from Ubuntu - you'll get automatic updates with your system, including security updates, the setup is about as pain-free as it can be, uninstallation is clean and easy, and it's easier to track versions for reproducibility. However, you may get stuck at an old version. For some software, that isn't a big deal, because it's not changing much; for others, it can mean that you simply aren't able to do things or some bugs won't have been fixed.
+
+Installing from a binary or source package has the opposite characteristics. You can ensure you're using the latest version, including the latest updates to the "live" codebase, but you may have to do adaptation of the installation to your system, compiling can sometimes require troubleshooting, uninstallation can be difficult to do cleanly, and you may not always know how to mark which version you're using (especially if you are routinely updating to the current git source tree instead of using a release version).
+
+I've made some recommendations for the software below based on these considerations. There are no hard and fast rules, and for most I provide instructions for multiple ways to install these packages.
 
 ### Another reminder about using `sudo` and the root account:
 The commands below are written to do most things as root - this is not the best practice. The [standard recommendation](https://tldp.org/HOWTO/Software-Building-HOWTO-3.html) is to only use sudo or the root account when it's absolutely needed. There are a couple ways to do this:
@@ -18,14 +25,18 @@ Here, though, we're doing the simple version to just run around as root. This ta
 Note that the version numbers are included in the commands below - you'll have to update those to whatever the current version is at the time.
 
 ## Overview
-### Standard installs
-#### General
+### General
+* [ASCP](#ASCP)
 * [BLAST+](#BLAST)
+* [genome-tools](#genome-tools)
 * [HYPHY](#HYPHY)
+* [Kingfisher](#Kingfisher)
 * [meme](#meme)
+* [pbbam](#pbbam)
 * [samtools](#samtools-including-htslib)
+* [sra-tools](#sra-tools)
 
-#### Read processing
+### Read processing
 * [bowtie](#bowtie)
 * [bwa](#bwa)
 * [deML](#deML)
@@ -38,55 +49,79 @@ Note that the version numbers are included in the commands below - you'll have t
 * [seqtk](#seqtk)
 * [Trimmomatic](#Trimmomatic)
 
-#### Assembly
-* [a5 assembler](#a5-assembler)
+### Assembly
+* [A5 assembler](#A5-assembler)
 * [canu](#canu)
+* [Flye](#Flye)
 * [miniasm](#miniasm)
-* [racon](#racon)
-* [sga](#sga)
+* [raven](#raven)
+* [redbean](#redbean)
+* [SGA](#SGA)
 * [skesa](#skesa)
 * [SPAdes](#SPAdes)
 * [velvet](#velvet)
 * [Trycycler](#Trycycler)
 * [Unicycler](#Unicycler)
-* [OPERA](#OPERA)
+* [FinIS](#FinIS)
 * [GapCloser](#GapCloser)
-* [Contiguity](#Contiguity)
+* [OPERA-LG](#OPERA-LG)
 
-#### Post-processing, variant calling
+### Post-processing, variant calling
+* [BLASR](#BLASR)
 * [GATK](#GATK)
-* [graphmap](#graphmap)
+* [GraphMap2](#GraphMap2)
 * [lofreq](#lofreq)
-* [pilon](#pilon)
+* [medaka](#medaka)
 * [nanopolish](#nanopolish)
+* [pilon](#pilon)
+* [racon](#racon)
 
-#### Annotation and classification
+### Annotation and classification
 * [abricate](#abricate)
 * [Kraken](#Kraken)
 * [prokka](#prokka)
 * [SeqSero](#SeqSero)
+* [SRST2](#SRST2)
 
-#### Visualization
+### Visualization
+* [bandage](#bandage)
 * [BRIG](#BRIG)
+* [Circos](#Circos)
 * [EasyFig](#EasyFig)
 * [SeqFindr](#SeqFindr)
 * [slcview](#slcview)
 
-### Customized installs
-* [ASCP](#ASCP)
-* [FinIS](#FinIS)
-* [genome-tools](#genome-tools)
-* [SRST2](#SRST2)
-
 ## Detailed instructions
 
 ### General
+* [ASCP](#ASCP)
 * [BLAST+](#BLAST)
+* [genome-tools](#genome-tools)
 * [HYPHY](#HYPHY)
+* [Kingfisher](#Kingfisher)
 * [meme](#meme)
+* [pbbam](#pbbam)
 * [samtools](#samtools-including-htslib)
+* [sra-tools](#sra-tools)
+
+#### [ASCP](http://downloads.asperasoft.com/connect2/)
+This is useful for fast downloads, such as from ENA or Genbank. This seems to be best (and easiest) to install as the user (ubuntu).
+```
+# make sure you're in a user (ubuntu) shell and not root
+cd /home/ubuntu
+wget https://d3gcli72yxqn2z.cloudfront.net/connect_latest/v4/bin/ibm-aspera-connect-3.11.2.63-linux-g2.12-64.tar.gz
+tar xvzf ibm-aspera-connect-3.11.2.63-linux-g2.12-64.tar.gz
+./ibm-aspera-connect-3.11.2.63-linux-g2.12-64.sh
+# update your path to include this (for ex. in .bashrc)
+echo '# path for ascp' >> /home/ubuntu/.bashrc
+echo 'export PATH=$PATH:/home/ubuntu/.aspera/connect/bin' >> /home/ubuntu/.bashrc
+```
+Note that, if needed, the standard key required is at `/home/ubuntu/.aspera/connect/etc/asperaweb_id_dsa.openssh`.
 
 #### [BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
+Ubuntu LTS version: 2.9.0-2<br/>
+Online version: 2.11.0-1
+
 The Ubuntu repositories have this, but it's at version 2.9.0-2. The current version right now is at 2.11.0-1. Generally for most users, BLAST has been pretty stable, but here's how to update it if you need the latest version (you'll have to repeat these for each update as well after you do this manual install).
 
 First check on what we already have and where it is
@@ -121,6 +156,25 @@ for i in *; do ln -s /usr/local/src/ncbi-blast-2.11.0+/bin/$i /usr/local/bin; do
 
 You can verify that the default version is what you expect with the commands in the first block above. You may also want to remove the older Ubuntu version to avoid any potential confusion: `sudo apt purge ncbi-blast+ ncbi-blast+-legacy blast2`.
 
+#### [genome-tools](https://github.com/swainechen/genome-tools)
+This is the first open source project I wrote - it was a set of scripts to help manage the data files for multiple genomes.
+Some of the file formats have changed but I still find this useful, particularly if you have just a few individual genomes you use frequently (for me, there are just a few E. coli strains I use heavily).
+There are also a few useful scripts included.
+The main setup is pretty standard, but then you need to add data.
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/swainechen/genome-tools/archive/refs/tags/1.3.tar.gz
+tar xvzf 1.3.tar.gz
+cd genome-tools-1.3
+# check the docs
+less INSTALL
+./setup.pl
+# accept all defaults, and copy Orgmap.pm to /usr/local/lib/site_perl
+
+# download some genomes and make them available
+```
+
 #### [HYPHY](https://github.com/veg/hyphy)
 I haven't had great luck with conda, and this setup is intended to be used for a single person or to drive a specific pipeline. Therefore, we'll compile HYPHY from source using the latest release tarball.
 ```
@@ -139,32 +193,56 @@ make HYPHYMPI
 make install
 ```
 
-#### [meme](http://meme-suite.org/meme/)
-Current version is 5.3.3.
+#### [Kingfisher](https://github.com/wwood/kingfisher-download)
+This is a convenient tool for downloading public data sets, such as from GenBank or ENA.
+Again, I haven't had a lot of good experience with conda.
+Fortunately, this only requires one additional library to install (extern).
+```
+sudo su -
+pip3 install extern
+cd /usr/local/src
+git clone https://github.com/wwood/kingfisher-download
+cd kingfisher-download
+# check the docs
+less README.md
+ln -s /usr/local/src/kingfisher-download/bin/kingfisher /usr/local/bin
+```
+If you've installed [ASCP](#ASCP) as described in this guide, you can use the `-m ena-ascp` method as well as the more standard methods.
+
+#### [pbbam](https://github.com/PacificBiosciences/pbbam)
+Ubuntu LTS version: 1.0.6<br/>
+GitHub version: 1.6.0
+
+This is a set of tools for handling the specific bam files that PacBio used to use.
+
+We'll install the latest release version from GitHub, as it's quite a bit newer than what's in the Ubuntu repositories.
+
 ```
 sudo su -
 cd /usr/local/src
-wget https://meme-suite.org/meme/meme-software/5.3.3/meme-5.3.3.tar.gz
-tar xvzf meme-5.3.3.tar.gz
-cd meme-5.3.3
+wget https://github.com/PacificBiosciences/pbbam/archive/refs/tags/v1.6.0.tar.gz
+tar xvzf v1.6.0.tar.gz
+cd pbbam-1.6.0
+# check the docs
+less README.md
+less INSTALL.md
 
-# always good to check the docs
-less README
-less INSTALL
-
-# this one we have to explicitly set the prefix
-./configure --prefix=/usr/local --enable-build-libxml2 --enable-build-libxslt
-# check everything looks ok for the output from the configure script, then:
+# build and test - use meson and ninja
+mkdir build
+cd build
+meson --prefix /usr/local/ -Denable-tests=true ..
 make
-# this has a test suite which is good to do
-make test
-# some meme?? tests fail if you run as root
-# they also fail if you don't have enough slots for the MPI version, i.e. CPUs
-make install
+ninja test
+# there are some git errors because we used a release tarball, but everything else works
+ninja install
+# this installs some shared libraries in /usr/local/lib (among other things in /usr/local), so we need to update LD_LIBRARY_PATH
+echo "# For pbbam" >> /home/ubuntu/.bashrc
+echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/x86_64-linux-gnu" >> /home/ubuntu/.bashrc
 
-# then, as per instructions, add things to your path (for the user, not necessarily root)
-echo '# path for meme' >> /home/ubuntu/.bashrc
-echo 'export PATH=$PATH:/usr/local/libexec/meme-5.3.3' >> /home/ubuntu/.bashrc
+# test it
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/x86_64-linux-gnu
+pbmerge
+pbindex
 ```
 
 #### [samtools](http://www.htslib.org/) (including htslib)
@@ -227,6 +305,61 @@ Note a couple useful pieces of information for the hts libraries:
 /usr/local/include/htslib
 ```
 
+#### [meme](http://meme-suite.org/meme/)
+Current version is 5.3.3.
+```
+sudo su -
+cd /usr/local/src
+wget https://meme-suite.org/meme/meme-software/5.3.3/meme-5.3.3.tar.gz
+tar xvzf meme-5.3.3.tar.gz
+cd meme-5.3.3
+
+# always good to check the docs
+less README
+less INSTALL
+
+# this one we have to explicitly set the prefix
+./configure --prefix=/usr/local --enable-build-libxml2 --enable-build-libxslt
+# check everything looks ok for the output from the configure script, then:
+make
+# this has a test suite which is good to do
+make test
+# some meme?? tests fail if you run as root
+# they also fail if you don't have enough slots for the MPI version, i.e. CPUs
+make install
+
+# then, as per instructions, add things to your path (for the user, not necessarily root)
+echo '# path for meme' >> /home/ubuntu/.bashrc
+echo 'export PATH=$PATH:/usr/local/libexec/meme-5.3.3' >> /home/ubuntu/.bashrc
+```
+
+#### [sra-tools](https://github.com/ncbi/sra-tools)
+These are useful tools for using data in the GenBank Sequence Read Archives.
+They provide precompiled binaries on their GitHub page.
+```
+sudo su -
+cd /usr/local/src
+wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.11.0/sratoolkit.2.11.0-ubuntu64.tar.gz
+tar xvzf sratoolkit.2.11.0-ubuntu64.tar.gz 
+cd sratoolkit.2.11.0-ubuntu64
+# check the docs
+less README.md
+less README-blastn
+less README-vdb-config
+
+# link in the binaries - only take the parents, not the version-named ones
+for i in `ls -1 | grep -v '\.2$' | grep -v '2.11.0$'`; do \
+  ln -s /usr/local/src/sratoolkit.2.11.0-ubuntu64/bin/$i /usr/local/bin; 
+done
+# this needs to be configured once (both root and ubuntu), even if accepting the defaults
+vdb-config -i
+# type 'x' to just exit with default configuration
+# now go back to being the ubuntu user, probably exit from the su shell
+vdb-config -i
+# type 'x' to exit with default configuration
+# this should leave a file in /home/ubuntu/.ncbi/user-settings.mkfg
+```
+
 ### Read processing
 * [bowtie](#bowtie)
 * [bwa](#bwa)
@@ -275,7 +408,7 @@ bowtie2 --version
 ```
 
 #### [bwa](https://github.com/lh3/bwa)
-This isn't being updated so much though so I prefer to use the Ubuntu repositories, which have the same main version as the current release (as of May 2021) on the GitHub repository (0.7.17).
+This isn't being updated so much so I prefer to use the Ubuntu repositories, which have the same main version as the current release (as of May 2021) on the GitHub repository (0.7.17).
 
 From the Ubuntu repositories (**Recommended**):
 ```
@@ -337,7 +470,7 @@ deML
 ```
 
 #### [fastp](https://github.com/OpenGene/fastp)
-Ubuntu LTS version: 0.20.0
+Ubuntu LTS version: 0.20.0<br/>
 GitHub version: 0.20.1
 
 We'll install the GitHub version. (The Ubuntu version of course is straightforward with an `apt install fastp`).
@@ -458,7 +591,7 @@ python3 setup.py install
 porechop --version
 ```
 
-#### poretools
+#### [poretools](https://github.com/arq5x/poretools)
 These are utilities to work with Oxford Nanopore sequencing data.
 This hasn't been updated in a while, so the Ubuntu repositories have the same version as the latest releast on GitHub.
 
@@ -512,7 +645,7 @@ seqtk
 ```
 
 #### [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)
-Ubuntu focal LTS version: 0.39
+Ubuntu focal LTS version: 0.39<br/>
 Online version: 0.39
 
 Since the latest version is already in the Ubuntu repositories, we'll use that.
@@ -529,7 +662,7 @@ dpkg -L trimmomatic
 ```
 
 #### [BBMap](https://sourceforge.net/projects/bbmap/)
-Ubuntu focal LTS version: 38.79
+Ubuntu focal LTS version: 38.79<br/>
 SourceForge version: 38.90
 
 This is another mapper (BBMap) that has a read trimmer as well (BBDuk), along with a few other utilities.
@@ -562,36 +695,242 @@ for i in bbduk bbmap bbnorm bloomfilter dedupe reformat; do ln -s /usr/local/src
 ```
 
 ### Assembly
-* [a5 assembler](#a5-assembler)
+* [A5 assembler](#A5-assembler)
 * [canu](#canu)
+* [Flye](#Flye)
 * [miniasm](#miniasm)
-* [racon](#racon)
-* [sga](#sga)
+* [raven](#raven)
+* [redbean](#redbean)
+* [SGA](#SGA)
 * [skesa](#skesa)
 * [SPAdes](#SPAdes)
 * [velvet](#velvet)
 * [Trycycler](#Trycycler)
 * [Unicycler](#Unicycler)
-* [OPERA](#OPERA)
+* [OPERA-LG](#OPERA-LG)
+* [FinIS](#FinIS)
 * [GapCloser](#GapCloser)
 * [Contiguity](#Contiguity)
 
-#### a5 assembler
-#### canu
-#### miniasm
-#### racon
-#### sga
+#### [A5 assembler](https://sourceforge.net/p/ngopt/wiki/A5PipelineREADME/)
+This is an assembler designed for Illumina short read sequencing, stitching together a few tools.
+The requirements are covered in other sections of this guide:
+* [bwa](#bwa)
+* [samtools](#samtools)
+* [SGA](#SGA)
+* [bowtie](#bowtie2)
+* [Trimmomatic](#Trimmomatic)
+
+```
+sudo su -
+cd /usr/local/src
+# this project is on SourceForge, so you may need to regenerate the direct link below by clicking starting at https://sourceforge.net/projects/ngopt/files/latest/download
+wget 'https://downloads.sourceforge.net/project/ngopt/a5_miseq_linux_20160825.tar.gz?ts=gAAAAABgnAz6WvH-pOx65oLmdQNesYbL38ifqyQIc0Cd2se1eQlL1LsJq-Et2BhXxvzP9I2t6RF9I3FDBJ4UxY_oLsq9FbXdUg%3D%3D&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fngopt%2Ffiles%2Flatest%2Fdownload' -O a5_miseq_linux_20160825.tar.gz
+tar xvzf a5_miseq_linux_20160825.tar.gz
+# check the docs
+less README.txt
+
+# this figures out the real directory and will find the binaries it needs when run, so we just need to link the main perl script to /usr/local/bin
+ln -s /usr/local/src/a5_miseq_linux_20160825/bin/a5_pipeline.pl /usr/local/bin
+
+# test it
+cd /usr/local/src/a5_miseq_linux_20160825
+./test.a5.sh
+```
+
+#### [canu](https://github.com/marbl/canu)
+Ubuntu LTS version: 1.9<br/>
+GitHub version: 2.1.1
+
+This is an assembler designed for noisy long-read sequencing (i.e. Oxford Nanopore and PacBio).
+We'll install the GitHub version since it's newer than the one in the Ubuntu repositories.
+
+Install from Ubuntu repositories:
+```
+sudo apt install canu
+```
+
+Install from GitHub (**Recommended**):
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/marbl/canu/releases/download/v2.1.1/canu-2.1.1.tar.xz
+tar xvJf canu-2.1.1.tar.xz
+cd canu-2.1.1
+# check the docs
+less README.md
+
+# build and link the binaries
+cd /usr/local/src/canu-2.1.1/src
+make
+# this will find the full path despite the symlink, where it will then find the other binaries it needs, so we only need the canu binary linked into /usr/local/bin
+ln -s /usr/local/src/canu-2.1.1/build/bin/canu /usr/local/bin
+
+# test it
+canu
+```
+
+#### [Flye](https://github.com/fenderglass/Flye)
+This is another assembler for long read sequencing (i.e. Oxford Nanopore and PacBio).
+
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/fenderglass/Flye/archive/refs/tags/2.8.3.tar.gz
+tar xvzf 2.8.3.tar.gz
+cd Flye-2.8.3
+# check the docs
+less README.md
+
+# build and install into /usr/local - default for the setup script
+python3 setup.py install
+
+# test it
+flye
+python3 /usr/local/src/Flye-2.8.3/flye/tests/test_toy.py
+```
+
+#### [miniasm](https://github.com/lh3/miniasm)
+Ubuntu LTS version: 0.3<br/>
+GitHub version: 0.3
+
+This is an assembler designed for noisy long reads (i.e. Oxford Nanopore and PacBio) with speed in mind.
+This hasn't been updated in a while so we'll go with the Ubuntu repository, as it has the most current version.
+
+Install from Ubuntu repositories (**Recommended**):
+```
+sudo apt-get install miniasm
+```
+
+Install from GitHub:
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/lh3/miniasm/archive/refs/tags/v0.3.tar.gz
+tar xvzf v0.3.tar.gz
+cd miniasm-0.3
+# check the docs
+less README.md
+
+# make and link the binary
+make
+ln -s /usr/local/src/miniasm-0.3/miniasm /usr/local/bin
+ln -s /usr/local/src/miniasm-0.3/minidot /usr/local/bin
+```
+
+#### [raven](https://github.com/lbcb-sci/raven)
+This is another assembler for long reads (Oxford Nanopore and PacBio).
+
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/lbcb-sci/raven/archive/refs/tags/1.5.0.tar.gz
+tar xvzf 1.5.0.tar.gz
+cd raven-1.5.0
+# check the docs
+less README.md
+
+# build and link the binaries
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release ..
+make
+ln -s /usr/local/src/raven-1.5.0/build/bin/raven /usr/local/bin
+
+# test it
+raven
+/usr/local/src/raven-1.5.0/build/bin/raven_test
+```
+
+#### [redbean](https://github.com/ruanjue/wtdbg2)
+This is another assembler for long reads (Oxford Nanopore and PacBio).
+
+Installing the latest release (2.5) from GitHub - this is just a binary package:
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/ruanjue/wtdbg2/releases/download/v2.5/wtdbg-2.5_x64_linux.tgz
+tar xvzf wtdbg-2.5_x64_linux.tgz
+cd wtdbg-2.5_x64_linux
+# no docs to see here!
+# link the binaries and test
+for i in *; do ln -s /usr/local/src/wtdbg-2.5_x64_linux/$i /usr/local/bin; done
+```
+
+#### [SGA](https://github.com/jts/sga)
+Ubuntu LTS version: 0.10.15<br/>
+GitHub version: 0.10.15
+
+Since this hasn't been updated in a while, and the versions are the same, we'll go with the Ubuntu version.
+
+```
+sudo apt-get install sga
+```
 
 #### [skesa](https://github.com/ncbi/SKESA)
-Ubuntu LTS version: 2.3.0
+Ubuntu LTS version: 2.3.0<br/>
 GitHub version: 2.4.0
 
-We'll install the latest GitHub version.
+This is a set of assemblers (SKESA and SAUTE) with some companion programs. SKESA in particular was designed for microbial genomes.
+
+We'll install the latest GitHub release version (tagged as "Update for NGS v.2.11.0" as of May, 2021 - but this is v2.4.0 of SKESA (the 2.11.0 is for the NGS bit)).
+We'll take the source and compile.
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/ncbi/SKESA/archive/refs/tags/skesa.2.4.0_saute.1.3.0_1.tar.gz
+tar xvzf skesa.2.4.0_saute.1.3.0_1.tar.gz
+cd SKESA-skesa.2.4.0_saute.1.3.0_1
+# check the docs
+less README.md
+
+# build - there are some assumptions for the full make where it tries to
+# build ngs-sdk, even though we already have it installed, leading to a compile
+# error. For now use the nongs version
+make -f Makefile.nongs
+
+# link the binaries
+for i in skesa saute saute_prot gfa_connector kmercounter; do ln -s /usr/local/src/SKESA-skesa.2.4.0_saute.1.3.0_1/$i /usr/local/bin; done
+
+# test that it works
+skesa
+saute
+```
 
 #### [SPAdes](https://cab.spbu.ru/software/spades/)
-Ubuntu LTS version: 3.13.1
+Ubuntu LTS version: 3.13.1<br/>
 Online version: 3.15.2
-However, Unicycler needs a version no later than 3.13.0. We'll install the latest online version for regular use, then do a second install with the older version for Unicycler.
+However, [Unicycler](#Unicycler) needs a version no later than 3.13.0. We'll install the latest online version for regular use, then do a second install with the older version for Unicycler.
+
+The latest version from https://cab.spbu.ru/software/spades/ as default (i.e. in `/usr/local/bin`)
+```
+sudo su -
+cd /usr/local/src
+wget https://cab.spbu.ru/files/release3.15.2/SPAdes-3.15.2-Linux.tar.gz
+tar xvzf SPAdes-3.15.2-Linux.tar.gz
+cd SPAdes-3.15.2-Linux
+# check the docs
+less share/spades/README.md
+
+# link in the binaries
+cd bin
+for i in *; do ln -s /usr/local/src/SPAdes-3.15.2-Linux/bin/$i /usr/local/bin; done
+
+# check it works ok
+```
+
+The older 3.13.0 version for [Unicycler](#Unicycler) - this can be downloaded at the [SPAdes GitHub repository](https://github.com/ablab/spades)
+We will keep this in /usr/local/src and will need to specify the full path in order to use it:
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/ablab/spades/releases/download/v3.13.0/SPAdes-3.13.0-Linux.tar.gz
+tar xvzf SPAdes-3.13.0-Linux.tar.gz
+cd SPAdes-3.13.0-Linux
+
+# this was a binary distribution, so it should be done - just check the version
+/usr/local/src/SPAdes-3.13.0-Linux/bin/spades.py
+```
 
 #### [velvet](https://github.com/dzerbino/velvet/tree/master)
 This is a popular assembler.
@@ -634,95 +973,95 @@ This should work on a stock Ubuntu install.
 You can check the options for this by running `perl -e 'print join ("\n", @INC), "\n";'` - this is the default search path for perl modules, and it just needs to be in one of those places (though something under `/usr/local/` is a good idea).
 
 #### [Trycycler](https://github.com/rrwick/Trycycler/wiki)
+This is a method to produce a consensus assembly. It was also designed to help with assembly of long read sequencing (Oxford Nanopore and PacBio).
+
+Looking at the installation methods, I prefer to take the latest release to build and install. We'll use `pip3` for the installation itself.
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/rrwick/Trycycler/archive/refs/tags/v0.5.0.tar.gz
+tar xvzf v0.5.0.tar.gz
+cd Trycycler-0.5.0
+# check the docs
+less README.md
+less requirements.txt
+
+# install (defaults to /usr/local/bin for the binary)
+pip3 install /usr/local/src/Trycycler-0.5.0/
+
+# test it
+trycycler --help
+```
 
 #### [Unicycler](https://github.com/rrwick/Unicycler)
-Ubuntu LTS version: 0.4.8
+Ubuntu LTS version: 0.4.8<br/>
 GitHub version: 0.4.9
 
 We'll use the latest GitHub version.
 
-#### [OPERA](https://github.com/CSB5/OPERA-MS)
-#### GapCloser
-#### Contiguity
+Ubuntu version:
+```
+sudo apt install unicycler
 
-### Post-processing, variant calling
-* [GATK](#GATK)
-* [graphmap](#graphmap)
-* [lofreq](#lofreq)
-* [pilon](#pilon)
-* [nanopolish](#nanopolish)
+# test it out
+unicycler
+```
 
-#### GATK
-#### graphmap
-
-#### [lofreq](https://csb5.github.io/lofreq/)
-This is a very good variant caller with a strong theoretical basis (uses all quality information in a model-based algorithm). We'll install from the release tarball.
+GitHub version (**Recommended**):
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/CSB5/lofreq/raw/master/dist/lofreq_star-2.1.5_linux-x86-64.tgz
-tar xvzf lofreq_star-2.1.5_linux-x86-64.tgz
-cd lofreq_star-2.1.5_linux-x86-64/bin
-for i in *; do ln -s /usr/local/src/lofreq_star-2.1.5_linux-x86-64/bin/$i /usr/local/bin; done
+wget https://github.com/rrwick/Unicycler/archive/refs/tags/v0.4.9.tar.gz
+tar xvzf v0.4.9.tar.gz
+cd Unicycler-0.4.9
+# check the docs
+less README.md
+
+# the install automatically goes to /usr/local/bin
+python3 setup.py install
+
+# test it out
+unicycler
+unicycler --help_all
+# unicycler --spades_path /usr/local/src/SPAdes-3.13.0-Linux/bin/spades.py <other options>
 ```
+Note for this you'll probably have to specify `--spades_path /usr/local/src/SPAdes-3.13.0-Linux/bin/spades.py` to use the correct older version of [SPAdes](#SPAdes) (see that section in this guide).
 
-#### pilon
-#### nanopolish
+#### [OPERA-LG](https://sourceforge.net/p/operasf/wiki/The%20OPERA%20wiki/)
+This is a scaffolder that can be run after you do your primary assembly (with SOAP, velvet, etc.).
 
-### Annotation and classification
-* [abricate](#abricate)
-* [Kraken](#Kraken)
-* [prokka](#prokka)
-* [SeqSero](#SeqSero)
-
-#### abricate
-#### Kraken
-#### prokka
-#### SeqSero
-
-### Visualization
-* [BRIG](#BRIG)
-* [EasyFig](#EasyFig)
-* [SeqFindr](#SeqFindr)
-* [slcview](#slcview)
-
-#### BRIG
-#### EasyFig
-#### SeqFindr
-#### [slcview](https://github.com/swainechen/slcview)
-
-### Customized installs
-* [ASCP](#ASCP)
-* [FinIS](#FinIS)
-* [genome-tools](#genome-tools)
-* [SRST2](#SRST2)
-
-#### [ASCP](http://downloads.asperasoft.com/connect2/)
-
-This is useful for fast downloads, such as from ENA or Genbank. This seems to be easiest to install as the user (ubuntu).
-```
-# make sure you're in a user (ubuntu) shell and not root
-cd /home/ubuntu
-wget https://d3gcli72yxqn2z.cloudfront.net/connect_latest/v4/bin/ibm-aspera-connect-3.11.2.63-linux-g2.12-64.tar.gz
-tar xvzf ibm-aspera-connect-3.11.2.63-linux-g2.12-64.tar.gz
-./ibm-aspera-connect-3.11.2.63-linux-g2.12-64.sh
-# update your path to include this (for ex. in .bashrc)
-echo '# path for ascp' >> /home/ubuntu/.bashrc
-echo 'export PATH=$PATH:/home/ubuntu/.aspera/connect/bin' >> /home/ubuntu/.bashrc
-```
-Note that, if needed, the standard key required is at `/home/ubuntu/.aspera/connect/etc/asperaweb_id_dsa.openssh`.
-
-#### [FinIS](https://sourceforge.net/p/finis/wiki/FinIS%20wiki/)
-FinIS is an assembly finisher, which generally is used after the [OPERA](#OPERA) scaffolder.
-This is on SourceForge at v0.3.
-This is somewhat complex to get running, as it hasn't been updated in a while.
-It seems to suffer from some changes in C++ conventions since 2014, and also was last tested on [MOSEK](https://www.mosek.com/) 6 (this is currently at 9).
-I've provided a compiled binary that will run on the Ubuntu images at AWS. Note this still needs MOSEK 6:
-[FinIS binary]()
 ```
 sudo su -
-cd /usr/local/bin
-wget #link_to_FinIS
+cd /usr/local/src
+# this is on SourceForge, again you might have to get your own direct link by clicking from https://sourceforge.net/projects/operasf/files/OPERA-LG%20version%202.0.6/OPERA-LG_v2.0.6.tar.gz/download
+wget 'https://downloads.sourceforge.net/project/operasf/OPERA-LG%20version%202.0.6/OPERA-LG_v2.0.6.tar.gz?ts=gAAAAABgm8W1f35V0V9XSqvQRztfQyjbS0e2qaEtdS660mhxxJ4GBG8Io1tgWoM2kOAKkS0HfeDnkQFCbnEGzx33NcJGIIJaUQ%3D%3D&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Foperasf%2Ffiles%2FOPERA-LG%2520version%25202.0.6%2FOPERA-LG_v2.0.6.tar.gz%2Fdownload' -O OPERA-LG_v2.0.6.tar.gz
+tar xvzf OPERA-LG_v2.0.6.tar.gz
+cd OPERA-LG_v2.0.6
+# check the docs
+less README
+
+# there are already precompiled binaries, so just link them in
+cd bin
+for i in *; do ln -s /usr/local/src/OPERA-LG_v2.0.6/bin/$i /usr/local/bin; done
+```
+Note that the wiki says that this depends on samtools <=0.1.19 and blasr <=1.3.1.
+Instructions for keeping an old version of samtools (0.1.18) can be found in the [SRST2](#SRST2) section, and the location of the binaries should be `/usr/local/src/samtools-0.1.18`.
+
+#### [FinIS](https://sourceforge.net/p/finis/wiki/FinIS%20wiki/)
+FinIS is an assembly finisher, which generally is used after the [OPERA-LG](#OPERA-LG) scaffolder.
+This is on SourceForge at v0.3, and a binary is included.
+It requires [MOSEK](https://www.mosek.com/) 6 (this is currently at 9).
+```
+sudo su -
+cd /usr/local/src
+# FinIS is on SourceForge, you may need to generate your own direct link
+# by clicking starting from https://sourceforge.net/projects/finis/files/v0.3/
+wget 'https://downloads.sourceforge.net/project/finis/v0.3/v0.3.tar.gz?ts=gAAAAABgl49QRj_nAX5gccQ9FeGwccNWKR_QnNWBbNTwV1HGd2cpWueqjuolVNhg8C27rHgE0kQdAd0IeYzGRkmTyTvowuvqsQ%3D%3D&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Ffinis%2Ffiles%2Fv0.3%2Fv0.3.tar.gz%2Fdownload' -O v0.3.tar.gz
+tar xvzf v0.3.tar.gz
+mv v0.3 FinIS-0.3
+cd FinIS-0.3
+# link the binary
+ln -s /usr/local/src/FinIS-0.3/finis /usr/local/bin
 
 # download MOSEK 6 - https://www.mosek.com/downloads/6/
 cd /usr/local/src
@@ -737,17 +1076,9 @@ for i in libiomp5.so libmosek64.so libmosek64.so.6.0 libmosekglb64.so.6.0 libmos
 # then LD_LIBRARY_PATH needs to get set
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/bin
 echo "# for MOSEK 6" >> /home/ubuntu/.bashrc
-echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/bin" >> /home/ubuntu/.bashrc
+echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib" >> /home/ubuntu/.bashrc
 
 # we can verify this with test data that comes with the FinIS source
-# again this is on SourceForge, you may need to generate your own direct link
-# by clicking starting from https://sourceforge.net/projects/finis/files/v0.3/
-cd /usr/local/src
-wget 'https://downloads.sourceforge.net/project/finis/v0.3/v0.3.tar.gz?ts=gAAAAABgl49QRj_nAX5gccQ9FeGwccNWKR_QnNWBbNTwV1HGd2cpWueqjuolVNhg8C27rHgE0kQdAd0IeYzGRkmTyTvowuvqsQ%3D%3D&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Ffinis%2Ffiles%2Fv0.3%2Fv0.3.tar.gz%2Fdownload' -O v0.3.tar.gz
-tar xvzf v0.3.tar.gz
-mv v0.3 FinIS-0.3
-cd FinIS-0.3
-
 # there are two test datasets provided
 FinIS test_dataset/velvet/conf.config
 
@@ -758,9 +1089,317 @@ FinIS test_dataset/velvet/conf.config
 FinIS test_dataset/soap/conf.config
 ```
 
-#### [genome-tools](https://github.com/swainechen/genome-tools)
-This is the first open source project I wrote - it was a set of scripts to help manage the data files for multiple genomes.
-Some of the file formats have changed but I still find this useful, particularly if you have just a few individual genomes you use frequently (for me, there are just a few E. coli strains I use heavily).
+#### GapCloser
+
+### Post-processing, variant calling
+* [BLASR](#BLASR)
+* [GATK](#GATK)
+* [GraphMap2](#GraphMap2)
+* [lofreq](#lofreq)
+* [medaka](#medaka)
+* [nanopolish](#nanopolish)
+* [pilon](#pilon)
+* [racon](#racon)
+
+#### [BLASR](https://github.com/PacificBiosciences/blasr)
+Ubuntu LTS version: 5.3.3
+GitHub version: 5.3.5
+
+This requires the [pbbam](#pbbam) tools to be installed.
+The build is a little unique as it requires `meson` and `ninja`, but both of these are easy to install from the Ubuntu repositories (and have been included in the [General Sysadmin](system.md) section under [Standard Ubuntu Packages](system.md#Standard-Ubuntu-Packages).
+There seems to be some issue with specifying include directories. For now, just install the Ubuntu version.
+
+```
+sudo apt install blasr
+
+# test it
+blasr --help
+```
+
+#### [GATK](https://gatk.broadinstitute.org/hc/en-us)
+```
+cd /usr/local/src
+wget https://github.com/broadinstitute/gatk/releases/download/4.2.0.0/gatk-4.2.0.0.zip
+unzip gatk-4.2.0.0.zip
+cd gatk-4.2.0.0
+# check the docs
+less README.md
+
+# the main gatk invocation script will figure out the original directory, so we can just link this in to /usr/local/bin
+ln -s /usr/local/src/gatk-4.2.0/gatk /usr/local/bin
+
+# test it
+gatk --help
+```
+
+#### [GraphMap2](https://github.com/lbcb-sci/graphmap2)
+GitHub release version: 0.6.4
+This is a mapper that was designed for Oxford Nanopore and PacBio reads.
+This pulls in some other modules with git, so it's easier to clone the repository as recommended.
+
+```
+sudo su -
+cd /usr/local/src
+git clone https://github.com/lbcb-sci/graphmap2 
+cd graphmap2
+# read the docs
+less README.md
+less INSTALL.md
+
+# compile
+make modules
+make
+
+# link the binary
+ln -s /usr/local/src/graphmap2/bin/Linux-x64/graphmap2 /usr/local/bin
+```
+
+#### [lofreq](https://csb5.github.io/lofreq/)
+This is a very good variant caller with a strong theoretical basis (uses all quality information in a model-based algorithm). We'll install from the release tarball.
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/CSB5/lofreq/raw/master/dist/lofreq_star-2.1.5_linux-x86-64.tgz
+tar xvzf lofreq_star-2.1.5_linux-x86-64.tgz
+cd lofreq_star-2.1.5_linux-x86-64/bin
+for i in *; do ln -s /usr/local/src/lofreq_star-2.1.5_linux-x86-64/bin/$i /usr/local/bin; done
+```
+
+#### [medaka](https://github.com/nanoporetech/medaka)
+This is a sequence polisher for Oxford Nanopore data.
+There are a few ways to install this.
+The recommended build uses a virtual environment in python.
+Of the choices, though, for a single user machine, I would prefer using `pip` over this.
+
+```
+# the following will automatically pull in quite a few other dependencies
+sudo pip3 install medaka
+
+# check where it went
+which medaka
+ls -lrt /usr/local/bin
+
+# test it
+medaka
+medaka_consensus
+medaka_variant
+medaka_haploid_variant
+```
+
+#### [nanopolish](https://github.com/jts/nanopolish)
+Ubuntu LTS version: 0.11.3<br/>
+GitHub version: 0.13.3
+
+This is a signal-level polisher for Oxford Nanopore data.
+We'll use the GitHub version since it's newer.
+This seems to be intended to be built from a cloned git repository, so that the source for dependencies is automatically pulled in.
+
+Ubuntu version:
+```
+sudo apt install nanopolish
+```
+
+GitHub version (**Recommended**):
+```
+sudo su -
+cd /usr/local/src
+git clone --recursive https://github.com/jts/nanopolish.git
+cd nanopolish
+# check the docs
+less README.md
+
+# build and link the binary
+make
+ln -s /usr/local/src/nanopolish/nanopolish /usr/local/bin
+
+# test it out
+nanopolish
+```
+
+#### [pilon](https://github.com/broadinstitute/pilon/wiki)
+Ubuntu LTS version: 1.23<br/>
+GitHub version: 1.24
+
+This is a sequence polisher that is popular for refining assemblies with short read sequencing data.
+This comes as just a `jar` file.
+There are differing opinions as to where to put `jar` files to keep things organized.
+As the ones related to bioinformatics are usually like "programs", I typically put them in /usr/local/bin with other executables.
+Another option would be to write a simple shell script that calls `java` with all the right options, including the full path to the `jar` file, but that will hide some of the details and require some translation from online documentation.
+The `jar` files are usually specified with a full path anyway so it doesn't really matter that much, so long as you know where it is.
+
+From the Ubuntu repositories:
+```
+sudo apt install pilon
+```
+N.B. This Ubuntu version puts the jar file in `/usr/share/java/pilon.jar`.
+There's also a script at `/usr/bin/pilon`:
+```
+#! /bin/sh
+set -e
+
+# export JAVA_HOME=/usr/lib/jvm/default-java
+export JAVA_CMD=java
+
+# Include the wrappers utility script
+. /usr/lib/java-wrappers/java-wrappers.sh
+
+# For memory setting see https://github.com/rrwick/Unicycler/issues/63
+run_java -Xms128M -Xmx16384m -jar /usr/share/java/pilon.jar "$@"
+```
+
+From the website (**Recommended**)
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/broadinstitute/pilon/releases/download/v1.24/pilon-1.24.jar
+# the instructions you'll see online refer to pilon.jar, so we'll link it as such
+ln -s /usr/local/src/pilon-1.24.jar /usr/local/bin/pilon.jar
+
+# test it out
+java -jar /usr/local/bin/pilon.jar
+```
+Unicycler is looking for a binary called `pilon`, so we can modify the Ubuntu package's script:
+```
+sudo su -
+# you can copy and paste what's below, I've escaped the necessary characters
+cat << EOF > /usr/local/bin/pilon
+#! /bin/sh
+set -e
+
+# export JAVA_HOME=/usr/lib/jvm/default-java
+export JAVA_CMD=java
+
+# Include the wrappers utility script
+. /usr/lib/java-wrappers/java-wrappers.sh
+
+# For memory setting see https://github.com/rrwick/Unicycler/issues/63
+run_java -Xms128M -Xmx16384m -jar /usr/local/bin/pilon.jar "\$@"
+EOF
+
+# make it executable
+chmod +x /usr/local/bin/pilon
+
+# test it
+pilon
+```
+However, note that calling the `pilon` script asks for 16GB of heap space, which you may have to modify depending on your machine's RAM.
+That said, this script was for Unicycler and that seems to need the space as per the [referenced link](https://github.com/rrwick/Unicycler/issues/63).
+
+#### [racon](https://github.com/lbcb-sci/racon)
+Ubuntu LTS version: 1.4.10<br/>
+GitHub version: 1.4.21
+
+This is a polisher / consensus module for uncorrected long reads (i.e. Oxford Nanopore and PacBio).
+We'll use the GitHub version since it's newer than the one in the Ubuntu repositories.
+
+Install from Ubuntu repositories:
+```
+sudo apt-get install racon
+```
+
+Install from GitHub (**Recommended**):
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/lbcb-sci/racon/releases/download/1.4.21/racon-v1.4.21.tar.gz
+tar xvzf racon-v1.4.21.tar.gz
+cd racon-v1.4.21
+# check the docs
+less README.md
+
+# build and link the binaries
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release ..
+make
+ln -s /usr/local/src/racon-v1.4.21/build/bin/racon /usr/local/bin
+
+# test it
+racon
+```
+
+
+### Annotation and classification
+* [abricate](#abricate)
+* [Kraken](#Kraken)
+* [prokka](#prokka)
+* [SeqSero](#SeqSero)
+* [SRST2](#SRST2)
+
+#### abricate
+#### Kraken
+#### prokka
+#### SeqSero
 
 #### [SRST2](https://github.com/katholt/srst2)
 This is a popular short read analysis program, good for calling MLSTs, resistances, and serotypes directly from short reads.
+The README on GitHub recommends installing from the git repository directly.
+This requires Python 2, most obviously due to changes in the `print` syntax.
+`pip` is not available for Python 2 in Ubuntu Focal, so we have to install this a bit manually.
+We will also have to install the Python 2 version of scipy, which isn't in the Ubuntu repositories any more.
+This also requires older samtools and bowtie2 versions.
+Then there's some customization with environment variables and setting up the reference databases.
+```
+sudo su -
+cd /usr/local/src
+wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
+python2 get-pip.py
+pip install scipy
+git clone https://github.com/katholt/srst2
+pip install srst2/
+
+# install samtools 0.1.18
+sudo su -
+cd /usr/local/src
+wget https://github.com/samtools/samtools/archive/refs/tags/0.1.18.tar.gz
+cd samtools-0.1.18
+# check the docs
+less INSTALL
+make
+# don't link the binaries to /usr/local/bin - this is only going to be used for SRST2
+
+# install bowtie2 2.2.9
+sudo su -
+cd /usr/local/src
+# this is the binaries, so no compilation needed
+wget https://github.com/BenLangmead/bowtie2/releases/download/v2.2.9/bowtie2-2.2.9-linux-x86_64.zip
+unzip bowtie2-2.2.9-linux-x86_64.zip
+cd bowtie2-2.2.9
+# check the docs
+less MANUAL
+# don't link the binaries to /usr/local/bin - this is only going to be used for SRST2
+
+# environment variables
+export SRST2_SAMTOOLS=/usr/local/src/samtools-0.1.18/samtools
+export SRST2_BOWTIE2=/usr/local/src/bowtie2-2.2.9/bowtie2
+export SRST2_BOWTIE2_BUILD=/usr/local/src/bowtie2-2.2.9/bowtie2-build
+
+# environment variables for the ubuntu user
+echo "# For SRST2" >> /home/ubuntu/.bashrc
+echo "export SRST2_SAMTOOLS=/usr/local/src/samtools-0.1.18/samtools" >> /home/ubuntu/.bashrc
+echo "export SRST2_BOWTIE2=/usr/local/src/bowtie2-2.2.9/bowtie2" >> /home/ubuntu/.bashrc
+echo "export SRST2_BOWTIE2_BUILD=/usr/local/src/bowtie2-2.2.9/bowtie2-build" >> /home/ubuntu/.bashrc
+```
+
+SRST2 requires reference libraries.
+Some are included in the source distribution.
+To keep with following "standard" locations, I put these into `/usr/local/lib/SRST2`.
+I also have a few utility scripts to help manage these.
+```
+# Setting up SRST2 reference libraries
+```
+
+### Visualization
+* [bandage](#bandage)
+* [BRIG](#BRIG)
+* [Circos](#Circos)
+* [EasyFig](#EasyFig)
+* [SeqFindr](#SeqFindr)
+* [slcview](#slcview)
+
+#### [Bandage](https://rrwick.github.io/Bandage/)
+#### [BRIG]
+#### [Circos](http://circos.ca/)
+#### [EasyFig]
+#### [SeqFindr]
+#### [slcview](https://github.com/swainechen/slcview)
