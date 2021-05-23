@@ -57,7 +57,7 @@ We will now launch an EC2 Linux-based instance.
 
 13.	Select the key pair that you created in the beginning of this lab from the drop-down list and check the **I acknowledge** checkbox. Then click the **Launch Instances** button.
 
-![EC2ConfigSecGroups](/images/hpc-aws-parallelcluster-workshop/EC2SelectKeypair.png)
+![EC2ConfigSecGroups](/images/hpc-aws-parallelcluster-workshop/EC2SelectKeypair-2.png)
 
 Your instance will now start, which may take a moment. The **Launch Status** page will show the message that your **instances are now launching**
 
