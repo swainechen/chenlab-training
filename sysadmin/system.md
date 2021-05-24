@@ -189,7 +189,7 @@ alias log='history > `logfilename.pl`'
 ```
 I also usually make this file for the root user too.
 
-I have a simple `logfilename.pl` script to set filenames - this can go into `/usr/local/bin`, make sure it's executable:
+I have a simple `logfilename.pl` script to set filenames - this can go into `/usr/local/bin`, make sure it's executable (this is also installed as part of the [SLC Closet](bioinformatics#SLC-Closet) scripts):
 ```
 #!/usr/bin/perl
 #
