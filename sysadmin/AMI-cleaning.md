@@ -10,7 +10,12 @@ Some resources:
 Brief steps:
 - First make an initial AMI - I call this pre-public
 - Then launch an instance off this pre-public AMI
-- Log in as usual
+- Log in as usual - and do basic system updates
+```
+sudo apt update
+sudo apt upgrade
+sudo apt --purge autoremove
+```
 - Disable password-based remote logins for root
 - Edit /etc/ssh/sshd_config, need this line:
 ```

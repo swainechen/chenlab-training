@@ -35,6 +35,7 @@ Note that the version numbers are included in the commands below - you'll have t
 * [pbbam](#pbbam)
 * [samtools](#samtools-including-htslib)
 * [sra-tools](#sra-tools)
+* [SLC Closet](#SLC-Closet)
 
 ### Read processing
 * [bowtie](#bowtie)
@@ -103,6 +104,7 @@ Note that the version numbers are included in the commands below - you'll have t
 * [pbbam](#pbbam)
 * [samtools](#samtools-including-htslib)
 * [sra-tools](#sra-tools)
+* [SLC Closet](#SLC-Closet)
 
 #### [ASCP](http://downloads.asperasoft.com/connect2/)
 This is useful for fast downloads, such as from ENA or Genbank. This seems to be best (and easiest) to install as the user (ubuntu).
@@ -358,6 +360,19 @@ vdb-config -i
 vdb-config -i
 # type 'x' to exit with default configuration
 # this should leave a file in /home/ubuntu/.ncbi/user-settings.mkfg
+```
+
+#### [SLC Closet](#SLC-Closet)
+These are a lot of old utility scripts I've accumulated over the years.
+This doesn't mean they're all useful or nice though!
+
+```
+sudo su -
+cd /usr/local/src
+git clone https://github.com/swainechen/closet
+cd closet/bin
+for i in *; do ln -s /usr/local/src/closet/bin/$i /usr/local/bin; done
+ln -s /usr/local/src/closet/lib/slchen.pm /usr/local/lib/site_perl
 ```
 
 ### Read processing
@@ -1321,15 +1336,78 @@ racon
 
 ### Annotation and classification
 * [abricate](#abricate)
+* [EzClermont](#EzClermont)
 * [Kraken](#Kraken)
 * [prokka](#prokka)
 * [SeqSero](#SeqSero)
 * [SRST2](#SRST2)
 
-#### abricate
+#### [abricate](https://github.com/tseemann/abricate)
+This is a tool to predict resistances from assemblies.
+
+```
+sudo su -
+
+# this requires any2fasta as a dependency
+cd /usr/local/src
+wget https://github.com/tseemann/any2fasta/archive/refs/tags/v0.4.2.tar.gz
+tar xvzf v0.4.2.tar.gz
+cd any2fasta-0.4.2
+# check the docs
+less README.md
+
+# link the binary
+ln -s /usr/local/src/any2fasta-0.4.2/any2fasta /usr/local/bin
+
+# now for abricate
+cd /usr/local/src
+wget https://github.com/tseemann/abricate
+tar xvzf v1.0.0.tar.gz
+cd abricate-1.0.0
+# check the docs
+less README.md
+
+# link the binary, set it up
+ln -s /usr/local/src/abricate-1.0.0/bin/abricate /usr/local/bin
+abricate --check
+abricate --setupdb
+```
+
+#### EzClermont
+This is a tool to predict phylotypes for E. coli using assemblies.
+
+```
+sudo pip3 install ezclermont
+```
+
 #### Kraken
+
 #### prokka
-#### SeqSero
+This is a popular genome annotation tool.
+This hasn't been updated in about 1-2 years, and the Ubuntu version is the same as the latest GitHub version, so we'll install the Ubuntu version.
+
+```
+sudo apt install prokka
+# setup databases
+prokka --setupdb
+prokka --list
+```
+
+#### [SeqSero](https://github.com/denglab/SeqSero)
+This a serotype predictor for Salmonella.
+
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/denglab/SeqSero/archive/refs/tags/v1.0.1.tar.gz
+tar xvzf v1.0.1.tar.gz
+cd SeqSero-1.0.1
+# check the docs
+less README.md
+
+# link the binary
+ln -s /usr/local/src/SeqSero-1.0.1/SeqSero.py /usr/local/bin
+```
 
 #### [SRST2](https://github.com/katholt/srst2)
 This is a popular short read analysis program, good for calling MLSTs, resistances, and serotypes directly from short reads.
@@ -1384,9 +1462,129 @@ echo "export SRST2_BOWTIE2_BUILD=/usr/local/src/bowtie2-2.2.9/bowtie2-build" >> 
 SRST2 requires reference libraries.
 Some are included in the source distribution.
 To keep with following "standard" locations, I put these into `/usr/local/lib/SRST2`.
-I also have a few utility scripts to help manage these.
+I also have a few utility scripts to help manage these. These are included with the [SLC Closet](#SLC-Closet) scripts.
+The data files released with SRST2 we keep in a version directory.
+The MLST and VFDB sequences we have to update manually, and they get their own directories.
+Finally, individual organisms have their own directory, which helps to customize.
+The overall structure looks like:
 ```
+/usr/local/lib/SRST2/0.2.0
+                    /MLST
+                    /VFDB
+                    /Ecoli
+                    /Sagalactiae
+                    /<other species>
+```
+
+Now, let's set it all up - remember to use the older versions of Bowtie2 and Samtools as per the SRST2 docs:
+```
+sudo su -
+SRST2LIB=/usr/local/lib/SRST2
+VERSION=0.2.0
+BTBUILD=/usr/local/src/bowtie2-2.2.9/bowtie2-build
+SAMTOOLS=/usr/local/src/samtools-0.1.18/samtools
+
 # Setting up SRST2 reference libraries
+mkdir -p $SRST2LIB/$VERSION
+ln -s /usr/local/src/srst2/data/* $SRST2LIB/$VERSION
+
+# MLST - use the basic SRST2 scripts - just some examples
+mkdir -p $SRST2LIB/MLST
+cd $SRST2LIB/MLST
+# E. coli
+getmlst.py --species "Escherichia coli#1" && mv profiles_csv ecoli.txt
+$BTBUILD "Escherichia_coli#1.fasta" "Escherichia_coli#1.fasta"
+$SAMTOOLS faidx "Escherichia_coli#1.fasta"
+# S. agalactiae
+getmlst.py --species "Streptococcus agalactiae" && mv profiles_csv sagalactiae.txt
+$BTBUILD Streptococcus_agalactiae.fasta Streptococcus_agalactiae.fasta
+$SAMTOOLS faidx Streptococcus_agalactiae.fasta
+# add others as appropriate
+
+# VFDB - follow the SRST2 directions
+mkdir -p $SRST2LIB/VFDB
+cd $SRST2LIB/VFDB
+wget http://www.mgc.ac.cn/VFs/Down/VFDB_setB_nt.fas.gz
+gunzip VFDB_setB_nt.fas.gz
+# we need an old version of biopython for python 2.7, which the SRST2 scripts require
+pip install biopython==1.76
+python /usr/local/src/srst2/database_clustering/VFDBgenus.py --infile VFDB_setB_nt.fas
+for i in *.fsa; do 
+  cd-hit -i $i -o ${i%.*}_cdhit90 -c 0.9 > ${i%.*}_cdhit90.stdout &&
+  python /usr/local/src/srst2/database_clustering/VFDB_cdhit_to_csv.py --cluster_file ${i%.*}_cdhit90.clstr --infile $i --outfile ${i%.*}_cdhit90.csv &&
+  python /usr/local/src/srst2/database_clustering/csv_to_gene_db.py -t ${i%.*}_cdhit90.csv -o ${i%.*}_VF_clustered.fasta -s 5 &&
+  $BTBUILD ${i%.*}_VF_clustered.fasta ${i%.*}_VF_clustered.fasta &&
+  $SAMTOOLS faidx ${i%.*}_VF_clustered.fasta
+done
+```
+For individual organisms, SRST2 can be used to do lots of things - serotyping, for example.
+This requires some customization of the databases though.
+I have an update script that I use, this is put into `/usr/local/lib/SRST2/update.sh`:
+```
+# Call this from the lower directory!
+# i.e.:  cd /usr/local/lib/SRST2/Ecoli && bash ../update.sh
+#
+SRST2=/usr/local/lib/SRST2
+VERSION=0.2.0
+BOWTIEBUILD=/usr/local/src/bowtie2-2.2.9/bowtie2-build
+SAMTOOLS=/usr/local/src/samtools-0.1.18/samtools
+BASE=${PWD##*/}
+DATE=`date +%F`
+if [ $BASE == "SRST2" ]; then
+  echo "Call this from the organism directory"
+  echo "For example from within /usr/local/lib/SRST2/Ecoli"
+  exit
+else
+  # this script comes from the my closet respository
+  combine-SRST2-fasta.pl -srst2 $SRST2 -version $VERSION > $BASE-combined-$DATE.fasta
+  $BOWTIEBUILD $BASE-combined-$DATE.fasta $BASE-combined-$DATE.fasta
+  $SAMTOOLS faidx $BASE-combined-$DATE.fasta
+fi
+```
+This script will look for a file called `combine.db` in the organism directory, merge the fasta files, and put a timestamp on the combined fasta file.
+All that's needed is to generate the `combine.db` file, and additional fasta files (formatted for SRST2 already) can then be added to further customize.
+An example for E. coli follows.
+
+Get the [fimH allele database](https://bitbucket.org/genomicepidemiology/fimtyper_db):
+```
+wget https://bitbucket.org/genomicepidemiology/fimtyper_db/raw/e11ab5129f6235ae5b40210b04bbe2f4091ba793/fimH.fsa
+# fix the fasta headers
+perl -i -ne 'chomp; if (/^>/) { $i++; s/>/>1__fimHType__/; s/$/__$i/; } print "$_\n";' fimH.fsa
+```
+
+File `/usr/local/lib/SRST2/Ecoli/combine.db`
+```
+$SRST2/$VERSION/ARGannot_r3.fasta
+$SRST2/$VERSION/EcOH.fasta
+$SRST2/$VERSION/Plasmid18Replicons.fasta
+$SRST2/$VERSION/PlasmidFinder.fasta
+$SRST2/VFDB/Citrobacter_VF_clustered.fasta
+$SRST2/VFDB/Edwardsiella_VF_clustered.fasta
+$SRST2/VFDB/Enterobacter_VF_clustered.fasta
+$SRST2/VFDB/Erwinia_VF_clustered.fasta
+$SRST2/VFDB/Escherichia_VF_clustered.fasta
+$SRST2/VFDB/Klebsiella_VF_clustered.fasta
+$SRST2/VFDB/Proteus_VF_clustered.fasta
+$SRST2/VFDB/Salmonella_VF_clustered.fasta
+$SRST2/VFDB/Serratia_VF_clustered.fasta
+$SRST2/VFDB/Shigella_VF_clustered.fasta
+$SRST2/VFDB/Yersinia_VF_clustered.fasta
+fimH.fsa
+```
+
+Now create the database:
+```
+sudo su -
+cd /usr/local/lib/SRST2/Ecoli
+bash ../update.sh
+```
+
+Now this can be run to call resistances, E. coli seroptypes, plasmid predictions, virulence factor predictions, and fimH types (check the date of the file):
+```
+srst2 --input_pe strainA_1.fastq.gz strainA_2.fastq.gz --output strainA_typing --log --gene_db /usr/local/lib/SRST2/Ecoli/Ecoli-combined-2021-05-24.fasta
+# output goes to:
+#   strainA_typing__genes__Ecoli-combined-2021-05-24__results.txt
+#   strainA_typing__fullgenes__Ecoli-combined-2021-05-24__results.txt
 ```
 
 ### Visualization
