@@ -8,6 +8,8 @@ tags = ["help", "glossary", "terms"]
 
 ## Glossary
 
+**Access key**  
+  
 **AMI** is short for Amazon Machine Image - an encrypted template of your cloud machine, functionally similar to the snapshot of a computer's root drive. The image includes an operating system, additional software and layers of your application.
 
 **AWS CLI** is AWS Command Line Interface (CLI) - a unified tool to manage your AWS services. With just one tool to download and configure, you can control multiple AWS services from the command line and automate them through scripts. Click here to know more - [AWS CLI](https://aws.amazon.com/cli/)
@@ -33,6 +35,10 @@ tags = ["help", "glossary", "terms"]
 **Regions & Availability Zones**: Amazon EC2 is hosted in multiple locations worldwide. These locations are composed of Regions, Availability Zones, Local Zones, and Wavelength Zones. Each Region is a separate geographic area. Click here to know more - [Regions & Availability Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)
 
 **S3** is short for Amazon Simple Storage Service, a storage service for the internet. Used to deposit and retrieve any amount of data from anywhere on the web.
+  
+**Secret Access Key**  
 
+**Session Token**  
+  
 **SSH**, or a Secure Socket Shell, is a network protocol that is used to provide secure access to a computer over an unsecured network.
 

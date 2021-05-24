@@ -1,5 +1,5 @@
 +++
-title = "f. Run Linux commands "
+title = "g. Run Linux commands "
 weight = 90
 tags = ["tutorial", "cloud9", "s3"]
 +++

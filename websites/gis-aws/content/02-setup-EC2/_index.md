@@ -13,4 +13,6 @@ This section covers:
 - Signing in to the AWS Management Console and exploring it.
 - Create an Amazon EC2 instance and the related configurations.
 - SSH into an EC2 instance and run Linux commands.
-- Stopping and Terminating the Linux instance.
+- Stopping and Terminating the Linux instance.  
+
+If you are joining this tutorial by live training, please listen to your instructor for which page to access next. If you are going through this tutorial independently, proceed to page ***b. Sign in to the Console***.  
