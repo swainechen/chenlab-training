@@ -10,17 +10,17 @@ This is a resource for all extra information that can help enhance your experien
 
 Please see below for the different sections in this website, as well as their uses:
 
-a. Current Workshop Information
+**a. Current Workshop Information**  
     If you are currently enrolled in an AWS x GIS workshop, this is where you can find an updated schedule. This will include a time table, as well as workshop-specific information.
 
-b. Best Practices for AWS
+**b. Best Practices for AWS**  
     This page will help acquiant you with best practices and habits for making the most out of your AWS EC2, volumes, and S3 resources, as well as save you some extra $$$.
 
-c. About the AMI
+**c. About the AMI**  
     Here you can learn more about the AMI used for this workshop, as well as access the github resources availavble.
 
-d. AWS Glossary
+**d. AWS Glossary**  
     AWS has many terms that are unique to AWS. This glossary will have more information on the most important for this training.
 
-e. FAQ
+**e. FAQ**  
     Pretty self explanatory. Here you can find the most frequently asked questions and responses from our trainers.
