@@ -10,20 +10,23 @@ Information is current for the 2021 02-03 June workshop. Note that this timing a
 
 **Schedule by day**  
 **2 June 2021**  
-*09:00 AM – 09:15 AM*:  GIS x AWS Introduction to AWS for Genomics Analysis  
-*09:10 AM – 10:30 AM*:  Your first cloud instance: initialization, storage, and best practices  
-*10:30 AM – 10:45 AM*:  Break  
-*10:45 AM – 11:30 AM*:  Transferring and processing data  
-*11:30 AM – 12:00 PM*:  Stopping an Instance and Saving everything for later  
+*09:00 AM - 09:30 AM*: GIS x AWS Intro and your first cloud instance: Theory  
+*09:30 AM - 10:30 AM*: GIS x AWS Intro and your first cloud instance: Practical  
+*10:30 AM - 10:45 AM*: Break  
+*10:45 AM - 11:15 AM*: Data processing and saving your work: Theory  
+*11:15 AM - 12:00 PM*: Data processing and saving your work: Practical  
    
 **3 June 2021**  
-*09:00 AM - 09:15 AM*: Introduction to Object storage (S3)  
-*09:15 AM - 10:30 AM*: Restarting a saved instance (AMI) and S3 data transfer   
+*09:00 AM - 09:30 AM*: S3 storage and using a saved AMI: Theory  
+*09:30 AM - 10:30 AM*: S3 storage and using a saved AMI: Practical  
 *10:30 AM - 10:45 AM*: Break  
-*10:45 AM - 11:30 AM*: Sharing data with others - securely  
-*11:30 AM - 12:00 PM*: Exploring billing and costs  
+*10:45 AM - 11:15 AM*: Sharing data and checking the bill: Theory  
+*11:15 AM - 12:00 PM*: Sharing data and checking the bill: Practical  
+
+**Your AMI ID**
+The AMI used for this exercise is `CHENLAB-PUBLIC-210513`.  
   
 **Troubleshooting**  
 This is an online workshop and technical difficulties are to be expected.  
-  
-If you are dropped from your call, please email scgeiger@gis.a-star.edu.sg to alert the trainers, and we will make sure that you are welcomed back.
+
+If you are dropped from your call and have difficulty returning to the course, please email scgeiger@gis.a-star.edu.sg to alert the trainers, and we will make sure that you are welcomed back.
