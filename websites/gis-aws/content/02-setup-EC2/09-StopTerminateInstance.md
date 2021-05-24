@@ -1,5 +1,5 @@
 +++
-title = "g. Stop and Terminate instance"
+title = "h. Stop and Terminate instance"
 weight = 90
 tags = ["tutorial", "cloud9", "s3"]
 +++

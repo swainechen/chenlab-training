@@ -1,5 +1,5 @@
 +++
-title = "e. SSH into an EC2 instance"
+title = "f. SSH into an EC2 instance"
 weight = 90
 tags = ["tutorial", "cloud9", "s3"]
 +++

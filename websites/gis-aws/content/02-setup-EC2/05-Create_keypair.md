@@ -1,5 +1,5 @@
 +++
-title = "c. Create a new Key Pair"
+title = "d. Create a new Key Pair"
 weight = 70
 tags = ["tutorial", "cloud9", "ParallelCluster"]
 +++

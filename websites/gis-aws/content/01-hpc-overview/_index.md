@@ -24,8 +24,8 @@ This series of workshops will familiarize you with the components of Amazon Web 
 **Target audience and requirements**:
 
 - Genomics researchers who have some experience of Linux commands
-- Participants have an IAM account created for them (either by PI's lab or free credits by AWS) and they have their credentials available.
+- Participants have either an IAM account created for them (either by PI's lab or free credits by AWS) and they have their credentials available, or they will be given an Event Engine account during the training.
 - Little to no exposure to cloud computing. We will cover fundamental AWS concepts and not advanced topics such as AWS Batch.
 - No bioinformatics training will be provided in this course.
 
-**Background**: Your team has been asked to align raw reads from bacterial genome sequences. You will run your analysis on AWS compute services and upload the data onto AWS storage services.”
+**Background**: Your team has been asked to align raw reads from bacterial genome sequences. You will run your analysis on AWS compute services and upload the data onto AWS storage services.

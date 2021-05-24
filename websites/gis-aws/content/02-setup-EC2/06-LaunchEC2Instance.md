@@ -1,5 +1,5 @@
 +++
-title = "d. Launch an EC2 Instance"
+title = "e. Launch an EC2 Instance"
 weight = 80
 tags = ["tutorial", "cloud9", "aws cli", "s3"]
 +++
