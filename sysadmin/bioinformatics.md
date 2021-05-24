@@ -79,7 +79,9 @@ Note that the version numbers are included in the commands below - you'll have t
 
 ### Annotation and classification
 * [abricate](#abricate)
-* [Kraken](#Kraken)
+* [EzClermont](#EzClermont)
+* [GBS-SBG](#GBS-SBG)
+* [Kraken 2](#Kraken-2)
 * [prokka](#prokka)
 * [SeqSero](#SeqSero)
 * [SRST2](#SRST2)
@@ -1337,7 +1339,8 @@ racon
 ### Annotation and classification
 * [abricate](#abricate)
 * [EzClermont](#EzClermont)
-* [Kraken](#Kraken)
+* [GBS-SBG](#GBS-SBG)
+* [Kraken 2](#Kraken-2)
 * [prokka](#prokka)
 * [SeqSero](#SeqSero)
 * [SRST2](#SRST2)
@@ -1373,16 +1376,67 @@ abricate --check
 abricate --setupdb
 ```
 
-#### EzClermont
+#### [EzClermont](https://github.com/nickp60/EzClermont)
 This is a tool to predict phylotypes for E. coli using assemblies.
 
 ```
 sudo pip3 install ezclermont
 ```
 
-#### Kraken
+#### [GBS-SBG](https://github.com/swainechen/GBS-SBG)
+This is a tool to predict serotypes for Group B Streptococcus (S. agalactiae) using short reads or assemblies.
 
-#### prokka
+```
+sudo su -
+cd /usr/local/src
+git clone https://github.com/swainechen/GBS-SBG
+cd GBS-SBG
+# check the docs
+less README.md
+
+# link the binary
+ln -s /usr/local/src/GBS-SBG/GBS-SBG.pl /usr/local/bin
+
+GBS-SBG.pl -help
+```
+
+#### [Kraken 2](https://ccb.jhu.edu/software/kraken2/)
+Ubuntu LTS version: 2.0.8-beta
+GitHub Release version: 2.1.2
+
+This is a popular tool to do species / taxonomic classification of short reads using k-mers.
+
+This takes quite a bit of space due to the database.
+It also requires quite a bit of RAM, at least 32GB for the standard library.
+We'll install the MiniKraken database here, which is 8GB - refer to the [website](https://ccb.jhu.edu/software/kraken2/index.shtml?t=downloads) if you need the bigger libraries.
+We'll put these in /usr/local/lib/Kraken2
+
+The Ubuntu repositories are behind the latest GitHub release, so we'll use the GitHub version
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/DerrickWood/kraken2/archive/refs/tags/v2.1.2.tar.gz
+tar xvzf v2.1.2.tar.gz
+cd kraken2-2.1.2
+# check the docs
+less README.md
+less docs/MANUAL.markdown
+
+# compile then link over the binaries
+./install_kraken2.sh /usr/local/src/kraken2-2.1.2/bin
+for i in kraken2 kraken2-build kraken2-inspect; do ln -s /usr/local/src/kraken2-2.1.2/bin/$i /usr/local/bin; done
+
+# install the MiniKraken librarie
+mkdir /usr/local/lib/Kraken2
+cd /usr/local/lib/Kraken2
+wget wget ftp://ftp.ccb.jhu.edu/pub/data/kraken2_dbs/old/minikraken2_v2_8GB_201904.tgz
+tar xvzf minikraken2_v2_8GB_201904.tgz
+
+# then this can be run as (again watch out for RAM - you probably realistically should have 16GB total)
+kraken2 --db /usr/local/lib/Kraken2/minikraken2_v2_8GB_201904_UPDATE fq_1.gz fq2.gz
+```
+
+#### [prokka](https://github.com/tseemann/prokka)
 This is a popular genome annotation tool.
 This hasn't been updated in about 1-2 years, and the Ubuntu version is the same as the latest GitHub version, so we'll install the Ubuntu version.
 

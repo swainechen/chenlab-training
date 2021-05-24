@@ -60,7 +60,7 @@ apt install -y automake awscli cmake cpanminus cython evince gnuplot-nox \
 
 # some initial software
 apt install -y cd-hit clonalframeml fastdnaml fastqc fasttree \
-  gubbins kraken njplot ncbi-entrez-direct ncbi-tools-bin paml soapdenovo2 \
+  gubbins njplot ncbi-entrez-direct ncbi-tools-bin paml soapdenovo2 \
   vcftools mauve-aligner mummer
 ```
 
