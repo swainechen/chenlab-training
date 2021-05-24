@@ -1336,15 +1336,78 @@ racon
 
 ### Annotation and classification
 * [abricate](#abricate)
+* [EzClermont](#EzClermont)
 * [Kraken](#Kraken)
 * [prokka](#prokka)
 * [SeqSero](#SeqSero)
 * [SRST2](#SRST2)
 
-#### abricate
+#### [abricate](https://github.com/tseemann/abricate)
+This is a tool to predict resistances from assemblies.
+
+```
+sudo su -
+
+# this requires any2fasta as a dependency
+cd /usr/local/src
+wget https://github.com/tseemann/any2fasta/archive/refs/tags/v0.4.2.tar.gz
+tar xvzf v0.4.2.tar.gz
+cd any2fasta-0.4.2
+# check the docs
+less README.md
+
+# link the binary
+ln -s /usr/local/src/any2fasta-0.4.2/any2fasta /usr/local/bin
+
+# now for abricate
+cd /usr/local/src
+wget https://github.com/tseemann/abricate
+tar xvzf v1.0.0.tar.gz
+cd abricate-1.0.0
+# check the docs
+less README.md
+
+# link the binary, set it up
+ln -s /usr/local/src/abricate-1.0.0/bin/abricate /usr/local/bin
+abricate --check
+abricate --setupdb
+```
+
+#### EzClermont
+This is a tool to predict phylotypes for E. coli using assemblies.
+
+```
+sudo pip3 install ezclermont
+```
+
 #### Kraken
+
 #### prokka
-#### SeqSero
+This is a popular genome annotation tool.
+This hasn't been updated in about 1-2 years, and the Ubuntu version is the same as the latest GitHub version, so we'll install the Ubuntu version.
+
+```
+sudo apt install prokka
+# setup databases
+prokka --setupdb
+prokka --list
+```
+
+#### [SeqSero](https://github.com/denglab/SeqSero)
+This a serotype predictor for Salmonella.
+
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/denglab/SeqSero/archive/refs/tags/v1.0.1.tar.gz
+tar xvzf v1.0.1.tar.gz
+cd SeqSero-1.0.1
+# check the docs
+less README.md
+
+# link the binary
+ln -s /usr/local/src/SeqSero-1.0.1/SeqSero.py /usr/local/bin
+```
 
 #### [SRST2](https://github.com/katholt/srst2)
 This is a popular short read analysis program, good for calling MLSTs, resistances, and serotypes directly from short reads.
@@ -1399,7 +1462,7 @@ echo "export SRST2_BOWTIE2_BUILD=/usr/local/src/bowtie2-2.2.9/bowtie2-build" >> 
 SRST2 requires reference libraries.
 Some are included in the source distribution.
 To keep with following "standard" locations, I put these into `/usr/local/lib/SRST2`.
-I also have a few utility scripts to help manage these. These are included with the [SLC Closet] scripts.
+I also have a few utility scripts to help manage these. These are included with the [SLC Closet](#SLC-Closet) scripts.
 The data files released with SRST2 we keep in a version directory.
 The MLST and VFDB sequences we have to update manually, and they get their own directories.
 Finally, individual organisms have their own directory, which helps to customize.
@@ -1411,7 +1474,6 @@ The overall structure looks like:
                     /Ecoli
                     /Sagalactiae
                     /<other species>
-
 ```
 
 Now, let's set it all up - remember to use the older versions of Bowtie2 and Samtools as per the SRST2 docs:
@@ -1478,7 +1540,6 @@ else
   $BOWTIEBUILD $BASE-combined-$DATE.fasta $BASE-combined-$DATE.fasta
   $SAMTOOLS faidx $BASE-combined-$DATE.fasta
 fi
-
 ```
 This script will look for a file called `combine.db` in the organism directory, merge the fasta files, and put a timestamp on the combined fasta file.
 All that's needed is to generate the `combine.db` file, and additional fasta files (formatted for SRST2 already) can then be added to further customize.
@@ -1518,7 +1579,13 @@ cd /usr/local/lib/SRST2/Ecoli
 bash ../update.sh
 ```
 
-
+Now this can be run to call resistances, E. coli seroptypes, plasmid predictions, virulence factor predictions, and fimH types (check the date of the file):
+```
+srst2 --input_pe strainA_1.fastq.gz strainA_2.fastq.gz --output strainA_typing --log --gene_db /usr/local/lib/SRST2/Ecoli/Ecoli-combined-2021-05-24.fasta
+# output goes to:
+#   strainA_typing__genes__Ecoli-combined-2021-05-24__results.txt
+#   strainA_typing__fullgenes__Ecoli-combined-2021-05-24__results.txt
+```
 
 ### Visualization
 * [bandage](#bandage)
