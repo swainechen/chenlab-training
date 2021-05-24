@@ -83,6 +83,7 @@ Note that the version numbers are included in the commands below - you'll have t
 * [GBS-SBG](#GBS-SBG)
 * [Kraken 2](#Kraken-2)
 * [prokka](#prokka)
+* [Roary](#Roary)
 * [SeqSero](#SeqSero)
 * [SRST2](#SRST2)
 
@@ -1342,6 +1343,7 @@ racon
 * [GBS-SBG](#GBS-SBG)
 * [Kraken 2](#Kraken-2)
 * [prokka](#prokka)
+* [Roary](#Roary)
 * [SeqSero](#SeqSero)
 * [SRST2](#SRST2)
 
@@ -1446,6 +1448,34 @@ sudo apt install prokka
 prokka --setupdb
 prokka --list
 ```
+
+#### [Roary](https://github.com/sanger-pathogens/Roary)
+This is a popular pan genome prediction tool.
+This hasn't been updated in about 18 months, and the Ubuntu and GitHub versions are the same.
+The Ubuntu packages seem to depend strictly on R version 3, and we have 4 installed. So we'll install from the GitHub release.
+
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/sanger-pathogens/Roary/archive/refs/tags/v3.13.0.tar.gz
+tar xvzf v3.13.0.tar.gz
+cd Roary-3.13.0
+# check the docs
+less README.md
+
+# install some dependencies
+apt install mcl
+cpanm  Array::Utils Bio::Perl Exception::Class File::Basename File::Copy File::Find::Rule File::Grep File::Path File::Slurper File::Spec File::Temp File::Which FindBin Getopt::Long Graph Graph::Writer::Dot List::Util Log::Log4perl Moose Moose::Role Text::CSV PerlIO::utf8_strict Devel::OverloadInfo Digest::MD5::File
+
+# link the binaries and libraries
+cd /usr/local/src/Roary-3.13.0/bin
+for i in *; do ln -s /usr/local/src/Roary-3.13.0/bin/$i /usr/local/bin; done
+ln -s /usr/local/src/Roary-3.13.0/lib/* /usr/local/lib/site_perl
+
+# check it out
+roary -a
+```
+This complains about cd-hit being not the right version - it asks for min 4.6, but we have 4.8.1 installed.
 
 #### [SeqSero](https://github.com/denglab/SeqSero)
 This a serotype predictor for Salmonella.
