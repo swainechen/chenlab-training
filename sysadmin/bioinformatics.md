@@ -1,9 +1,9 @@
 # Bioinformatics software
 Bioinformatics is moving very fast. It's hard to keep up with version changes, and because of some details of academic funding and training, there is a lot of variation in organization and design.
 
-From a setup point of view, there are two categories of software out there. Some software that can be installed in a relatively "standard" unix-like manner, while others require some custom updates or custom configuration (sometimes for compilation, nonstandard paths, or for needing special libraries / data to be downloaded).
+From a setup point of view, there are two categories of software out there. Some software that can be installed in a relatively "standard" Unix-like manner, while others require some custom updates or custom configuration (sometimes for compilation, nonstandard paths, or for needing special libraries / data to be downloaded).
 
-Generally the strategy is to keep all the downloads and sources in /usr/local/src and then link into /usr/local/bin or other appropriate directories in /usr/local.
+Generally the strategy is to keep all the downloads and sources in `/usr/local/src` and then link into `/usr/local/bin` or other appropriate directories in `/usr/local`.
 Also, software tends to go through a lifecycle where there are lots of updates, then eventually it stabilizes and/or becomes less updated for whatever reason.
 The standard Ubuntu LTS (Focal, 20.04 in this case) repositories don't keep up with the latest software - they are made to support system stability, and the latest versions are incorporated into the interim point releases (like 20.10, 21.04, etc).
 So for some of these software packages, you have a choice between installing from the Ubuntu repositories and installing from a binary or source release.
@@ -16,7 +16,7 @@ I've made some recommendations for the software below based on these considerati
 
 ### Another reminder about using `sudo` and the root account:
 The commands below are written to do most things as root - this is not the best practice. The [standard recommendation](https://tldp.org/HOWTO/Software-Building-HOWTO-3.html) is to only use sudo or the root account when it's absolutely needed. There are a couple ways to do this:
-- download into /home/ubuntu/src, build there, then sudo install
+- download into `/home/ubuntu/src`, build there, then sudo install
 - make a `staff` or `admin` or `src` group, add the `ubuntu` user to that group, `chown -R root:staff /usr/local/src` (or even the whole `/usr/local` tree), then do all the builds as ubuntu +/- the install as root
 
 Here, though, we're doing the simple version to just run around as root. This takes away a layer of potential problems and if you're on a fresh cloud machine, it's not a huge deal to mess something up since there really shouldn't be other users you're concerned about and you can just make a new instance.
@@ -1061,6 +1061,16 @@ less README
 # there are already precompiled binaries, so just link them in
 cd bin
 for i in *; do ln -s /usr/local/src/OPERA-LG_v2.0.6/bin/$i /usr/local/bin; done
+
+# since we're doing this not great thing of running around as root, we need to fix permissions
+chmod 755 /usr/local/src/OPERA-LG_v2.0.6
+cd /usr/local/src/OPERA-LG_v2.0.6
+chmod -R a+r *
+find . -mindepth 1 -type d | xargs chmod 755
+find . -mindepth 1 -type x | xargs chmod 755
+
+# this also has a bug in the preprocess script which is due to samtools version differences:
+sed -i -e 's/-\\@ 20//' /usr/local/src/OPERA-LG_v2.0.6/bin/preprocess_reads.pl
 ```
 Note that the wiki says that this depends on samtools <=0.1.19 and blasr <=1.3.1.
 Instructions for keeping an old version of samtools (0.1.18) can be found in the [SRST2](#SRST2) section, and the location of the binaries should be `/usr/local/src/samtools-0.1.18`.
@@ -1447,7 +1457,11 @@ sudo apt install prokka
 # setup databases
 prokka --setupdb
 prokka --list
+
+# this has another issue with licensing with Debian/Ubuntu. Check /usr/share/doc/prokka/README.Debian
+sh /usr/share/doc/prokka/get-additional-data
 ```
+This throws an error because it assumes a numeric version number for BioPerl, but the version is ok and this still runs.
 
 #### [Roary](https://github.com/sanger-pathogens/Roary)
 This is a popular pan genome prediction tool.
