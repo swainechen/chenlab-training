@@ -54,9 +54,10 @@ apt install -y automake awscli cmake cpanminus cython evince gnuplot-nox \
   libhdf5-dev libhtml-template-perl libimage-magick-perl libjemalloc-dev \
   libjson-perl liblzma-dev libmariadbclient-dev libmemory-usage-perl \
   libmodule-build-perl libopenmpi-dev libsparsehash-dev libssl-dev \
-  libterm-progressbar-perl libtext-csv-perl libv8-dev libxml-compile-perl \
-  libxml-compile-wsdl11-perl libxml2-dev libxslt1-dev mlocate mysql-client \
-  openjdk-8-jdk parallel pdl prodigal python python-numpy snakemake zlib1g-dev
+  libsys-meminfo-perl libterm-progressbar-perl libtext-csv-perl libv8-dev \
+  libxml-compile-perl libxml-compile-wsdl11-perl libxml2-dev libxslt1-dev \
+  mlocate mysql-client openjdk-8-jdk parallel pdl prodigal python \
+  python-numpy snakemake zlib1g-dev
 
 # some initial software
 apt install -y cd-hit clonalframeml fastdnaml fastqc fasttree \
