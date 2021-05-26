@@ -1081,7 +1081,7 @@ chmod 755 /usr/local/src/OPERA-LG_v2.0.6
 cd /usr/local/src/OPERA-LG_v2.0.6
 chmod -R a+r *
 find . -mindepth 1 -type d | xargs chmod 755
-find . -mindepth 1 -executable | xargs chmod 755
+find . -mindepth 1 -executable -type f | xargs chmod 755
 
 # this also has a bug in the preprocess script which is due to samtools version differences:
 sed -i -e 's/-\\@ 20//' /usr/local/src/OPERA-LG_v2.0.6/bin/preprocess_reads.pl
@@ -1183,7 +1183,7 @@ chown -R root:root /usr/local/src/breseq-0.35.6-Linux-x86_64
 cd /usr/local/src/breseq-0.35.6-Linux-x86_64
 chmod -R a+r *
 find . -mindepth 1 -type d | xargs chmod 755
-find . -mindepth 1 -executable | xargs chmod 755
+find . -mindepth 1 -executable -type f | xargs chmod 755
 
 # link over the binary and the share files
 cd /usr/local/src/breseq-0.35.6-Linux-x86_64/bin
@@ -1354,6 +1354,8 @@ Unicycler is looking for a binary called `pilon`, so we can modify the Ubuntu pa
 ```
 sudo su -
 # you can copy and paste what's below, I've escaped the necessary characters
+
+#### BEGIN copy-paste for pilon script ####
 cat << EOF > /usr/local/bin/pilon
 #! /bin/sh
 set -e
@@ -1367,6 +1369,7 @@ export JAVA_CMD=java
 # For memory setting see https://github.com/rrwick/Unicycler/issues/63
 run_java -Xms128M -Xmx16384m -jar /usr/local/bin/pilon.jar "\$@"
 EOF
+#### END copy-paste for pilon script ####
 
 # make it executable
 chmod +x /usr/local/bin/pilon
