@@ -64,7 +64,6 @@ Note that the version numbers are included in the commands below - you'll have t
 * [Trycycler](#Trycycler)
 * [Unicycler](#Unicycler)
 * [FinIS](#FinIS)
-* [GapCloser](#GapCloser)
 * [OPERA-LG](#OPERA-LG)
 
 ### Post-processing, variant calling
@@ -73,15 +72,18 @@ Note that the version numbers are included in the commands below - you'll have t
 * [GATK](#GATK)
 * [GraphMap2](#GraphMap2)
 * [lofreq](#lofreq)
+* [mash](#mash)
 * [medaka](#medaka)
 * [nanopolish](#nanopolish)
 * [pilon](#pilon)
 * [racon](#racon)
+* [snippy](#snippy)
 
 ### Annotation and classification
 * [abricate](#abricate)
 * [EzClermont](#EzClermont)
 * [GBS-SBG](#GBS-SBG)
+* [Kleborate](#Kleborate)
 * [Kraken 2](#Kraken-2)
 * [prokka](#prokka)
 * [Roary](#Roary)
@@ -370,6 +372,18 @@ vdb-config -i
 These are a lot of old utility scripts I've accumulated over the years.
 This doesn't mean they're all useful or nice though!
 
+A few useful biology-related utilities:
+* `slc-blastn` (and blastp, blastx, etc. versions) - this can work directly with the `.tgz` files output by `SLC-wgs.pl`
+* `blast-mlst.pl` - will pick up the SRST2 MLST databases if you follow the [instructions below](#SRST2)
+* `blast-vf.pl` - will pick up the SRST2 gene databases if you follow the [instructions below](#SRST2)
+* `SLC-wgs.pl` - clean wrapper for `velvet`, `SPAdes`, and `SKESA` assembly, will do a `prokka` annotation and put everything into a `.tgz` file
+* `fasta-length.pl`
+
+Some non-biology related tools I use all the time:
+* `mean`
+* `ncols`
+* `randomize.pl`
+* `switchcols`
 ```
 sudo su -
 cd /usr/local/src
@@ -728,7 +742,6 @@ for i in bbduk bbmap bbnorm bloomfilter dedupe reformat; do ln -s /usr/local/src
 * [Unicycler](#Unicycler)
 * [OPERA-LG](#OPERA-LG)
 * [FinIS](#FinIS)
-* [GapCloser](#GapCloser)
 * [Contiguity](#Contiguity)
 
 #### [A5 assembler](https://sourceforge.net/p/ngopt/wiki/A5PipelineREADME/)
@@ -1124,18 +1137,18 @@ FinIS test_dataset/velvet/conf.config
 FinIS test_dataset/soap/conf.config
 ```
 
-#### GapCloser
-
 ### Post-processing, variant calling
 * [BLASR](#BLASR)
 * [breseq](#breseq)
 * [GATK](#GATK)
 * [GraphMap2](#GraphMap2)
 * [lofreq](#lofreq)
+* [mash](#mash)
 * [medaka](#medaka)
 * [nanopolish](#nanopolish)
 * [pilon](#pilon)
 * [racon](#racon)
+* [snippy](#snippy)
 
 #### [BLASR](https://github.com/PacificBiosciences/blasr)
 Ubuntu LTS version: 5.3.3
@@ -1226,6 +1239,22 @@ wget https://github.com/CSB5/lofreq/raw/master/dist/lofreq_star-2.1.5_linux-x86-
 tar xvzf lofreq_star-2.1.5_linux-x86-64.tgz
 cd lofreq_star-2.1.5_linux-x86-64/bin
 for i in *; do ln -s /usr/local/src/lofreq_star-2.1.5_linux-x86-64/bin/$i /usr/local/bin; done
+```
+
+#### [mash](https://mash.readthedocs.io/en/latest/)
+Ubuntu LTS version: 2.2.2
+GitHub release version: 2.3
+
+Mash is a tool to estimate sequence distance using MinHash.
+
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/marbl/Mash/releases/download/v2.3/mash-Linux64-v2.3.tar
+tar xvf mash-Linux64-v2.3.tar
+cd mash-Linux64-v2.3
+# check the docs online, there is just one binary
+ln -s /usr/local/src/mash-Linux64-v2.3/mash /usr/local/bin
 ```
 
 #### [medaka](https://github.com/nanoporetech/medaka)
@@ -1381,11 +1410,32 @@ ln -s /usr/local/src/racon-v1.4.21/build/bin/racon /usr/local/bin
 racon
 ```
 
+#### [snippy](https://github.com/tseemann/snippy)
+This is a tool to call SNPs based on a reference sequence.
+It can also output a core SNP alignment, which can then be used to make a phylogenetic tree.
+
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/tseemann/snippy/archive/refs/tags/v4.6.0.tar.gz
+tar xvzf v4.6.0
+cd snippy-4.6.0
+# check the docs
+less README.md
+
+# link in the binaries
+cd /usr/local/src/snippy-4.6.0/bin
+for i in *; do ln -s /usr/local/src/snippy-4.6.0/bin/$i /usr/local/bin; done
+
+# quick check
+snippy --check
+```
 
 ### Annotation and classification
 * [abricate](#abricate)
 * [EzClermont](#EzClermont)
 * [GBS-SBG](#GBS-SBG)
+* [Kleborate](#Kleborate)
 * [Kraken 2](#Kraken-2)
 * [prokka](#prokka)
 * [Roary](#Roary)
@@ -1445,6 +1495,25 @@ less README.md
 ln -s /usr/local/src/GBS-SBG/GBS-SBG.pl /usr/local/bin
 
 GBS-SBG.pl -help
+```
+
+#### [Kleborate](https://github.com/katholt/Kleborate/wiki)
+This is a tool that integrates multiple analyses for Klebsiella.
+
+This is under active development, so we'll install from the latest GitHub repository.
+
+```
+sudo su -
+cd /usr/local/src
+git clone --recursive https://github.com/katholt/Kleborate.git
+cd Kleborate/kaptive
+git pull https://github.com/katholt/Kaptive master
+cd ..
+# this will put the main kleborate in /usr/local/bin by default
+python3 setup.py install
+
+# test it
+kleborate -h
 ```
 
 #### [Kraken 2](https://ccb.jhu.edu/software/kraken2/)
