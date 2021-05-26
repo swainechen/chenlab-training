@@ -69,6 +69,7 @@ Note that the version numbers are included in the commands below - you'll have t
 
 ### Post-processing, variant calling
 * [BLASR](#BLASR)
+* [breseq](#breseq)
 * [GATK](#GATK)
 * [GraphMap2](#GraphMap2)
 * [lofreq](#lofreq)
@@ -1127,6 +1128,7 @@ FinIS test_dataset/soap/conf.config
 
 ### Post-processing, variant calling
 * [BLASR](#BLASR)
+* [breseq](#breseq)
 * [GATK](#GATK)
 * [GraphMap2](#GraphMap2)
 * [lofreq](#lofreq)
@@ -1148,6 +1150,33 @@ sudo apt install blasr
 
 # test it
 blasr --help
+```
+
+#### [breseq](https://barricklab.org/twiki/bin/view/Lab/ToolsBacterialGenomeResequencing)
+This is a pipeline for finding mutations in a short read sequencing data set relative to a reference sequence.
+
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/barricklab/breseq/releases/download/v0.35.6/breseq-0.35.6-Linux-x86_64.tar.gz
+tar xvzf breseq-0.35.6-Linux-x86_64.tar.gz
+cd breseq-0.35.6-Linux-x86_64
+# check the docs
+less README
+less documentation/installation.html
+
+# update owners and permissions because we're running around as root
+chown -R root:root /usr/local/src/breseq-0.35.6-Linux-x86_64
+cd /usr/local/src/breseq-0.35.6-Linux-x86_64
+chmod -R a+r *
+find . -mindepth 1 -type d | xargs chmod 755
+find . -mindepth 1 -executable | xargs chmod 755
+
+# link over the binary and the share files
+cd /usr/local/src/breseq-0.35.6-Linux-x86_64/bin
+for i in *; do ln -s /usr/local/src/breseq-0.35.6-Linux-x86_64/bin/$i /usr/local/bin; done
+ln -s /usr/local/src/breseq-0.35.6-Linux-x86_64/share/breseq /usr/local/share/
+
 ```
 
 #### [GATK](https://gatk.broadinstitute.org/hc/en-us)
