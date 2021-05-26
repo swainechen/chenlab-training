@@ -1067,10 +1067,14 @@ chmod 755 /usr/local/src/OPERA-LG_v2.0.6
 cd /usr/local/src/OPERA-LG_v2.0.6
 chmod -R a+r *
 find . -mindepth 1 -type d | xargs chmod 755
-find . -mindepth 1 -type x | xargs chmod 755
+find . -mindepth 1 -executable | xargs chmod 755
 
 # this also has a bug in the preprocess script which is due to samtools version differences:
 sed -i -e 's/-\\@ 20//' /usr/local/src/OPERA-LG_v2.0.6/bin/preprocess_reads.pl
+
+# this can now be run as (obviously change all arguments in <>):
+preprocess_reads.pl --contig <assembled contigs> --illumina-read1 <R1 fastq.gz> --illumina-read2 <R2 fastq.gz> --out preprocess.bam --map-tool bwa --samtools-dir /usr/local/src/samtools-0.1.18/
+OPERA-LG <assembled contigs> preprocess.bam <output_dir> /usr/local/src/samtools-0.1.18/
 ```
 Note that the wiki says that this depends on samtools <=0.1.19 and blasr <=1.3.1.
 Instructions for keeping an old version of samtools (0.1.18) can be found in the [SRST2](#SRST2) section, and the location of the binaries should be `/usr/local/src/samtools-0.1.18`.
@@ -1079,6 +1083,8 @@ Instructions for keeping an old version of samtools (0.1.18) can be found in the
 FinIS is an assembly finisher, which generally is used after the [OPERA-LG](#OPERA-LG) scaffolder.
 This is on SourceForge at v0.3, and a binary is included.
 It requires [MOSEK](https://www.mosek.com/) 6 (this is currently at 9).
+
+This really only works at this point with a velvet assembly, and it needs the `LastGraph` file from a velvet run (specify `-clean no` for `velvetg`).
 ```
 sudo su -
 cd /usr/local/src
@@ -1461,7 +1467,9 @@ prokka --list
 # this has another issue with licensing with Debian/Ubuntu. Check /usr/share/doc/prokka/README.Debian
 sh /usr/share/doc/prokka/get-additional-data
 ```
+For reference, these libraries get stored in `/var/lib/prokka/db`
 This throws an error because it assumes a numeric version number for BioPerl, but the version is ok and this still runs.
+
 
 #### [Roary](https://github.com/sanger-pathogens/Roary)
 This is a popular pan genome prediction tool.
