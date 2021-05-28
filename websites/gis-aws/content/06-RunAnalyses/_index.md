@@ -29,7 +29,7 @@ Output shows where samtools is installed.
 1. Get reference sequence
 
 ```bash
-mkdir /tmp/outbreaks/SG-M1
+mkdir -p /tmp/outbreaks/SG-M1
 ```
 ```bash
 cd /tmp/outbreaks/SG-M1
