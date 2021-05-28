@@ -11,7 +11,7 @@ The following prerequisites are required for the HPC workshops:
 - A computer with an internet connection running Microsoft Windows, Mac OS X, or Linux.
 - An internet browser such as Chrome, Firefox, Safari, Opera, or Edge.
 - Familiarity with common Linux commands.
-- Familiarity with using an SSH client like Putty/MobaXterm.
+- Familiarity with using an SSH client like PuTTY/MobaXterm.
 
 This workshop includes multiple code samples that you can copy and paste using the button shown below.
 

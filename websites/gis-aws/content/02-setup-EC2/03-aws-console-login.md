@@ -6,7 +6,7 @@ weight = 50
 tags = ["tutorial", "aws console", "ec2"]
 +++
 
-Depending on your workshop, you may access the AWS Management Console through direct sign-in ([here](https://signin.aws.amazon.com/console)) or as directed by your trainer. To sign in, enter your AWS Account ID or alias, IAM user name, and password that was provided to you for this lab.
+Depending on your workshop, you may access the AWS Management Console through direct sign-in ([here](https://signin.aws.amazon.com/console)) or in an alternative method, as directed by your trainer. To sign in via console, enter your AWS Account ID or alias, IAM user name, and password that was provided to you for this lab.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/login.png)
 
@@ -20,7 +20,7 @@ After you sign in, take a few minutes to explore the navigation components of th
 
 Start this workshop by selecting an **AWS Region**:
 
-Choose the **Region** drop-down menu, then choose and click on a region to select the region you will deploy all the AWS resources into e.g. **US East (N. Virginia) us-east-1**.
+Choose the **Region** drop-down menu, then choose and click on a region to select the region you will deploy all the AWS resources into e.g. **Asia Pacific (Singapore) ap-southeast-1**.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/aws-console.png)
 

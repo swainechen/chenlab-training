@@ -13,7 +13,7 @@ The operating system of your local computer determines the options that you have
 
 We will now use the private **.ppk** file of the key pair generated earlier to open a SSH session to the EC2 instance.
 
-1.	Start the PuTTy application.
+1.	Start the PuTTY application.
 
 2.	Enter in the IP address of the EC2 instance in the **Host Name (or IP address)** field.
 
@@ -53,13 +53,13 @@ cp /mnt/<Windows drive letter>/path/my-key-pair.pem ~/WSL-path/my-key-pair.pem
 
 2.	In a terminal window, use the ssh command to connect to the instance. You specify the path and file name of the private key (.pem), the user name for your instance, and the public DNS name or IP Address.
 
-**NOTE**: Username to be used here is **ec2-user**
+**NOTE**: Username to be used here is **ec2-user**.
 
 ```bash
 sudo ssh -i /path/my-key-pair.pem ec2-user@<ip-address>
 ```
 
-you will see the following response
+You will see the following response:
 
 ```bash
 The authenticity of host '<ip-address>'
@@ -99,7 +99,7 @@ Are you sure you want to continue connecting (yes/no)?
 
 You will now be logged into the Instance.
 
-**NOTE**: you might need to change the permissions of the key file by running the chmod commannd as follows
+**NOTE**: you might need to change the permissions of the key file by running the chmod command as follows
 ```bash
 chmod 600 /path/my-key-pair.pem
 ```
