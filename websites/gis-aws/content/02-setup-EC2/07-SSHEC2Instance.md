@@ -99,7 +99,7 @@ Are you sure you want to continue connecting (yes/no)?
 
 You will now be logged into the Instance.
 
-**NOTE**: you might need to change the permissions of the key file by running the chmod command as follows
+**NOTE**: You might need to change the permissions of the key file by running the chmod command as follows
 ```bash
 chmod 600 /path/my-key-pair.pem
 ```

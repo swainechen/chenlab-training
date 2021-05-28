@@ -76,7 +76,7 @@ aws ec2 describe-instances
 
 This gives a description of all the EC2 instances in the account for the specified region.
 
-6.	In adition, take a look at the key-pairs we have for the selected region.
+6.	In addition, take a look at the key-pairs we have for the selected region.
 
 ```bash
 aws ec2 describe-key-pairs

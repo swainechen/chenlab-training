@@ -8,7 +8,7 @@ tags = ["tutorial", "aws console", "ec2"]
 
 1.	On the Left Navigation Bar click on **Volumes** under **Elastic Block Store** to view all the volumes. Locate and select your newly created volume searching the list for the unique Name tag provided in the previous step.
 
-2.	Click on **Actions** and futher click on **Attach Volume**
+2.	Click on **Actions** and further click on **Attach Volume**
 
 3.	In the **Attach Volume** dialog, click on the **Instance** field and select the EC2 instance by looking for the Instance ID or Name Tag in the list. Click **Attach** to attach the volume.
 
@@ -18,7 +18,7 @@ If attached successfully - In the list of displayed volumes you should see your 
 
 4.	On the left Navigation pane Click on  **EC2 Dashboard** on the very top of the list of items. 
 
-5.	Select **Running instances** and further select the EC2 Instance form the list of EC2 instances to which you attached the Volume.
+5.	Select **Running instances** and further select the EC2 Instance from the list of EC2 instances to which you attached the Volume.
 
 ![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2RunningInstances.png)
  

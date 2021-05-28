@@ -24,7 +24,7 @@ Before that, lets create a folder on your machine to where the data will be copi
 2.	Run the following commands to create a directory to hold the data and further cd to that directory.
 
 ```bash
-mkdir /tmp/fastq/SRR6327950
+mkdir -p /tmp/fastq/SRR6327950
 ```
 
 ```bash
@@ -46,7 +46,7 @@ aws --profile training s3 cp s3://slchen-lab-transfer/GIS-training/SRR6327950/SR
 5.	Download additional data using regular utilities
 
 ```bash
-ena-fast-download.py SRR6327950
+kingfisher -r SRR6327950 -m ena-ascp
 ```	
 
 We are now ready to run the analyses.

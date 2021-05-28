@@ -12,7 +12,7 @@ AWS delivers an integrated suite of services that provides everything you need t
 
 These workloads span the traditional HPC applications, like genomics, computational chemistry, financial risk modeling, computer aided engineering, weather prediction, and seismic imaging, as well as emerging applications, like machine learning, deep learning, and autonomous driving.
 
-HPC on AWS removes the long wait times and lost productivity often associated with on-premises HPC clusters. Flexible configuration and virtually unlimited scalability allow you to grow and shrink your infrastructure as your workloads dictate, not the other way around. Additionally, with access to a broad portfolio of cloud-based services like data analytics, artificial intelligence (AI), and machine learning (ML), you can redefine traditional HPC workflows to innovate faster.
+HPC on AWS removes the long wait times and cost productivity often associated with on-premises HPC clusters. Flexible configuration and virtually unlimited scalability allow you to grow and shrink your infrastructure as your workloads dictate, not the other way around. Additionally, with access to a broad portfolio of cloud-based services like data analytics, artificial intelligence (AI), and machine learning (ML), you can redefine traditional HPC workflows to innovate faster.
 
 Today, more cloud-based HPC applications run on AWS than on any other cloud. -->
 

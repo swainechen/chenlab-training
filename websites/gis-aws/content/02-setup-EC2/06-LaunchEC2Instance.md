@@ -26,7 +26,7 @@ We will now launch an EC2 Linux based instance.
 
 5.	In the **Step 2** page, choose an Instance type, select the **c5.2xlarge** instance from the list and click **Next: Configure Instance Details**.
 
-![EC2ChooseInstancetype](/images/hpc-aws-parallelcluster-workshop/EC2ChooseInstanceType.png)
+![EC2ChooseInstancetype](/images/hpc-aws-parallelcluster-workshop/EC2ChooseInstanceType-1.png)
 
 6.	On **Step 3** page, Configure Instance Details - leave the default settings. Note that the **Subnet** field can be configured to launch the instance in a specific **Availability Zone**; while we're keeping the default for this workshop, this gives you control over the location of your machine. Click the **Next: Add Storage** button in the bottom right corner. [Learn More](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html)
 

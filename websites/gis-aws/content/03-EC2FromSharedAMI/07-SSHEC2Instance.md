@@ -4,7 +4,7 @@ weight = 90
 tags = ["tutorial", "cloud9", "s3"]
 +++
 
-The operating system of your local computer determines the options that you have to connect from your local computer to your Linux instance. Here are dierctions to connect from Windows Using PuTTY or OpenSSH, From Linux & MacOS-X using ssh client and from Windows Subsystem for Linux (WSL) using ssh clinet.
+The operating system of your local computer determines the options that you have to connect from your local computer to your Linux instance. Here are directions to connect from Windows Using PuTTY or OpenSSH, From Linux & MacOS-X using ssh client and from Windows Subsystem for Linux (WSL) using ssh client.
 
 **Note:** If you are using the premade AMI ami-0049863cda8d60218, your username will be **ubuntu**.  
 
@@ -32,7 +32,7 @@ We will now use the private **.ppk** file of the key pair generated earlier to o
 
 9.	You will now be presented with the **login as** prompt.
 
-10.	At the **login as** prompt type **ec2-user** if your image is Amazon Linux OS  or  **ubuntu** is your image is Ubuntu Linux OS and hit enter.
+10.	At the **login as** prompt type **ec2-user** if your image is Amazon Linux OS  or  **ubuntu** if your image is Ubuntu Linux OS and hit enter.
 
 
 
@@ -54,7 +54,7 @@ cp /mnt/<Windows drive letter>/path/my-key-pair.pem ~/WSL-path/my-key-pair.pem
 
 2.	In a terminal window, use the ssh command to connect to the instance. You specify the path and file name of the private key (.pem), the user name for your instance, and the public DNS name or IP Address.
 
-**NOTE**: Username to be used here is **ec2-user** if your image is Amazon Linux OS  and **ubuntu** is your image is Ubuntu Linux OS. 
+**NOTE**: Username to be used here is **ec2-user** if your image is Amazon Linux OS  and **ubuntu** if your image is Ubuntu Linux OS. 
 
 ```bash
 sudo ssh -i /path/my-key-pair.pem ec2-user@<ip-address>
@@ -84,7 +84,7 @@ We will now use the private **.pem** file of the key pair generated earlier to o
 
 1.	In a terminal window, use the ssh command to connect to the instance. You specify the path and file name of the private key (.pem), the user name for your instance, and the public DNS name or IP Address of your instance.
 
-**NOTE**: Username to be used here is **ec2-user** if your image is Amazon Linux OS  and **ubuntu** is your image is Ubuntu Linux OS.
+**NOTE**: Username to be used here is **ec2-user** if your image is Amazon Linux OS  and **ubuntu** if your image is Ubuntu Linux OS.
 
 ```bash
 ssh -i /path/my-key-pair.pem ec2-user@<ip-address>
@@ -102,7 +102,7 @@ Are you sure you want to continue connecting (yes/no)?
 
 You will now be logged into the Instance.
 
-**NOTE**: you might need to change the permissions of the key file by running the chmod commannd as follows. Edit to match your path and key pair name. 
+**NOTE**: you might need to change the permissions of the key file by running the chmod command as follows. Edit to match your path and key pair name. 
 ```bash
 sudo chmod 600 /path/my-key-pair.pem
 ```
