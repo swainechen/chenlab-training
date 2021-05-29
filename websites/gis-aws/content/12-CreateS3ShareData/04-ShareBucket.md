@@ -26,7 +26,7 @@ Observe the first button **Bucket Public Access** is selected by default and sho
 
 5.	Click on **Edit**.
 
-6.	Uncheck the **Block all public access** check box and click on **Save**.
+6.	Uncheck the **Block all public access** check box and click on **Save changes**.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic1.png)
 
@@ -39,31 +39,18 @@ You will now be shown a message indicating that public access settings to the bu
 **Next we will update the Access Control List to provide read and write permissions for objects**
 
 
-8.	Next click on the **Access Control List** button.
+8.	Scroll down to the **Access control list (ACL)** section and click on **Edit**.
+
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic3.png)
+
+
+9.	Next under **Grantee** - **Everyone (public access)** check **List** (under Objects) and **Read** (under Bucket ACL).
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic4.png)
 
 
-9.	Next select **Everyone** Group under **Public access** section and further check **List objects** on the dialog titled **Everyone** and click on **Save**.
+10.	Check the **I understand the effects of these changes on my objects and buckets** box and then click on **Save changes**. 
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic5.png)
-
-Verify that the value under **List Objects** column for the **Everyone** Group under the **Public access** section shows **Yes**.
-
-
-10.	Select the file object from the list you wish to make public and share. This will allow others to download it. 
-
-A dialog box appears with the Overview, Properties and Permissions of the object.
-
-Click on **Permissions**.
-
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsObjectPublic1.png)
-
-11.	On the Permissions page of the object, select **Everyone** under the **Public access** section and further check the **Read object** check box in the dialog box labelled **Everyone** and click **Save**.
-
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsObjectPublic2.png)
-
-
-Verify that the **Read Object** value is set to **Yes** for the **Everyone** Group under **Public access**.
 
 At this point you have effectively shared the file object. Check with your collaborators to see if they can list the objects in your shared bucket. Try and download the files you shared by running the AWS CLI commands.
