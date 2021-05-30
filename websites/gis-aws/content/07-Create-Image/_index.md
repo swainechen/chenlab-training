@@ -12,7 +12,7 @@ You can launch an instance from an existing AMI, customize the instance, and the
 
 In this Section of the workshop you will learn to: 
 
-- Prepare the  EC2 instance for creating an AMI from it.
+- Prepare the  EC2 instance for creating an AMI
 
 - Create an AMI from an EC2 instance.
 

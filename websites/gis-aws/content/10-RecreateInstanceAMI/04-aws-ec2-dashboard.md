@@ -9,7 +9,7 @@ tags = ["tutorial", "dashboard", "ParallelCluster"]
 2.	Choose **EC2** to open the **EC2 Dashboard**. 
 
 
-Spend a few minutes familiarizing yourself with the layout of the dashboard:
+Spend a few minutes to re-familiarize yourself with the layout of the dashboard:
 
 - Left pane: Tools and features, such as the saved Amazon Machine Images (AMIs), storage volumes, and ssh keys.
 - Center: Resource listings and the ability to launch an instance. 

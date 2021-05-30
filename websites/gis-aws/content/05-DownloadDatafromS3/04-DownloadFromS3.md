@@ -8,20 +8,20 @@ tags = ["tutorial", "aws console", "ec2"]
 
 Now that you have access to shared S3 buckets we are now ready to download data from S3 buckets to your machine.
 
-1.	Run the command to list all the S3 buckets
+1.	Run the command to list all the S3 buckets:
 
 ```bash
 aws --profile training s3 ls --region ap-southeast-1
 ```
-you will find the bucket named **slchen-lab-transfer** in the list, this bucket contains multiple folders. 
+you will find the bucket named **slchen-lab-transfer** in the list, and this bucket contains multiple folders. 
 
-**NOTE**: Only a specific few folders may have been shared,
+**NOTE**: Only a specific few folders may have been shared. Users are able to select which folders are available to the public within a bucket.  
 
-We will now copy files from a specific location within this folder to your machine
+We will now copy files from a specific location within this folder to your machine.
 
-Before that, lets create a folder on your machine to where the data will be copied to.
+Before that, let's create a directory on your machine to store this data.
 
-2.	Run the following commands to create a directory to hold the data and further cd to that directory.
+2.	Run the following commands to create a directory to hold the data and cd to that directory.
 
 ```bash
 mkdir -p /tmp/fastq/SRR6327950
@@ -31,7 +31,7 @@ mkdir -p /tmp/fastq/SRR6327950
 cd /tmp/fastq/SRR6327950
 ```
 
-3.	Run the AWS CLI command to copy files from the S3 bucket to the directory just created
+3.	Run the AWS CLI command to copy files from the S3 bucket to this new directory. 
 
 ```bash
 aws --profile training s3 cp s3://slchen-lab-transfer/GIS-training/SRR6327950/SRR6327950_1.fastq.gz . --region ap-southeast-1
@@ -49,4 +49,4 @@ aws --profile training s3 cp s3://slchen-lab-transfer/GIS-training/SRR6327950/SR
 kingfisher -r SRR6327950 -m ena-ascp
 ```	
 
-We are now ready to run the analyses.
+We are now ready to run some data analysis. 

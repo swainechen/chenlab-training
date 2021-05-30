@@ -14,7 +14,7 @@ tags = ["tutorial", "Prerequisite", "ec2"]
 ![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2Snapshots.png)
 
 
-3.	Select the snapshot you created in the section IX of the workshop. **NOTE**: You can identify the snapshot by the Snapshot Name Tag you had provided earlier.
+3.	Select the Snapshot you created in the section IX of the workshop. **NOTE**: You can identify the Snapshot by the Snapshot Name Tag you had provided earlier.
 
 ![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2SelectSnapshot.png)
 
@@ -22,13 +22,12 @@ tags = ["tutorial", "Prerequisite", "ec2"]
 
 ![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2CreateVolume.png)
 
-5.	After selecting **Create Volume**, make note that the **Size** field is prepopulated but you will have the option to increase the size (however, you cannot decrease the size). **Important**: Make sure that the **Availability Zone** is the same as the EC2 instance you are going to attach the volume to.
+5.	After selecting **Create Volume**, make note that the **Size** field is prepopulated but you will have the option to increase the size (however, you cannot decrease the size). **Important**: Make sure that the **Availability Zone** is the same as the EC2 Instance you are going to attach the Volume to.
 
-6.	Click on **Add Tag** to uniquely tag the resource. Provide a value "Name" for the **Key** and a unique name for the **Value**.
-**NOTE**:For the purposes of the lab please use your [name+lastname-ebs] as the **Value**  
+6.	Click on **Add Tag** to uniquely tag the resource. Provide "Name" for the **Key** and "[your initials]-EBS" for the **Value**.
 
 ![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2VolumeTag.png)
 
-7.	**Create Volume** will create a new EBS volume. If the volume is created you will see the following screen:
+7.	**Create Volume** will create a new EBS Volume. If the Volume is created you will see the following screen:
 
 ![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2VolumeCreated.png)

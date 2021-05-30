@@ -4,19 +4,19 @@ weight = 60
 tags = ["tutorial", "dashboard", "ParallelCluster"]
 +++
 
-1.	Login to your EC2 Instance.
+1.	Log in to your EC2 Instance.
 
-2.	list the available disks using the following command
+2.	List the available disks using the following command:
 
 ```bash
 lsblk
 ```
 	
-The output will list the disk you attached to your instance.
+The output will list the disks attached to your instance.
 
 **NOTE**: Newer Linux kernels may rename your devices to **/dev/xvdf** through **/dev/xvdp** internally, even when the device name entered here (and shown in the details) is /dev/sdf through /dev/sdp.
 
-3.	Check for an unmounted filesystem of size 10GB. For example: "nvme1n1" as shown below.
+3.	Check for an unmounted filesystem of size 10GB. For example: "nvme1n1" as shown below:
 
 ```bash
 NAME        MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
@@ -25,7 +25,7 @@ nvme0n1     259:0    0  150G  0 disk
 nvme1n1     259:2    0   10G  0 disk
 ```
 
-4.	Check if the volume has any data using the following command.
+4.	Check if the volume has any data using the following command:
 
 ```bash
 sudo file -s /dev/nvme1n1
@@ -57,7 +57,7 @@ sudo mount /dev/nvme1n1 /mnt/volume1
 ```
 
 
-8.	cd into volume1 directory and check the disk space for confirming the volume mount.
+8.	cd into the volume1 directory and check the disk space for confirming the volume mount.
 
 ```bash
 cd /mnt/volume1
@@ -67,8 +67,13 @@ The above command would show the free space in the volume1 directory.
 
 **NOTE**: At this point, the drive is owned by root and not user. If you would like to edit files in this directory you'll need to change ownership with **chown**. We'll go over this later. 
 
-9.	To unmount the volume, you have to use the following command. Make sure to be outside the directory to unmount the volume.
+9.	For your own information, it is possible to later remove this device. Practice unmounting, then remounting it. To unmount the volume, you have to use the following command. Make sure to be outside the directory to unmount the volume.
 
 ```bash
 sudo umount /dev/nvme1n1
-```
+```  
+But we'll need this device for later, so remember to re-mount it.  
+
+```bash
+sudo mount /dev/nvme1n1 /mnt/volume1
+```  

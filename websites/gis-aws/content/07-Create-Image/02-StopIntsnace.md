@@ -6,11 +6,11 @@ weight = 50
 tags = ["tutorial", "aws console", "ec2"]
 +++
 
-We will now stop the running instance. Before we proceed it is a good idea to gracefully stop any running applications and ensure that data is saved. Stopping an instance is equivalent to turning off your computer/server.
+We will now stop the running instance. Before we proceed, it is a good idea to stop any running applications and ensure that data is saved. Stopping an instance is equivalent to turning off your computer/server.
 
-**NOTE**: It is best practices but not mandatory to stop the instance before creating the image. However while creating the image the instance will undergo a reboot, hence make sure there are no applications running.
+**NOTE**: It is best practices, but not mandatory, to stop the instance before creating the image. However while creating the image the instance will undergo a reboot, so make sure there are no applications running.
 
-1.	Before stopping let us copy all the required data from /tmp to a more persistent storage as stopping the instance will clear out /tmp. Copy all the required files to the EBS volume we mounted at **/mnt/volume1** before proceeding.
+1.	Before stopping, copy all the required data from /tmp to a more persistent storage as stopping the instance will clear out /tmp. Copy all the required files to the EBS volume we mounted previously, at **/mnt/volume1**, before proceeding.
 
 ```bash
 cp -ax /tmp/fastq /mnt/volume1/
@@ -20,22 +20,22 @@ cp -ax /tmp/fastq /mnt/volume1/
 cp -ax /tmp/outbreaks /mnt/volume1/
 ```
 
-2.	Login to the AWS console, in the AWS Management Console search bar, type **EC2**.
+2.	Login to the AWS Console, and in the AWS Management Console search bar, type **EC2**.
 
 3.	Choose **EC2** to open the **EC2 Dashboard**.
 
-4.	In the left Navigation pane, Click on **Instances** under the **Instances** section to view all the Instances that are Running, Stopped and Terminated.
+4.	In the left Navigation pane, Click on **Instances** to view all the Instances that are Running, Stopped and Terminated.
 
 5.	Select your Instance. 
 
-**NOTE**: The **Instance State** of the EC2 instance shows **running** state.
+**NOTE**: The **Instance State** of the EC2 instance shows the machine is **Running**.
 
-6.	Click on **Actions** button and further choose and click on  **Instance State** and further choose and click on **Stop**
+6.	Click on the **Actions** button and then click on **Instance State**, and finally click on **Stop**
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2StopInstance-2.png)
 
-7.	On the Dialog box click on **Stop** to confirm stopping the instance.
+7.	On the dialog box click on **Stop** to confirm stopping the instance.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2StopConfirm-2.png)
 
-8.	Note that the instance will now attempt to stop, and after a short duration the **Instance State** will change to **Stopped**
+8.	Note that the instance will now attempt to stop, and after a short duration the **Instance State** will change to **Stopped**. You may have to refresh the window.

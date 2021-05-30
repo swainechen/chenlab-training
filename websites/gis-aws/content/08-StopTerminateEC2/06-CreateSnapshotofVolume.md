@@ -4,30 +4,29 @@ weight = 60
 tags = ["tutorial", "dashboard", "ParallelCluster"]
 +++
 
-1.	Click on **Actions** and choose and select **Create Snapshot**. 
+1.	Click on **Actions**, then select **Create Snapshot**. 
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2VolumeCreateSnapshot.png)
 
 
-2.	In the **create snapshot** screen provide a **Description** for the Volume, this will be identifier to search for the snapshot of the volume.
+2.	In the **Create Snapshot** screen, provide a **Description** for the Volume; this will be an identifier to search for the Snapshot of the Volume.
 
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2VolumeCreateSnapshotScreen.png)
 
 
-3.	Click on **Add Tag** to provide a unique name tag for better identificaiton of the snapshot. Enter "[your initials]-training" in the **Key** field and a unique value in the **Value** field.
+3.	Click on **Add Tag** to provide a unique name tag for better identificaiton of the snapshot. Enter "Name" in the **Key** field, and "[your initials]-snapshot" for the **Value** field. Add the "User" and "Grant" tag you've previously used as well.
 
-**NOTE**: for the purpose of this training, use your previous tag and provide "[your initials]-EBS" as the value.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EBSVolumeSnapshot.png)
 
-4.	Click on **Create Snapshot**
+4.	Click on **Create Snapshot**.
 
 
-5.	A Snapshot creation task will be started and a message indicating the same will be displayed. Click on the **Close** button.
+5.	A Snapshot creation task will be started, and a message indicating the same will be displayed. Click on the **Close** button.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2VolumeCreateSnapshotSuccess.png)
 
-6.	Click on  **Snapshots** under the **Elastic Block Store** section in the left navigation pane to view all the snapshots created.
+6.	Click on **Snapshots** under the **Elastic Block Store** section in the left Navigation pane to view all the snapshots created.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2VolumeSnapshotCreated.png)

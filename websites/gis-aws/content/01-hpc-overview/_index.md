@@ -1,5 +1,5 @@
 ---
-title: "AWS-GIS Training Overview"
+title: "GIS x AWS Training Overview"
 date: 2019-01-24T09:05:54Z
 weight: 5
 pre: "<b>I ⁃ </b>"

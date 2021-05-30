@@ -16,10 +16,10 @@ sudo apt update && sudo apt upgrade; dpkg --list | grep awscli
 
 **Check Existing Amazon EC2 Instances**
 
-Use the following commands to display:
+Use the following commands to explore AWS CLI (use **q** to exit windows):
 
-- the general AWS CLI help
-- the help related to Amazon EC2 commands
+- general AWS CLI help
+- help related to Amazon EC2 commands
 - the list of your existing instances with their key characteristics
 - the list of your registered SSH key-pairs
 
@@ -36,7 +36,7 @@ aws ec2 describe-instances
 aws ec2 describe-key-pairs
 ```
 
-The above commands may fail when a region is not specified, or there may be a permissions error as it requires your AWS credentials to access other AWS resources such as EC2, S3, and so on. 
+The above commands may fail when a region is not specified, or there may be a permissions error as it requires your AWS credentials to access other AWS resources such as EC2, S3, and so on. You can enter this information manually. If you are using Event Engine for this workshop, you can copy the information on the Console page and paste it instead.
 
 For general use, the **aws configure** command is the fastest way to set up your AWS CLI installation.
 
@@ -59,10 +59,10 @@ aws_secret_access_key=[Secret Access Key]
 
 ```
 
-4.	Enter a **Default region name**. For the purposes of this lab, use us-east-1.
+4.	Enter a **Default region name**. For the purposes of this lab, use ap-southeast-1.
 
 ```bash
-Default region name=us-east-1
+Default region name=ap-southeast-1
 ```
 
 Hit enter to accept the defaults for  **output format**
@@ -81,6 +81,8 @@ This gives a description of all the EC2 instances in the account for the specifi
 ```bash
 aws ec2 describe-key-pairs
 ```
-**NOTE**:Type **q** to exit the help pages.
 
+
+**Note:** This is a very brief introduction to AWS CLI. With great power comes great responsibility, so familiarise yourself and practice before using it to automate instances. Your wallet will thank you.  
+  
 Next, you will use the AWS CLI to interact with Amazon S3.

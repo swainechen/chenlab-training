@@ -20,13 +20,13 @@ Output shows where bwa is installed.
 which samtools
 ```
 Output shows where samtools is installed.
-
+  
 
 
 **Basic Analyses**
 
 
-1. Get reference sequence
+1. Get a reference sequence:
 
 ```bash
 mkdir -p /tmp/outbreaks/SG-M1
@@ -44,7 +44,8 @@ gunzip GCF_001275545.2_ASM127554v2_genomic.fna.gz
 mv GCF_001275545.2_ASM127554v2_genomic.fna SG-M1.fna
 ```
 
-2. Map and call SNPs
+2. Map and call SNPs:   
+**Note:** For an annotation of the programs used below and other bioinformatics tools, check out our course [github page](https://github.com/swainechen/chenlab-training).  
 
 ```bash
 bwa index SG-M1.fna
@@ -78,4 +79,6 @@ seqtk sample /tmp/fastq/SRR6327950/SRR6327950_2.fastq.gz 0.25 | gzip -c > SRR632
 spades.py -t 2 -1 /tmp/fastq/SRR6327950/SRR6327950_1.fastq.gz -2 /tmp/fastq/SRR6327950/SRR6327950_2.fastq.gz -o SRR6327950_spades
 ```
 
-**NOTE**: This assembly above will complete on a t3a.large, takes about 5 hours.
+**NOTE**: This assembly above will complete on a t3a.large, takes about 5 hours. 
+   
+Excellent! This is a pretty routine task that can easily be run on an AWS EC2 instance. As experienced when conducting the assembly in Step 3, selecting the right machine for the job is incredibly important. If you run out of RAM or space on your disk, your job may quit. Luckily, these can be easily addressed by changing your instance type or by attaching another EBS volume to your machine. Next, we'll look at how to make an AMI from your own machine. 

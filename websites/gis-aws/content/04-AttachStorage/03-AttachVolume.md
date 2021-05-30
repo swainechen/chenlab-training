@@ -1,12 +1,12 @@
 +++
-title = "b. Attach EBS volume to instance"
+title = "b. Attach EBS Volume to Instance"
 date = 2019-09-18T10:46:30-04:00
 draft = false
 weight = 50
 tags = ["tutorial", "aws console", "ec2"]
 +++
 
-1.	On the Left Navigation Bar click on **Volumes** under **Elastic Block Store** to view all the volumes. Locate and select your newly created volume searching the list for the unique Name tag provided in the previous step.
+1.	On the Left Navigation Bar click on **Volumes** under **Elastic Block Store** to view all the volumes. Select your newly created volume searching the list for the unique Name tag provided in the previous step.
 
 2.	Click on **Actions** and further click on **Attach Volume**
 
@@ -16,9 +16,9 @@ tags = ["tutorial", "aws console", "ec2"]
 
 If attached successfully - In the list of displayed volumes you should see your new volume having a status (under the State Column) indicating **In Use**.
 
-4.	On the left Navigation pane Click on  **EC2 Dashboard** on the very top of the list of items. 
+4.	On the left Navigation pane click **EC2 Dashboard** on the very top of the list of items. 
 
-5.	Select **Running instances** and further select the EC2 Instance from the list of EC2 instances to which you attached the Volume.
+5.	Select **Running instances** and then select your EC2 Instance from the list of instances to which you attached the Volume.
 
 ![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2RunningInstances.png)
  

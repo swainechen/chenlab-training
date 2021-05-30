@@ -5,7 +5,7 @@ tags = ["tutorial", "dashboard", "ParallelCluster"]
 +++
 
 
-Now that a snapshot has been taken of the Volume, we will delete the volume itself.
+Now that a Snapshot has been taken of the Volume, we will delete the Volume itself.
 
 1.	In the left Navigation pane click on **Volumes** under the **Elastic Block Store** section to view all the volumes.	 
 
@@ -15,12 +15,5 @@ Now that a snapshot has been taken of the Volume, we will delete the volume itse
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2VolumeDeleteDialogConfirm.png)
 
-3.	On the **Delete Volume** dialog click on **Yes, Delete** to confirm the delete. The EBS Volume will now be deleted. 
-
-
-
-
-
-
-
+3.	On the **Delete Volume** dialog click on **Yes, Delete** to confirm the delete. The EBS Volume will now be deleted. This Volume no longer exists on AWS, and you will no longer be charged for it. 
 
