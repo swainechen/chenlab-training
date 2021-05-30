@@ -47,6 +47,6 @@ The Bucket will now be created.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3SelectBucket.png)
 
-6.      Click on the bucket to access and view the bucket properties, permissions & management configurations.
+6.	Click on the bucket to access and view the bucket properties, permissions & management configurations.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3SelectBucket1.png)
