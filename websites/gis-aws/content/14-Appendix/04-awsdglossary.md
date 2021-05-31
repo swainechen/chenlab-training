@@ -10,9 +10,9 @@ tags = ["help", "glossary", "terms"]
 
 This is a short list of the most widely used cloud computing and AWS-related terms in this workshop that you might want to familiarize yourself with. It should be enough for the purposes of the current course, however, here is [the complete curated list of AWS references](https://docs.aws.amazon.com/general/latest/gr/glos-chap.html) by Amazon team.
 
-**Access key** is, in AWS terms, the he combination of an access key ID (for example, `AKIAIOSFODNN7EXAMPLE`) and a secret access key (for example, `wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY`). You use access keys to sign API requests that you make to AWS. It is a unique pair of cryptographic identifiers used as a signature of sender for server requests, a way of protecting the request from being altered.
+**Access key** is, in AWS terms, the combination of an access key ID (for example, `AKIAIOSFODNN7EXAMPLE`) and a secret access key (for example, `wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY`). You use access keys to sign API requests that you make to AWS. It is a unique pair of cryptographic identifiers used as a signature of sender for server requests, a way of protecting the request from being altered.
 
-**Access key ID** is a a unique identifier that's associated with a secret access key.
+**Access key ID** is a unique identifier that is associated with a secret access key.
 
 **AMI** is short for Amazon Machine Image - an encrypted template of your cloud machine, functionally similar to the snapshot of a computer's root drive. The image includes an operating system, additional software and layers of your application.
 

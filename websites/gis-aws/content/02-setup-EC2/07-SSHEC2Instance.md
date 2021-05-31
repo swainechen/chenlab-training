@@ -19,7 +19,7 @@ We will now use the private **.ppk** file of the key pair generated earlier to o
 
 3.	To save the session (so we dont have to repeat the configuration everytime) provide a name in the **Saved Sessions** field.
 
-4.	In the left navigation pane under **Connections** clickon **SSH** and next click on **Auth**.
+4.	In the left navigation pane under **Connections** click on **SSH** and next click on **Auth**.
 
 5. 	In the **Private key file for authentication** field click **Browse** and browse in the **.ppk** file downloaded when creating the key pair earlier.
 
@@ -29,7 +29,7 @@ We will now use the private **.ppk** file of the key pair generated earlier to o
 
 8.	PuTTy will now attempt to start an SSH Session.
 
-**NOTE**: You will get a security Alert **The Servers host key is not cached in the registry**, click on **Yes** to continue.
+**NOTE**: You will get a security alert **The Servers host key is not cached in the registry**, click on **Yes** to continue.
 
 9.	You will now be presented with the **login as** prompt.
 
@@ -51,7 +51,7 @@ We will now use the private **.pem** file of the key pair generated earlier to o
 cp /mnt/<Windows drive letter>/path/my-key-pair.pem ~/WSL-path/my-key-pair.pem
 ```
 
-2.	In a terminal window, use the ssh command to connect to the instance. You specify the path and file name of the private key (.pem), the user name for your instance, and the public DNS name or IP Address.
+2.	In a terminal window, use the ssh command to connect to the instance. Specify the path and file name of the private key (.pem), the user name for your instance, and the public DNS name or IP Address.
 
 **NOTE**: Username to be used here is **ec2-user**.
 
@@ -81,7 +81,7 @@ you will now be logged into the EC2 Instance.
 
 We will now use the private **.pem** file of the key pair generated earlier to open a SSH session to the EC2 instance.
 
-1.	In a terminal window, use the ssh command to connect to the instance. You specify the path and file name of the private key (.pem), the user name for your instance, and the public DNS name or IP Address of your instance.
+1.	In a terminal window, use the ssh command to connect to the instance. Specify the path and file name of the private key (.pem), the user name for your instance, and the public DNS name or IP Address of your instance.
 
 ```bash
 ssh -i /path/my-key-pair.pem ec2-user@<ip-address>

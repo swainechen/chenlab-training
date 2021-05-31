@@ -50,7 +50,7 @@ The AMI ID will now appear.
 
 9.	On **Step 6** page, you will be prompted to create a new security group, which will define your firewall rules. If you have not yet made a security group, provide a name for your new security group. Otherwise, click **Select an existing security group**, select your previous key, and skip ahead to step 11.
 
-**NOTE** for the purpose of this lab use your "[your-initials]-sec-group" for uniqueness and easy searchability.
+**NOTE**: For the purpose of this lab use your "[your-initials]-sec-group" for uniqueness and easy searchability.
 
 ![EC2ConfigSecGroups](/images/hpc-aws-parallelcluster-workshop/EC2ConfigSecGroups-2.png)
 

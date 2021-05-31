@@ -20,7 +20,7 @@ We will now launch an EC2 Linux based instance.
 
 4.	Next in the **Step 1** page, select the first **Amazon Linux 2 AMI(HVM), SSD Volume Type** and check **64-bit (x86)** under the **Select** button and click on the **Select**. 
 
-**NOTE**: that the ami-xxxxxxxxx label and specific versions of the installed package may be different than in the image below.
+**NOTE**: The ami-xxxxxxxxx label and specific versions of the installed package may be different than in the image below.
 
 ![EC2SelectAMI](/images/hpc-aws-parallelcluster-workshop/EC2SelectAMI.png)
 
@@ -28,7 +28,7 @@ We will now launch an EC2 Linux based instance.
 
 ![EC2ChooseInstancetype](/images/hpc-aws-parallelcluster-workshop/EC2ChooseInstanceType-1.png)
 
-6.	On **Step 3** page, Configure Instance Details - leave the default settings. Note that the **Subnet** field can be configured to launch the instance in a specific **Availability Zone**; while we're keeping the default for this workshop, this gives you control over the location of your machine. Click the **Next: Add Storage** button in the bottom right corner. [Learn More](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html)
+6.	On **Step 3** page, Configure Instance Details - leave the default settings. Note that the **Subnet** field can be configured to launch the instance in a specific **Availability Zone**; while we are keeping the default for this workshop, this gives you control over the location of your machine. Click the **Next: Add Storage** button in the bottom right corner. [Learn More](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html)
 
 ![EC2ChooseInstancetype](/images/hpc-aws-parallelcluster-workshop/EC2StepConfigureInstance.png)
 
@@ -39,13 +39,13 @@ We will now launch an EC2 Linux based instance.
 ![EC2ChooseInstancetype](/images/hpc-aws-parallelcluster-workshop/EC2AddStorage.png)
 
 
-8.	On **Step 5** page, you can choose a friendly name for your instance by clicking "Add Tag", and entering "Name" for the key, and "my-first-EC2" for the value. This Name key, more correctly known as a tag, will appear in the console once the instance launches. It makes it easy to keep track of running machines in a complex environment. Create additional tags similar for the ones you used for the key pair previously- give a user and grant key to this machine, and enter the same values. When ready, click **Next: Configure Security Group**.
+8.	On **Step 5** page, you can choose a friendly name for your instance by clicking "Add Tag", and entering "Name" for the key, and "my-first-EC2" for the value. This Name key, more correctly known as a tag, will appear in the console once the instance launches. It makes it easy to keep track of running machines in a complex environment. Create additional tags similar for the ones you used for the key pair previously - give a user and grant key to this machine, and enter the same values. When ready, click **Next: Configure Security Group**.
 
 ![EC2AddTags](/images/hpc-aws-parallelcluster-workshop/EC2AddTags-3.png)
 
 9.	On **Step 6** page, you will be prompted to create a new security group, which will be your firewall rules. Provide a name for your new security group.
 
-**NOTE** for the purpose of this lab use your "[Your initials]-sec-group".
+**NOTE**: For the purpose of this lab use your "[Your initials]-sec-group".
 
 ![EC2ConfigSecGroups](/images/hpc-aws-parallelcluster-workshop/EC2ConfigSecGroups.png)
 

@@ -4,9 +4,9 @@ weight = 90
 tags = ["tutorial", "cloud9", "s3"]
 +++
 
-Now let us stop and terminate the instance- **before following these steps, listen to your instructor**. For educational purposes, they may ask you to review the steps, but not actually terminate the instance.
+Now let us stop and terminate the instance - **before following these steps, listen to your instructor**. For educational purposes, they may ask you to review the steps, but not actually terminate the instance.
 
-1.	Return to the AWS console. In the AWS Managament Console search bar, type "EC2", or click the **EC2 Dashboard** item in the left-hand menu.
+1.	Return to the AWS console. In the AWS Management Console search bar, type "EC2", or click the **EC2 Dashboard** item in the left-hand menu.
 
 2.	Choose **EC2** to open the **EC2 Dashboard**.
 

@@ -4,7 +4,7 @@ weight = 90
 tags = ["tutorial", "cloud9", "s3"]
 +++
 
-Let us run a few Linux commands to install a few software packages. Enter the following commands, and press **y** and **enter** when necessary. The instance that we've started is completely blank and does not contain any downloaded programs or software. We'll need to build it up from scratch.  
+Let us run a few Linux commands to install a few software packages. Enter the following commands, and press **y** and **enter** when necessary. The instance that we have started is completely blank and does not contain any downloaded programs or software. We will need to build it up from scratch.  
 
 From yum **(nmap)**: just to install a network tool
 
@@ -43,5 +43,5 @@ Now the command should be recognized! There we go. Try seqtk again:
 ./seqtk
 ```
   
-As you can see, working from an empty instance can be quite troublesome. You'll need to download absolutely everything you need. AWS offers AMIs- Amazon Machine Instances- that can act as templates for pre-built machines. Let's get ready to try that.
+As you can see, working from an empty instance can be quite troublesome. You'll need to download absolutely everything you need. AWS offers AMIs - Amazon Machine Instances - that can act as templates for pre-built machines. Let's get ready to try that.
 
