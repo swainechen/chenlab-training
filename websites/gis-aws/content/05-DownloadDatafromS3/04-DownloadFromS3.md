@@ -6,14 +6,14 @@ weight = 50
 tags = ["tutorial", "aws console", "ec2"]
 +++
 
-Now that you have access to shared S3 buckets we are now ready to download data from S3 buckets to your machine.
+Now that you have access to the shared S3 bucket let us download data from the S3 bucket to your machine.
 
-1.	Run the command to list all the S3 buckets:
+1.	Run the command to list all the folders of the S3 bucket (slchen-lab-tranfer):
 
 ```bash
-aws --profile training s3 ls --region ap-southeast-1
+aws s3 ls --profile training --region ap-southeast-1 s3://slchen-lab-transfer/GIS-training/
 ```
-you will find the bucket named **slchen-lab-transfer** in the list, and this bucket contains multiple folders. 
+you will find the sub-folders of the **slchen-lab-transfer** in the list under the "GIS-training" folder. 
 
 **NOTE**: Only a specific few folders may have been shared. Users are able to select which folders are available to the public within a bucket.  
 
@@ -34,11 +34,11 @@ cd /tmp/fastq/SRR6327950
 3.	Run the AWS CLI command to copy files from the S3 bucket to this new directory. 
 
 ```bash
-aws --profile training s3 cp s3://slchen-lab-transfer/GIS-training/SRR6327950/SRR6327950_1.fastq.gz . --region ap-southeast-1
+aws s3 cp --profile training s3://slchen-lab-transfer/GIS-training/SRR6327950/SRR6327950_1.fastq.gz . --region ap-southeast-1
 ```
 
 ```bash
-aws --profile training s3 cp s3://slchen-lab-transfer/GIS-training/SRR6327950/SRR6327950_2.fastq.gz . --region ap-southeast-1
+aws s3 cp --profile training s3://slchen-lab-transfer/GIS-training/SRR6327950/SRR6327950_2.fastq.gz . --region ap-southeast-1
 ```
 
 4.	Verify the MD5 checksum as you would normally do.
