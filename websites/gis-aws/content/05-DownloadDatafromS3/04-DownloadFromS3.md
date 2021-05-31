@@ -8,7 +8,7 @@ tags = ["tutorial", "aws console", "ec2"]
 
 Now that you have access to the shared S3 bucket let us download data from the S3 bucket to your machine.
 
-1.	Run the command to list all the folders of the S3 bucket (slchen-lab-tranfer):
+1.	Run the command to list the folders of the S3 bucket:
 
 ```bash
 aws s3 ls --profile training --region ap-southeast-1 s3://slchen-lab-transfer/GIS-training/
