@@ -6,7 +6,7 @@ pre: "<b>XII ⁃ </b>"
 tags: ["HPC", "EFA", "Elastic Fabric Adapter", "Network", "MPI"]
 ---
 
-We will now create an S3 bucket, upload our results and related data files to the S3 bucket, and share a folder in the S3 bucket with another user for them to access and download the data.
+We will now create an S3 bucket, upload our results and related data files to this S3 bucket, and share a folder in the S3 bucket with another user for them to access and download the data.
 
 In this section of the workshop you will:
 

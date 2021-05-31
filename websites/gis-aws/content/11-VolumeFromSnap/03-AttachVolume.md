@@ -21,7 +21,7 @@ tags = ["tutorial", "aws console", "ec2"]
 ![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2RunningInstances.png)  
  
 
-6.	In the **Description** tab below scroll down to section **Block Devices** to view the new block device added (e.g. /dev/sdh). **Important**: This device name could be different from what is shown below. Keep track of the device name and size; you'll need that information for mounting the volume later. 
+6.	In the **Description** tab below scroll down to **Block Devices** to view the new block device added (e.g. /dev/sdh). **Important**: This device name could be different from what is shown below. Keep track of the device name and size; you'll need that information for mounting the volume later. 
 
 ![Copy Paste](/images/hpc-aws-parallelcluster-workshop/Ec2AttachedVolume.png)
 

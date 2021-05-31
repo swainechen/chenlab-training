@@ -10,9 +10,9 @@ tags = ["tutorial", "dashboard", "ParallelCluster"]
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3Service.png)
 
-2.	Choose and click on **S3** to open the **Amazon S3** Console.
+2.	Click on **S3** to open the **Amazon S3** Console.
 
-3.	Scroll through the list of buckets and click on the bucket name created. **NOTE**: make sure you click on the bucket name link, and not just select the bucket using the checkbox.
+3.	Scroll through the list of buckets and click on your new bucket. **NOTE**: make sure you click on the bucket name link, and not just select the bucket using the checkbox.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3SelectBucketLink.png)
 
@@ -20,7 +20,7 @@ tags = ["tutorial", "dashboard", "ParallelCluster"]
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3UploadClickUpload.png)
 
-5.	Either drag and drop files or click  **Add Files** to browse and select the files to be uploaded.
+5.	Either drag and drop files or click  **Add Files** to browse and select the files to be uploaded. For the sake of this workshop, add a small text file or any other dummy file / image that does **NOT** contain sensitive information.  
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3UploadAddFiles.png)
 
@@ -38,7 +38,7 @@ The files will be uploaded to the S3 folder and the file object names will appea
 **NOTE**: Make sure you have configured the AWS CLI credentials (Refer to section V.a for AWS CLI configure commands).
 
 
-7.	Run the AWS CLI command to list all the S3 buckets associated with the account in the region configured with **aws configure** commands
+7.	Run the AWS CLI command to list all the S3 buckets associated with the account in the region configured with **aws configure**.
 
 ```bash
 aws s3 ls
@@ -65,7 +65,7 @@ aws s3 cp s3://{Bucket Name}/{object name} ./
 
 Verify the download by listing the directory and confirm the object is present.
 
-For more detailed steps on AWS CLI for S3 refer to section VI (**Download data shared using Amazon S3**) of the workshop.
+For more detailed steps on AWS CLI for S3 refer to Section VI (**Download data shared using Amazon S3**) of the workshop.
 
 
 **We will now upload files to the S3 bucket**

@@ -9,9 +9,9 @@ tags = ["tutorial", "dashboard", "ParallelCluster"]
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3Service.png)
 
 
-2.	Choose and click on **S3** to open the **Amazon S3** Console.
+2.	Click on **S3** to open the **Amazon S3** Console.
 
-3.	Click on **Create bucket** 
+3.	Click on **Create bucket**.  
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3CreateBucket.png)
 
@@ -35,15 +35,15 @@ Leave **Block all public access** checked (this is the default configuration).
 
 Scroll down.
 
-Under the **Tags(0)-optional** section provide a Key-Value for the Tag, e.g. Key="Bucket" Value=[firstname+initials-S3], leave the rest of the configuration options with default values, and scroll down.
+Under the **Tags** section provide a Key-Value for the Tag, e.g. Key="Bucket", Value=[firstname+initials-S3], leave the rest of the configuration options with default values, and scroll down.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3CreateBucket3.png)
 
-Next click **Create bucket**
+Next click **Create bucket**.
 
-The Bucket will now be created.
+The bucket will now be created.
 
-5.	On the list of buckets, scroll and verify that your new bucket has been created. Selecting the bucket will also display the bucket properties, permissions & management configurations. 
+5.	On the list of buckets, verify that your new bucket has been created.   
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3SelectBucket.png)
 

@@ -13,7 +13,8 @@ We will now share files with your collaborators via an S3 bucket.
 
 2.	Click on **S3** to open the **Amazon S3** Console.
 
-3.	Scroll through the list of buckets and click on the bucket you created. **NOTE**: Make sure you click on the bucket name link and not just select the bucket using the checkbox.
+3.	Scroll through the list of buckets and click on the bucket you created.  
+  **NOTE**: Make sure you click on the bucket name link and not just select the bucket using the checkbox.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3SelectBucketLink.png)
 
