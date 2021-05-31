@@ -6,23 +6,15 @@ weight = 50
 tags = ["help", "best practices"]
 +++
 
-There is a lot to track when running an AWS machine. This page has a concise list of best practices that you can use as a guide. The key topics covered here include:
-
-- Security
-
-- Tagging
-
-- Budgeting
-
-- Storage and instance upkeep
+There is a lot to track when running an AWS machine. This page has a concise list of best practices that you can use as a guide:
 
 **Security**  
-    This one is pretty straight forward.
+    This one is pretty straightforward.
 
 - Do not share your account access information.
 - Handle your private security keys with caution. Do not share your machine's security keys unnecessarily. Remember, if someone knows the private key associated with your machine, they can access it.
 - Make sure your machine's security permissions are locked down first - then you can open them up as needed.
-- Avoid making resources public whenever possible. Do not store sensitive data in publicly available storage.  
+- Avoid making resources public whenever possible. Do not store sensitive data in publicly available storage.
 - Make S3 buckets private by default. When you want to share the information there, be careful not to make resources public.
 
 **Tagging**  
