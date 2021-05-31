@@ -16,10 +16,10 @@ aws s3 ls
 
 The output will list all the S3 buckets (if any) associated with the account.
 
-For the purpose of this workshop we will be using a **named profile** with AWS CLI which is a collection of settings and credentials that you can apply to a AWS CLI command. When you specify a profile to run a command, the specific settings and credentials associated with the profile are used to run that command. This is typically followed when credentials are shared to access resources. Use the AWS CLI with the following named profile to access the S3 bucket folders shared with us for this workshop.
-Access Key ID: `AKIAWTEVRD7DDRXIXUVV`
-Secret Access Key: `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`
-Default region: `ap-southeast-1`
+For the purpose of this workshop we will be using a **named profile** with AWS CLI which is a collection of settings and credentials that you can apply to a AWS CLI command. When you specify a profile to run a command, the specific settings and credentials associated with the profile are used to run that command. This is typically followed when credentials are shared to access resources. Use the AWS CLI with the following named profile to access the S3 bucket folders shared with us for this workshop.  
+Access Key ID: `AKIAWTEVRD7DDRXIXUVV`  
+Secret Access Key: `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`  
+Default region: `ap-southeast-1`  
 
 2.	Enter the AWS CLI command to configure AWS Credentials with a profile named "training":
 
