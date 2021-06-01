@@ -10,9 +10,9 @@ An Amazon Machine Image (AMI) provides the information required to launch an ins
 
 You can launch an instance from an existing AMI, customize the instance, and then save this updated configuration as a custom AMI. Instances launched from this new custom AMI include the customizations that you made when you created the AMI.
 
-In this Section of the workshop you will learn to: 
+In this section of the workshop you will learn to: 
 
-- Prepare the  EC2 instance for creating an AMI
+- Prepare the EC2 instance for creating an AMI
 
 - Create an AMI from an EC2 instance.
 

@@ -16,11 +16,14 @@ Please see below for the different sections in this website, as well as their us
 **b. Best Practices for AWS**  
     This page will help acquiant you with best practices and habits for making the most out of your AWS EC2, volumes, and S3 resources, as well as save you some extra $$$.
 
-**c. About the AMI**  
+**c. Tagging 101**  
+    Tagging is a useful utility that AWS uses to track resources. This page will explain a bit more about tagging, and how it can help you keep track of everything in your account.  
+  
+**d. About the AMI**  
     Here you can learn more about the AMI used for this workshop, as well as access the github resources availavble.
 
-**d. AWS Glossary**  
+**e. AWS Glossary**  
     AWS has many terms that are unique to AWS. This glossary will have more information on the most important for this training.
 
-**e. FAQ**  
+**f. FAQ**  
     Pretty self explanatory. Here you can find the most frequently asked questions and responses from our trainers.

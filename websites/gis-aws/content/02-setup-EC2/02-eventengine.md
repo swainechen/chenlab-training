@@ -8,7 +8,7 @@ tags = ["tutorial", "aws console", "ec2", "event engine"]
 
 Depending on your workshop, you may access the AWS Management Console through Event Engine or through a traditional sign-in. This page will guide you through signing in via the Event Engine.  
   
-Your instructor will provide you with a special team hash login, and an AWS Account ID. 
+Your instructor will provide you with a special team hash login. 
 Click the team hash login link. An email address will be requested for an OTP. This will help you access your temporary AWS account. When your sign in is successful, you will be taken to the **Team Dashboard**. 
   
 ![EE Team Dashboard](/images/hpc-aws-parallelcluster-workshop/EE_Dashboard.png)  

@@ -18,7 +18,7 @@ We will now Terminate the EC2 Instance.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2InstanceTerminateConfirm-2.png)
 
-The Instance will now be terminated.
+The instance will now be terminated.
 
 3.	After a minute view the **Instance State** of the instance, it will indicate **Terminated**.
 

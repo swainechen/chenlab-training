@@ -24,9 +24,9 @@ cp -ax /tmp/outbreaks /mnt/volume1/
 
 3.	Choose **EC2** to open the **EC2 Dashboard**.
 
-4.	In the left Navigation pane, Click on **Instances** to view all the Instances that are Running, Stopped and Terminated.
+4.	In the left Navigation pane, Click on **Instances** to view all the instances that are Running, Stopped and Terminated.
 
-5.	Select your Instance. 
+5.	Select your instance. 
 
 **NOTE**: The **Instance State** of the EC2 instance shows the machine is **Running**.
 

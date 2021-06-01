@@ -43,5 +43,5 @@ Now the command should be recognized! There we go. Try seqtk again:
 ./seqtk
 ```
   
-As you can see, working from an empty instance can be quite troublesome. You'll need to download absolutely everything you need. AWS offers AMIs - Amazon Machine Instances - that can act as templates for pre-built machines. Let's get ready to try that.
+As you can see, working from an empty instance can be quite troublesome. You'll need to download absolutely everything you need. AWS offers **AMIs** - Amazon Machine Instances - that can act as templates for pre-built machines. Let's get ready to try that.
 

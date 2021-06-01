@@ -21,10 +21,10 @@ Information is current for the 2021 02-03 June workshop. Note that this timing a
 *09:30 AM - 10:30 AM*: S3 storage and using a saved AMI: Practical  
 *10:30 AM - 10:45 AM*: Break  
 *10:45 AM - 11:15 AM*: Sharing data and checking the bill: Theory  
-*11:15 AM - 12:00 PM*: Sharing data and checking the bill: Practical  
+*11:15 AM - 12:00 PM*: Sharing data and checking the bill: Demo  
 
 **Your AMI ID**
-The AMI used for this exercise is `CHENLAB-PUBLIC-210513`.  
+The AMI used for this exercise is `Ami-0049863cda8d60218`.  
   
 **Troubleshooting**  
 This is an online workshop and technical difficulties are to be expected.  

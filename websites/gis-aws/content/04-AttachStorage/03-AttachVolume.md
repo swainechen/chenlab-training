@@ -23,7 +23,7 @@ If attached successfully - In the list of displayed volumes you should see your 
 ![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2RunningInstances.png)
  
 
-6.	In the EC2 Details section select **Storage** to see the **Block devices** attached to the instance. Notice the new Volume just created attached as an additional Block Device with a Volume ID, Device Name and Volume size.
+6.	In the EC2 Details section select **Storage** to see the **Block devices** attached to the instance. Notice the new volume just created attached as an additional Block Device with a Volume ID, Device Name and Volume Size.
 
 ![Copy Paste](/images/hpc-aws-parallelcluster-workshop/Ec2AttachedVolume.png)
 

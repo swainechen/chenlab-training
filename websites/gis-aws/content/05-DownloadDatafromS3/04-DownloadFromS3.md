@@ -49,4 +49,4 @@ aws s3 cp --profile training s3://slchen-lab-transfer/GIS-training/SRR6327950/SR
 kingfisher -r SRR6327950 -m ena-ascp
 ```	
 
-We are now ready to run some data analysis. 
+We are now ready to run some data analyses. 

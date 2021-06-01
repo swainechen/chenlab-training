@@ -28,7 +28,7 @@ The AMI ID will now appear.
 
 4.	Click on the **Select** button to select the AMI.
 
-5.	In the **Step 2** page, choose an Instance type. Select the **t3a.medium** instance from the list and click **Next: Configure Instance Details**.
+5.	In the **Step 2** page, choose an instance type. Select the **t3a.medium** instance from the list and click **Next: Configure Instance Details**.
 
 ![EC2ChooseInstancetype](/images/hpc-aws-parallelcluster-workshop/EC2ChooseInstanceType.png)
 
@@ -39,7 +39,7 @@ The AMI ID will now appear.
 
 7.	On **Step 4** page you have the ability to modify or add storage and disk drives to the instance. For this lab, we will simply accept the storage defaults and click **Next: Add Tags**.
 
-**NOTE**: Notice the default selection for the **Delete on Termination** box is checked - this indicates that if the machine is terminated the root volume associated with the Instance will be deleted, you need to uncheck this if you plan to store data on the root volume which you would want to access later.
+**NOTE**: Notice the default selection for the **Delete on Termination** box is checked - this indicates that if the machine is terminated the root volume associated with the instance will be deleted, you need to uncheck this if you plan to store data on the root volume which you would want to access later.
 
 ![EC2ChooseInstancetype](/images/hpc-aws-parallelcluster-workshop/EC2AddStorage.png)
 
@@ -48,7 +48,7 @@ The AMI ID will now appear.
 
 ![EC2AddTags](/images/hpc-aws-parallelcluster-workshop/EC2AddTags.png)
 
-9.	On **Step 6** page, you will be prompted to create a new security group, which will define your firewall rules. If you have not yet made a security group, provide a name for your new security group. Otherwise, click **Select an existing security group**, select your previous key, and skip ahead to step 11.
+9.	On **Step 6** page, you will be prompted to create a new security group, which will define your firewall rules. If you have not yet made a security group, provide a name for your new security group. Otherwise, click **Select an existing security group**, select your previous key, and skip ahead to **Step 11**.
 
 **NOTE**: For the purpose of this lab use your "[your-initials]-sec-group" for uniqueness and easy searchability.
 

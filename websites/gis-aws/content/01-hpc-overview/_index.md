@@ -16,7 +16,7 @@ HPC on AWS removes the long wait times and cost productivity often associated wi
 
 Today, more cloud-based HPC applications run on AWS than on any other cloud. -->
 
-Welcome to the AWS-GIS training on cloud computing for genomics researchers.
+Welcome to the GIS x AWS training on cloud computing for genomics researchers.
 
 
 This series of workshops will familiarize you with the components of Amazon Web Services and best practices to setup a cloud compute server and run genomics workloads using AWS.

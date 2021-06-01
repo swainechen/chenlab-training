@@ -24,7 +24,8 @@ We will now launch an EC2 Linux based instance.
 
 ![EC2SelectAMI](/images/hpc-aws-parallelcluster-workshop/EC2SelectAMI.png)
 
-5.	In the **Step 2** page, choose an Instance type, select the **c5.2xlarge** instance from the list and click **Next: Configure Instance Details**.
+5.	In the **Step 2** page, choose an Instance type, select the **c5.2xlarge** instance from the list and click **Next: Configure Instance Details**.  
+**Note:** This is a large instance- we're doing this on purpose. This will not be a default instance you should use until you've considered the resources you need for your project.
 
 ![EC2ChooseInstancetype](/images/hpc-aws-parallelcluster-workshop/EC2ChooseInstanceType-1.png)
 
@@ -33,7 +34,7 @@ We will now launch an EC2 Linux based instance.
 ![EC2ChooseInstancetype](/images/hpc-aws-parallelcluster-workshop/EC2StepConfigureInstance.png)
 
 
-7.	On the **Step 4** page, you have the ability to modify or add storage and disk drives to the instance. For this lab, we will simply accept the storage defaults. Take note that the default setting for **Delete on Termination** is affirmative. This indicates that if the machine is terminated, the root volume associated with the Instance will be deleted. You need to uncheck this if you plan to store data on the root volume which you would want to access later. Next, click **Next: Add Tags**.
+7.	On the **Step 4** page, you have the ability to modify or add storage and disk drives to the instance. For this lab, we will simply accept the storage defaults. Take note that the default setting for **Delete on Termination** is affirmative. This indicates that if the machine is terminated, the root volume associated with the instance will be deleted. You need to uncheck this if you plan to store data on the root volume which you would want to access later. Next, click **Next: Add Tags**.
 
 
 ![EC2ChooseInstancetype](/images/hpc-aws-parallelcluster-workshop/EC2AddStorage.png)
