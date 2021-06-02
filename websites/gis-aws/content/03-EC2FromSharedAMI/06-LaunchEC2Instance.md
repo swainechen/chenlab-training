@@ -41,7 +41,7 @@ The AMI ID will now appear.
 
 **NOTE**: Notice the default selection for the **Delete on Termination** box is checked - this indicates that if the machine is terminated the root volume associated with the instance will be deleted, you need to uncheck this if you plan to store data on the root volume which you would want to access later.
 
-![EC2ChooseInstancetype](/images/hpc-aws-parallelcluster-workshop/EC2AddStorage.png)
+![EC2ChooseInstancetype](/images/hpc-aws-parallelcluster-workshop/EC2AddStorage1.png)
 
 
 8.	On the **Step 5** page, you can choose a friendly name for your instance by clicking "Add Tag", and entering "Name" for the **Key** and "[your initials]-linux-server" as the **value**. This Name key, more correctly known as a **tag**, will appear in the console once the instance launches. It makes it easy to keep track of running machines in a complex environment. Add the same tags that we used before- one tag for user, and one for grant. Keep the values consistent. Click **Next: Configure Security Group**.

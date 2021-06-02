@@ -45,7 +45,7 @@ You will now be shown a message indicating that public access settings to the bu
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic3.png)
 
 
-9.	Next under **Grantee** - **Everyone (public access)** check **List** (under Objects) and **Read** (under Bucket ACL).
+9.	Next under **Grantee** - **Everyone (public access)** check **List** (under Objects).
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic4.png)
 
@@ -54,4 +54,16 @@ You will now be shown a message indicating that public access settings to the bu
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic5.png)
 
-At this point you have effectively shared the file object. Check with your collaborators to see if they can list the objects in your shared bucket. Try and download the files you shared by running the AWS CLI commands.
+At this point you have effectively shared the S3 bucket. Check with your collaborators to see if they can list the objects in your shared bucket.   
+
+
+11.	Now let us make a file object downloadable. Select the file you would like to share. Click on **Actions** and **Make public**.  
+
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic6.png)  
+
+
+12.	Click on **Make public**.
+
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic7.png)
+
+Only the files you made public should now be downloadable by running the AWS CLI commands.

@@ -33,7 +33,7 @@ We will now launch an EC2 Linux-based Instance.
 
 **NOTE**: Take note that **Delete on Termination** box is checked by default- this indicates that if the machine is terminated, the Root Volume associated with the Instance will be deleted. You need to uncheck this if you plan to store data on the Root Volume which you want to preserve after termination. 
 
-![EC2ChooseInstancetype](/images/hpc-aws-parallelcluster-workshop/EC2AddStorage.png)
+![EC2ChooseInstancetype](/images/hpc-aws-parallelcluster-workshop/EC2AddStorage1.png)
 
 
 8.	On the **Step 5** page, you can choose a friendly name for your instance by clicking "Add Tag", and entering "Name" for the Key, and "[your initials]-new-server" for the Value. This Name key, more correctly known as a tag, will appear in the console once the instance launches. It makes it easy to keep track of running machines in a complex environment. Click **Next: Configure Security Group**.
