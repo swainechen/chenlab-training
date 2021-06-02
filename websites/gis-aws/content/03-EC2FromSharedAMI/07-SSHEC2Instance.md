@@ -84,10 +84,10 @@ We will now use the private **.pem** file of the key pair generated earlier to o
 
 1.	In a terminal window, use the ssh command to connect to the instance. You specify the path and file name of the private key (.pem), the user name for your instance, and the public DNS name or IP Address of your instance.
 
-**NOTE**: Username to be used here is **ec2-user** if your image is Amazon Linux OS  and **ubuntu** if your image is Ubuntu Linux OS.
+**NOTE**: Username to be used here is **ubuntu** if your image is based on the Ubuntu Linux OS and **ec2-user** if your image is based on Amazon Linux OS. (See [this page](https://alestic.com/2014/01/ec2-ssh-username/) which covers many of the common AMI OSs.)
 
 ```bash
-ssh -i /path/my-key-pair.pem ec2-user@<ip-address>
+ssh -i /path/my-key-pair.pem ubuntu@<ip-address>
 ```
 
 You see a response like the following:
