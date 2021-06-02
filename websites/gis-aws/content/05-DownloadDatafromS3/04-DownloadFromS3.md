@@ -43,10 +43,10 @@ aws s3 cp --profile training s3://slchen-lab-transfer/GIS-training/SRR6327950/SR
 
 4.	Verify the MD5 checksum as you would normally do.
 
-5.	Download additional data using regular utilities
+5.	Download another data set using the `kingfisher` utility:
 
 ```bash
-kingfisher -r SRR6327950 -m ena-ascp
+kingfisher -r SRR6327875 -m ena-ascp
 ```	
 
 We are now ready to run some data analyses. 
