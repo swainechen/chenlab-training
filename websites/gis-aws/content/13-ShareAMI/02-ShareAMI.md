@@ -26,7 +26,11 @@ We will now share the AMI we earlier created with another collaborator.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2AMIPermissions.png)
 
-6.	In the **Modify Image Permissions** dialog type in the AWS Account Number in the **AWS Account Number** field and click on **Add Permissions**. Be absolutely sure to clarify the correct AWS Account Number with your collaborator.
+6.	In the **Modify Image Permissions** dialog type in the AWS Account Number in the **AWS Account Number** field and click on **Add Permissions**. Be absolutely sure to clarify the correct AWS Account Number with your collaborator.  
+
+The AWS Account Number can be found here
+
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2AMIAWSAccNum.png)
 
 Observe that by default, the image is set to Private. Keep that option checked, and enter the AWS Account Number in the space provided below. This will ensure that your image is still private (not available to public access), but the specific account mentioned will have access.  
 
@@ -36,7 +40,11 @@ Observe that by default, the image is set to Private. Keep that option checked, 
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2AMIPermissionsDialog2.png)
 
-Your AMI has now been shared with this specific AWS Account Number provided. You could now invite your collaborator to create an EC2 instance from your shared AMI (Refer to section X about setting up a linux machine from a previously created AMI). 
+Your AMI has now been shared with this specific AWS Account Number provided. Invite your collaborator to click on **Launch Instance** on the **EC2 Dashboard** and search for the AMI your recently shared under **My AMIs** > **Shared with me**.  
+
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2AMIshared.png)
+
+Your collaborator will now be able to create an EC2 instance from your shared AMI (Refer to section X about setting up a linux machine from a previously created AMI). 
 
 
 **It is also possible to share an EBS Volume snapshot in a similar manner**.
