@@ -391,6 +391,10 @@ git clone https://github.com/swainechen/closet
 cd closet/bin
 for i in *; do ln -s /usr/local/src/closet/bin/$i /usr/local/bin; done
 ln -s /usr/local/src/closet/lib/slchen.pm /usr/local/lib/site_perl
+
+# some convenient links
+cd /usr/local/src
+for i in blastp blastx tblastn tblastx; do ln -s slc-blastn slc-$i; done
 ```
 
 ### Read processing
