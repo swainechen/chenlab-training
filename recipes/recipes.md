@@ -49,22 +49,46 @@ srst2 --input_pe /home/ubuntu/fastq/SRR12151671/SRR12151671_1.fastq.gz /home/ubu
 # using the assembly we just did
 # the following script is from the SLC Closet repository
 # it looks for the SRST2 databases, and also will detect and automatically process assembly .tgz files from the SLC-wgs.pl script
-blast-mlst.pl -species Senterica /home/ubuntu/SRR12151671.tgz
+blast-mlst.pl -species Senterica /home/ubuntu/SRR12151671.tgz > SRR12151671-assembly.mlst
 ```
 
 ### Calling resistance genes and virulence factors
 These again leverage SRST2 for short reads and a blast-based script (against the same databases) for assemblies.
 Both are shown here but you will likely just use one depending on your own preferences.
+These require some database setup that is done on the `CHENLAB-PUBLIC` AMI already and described in the SRST2 section under Bioinformatics software setup.
 ```
 # using short reads and SRST2
 # find the correct file
 ls /usr/local/lib/SRST2/0.2.0
 ls /usr/local/lib/SRST2/Senterica
 # there is a combined database set up for Senterica
-srst2 --input_pe /home/ubuntu/fastq/SRR12151671/SRR12151671_1.fastq.gz /home/ubuntu/fastq/SRR12151671/SRR12151671_2.fastq.gz --output SRR12151671-VF --log --gene_db /usr/local/lib/SRST2/Senterica/<.fasta>
+srst2 --input_pe /home/ubuntu/fastq/SRR12151671/SRR12151671_1.fastq.gz /home/ubuntu/fastq/SRR12151671/SRR12151671_2.fastq.gz --output SRR12151671-VF --log --gene_db /usr/local/lib/SRST2/Senterica/Senterica-combined-2021-06-02.fasta
 
 # using the assembly we just did
 # the following script is from the SLC Closet repository
 # it looks for the SRST2 databases, and also will detect and automatically process assembly .tgz files from the SLC-wgs.pl script
-blast-vf.pl -species Senterica /home/ubuntu/SRR12151671.tgz
+blast-vf.pl -species Senterica /home/ubuntu/SRR12151671.tgz > SRR12151671-assembly.genes
+# resistances
+grep 'DB:ARGannot' SRR12151671-assembly.genes
+# others - like virulence genes
+grep -v 'DB:ARGannot' SRR12151671-assembly.genes
+```
+
+### Calling serotype
+There is a dedicated program called `SeqSero` for calling Salmonella serotypes, this can use either short reads or assemblies.
+```
+# call using short reads
+SeqSero.py -m 2 -i /home/ubuntu/fastq/SRR12151671/SRR12151671_1.fastq.gz /home/ubuntu/fastq/SRR12151671/SRR12151671_2.fastq.gz -d SRR12151671-fastq
+# results are in this file
+cat SRR12151671-fastq/Seqsero_result.txt
+
+# pull out the assembly fasta file and call serotypes from there
+tar xvzf SRR12151671.tgz
+# check the files available
+ls -l SRR12151671/
+# SeqSero requires an input assembly to have an extension of .fasta, .fna, .fa, or .fsa
+# we can use either the .assembly file (after linking or renaming it) or the .fna file here
+SeqSero.py -m 4 -i SRR12151671/SRR12151671.fna -d SRR12151671-assembly
+# results are in this file
+cat SRR12151671-assembly/Seqsero_result.txt
 ```
