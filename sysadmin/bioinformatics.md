@@ -393,7 +393,7 @@ for i in *; do ln -s /usr/local/src/closet/bin/$i /usr/local/bin; done
 ln -s /usr/local/src/closet/lib/slchen.pm /usr/local/lib/site_perl
 
 # some convenient links
-cd /usr/local/src
+cd /usr/local/bin
 for i in blastp blastx tblastn tblastx; do ln -s slc-blastn slc-$i; done
 ```
 
@@ -1606,6 +1606,8 @@ This complains about cd-hit being not the right version - it asks for min 4.6, b
 
 #### [SeqSero](https://github.com/denglab/SeqSero)
 This a serotype predictor for Salmonella.
+This has some syntax that is now deprecated, and it also will probably soon need a port to Python 3.
+However, the [patch here](https://github.com/denglab/SeqSero/issues/6) should allow it to run for a while still.
 
 ```
 sudo su -
@@ -1615,6 +1617,7 @@ tar xvzf v1.0.1.tar.gz
 cd SeqSero-1.0.1
 # check the docs
 less README.md
+# patch the file libs/Otype_determine_analysis.py as in https://github.com/denglab/SeqSero/issues/6
 
 # link the binary
 ln -s /usr/local/src/SeqSero-1.0.1/SeqSero.py /usr/local/bin
