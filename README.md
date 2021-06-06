@@ -8,6 +8,8 @@ We hope these materials help you!
 
 ## [Website](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/)
 
+## [Recipes](recipes)
+
 ## [Sysadmin](sysadmin)
 
 ## Contributors
