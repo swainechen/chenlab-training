@@ -20,8 +20,8 @@ Install some regular R packages (this takes about 30 min):
 ```
 install.packages(c("apcluster", "d3r", "devtools", "fields", "fpc",
   "genoPlotR", "gplots", "hexbin", "PopGenome", "r2d3", "randomcoloR",
-  "RMySQL", "Rtsne", "scatterD3", "shiny", "shinydashboard", "svglite",
-  "tidyverse", "tsne")
+  "RMySQL", "Rtsne", "rvcheck", "scatterD3", "shiny", "shinydashboard",
+  "svglite", "tidyverse", "tsne")
 ```
 
 Install Bioconductor (following the [standard instructions](https://www.bioconductor.org/install/))

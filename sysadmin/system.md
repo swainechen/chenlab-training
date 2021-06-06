@@ -47,10 +47,10 @@ apt update
 ## Standard Ubuntu Packages
 Install regular Ubuntu packages from the base repositories that we'll need for later. This took about 30 min on a t3a.small AWS instance.
 ```
-apt install -y automake awscli cmake cpanminus cython evince gnuplot-nox \
-  imagemagick libbio-samtools-perl libboost-all-dev libcairo2-dev \
-  libcurl4-openssl-dev libdatetime-format-dateparse-perl \
-  libdatetime-format-dbi-perl libfile-type-perl libfile-which-perl \
+apt install -y automake cmake cpanminus cpanoutdated cython evince \
+  gnuplot-nox imagemagick libbio-samtools-perl libboost-all-dev \
+  libcairo2-dev libcurl4-openssl-dev libdatetime-format-dateparse-perl \
+  libdatetime-format-dbi-perl libdb-dev libfile-type-perl libfile-which-perl \
   libhdf5-dev libhtml-template-perl libimage-magick-perl libjemalloc-dev \
   libjson-perl liblzma-dev libmariadbclient-dev libmemory-usage-perl \
   libmodule-build-perl libopenmpi-dev libsparsehash-dev libssl-dev \
