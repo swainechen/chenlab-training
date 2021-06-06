@@ -1618,10 +1618,13 @@ cd SeqSero-1.0.1
 # check the docs
 less README.md
 # patch the file libs/Otype_determine_analysis.py as in https://github.com/denglab/SeqSero/issues/6
+wget https://github.com/denglab/SeqSero/files/6603725/SeqSero.patch.txt
+patch -p1 < SeqSero.patch.txt
 
 # link the binary
 ln -s /usr/local/src/SeqSero-1.0.1/SeqSero.py /usr/local/bin
 ```
+Note that this gives a lot of `FASTA-Reader: Title ends with at least 20 valid nucleotide characters` errors from some of the blast steps due to inclusion of primer sequences in the fasta headers from isPcr.
 
 #### [SRST2](https://github.com/katholt/srst2)
 This is a popular short read analysis program, good for calling MLSTs, resistances, and serotypes directly from short reads.
