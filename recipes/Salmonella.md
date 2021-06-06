@@ -48,11 +48,12 @@ srst2 --input_pe /home/ubuntu/fastq/SRR12151671/SRR12151671_1.fastq.gz /home/ubu
 # it looks for the SRST2 databases, and also will detect and automatically process assembly .tgz files from the SLC-wgs.pl script
 blast-mlst.pl -species Senterica /home/ubuntu/SRR12151671.tgz > SRR12151671-assembly.mlst
 ```
+This is an ST1549 strain.
 
 ## Calling resistance genes and virulence factors
 These again leverage SRST2 for short reads and a blast-based script (against the same databases) for assemblies.
 Both are shown here but you will likely just use one depending on your own preferences.
-These require some database setup that is done on the `CHENLAB-PUBLIC` AMI already and described in the SRST2 section under Bioinformatics software setup.
+These require some database setup that is done on the `CHENLAB-PUBLIC` AMI already and described in the [SRST2](/sysadmin/bioinformatics.md) section under [Bioinformatics software setup](/sysadmin/bioinformatics.md).
 ```
 # using short reads and SRST2
 # find the correct file
@@ -70,6 +71,7 @@ grep 'DB:ARGannot' SRR12151671-assembly.genes
 # others - like virulence genes
 grep -v 'DB:ARGannot' SRR12151671-assembly.genes
 ```
+This strain has one predicted resistance gene (Aac6-Iaa, encoding resistance to aminoglycosides), and quite a few genes classified as virulence factors.
 
 ## Calling serotype
 There is a dedicated program called `SeqSero` for calling Salmonella serotypes, this can use either short reads or assemblies.
@@ -90,3 +92,4 @@ SeqSero.py -m 4 -i SRR12151671/SRR12151671.fna -d SRR12151671-assembly
 # results are in this file
 cat SRR12151671-assembly/Seqsero_result.txt
 ```
+This strain is predicted to be be an Altona serotype strain.
