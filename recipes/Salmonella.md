@@ -14,6 +14,8 @@ Note that a single BioSample may have multiple Runs associated with it (and, in 
 
 It's always good to keep your data organized.
 For this example, we'll just use our home directory, but you may want to consider using a dedicated location on additionally mounted storage, for example, to store fastq files.
+
+Downloading this data set requires ~450MB of storage.
 ```
 mkdir -p /home/ubuntu/fastq/SRR12151671
 cd /home/ubuntu/fastq/SRR12151671
@@ -70,8 +72,17 @@ blast-vf.pl -species Senterica /home/ubuntu/SRR12151671.tgz > SRR12151671-assemb
 grep 'DB:ARGannot' SRR12151671-assembly.genes
 # others - like virulence genes
 grep -v 'DB:ARGannot' SRR12151671-assembly.genes
+
+# another alternative for assemblies - using abricate
+# the .assembly file has all the contigs
+# the .fna file has all the contigs joined (in arbitrary order) by 100 N's
+# either can be used
+tar xvzf SRR12151671.tgz
+abricate SRR12151671/SRR12151671.fna
+abricate SRR12151671/SRR12151671.assembly
 ```
-This strain has one predicted resistance gene (Aac6-Iaa, encoding resistance to aminoglycosides), and quite a few genes classified as virulence factors.
+`SRST2` finds one predicted resistance gene (Aac6-Iaa, encoding resistance to aminoglycosides; this is common on the Salmonella chromosome but often doesn't confer phenotypic resistance), and quite a few genes classified as virulence factors.
+`Abricate` doesn't find any resistance genes.
 
 ## Calling serotype
 There is a dedicated program called `SeqSero` for calling Salmonella serotypes, this can use either short reads or assemblies.
