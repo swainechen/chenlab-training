@@ -38,7 +38,9 @@ aws ec2 describe-key-pairs
 ```
 
 The above `describe-instances` and `describe-key-pairs` commands will likely fail because we did not set our AWS account's credentials: the access keys and the region. This results in a permissions error as credentials are required to access AWS resources such as EC2, S3, and so on (without them AWS CLI does not know which account you are referring to). You can enter those manually using the `aws configure` command.
-
+  
+As we have not yet configured the instance with the AWS account's credentials, the **~/.aws/** folder will not be available. Now let us go ahead with **aws configure**.
+  
 _Important: if you are using Event Engine for this workshop, you can copy the code snippet with the temporary account's credentials from the Console page and paste it in your command line instead. This will be analogous to going through the manual setting up described in points 1-4 below (you can skip to point 5 directly)._
 
 ![EE console](/images/hpc-aws-parallelcluster-workshop/EE_console_login.png)    
