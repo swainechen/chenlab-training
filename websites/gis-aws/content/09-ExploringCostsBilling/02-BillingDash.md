@@ -6,6 +6,8 @@ weight = 50
 tags = ["tutorial", "aws console", "ec2"]
 +++
 
+The Billing and Cost Explorer is a page that may have restricted administration rights, and in the Event Engine trainings, the event machines are not equipped to give users these access rights. An instructor will give you a demonstration for nagivating this page.  
+
 1.	In the AWS Management Console search bar, type **Billing**.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/Billing.png) 
