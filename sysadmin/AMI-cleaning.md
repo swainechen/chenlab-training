@@ -33,22 +33,24 @@ sudo passwd -l root
 ```
 sudo shred -u /etc/ssh/*_key /etc/ssh/*_key.pub
 ```
-- Remove authorized keys - careful, this will prevent any further logins to this machine
+- Clean up logs, as per Pedro Lobito's comment at [https://serverfault.com/questions/185253/delete-all-of-var-log](https://serverfault.com/questions/185253/delete-all-of-var-log):
+```
+cd /var/log
+for CLEAN in $(find /var/log/samba -type f); do rm -rf $CLEAN; done
+```
+
+- Remove authorized keys and history for root - careful, this will prevent any further logins to this machine
 ```
 sudo su -
 shred -u .ssh/*
-exit
-# now as ubuntu
-shred -u .ssh/*
-```
-- Remove history - check for other files too
-```
-sudo su -
 shred -u .*history .*hsts .gitconfig .lesshst .viminfo
 rm -rf snap .cache .cpan* .vim
 history -c
 exit
-# now as ubuntu
+```
+- Remove authorized keys and history for ubuntu - check for other files too
+```
+shred -u .ssh/*
 shred -u .*history .*hsts .gitconfig .lesshst .viminfo .sudo_as_admin_successful
 rm -rf .cache .config .local .mozilla .vim .keras
 history -c
