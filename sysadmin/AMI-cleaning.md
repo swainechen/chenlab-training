@@ -36,7 +36,7 @@ sudo shred -u /etc/ssh/*_key /etc/ssh/*_key.pub
 - Clean up logs, as per Pedro Lobito's comment at [https://serverfault.com/questions/185253/delete-all-of-var-log](https://serverfault.com/questions/185253/delete-all-of-var-log):
 ```
 cd /var/log
-for CLEAN in $(find /var/log/samba -type f); do rm -rf $CLEAN; done
+for CLEAN in $(find /var/log/ -type f); do cp /dev/null $CLEAN; done
 ```
 
 - Remove authorized keys and history for root - careful, this will prevent any further logins to this machine
