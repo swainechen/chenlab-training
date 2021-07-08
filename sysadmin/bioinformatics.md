@@ -32,6 +32,7 @@ Note that the version numbers are included in the commands below - you'll have t
 * [HYPHY](#HYPHY)
 * [Kingfisher](#Kingfisher)
 * [meme](#meme)
+* [MUMmer](#MUMmer)
 * [pbbam](#pbbam)
 * [samtools](#samtools-including-htslib)
 * [sra-tools](#sra-tools)
@@ -48,6 +49,7 @@ Note that the version numbers are included in the commands below - you'll have t
 * [poretools](#poretools)
 * [seqmagick](#seqmagick)
 * [seqtk](#seqtk)
+* [STAR](#STAR)
 * [Trimmomatic](#Trimmomatic)
 
 ### Assembly
@@ -86,6 +88,7 @@ Note that the version numbers are included in the commands below - you'll have t
 * [Kleborate](#Kleborate)
 * [Kraken 2](#Kraken-2)
 * [prokka](#prokka)
+* [referenceseeker](#referenceseeker)
 * [Roary](#Roary)
 * [SeqSero](#SeqSero)
 * [SRST2](#SRST2)
@@ -107,6 +110,7 @@ Note that the version numbers are included in the commands below - you'll have t
 * [HYPHY](#HYPHY)
 * [Kingfisher](#Kingfisher)
 * [meme](#meme)
+* [MUMmer](#MUMmer)
 * [pbbam](#pbbam)
 * [samtools](#samtools-including-htslib)
 * [sra-tools](#sra-tools)
@@ -341,6 +345,27 @@ echo '# path for meme' >> /home/ubuntu/.bashrc
 echo 'export PATH=$PATH:/usr/local/libexec/meme-5.3.3' >> /home/ubuntu/.bashrc
 ```
 
+#### [MUMmer](https://github.com/mummer4/mummer)
+Ubuntu LTS version: 3.23
+Latest GitHub version: 4.0.0 release candidate 1
+
+MUMmer is a venerable suite of programs for aligning DNA and protein sequences. It has recently seen a new incarnation with version 4. We'll therefore install the latest GitHub release, since the Ubuntu LTS repositories have the previous version 3 generation.
+
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/mummer4/mummer/releases/download/v4.0.0rc1/mummer-4.0.0rc1.tar.gz
+tar xvzf mummer-4.0.0rc1.tar.gz
+cd mummer-4.0.0rc1
+# check the docs - these are on the website, particularly INSTALL.md
+./configure --prefix=/usr/local
+make
+make install
+
+# test it - this needs LD_LIBRARY_PATH set, which should be fine if you run this as the ubuntu user
+nucmer -h
+```
+
 #### [sra-tools](https://github.com/ncbi/sra-tools)
 These are useful tools for using data in the GenBank Sequence Read Archives.
 They provide precompiled binaries on their GitHub page.
@@ -408,6 +433,7 @@ for i in blastp blastx tblastn tblastx; do ln -s slc-blastn slc-$i; done
 * [poretools](#poretools)
 * [seqmagick](#seqmagick)
 * [seqtk](#seqtk)
+* [STAR](#STAR)
 * [Trimmomatic](#Trimmomatic)
 
 #### [bowtie2](https://github.com/BenLangmead/bowtie2)
@@ -679,6 +705,28 @@ ln -s /usr/local/src/seqtk-1.3/seqtk /usr/local/bin
 # check where it is and the version
 which seqtk
 seqtk
+```
+
+#### [STAR](#https://github.com/alexdobin/STAR)
+This is a fast aligner that is splicing-aware, which is good for mapping host-pathogen combined datasets.
+
+We'll install the latest GitHub release version.
+
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/alexdobin/STAR/archive/refs/tags/2.7.9a.tar.gz
+tar xvzf 2.7.9a.tar.gz
+cd STAR-2.7.9a
+# check the docs
+less README.md
+
+# compile and link the binary over
+cd source
+ln -s /usr/local/src/STAR-2.7.9a/source/STAR /usr/local/bin
+
+# test it
+STAR --help
 ```
 
 #### [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)
@@ -1445,6 +1493,7 @@ snippy --check
 * [Kleborate](#Kleborate)
 * [Kraken 2](#Kraken-2)
 * [prokka](#prokka)
+* [referenceseeker](#referenceseeker)
 * [Roary](#Roary)
 * [SeqSero](#SeqSero)
 * [SRST2](#SRST2)
@@ -1575,6 +1624,45 @@ sh /usr/share/doc/prokka/get-additional-data
 For reference, these libraries get stored in `/var/lib/prokka/db`
 This throws an error because it assumes a numeric version number for BioPerl, but the version is ok and this still runs.
 
+#### [referenceseeker](https://github.com/oschwengers/referenceseeker)
+This program uses a kmer-based approach to find a good/close reference sequence for mapping, variant calling, etc.
+
+We'll install the latest Github release.
+
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/oschwengers/referenceseeker/archive/refs/tags/v1.7.3.tar.gz
+tar xvzf v1.7.3.tar.gz
+cd referenceseeker-1.7.3
+# check the docs
+less README.md
+
+# link the binaries over
+cd bin
+for i in *; do ln -s /usr/local/src/referenceseeker-1.7.3/bin/$i /usr/local/bin; done
+
+# test it
+referenceseeker --help
+referenceseeker /usr/local/src/referenceseeker-1.7.3/test/db /usr/local/src/referenceseeker-1.7.3/test/data/Salmonella_enterica_CFSAN000189.fasta
+
+# this requires some quite large databases. Here's an example for archaea (the smallest one
+# I recommend putting them in a "standard" location like /usr/local/lib/referenceseeker
+# The AMI we've provided has all the RefSeq databases installed already
+cd /usr/local/lib
+mkdir referenceseeker
+cd referenceseeker
+wget https://zenodo.org/record/4415843/files/archaea-refseq.tar.gz
+tar xvzf archaea-refseq.tar.gz
+```
+
+The AMI provided has all the RefSeq databases downloaded and installed already from [https://github.com/oschwengers/referenceseeker#databases](https://github.com/oschwengers/referenceseeker#databases).
+These can be used by specifying one of the following as the db location (first argument) for `referenceseeker`:
+* /usr/local/lib/referenceseeker/archaea-refseq
+* /usr/local/lib/referenceseeker/bacteria-refseq
+* /usr/local/lib/referenceseeker/fungi-refseq
+* /usr/local/lib/referenceseeker/protozoa-refseq
+* /usr/local/lib/referenceseeker/viral-refseq
 
 #### [Roary](https://github.com/sanger-pathogens/Roary)
 This is a popular pan genome prediction tool.
