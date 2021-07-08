@@ -47,7 +47,7 @@ apt update
 ## Standard Ubuntu Packages
 Install regular Ubuntu packages from the base repositories that we'll need for later. This took about 30 min on a t3a.small AWS instance.
 ```
-apt install -y automake cmake cpanminus cpanoutdated cython evince \
+apt install -y automake cmake cpanminus cpanoutdated cython evince fig2dev \
   gnuplot-nox imagemagick libbio-samtools-perl libboost-all-dev \
   libcairo2-dev libcurl4-openssl-dev libdatetime-format-dateparse-perl \
   libdatetime-format-dbi-perl libdb-dev libfile-type-perl libfile-which-perl \
@@ -57,12 +57,12 @@ apt install -y automake cmake cpanminus cpanoutdated cython evince \
   libsys-meminfo-perl libterm-progressbar-perl libtext-csv-perl libv8-dev \
   libxml-compile-perl libxml-compile-wsdl11-perl libxml2-dev libxslt1-dev \
   mlocate mysql-client openjdk-8-jdk parallel pdl prodigal python \
-  python-numpy snakemake zlib1g-dev
+  python-numpy snakemake swig xfig zlib1g-dev
 
 # some initial software
 apt install -y cd-hit clonalframeml fastdnaml fastqc fasttree \
   gubbins njplot ncbi-entrez-direct ncbi-tools-bin paml soapdenovo2 \
-  vcftools mauve-aligner mummer
+  vcftools mauve-aligner
 ```
 
 ## Perl 
@@ -124,6 +124,8 @@ PS1="\[\033[00m\]\!\\[\033[0m\]|\`if [[ \$? = "0" ]]; then echo "\\[\\033[32m\\]
 ```
 This prompt gives you command number, username, host, and current path.
 The color of the user@host part is green if the last command had an exit code of 0 (success) and red if not.
+
+One thing to note is that you should respect the prompt for a non-interactive shell. See [below](#Non-interactive-shells) - make sure this is only set for interactive shells. Otherwise, you can run into problems like [this](https://superuser.com/questions/395356/scp-doesnt-work-but-ssh-does) with `scp` and `rsync`.
 
 #### Bash options
 The standard one to set is `noclobber` for safety!
