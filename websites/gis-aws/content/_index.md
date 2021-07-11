@@ -4,7 +4,7 @@ date: 2019-09-18T10:50:17-04:00
 draft: false
 ---
 # Welcome to the online Cloud Genomics Workshop
-## Genome Institute of Singapore and Amazon Web Services
+**<font size="30">Genome Institute of Singapore and Amazon Web Services</font>**
 
 The Genome Institute of Singapore (GIS) is the national flagship program for the genomic sciences in Singapore, started in 2000 by the Agency for Science, Research and Technology (A*STAR). Our vision is to use the genomic sciences to achieve extraordinary improvements in human health and public prosperity. We read, reveal, and write DNA for a better Singapore and world!
 
