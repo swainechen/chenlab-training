@@ -47,18 +47,19 @@ We will use the private **.pem** key pair to open an SSH session to the EC2 inst
 
 1.  Start the MobaXterm application.
 
-2.  To open a session, click on **SSH**.
+2.  To open a session, click on **Session** in the top-left corner, then click **SSH**.
 
 3.  Enter in the IP address of the EC2 instance in the **Host Name** field.
 
-4.  To the right, select username and enter your username for the session (this will depend on your instance; for now, use **ec2-user** unless otherwise instructed.
+4.  To the right, select username and enter your username for the session.
+
+**NOTE**: Username to be used here is **ec2-user** if your image is Amazon Linux OS  and **ubuntu** if your image is Ubuntu Linux OS.
 
 5.  Below, click on **Advanced Settings**, and select **private key** (use your .pem file).
 
 6.  Click **Ok**.
 
-MobaXterm will have logged you in to your EC2 instance.
-
+MobaXterm will have logged you in to your EC2 instance.  
 
 --------------  
 

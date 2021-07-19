@@ -33,7 +33,9 @@ We will now use the private **.ppk** file of the key pair generated earlier to o
 
 9.	You will now be presented with the **login as** prompt.
 
-10.	At the **login as** prompt type **ec2-user** and hit enter.
+10.	At the **login as** prompt type **ec2-user** and hit enter.  
+
+**NOTE**: Username to be used here is **ec2-user** if your image is Amazon Linux OS  and **ubuntu** if your image is Ubuntu Linux OS.  
 
 You would have now logged into the EC2 instance on AWS.   
 
@@ -46,11 +48,13 @@ We will use the private **.pem** key pair to open an SSH session to the EC2 inst
 
 1.  Start the MobaXterm application. 
 
-2.  To open a session, click on **SSH**.   
+2.  To open a session, click on **Session** in the top-left corner, then click **SSH**.   
 
 3.  Enter in the IP address of the EC2 instance in the **Host Name** field.  
 
-4.  To the right, select username and enter your username for the session (this will depend on your instance; for now, use **ec2-user** unless otherwise instructed.  
+4.  To the right, select username and enter your username for the session.  
+
+**NOTE**: Username to be used here is **ec2-user** if your image is Amazon Linux OS  and **ubuntu** if your image is Ubuntu Linux OS.  
 
 5.  Below, click on **Advanced Settings**, and select **private key** (use your .pem file).   
 
@@ -71,9 +75,9 @@ We will now use the private **.pem** file of the key pair generated earlier to o
 cp /mnt/<Windows drive letter>/path/my-key-pair.pem ~/WSL-path/my-key-pair.pem
 ```
 
-2.	In a terminal window, use the ssh command to connect to the instance. Specify the path and file name of the private key (.pem), the user name for your instance, and the public DNS name or IP Address.
+2.	In a terminal window, use the ssh command to connect to the instance. Specify the path and file name of the private key (.pem), the user name for your instance, and the public DNS name or IP Address. 
 
-**NOTE**: Username to be used here is **ec2-user**.
+**NOTE**: Username to be used here is **ec2-user** if your image is Amazon Linux OS  and **ubuntu** if your image is Ubuntu Linux OS.  
 
 ```bash
 sudo ssh -i /path/my-key-pair.pem ec2-user@<ip-address>
@@ -102,6 +106,8 @@ you will now be logged into the EC2 Instance.
 We will now use the private **.pem** file of the key pair generated earlier to open a SSH session to the EC2 instance.
 
 1.	In a terminal window, use the ssh command to connect to the instance. Specify the path and file name of the private key (.pem), the user name for your instance, and the public DNS name or IP Address of your instance.
+
+**NOTE**: Username to be used here is **ec2-user** if your image is Amazon Linux OS  and **ubuntu** if your image is Ubuntu Linux OS.  
 
 ```bash
 ssh -i /path/my-key-pair.pem ec2-user@<ip-address>
