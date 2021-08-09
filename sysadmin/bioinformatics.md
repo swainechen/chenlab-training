@@ -12,7 +12,7 @@ Some considerations for installing from Ubuntu - you'll get automatic updates wi
 
 Installing from a binary or source package has the opposite characteristics. You can ensure you're using the latest version, including the latest updates to the "live" codebase, but you may have to do adaptation of the installation to your system, compiling can sometimes require troubleshooting, uninstallation can be difficult to do cleanly, and you may not always know how to mark which version you're using (especially if you are routinely updating to the current git source tree instead of using a release version).
 
-I've made some recommendations for the software below based on these considerations. There are no hard and fast rules, and for most I provide instructions for multiple ways to install these packages.
+I've made some recommendations for the software below based on these considerations. There are no hard and fast rules, and for most I provide instructions for multiple ways to install these packages. One thing is I've tried to avoid most of the python managers like conda, which can lead to lots of complex dependencies as more software gets installed - this should therefore help keep it relatively "clean" and simple for you to then install other software through that route!
 
 ### Another reminder about using `sudo` and the root account:
 The commands below are written to do most things as root - this is not the best practice. The [standard recommendation](https://tldp.org/HOWTO/Software-Building-HOWTO-3.html) is to only use sudo or the root account when it's absolutely needed. There are a couple ways to do this:
@@ -188,7 +188,7 @@ less INSTALL
 ```
 
 #### [HYPHY](https://github.com/veg/hyphy)
-I haven't had great luck with conda, and this setup is intended to be used for a single person or to drive a specific pipeline. Therefore, we'll compile HYPHY from source using the latest release tarball.
+As noted above, I've generally avoided conda when the setup is otherwise simple, so that it can be used for other software later without much trouble. This setup is intended to be used for a single person or to drive a specific pipeline. Therefore, we'll compile HYPHY from source using the latest release tarball.
 ```
 sudo su -
 cd /usr/local/src
@@ -207,7 +207,7 @@ make install
 
 #### [Kingfisher](https://github.com/wwood/kingfisher-download)
 This is a convenient tool for downloading public data sets, such as from GenBank or ENA.
-Again, I haven't had a lot of good experience with conda.
+Again, the setup is pretty simple so I've done it without conda.
 Fortunately, this only requires one additional library to install (extern).
 ```
 sudo su -
@@ -218,8 +218,9 @@ cd kingfisher-download
 # check the docs
 less README.md
 ln -s /usr/local/src/kingfisher-download/bin/kingfisher /usr/local/bin
+ln -s /usr/local/src/kingfisher-download/ena-fast-download.py /usr/local/bin
 ```
-If you've installed [ASCP](#ASCP) as described in this guide, you can use the `-m ena-ascp` method as well as the more standard methods.
+If you've installed [ASCP](#ASCP) as described in this guide (or you're using the CHENLAB-PUBLIC AMI), you the `-m ena-ascp` method will just work, as will the more standard methods.
 
 #### [pbbam](https://github.com/PacificBiosciences/pbbam)
 Ubuntu LTS version: 1.0.6<br/>
@@ -561,9 +562,9 @@ This is a base quality score recalibrator (the "Q" in FASTQ files).
 It does not require knowledge of common SNPs and therefore is the only program that can generally recalibrate base quality scores on any organism (programs like GATK's BaseRecalibrator were designed primarily for human sequencing data, for example, and therefore only work well on data from a limited set of organisms).
 This means that base quality recalibration, leading to more accurate trimming and SNP calling, can now be used on any organism (specifically including bacteria).
 
-The main program is just a perl script. There's a fast and stripped-down `lacepr` program that does the basics of what GATK's PrintReads does.
+The main program is just a perl script. There's a fast and stripped-down `lacepr` program that does the basics of what GATK's PrintReads does. It's faster, is a bit more flexible to use to manage read groups, and also can recalibrate fastq files directly (so you can map "enough" to generate a recalibration, then recalibrate the fastq file, then do a full mapping with recalibrated data).
 
-There are some Perl dependencies - if you've done everything in the [initial system setup](system.md), all of these should be available already.
+There are some Perl dependencies - if you've done everything in the [initial system setup](system.md), all of these should be available already. Of course, all of these are already set up on the CHENLAB-PUBLIC AMI.
 ```
 sudo su -
 cd /usr/local/src
