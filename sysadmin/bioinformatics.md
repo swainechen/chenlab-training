@@ -1247,15 +1247,16 @@ ln -s /usr/local/src/breseq-0.35.6-Linux-x86_64/share/breseq /usr/local/share/
 
 #### [GATK](https://gatk.broadinstitute.org/hc/en-us)
 ```
+sudo su -
 cd /usr/local/src
-wget https://github.com/broadinstitute/gatk/releases/download/4.2.0.0/gatk-4.2.0.0.zip
-unzip gatk-4.2.0.0.zip
-cd gatk-4.2.0.0
+wget https://github.com/broadinstitute/gatk/releases/download/4.2.1.0/gatk-4.2.1.0.zip
+unzip gatk-4.2.1.0.zip
+cd gatk-4.2.1.0
 # check the docs
 less README.md
 
 # the main gatk invocation script will figure out the original directory, so we can just link this in to /usr/local/bin
-ln -s /usr/local/src/gatk-4.2.0/gatk /usr/local/bin
+ln -s /usr/local/src/gatk-4.2.1.0/gatk /usr/local/bin
 
 # test it
 gatk --help
