@@ -211,12 +211,12 @@ Again, the setup is pretty simple so I've done it without conda.
 Fortunately, this only requires one additional library to install (extern).
 ```
 sudo su -
-pip3 install extern
 cd /usr/local/src
 git clone https://github.com/wwood/kingfisher-download
 cd kingfisher-download
 # check the docs
 less README.md
+pip3 install bird_tool_utils'>='0.2.17
 ln -s /usr/local/src/kingfisher-download/bin/kingfisher /usr/local/bin
 ln -s /usr/local/src/kingfisher-download/ena-fast-download.py /usr/local/bin
 ```
