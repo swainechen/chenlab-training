@@ -35,11 +35,13 @@ sudo shred -u /etc/ssh/*_key /etc/ssh/*_key.pub
 ```
 - Clean up logs, as per Pedro Lobito's comment at [https://serverfault.com/questions/185253/delete-all-of-var-log](https://serverfault.com/questions/185253/delete-all-of-var-log):
 ```
+sudo su -
 cd /var/log
+set +o noclobber
 for CLEAN in $(find /var/log/ -type f); do cp /dev/null $CLEAN; done
 ```
 
-- Remove authorized keys and history for root - careful, this will prevent any further logins to this machine
+- Remove authorized keys and history for root
 ```
 sudo su -
 shred -u .ssh/*
@@ -48,7 +50,7 @@ rm -rf snap .cache .cpan* .vim
 history -c
 exit
 ```
-- Remove authorized keys and history for ubuntu - check for other files too
+- Remove authorized keys and history for ubuntu - check for other files too - careful, this will prevent any further logins to this machine
 ```
 shred -u .ssh/*
 shred -u .*history .*hsts .gitconfig .lesshst .viminfo .sudo_as_admin_successful
