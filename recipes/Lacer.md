@@ -24,7 +24,7 @@ bwa index MG1655.fna
 bwa mem MG1655.fna SRR7349974_1.fastq.gz SRR7349974_2.fastq.gz | samtools view -bS > SRR7349974-MG1655.bam
 samtools sort SRR7349974-MG1655.bam -o SRR7349974-MG1655-sort.bam
 samtools index SRR7349974-MG1655-sort.bam
-lacer.pl -bam SRR7349974-MG1655-sort.bam -ref MG1655.fna -stopbases 3000002 -outfile SRR7349974-MG1655.lacer.txt
+lacer.pl -bam SRR7349974-MG1655-sort.bam -ref MG1655.fna -stopbases 3000000 -outfile SRR7349974-MG1655.lacer.txt
 ```
 
 There are several options for applying the recalibration. One of the easier ones is to recalibrate the fastq files directly:
