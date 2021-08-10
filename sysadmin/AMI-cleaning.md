@@ -38,7 +38,7 @@ sudo shred -u /etc/ssh/*_key /etc/ssh/*_key.pub
 sudo su -
 cd /var/log
 set +o noclobber
-for CLEAN in $(find /var/log/ -type f); do cp /dev/null $CLEAN; done
+for CLEAN in $(find /var/log/ -type f); do /usr/bin/cp /dev/null $CLEAN; done
 ```
 
 - Remove authorized keys and history for root
