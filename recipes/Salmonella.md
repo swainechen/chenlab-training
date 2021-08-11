@@ -19,7 +19,7 @@ Downloading this data set requires ~450MB of storage.
 ```
 mkdir -p /home/ubuntu/fastq/SRR12151671
 cd /home/ubuntu/fastq/SRR12151671
-kingfisher --run-identifier SRR12151671 -m ena-ascp
+kingfisher get --run-identifier SRR12151671 -m ena-ascp
 ```
 
 ## Assembly and genome annotation
