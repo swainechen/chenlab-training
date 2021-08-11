@@ -13,7 +13,8 @@ Lacer was written to fit into a GATK-centric pipeline. Due to the type of sequen
 
 ### Recalibration Recipe
 
-Get some sample data. The Illumina data is for UTI89, which is about 2% divergent from MG1655. Lacer will recalibrate the qualities nearly identically regardless of whether you use the UTI89 or MG1655 references. Because GATK requires further assumptions for recalibration, the recalibrated qualities will vary significantly if you do the same experiment with GATK, and the ones obtained using the "perfect" reference (UTI89) will match those given by Lacer.
+#### Get some sample data
+The Illumina data below is for UTI89, which is about 2% divergent from MG1655. Lacer will recalibrate the qualities nearly identically regardless of whether you use the UTI89 or MG1655 references. Because GATK requires further assumptions for recalibration, the recalibrated qualities will vary significantly if you do the same experiment with GATK, and the ones obtained using the "perfect" reference (UTI89) will match those given by Lacer.
 ```
 # MG1655 genome
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/845/GCF_000005845.2_ASM584v2/GCF_000005845.2_ASM584v2_genomic.fna.gz
@@ -29,7 +30,7 @@ mv GCF_000013265.1_ASM1326v1_genomic.fna UTI89.fna
 kingfisher get --run-identifier SRR7349974 -m ena-ascp
 ```
 
-Map the data and run lacer
+#### Map the data and run lacer
 ```
 bwa index MG1655.fna
 bwa mem MG1655.fna SRR7349974_1.fastq.gz SRR7349974_2.fastq.gz | samtools view -bS > SRR7349974-MG1655.bam
@@ -39,6 +40,7 @@ samtools faidx MG1655.fna
 lacer.pl -bam SRR7349974-MG1655-sort.bam -ref MG1655.fna -stopbases 3000000 -outfile SRR7349974-MG1655.lacer.txt
 ```
 
+#### Apply the recalibration with lacepr
 There are several options for applying the recalibration. One of the easier ones is to recalibrate the fastq files directly:
 ```
 # or you can recalibrate the fastq files directly
@@ -52,6 +54,7 @@ The "traditional" way is to recalibrate the bam file. This can be done with the 
 lacepr --bam SRR7349974-MG1655-sort.bam --recal SRR7349974-MG1655.lacer.txt --out SRR7349974-MG1655-sort-recal.bam --rg NULL
 ```
 
+#### Alternative - apply the recalibration with GATK
 The equivalent using GATK requires adding read groups. NULL is the read group string used by lacer when no read group is in the bam file during recalibration, so you have to add that (or add the read groups before recalibration):
 ```
 gatk AddOrReplaceReadGroups -I SRR7349974-MG1655-sort.bam -O SRR7349974-MG1655-RG.bam -RGID 1 -RGLB lib -RGPL ILLUMINA -RGPU NULL -RGSM Sample
