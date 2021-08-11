@@ -1,6 +1,17 @@
 # Lacer
 ## FASTQ quality score recalibration
-From the earliest 
+### Background
+The "Q" in FASTQ stands for quality. Quality scores have been an integral part of sequencing since we were still using Sanger sequencing, and a lot of us looked at a lot of fluorescence traces and Phred scores!
+
+The Genome Analysis Toolkit (GATK) implemented the first widely used method to recalibrate these base qualities. This worked by aligning reads to a reference genome, then assuming all mismatches to the reference were sequencing errors - then you could calculate, for all bases with a given quality score, what the "real" experimental error was. Of course, sometimes mismatches were real SNPs - after all, the point of sequencing was to find new variants. To mostly get around this problem, GATK made use of dbSNP for human genomes (now available for a few other model organisms) to not count known SNPs as sequencing errors. This wasn't perfect, but as dbSNP grew, it mostly worked.
+
+For all other organisms, however, this approach doesn't really work. So we developed Lacer, which analyzes the distribution of quality scores using some linear algebra techniques. This allows inference of the quality score distributions for sequencing errors without actually making any assumptions about which bases are incorrect. To date, Lacer is still the only program that can recalibrate quality scores for any organism.
+
+Lacer gives the same results as GATK on human data sets (details in the [preprint](https://doi.org/10.1101/130732). Lacer also gives the same recalibration even if your reference sequence changes (this can lead to big changes in the GATK recalibration if you don't have the equivalent of a dbSNP).
+
+Lacer was written to fit into a GATK-centric pipeline. Due to the type of sequencing analysis it was designed for, GATK mandates the use of read groups, which don't make a lot of sense for microbial sequencing (or sequencing of many other organisms). Lacer therefore can handle read groups but we also wrote a utility to help manage those more easily, allowing direct recalibration of both bam and fastq files.
+
+### Recalibration Recipe
 
 Get some sample data. The Illumina data is for UTI89, which is about 2% divergent from MG1655. Lacer will recalibrate the qualities nearly identically regardless of whether you use the UTI89 or MG1655 references. Because GATK requires further assumptions for recalibration, the recalibrated qualities will vary significantly if you do the same experiment with GATK, and the ones obtained using the "perfect" reference (UTI89) will match those given by Lacer.
 ```
