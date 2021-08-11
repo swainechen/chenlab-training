@@ -5,3 +5,4 @@ All of these assume you're using the environment described here, which can be fo
 
 * [Getting started with the AMI](starting.md)
 * [Assembling and annotating a Salmonella isolate](Salmonella.md)
+* [Recalibrating FASTQ base quality scores - for any organism](Lacer.md)
