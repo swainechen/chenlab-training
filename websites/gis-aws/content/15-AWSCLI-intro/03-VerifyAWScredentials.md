@@ -13,7 +13,9 @@ AWS security credentials are used to verify
 2.	 Your permission to access the resources that you are requesting  
 AWS uses these security credentials to authenticate and authorize your requests.  
   
-We configured **who you are** in the earlier section. Let us inspect the credentials and config files in the **~/.aws/** folder now.  
+We configured **who you are** in the earlier section. Let us inspect the credentials and config files in the **~/.aws/** folder now.
+_(Not applicable for AWS configure with Event Engine code snippet)_  
+  
 ```bash
 cat ~/.aws/credentials
 ```

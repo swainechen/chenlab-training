@@ -1,12 +1,12 @@
 +++
-title = "b. Sign in to AWS Console"
+title = "b. Sign in to AWS Console (direct sign-in)"
 date = 2019-09-18T10:46:30-04:00
 draft = false
 weight = 50
 tags = ["tutorial", "aws console", "ec2"]
 +++
 
-Depending on your workshop, you may access the AWS Management Console through direct sign-in ([here](https://signin.aws.amazon.com/console)) or in an alternative method, as directed by your trainer. To sign in via console, enter your AWS Account ID or alias, IAM user name, and password that was provided to you for this lab.
+You may access the AWS Management Console through direct sign-in ([here](https://signin.aws.amazon.com/console)) or in an alternative method, as directed by your trainer. To sign in via console, enter your AWS Account ID or alias, IAM user name, and password that was provided to you for this lab.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/login.png)
 

@@ -79,7 +79,7 @@ cp /mnt/<Windows drive letter>/path/my-key-pair.pem ~/WSL-path/my-key-pair.pem
 **NOTE**: Username to be used here is **ec2-user** if your image is Amazon Linux OS  and **ubuntu** if your image is Ubuntu Linux OS. 
 
 ```bash
-sudo ssh -i /path/my-key-pair.pem ec2-user@<ip-address>
+sudo ssh -i /path/my-key-pair.pem ubuntu@<ip-address>
 ```
 
 you will see the following response

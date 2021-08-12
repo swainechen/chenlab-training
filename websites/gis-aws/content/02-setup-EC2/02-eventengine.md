@@ -1,5 +1,5 @@
 +++
-title = "a. Sign in to Event Engine"
+title = "a. Sign in to AWS Console (via Event Engine)"
 date = 2021-05-18T10:46:30-04:00
 draft = false
 weight = 45 
