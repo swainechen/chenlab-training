@@ -41,14 +41,14 @@ The above `describe-instances` and `describe-key-pairs` commands will likely fai
   
 As we have not yet configured the instance with the AWS account's credentials, the **~/.aws/** folder will not be available. Now let us go ahead with **aws configure**.
 
-<hr style="border:1px solid black"> </hr>   
+---   
 ***AWS CONFIGURE (with Event Engine)***
   
 _Important: if you are using Event Engine for this workshop, you can copy the code snippet with the temporary account's credentials from the Console page and paste it in your command line instead. This will be analogous to going through the manual setting up described in points 1-4 below (you can skip to point 5 directly)._
 
 ![EE console](/images/hpc-aws-parallelcluster-workshop/EE_console_login.png)    
 
-<hr style="border:1px solid black"> </hr>  
+--- 
 ***AWS CONFIGURE (GENERAL USE)***
 
 1.	Run the **aws configure** command
