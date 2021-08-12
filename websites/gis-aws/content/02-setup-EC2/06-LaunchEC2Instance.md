@@ -25,7 +25,7 @@ We will now launch an EC2 Linux based instance.
 ![EC2SelectAMI](/images/hpc-aws-parallelcluster-workshop/EC2SelectAMI.png)
 
 5.	In the **Step 2** page, choose an Instance type, select the **c5.2xlarge** instance from the list and click **Next: Configure Instance Details**.  
-**Note:** This is a large instance- we're doing this on purpose. This will not be a default instance you should use until you've considered the resources you need for your project.
+**Note:** This is a large instance - we're doing this on purpose. This will not be a default instance you should use until you've considered the resources you need for your project.
 
 ![EC2ChooseInstancetype](/images/hpc-aws-parallelcluster-workshop/EC2ChooseInstanceType-1.png)
 

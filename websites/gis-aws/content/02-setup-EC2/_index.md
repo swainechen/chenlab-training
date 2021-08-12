@@ -15,4 +15,7 @@ This section covers:
 - SSH into an EC2 instance and run Linux commands.
 - Stopping and Terminating the Linux instance.  
 
-If you are joining this tutorial by live training, please listen to your instructor for which page to access next. If you are going through this tutorial independently, proceed to page ***b. Sign in to the Console***.  
+Proceed to page  
+***a.Sign in to Event Engine*** if you are joining this tutorial by live training and were provided with Event Engine credentials.  
+OR  
+***b. Sign in to AWS Console*** if you are going through this tutorial independently.  
