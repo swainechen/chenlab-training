@@ -33,7 +33,7 @@ We will now use the private **.ppk** file of the key pair generated earlier to o
 
 9.  You will now be presented with the **login as** prompt.
 
-10. At the **login as** prompt type **ec2-user** and hit enter.
+10. At the **login as** prompt type **ubuntu** and hit enter.
 
 You would have now logged into the EC2 instance on AWS.
 
@@ -52,10 +52,10 @@ cp /mnt/<Windows drive letter>/path/my-key-pair.pem ~/WSL-path/my-key-pair.pem
 
 2.  In a terminal window, use the ssh command to connect to the instance. You specify the path and file name of the private key (.pem), the user name for your instance, and the public DNS name or IP Address.
 
-**NOTE**: Username to be used here is **ec2-user**.
+**NOTE**: Username to be used here is **ubuntu**.
 
 ```bash
-sudo ssh -i /path/my-key-pair.pem ec2-user@<ip-address>
+sudo ssh -i /path/my-key-pair.pem ubuntu@<ip-address>
 ```
 
 You will see the following response:
@@ -83,7 +83,7 @@ We will now use the private **.pem** file of the key pair generated earlier to o
 1.  In a terminal window, use the ssh command to connect to the instance. You specify the path and file name of the private key (.pem), the user name for your instance, and the public DNS name or IP Address of your instance.
 
 ```bash
-ssh -i /path/my-key-pair.pem ec2-user@<ip-address>
+ssh -i /path/my-key-pair.pem ubuntu@<ip-address>
 ```
 
 You see a response like the following:
