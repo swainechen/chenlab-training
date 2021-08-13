@@ -54,8 +54,11 @@ You will now be shown a message indicating that public access settings to the bu
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic5.png)
 
-At this point you have effectively shared the S3 bucket. Check with your collaborators to see if they can list the objects in your shared bucket.   
+At this point you have effectively shared the S3 bucket. Check with your collaborators to see if they can list the objects in your shared bucket using the following AWS CLI command.   
 
+```bash
+aws s3 ls s3://{Collaborator-Bucket-Name}
+```
 
 11.	Now let us make a file object downloadable. Select the file you would like to share. Click on **Actions** and **Make public**.  
 
@@ -67,3 +70,7 @@ At this point you have effectively shared the S3 bucket. Check with your collabo
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic7.png)
 
 Only the files you made public should now be downloadable by running the AWS CLI commands.
+
+```bash
+aws s3 cp s3://{Collaborator-Bucket-Name}/{object name} ./
+```

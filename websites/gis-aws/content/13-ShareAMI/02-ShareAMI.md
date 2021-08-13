@@ -57,4 +57,8 @@ Your collaborator will now be able to create an EC2 instance from your shared AM
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2SnapshotsPermissions.png)
 
-Now, you have successfully shared the snapshot with the provided AWS Account. You can ask your collaborator to create a Volume from the shared snapshot.
+Now, you have successfully shared the snapshot with the provided AWS Account. Invite your collaborator to view the shared snapshot by first clicking on **Snapshots** under the **Elastic Block Store** on the left navigation pane and then on the drop-down list that says **Owned By Me** and select **Private Snapshots**.  
+
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2Snapshotshared.png)
+
+You can ask your collaborator to create a Volume from the shared snapshot.
