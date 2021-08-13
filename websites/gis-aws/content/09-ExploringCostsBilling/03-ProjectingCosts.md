@@ -34,6 +34,8 @@ Every AWS service has its own web page with a **pricing** section to provide mor
 **Exploring EBS Pricing**  
 
 1.  At the top of the **EBS Pricing page**, change the **Region** to **Asia-Pacific (Singapore)**.
+
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/OnDemandPricingRegion_EBS.png)  
  
 2.  Scroll down to explore the division of resources; here, it’s divided into Amazon EBS Volumes, EBS Snapshots, restoring costs, and practical examples. At the bottom of the page is a pricing calculator; you’ll read more about this in our next section.   
   
@@ -42,7 +44,9 @@ Every AWS service has its own web page with a **pricing** section to provide mor
  
 1.  The first thing to note for the **AWS S3 Pricing page** is the series of tabs at the top- these let you explore the cost not only for storage, but for moving, retrieving, and replicating your data.  
 
-2.  On the **Storage** tab, change your **Region** to **Asia-Pacific (Singapore)**. Scroll down. 
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/OnDemandPricingRegion_S3.png)
+
+2.  On the **Storage** tab, change your **Region** to **Asia-Pacific (Singapore)** (as shown above). Scroll down. 
  
 3.  Here you can see the pricing tiers for different levels of storage; it’s important to note how S3’s intelligent tiering can move your data to different classes, and save you money.  
  

@@ -8,6 +8,8 @@ tags = ["tutorial", "aws console", "ec2"]
   
 AWS provides a pricing calculator that helps estimate your monthly AWS bill more efficiently. Using this tool, you can add, modify and remove services from an estimated bill and it will recalculate estimated monthly charges automatically.  
 You can click [here](https://calculator.aws/#/) to link to the pricing calculator. Once you’ve navigated to the site, click **Create estimate**.   
+
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/AWSPricingCalculator.png)  
    
 **Generating an EC2 and EBS Estimate**  
 Now we’ll make a cost estimate based on our own machines. First, we’ll run an estimate using the specs for the AMI that we’ve currently got running. As a reminder, these are the resources attached:  
@@ -15,6 +17,8 @@ Now we’ll make a cost estimate based on our own machines. First, we’ll run a
 -  EBS volume is 100 GB  
  
 1.  On the **Select service** page, enter “EC2” into the search bar. Click **Configure** for the first option that just says “Amazon EC2”. 
+
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/AWSPricingCalculator_EC2.png)
  
 2.  On the **Configure Amazon EC2** page, enter a useful description for our first estimate. For this first one, we can use “AMI estimate”.  
 
@@ -39,6 +43,8 @@ Now we’ll make a cost estimate based on our own machines. First, we’ll run a
 Next, we’ll look at the costs of storing data on AWS’s Simple Storage Service (S3). Let’s hypothetically say you’ve got a dataset of 100,000 bacterial sequences, with each sequence file being around 5.25 megabases, and these are all saved as fasta files. This will be approximately 160 GB of data. We’ll use the S3 pricing calculator to see how storage costs of this database change depending on storage tier. 
   
 1.  Return to the **Pricing Calculator** main page. Enter “S3” into the search bar. Click **Configure** for the first option that just says “Amazon Simple Storage Service (S3)”. 
+
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/AWSPricingCalculator_S3.png)  
 
 2.  On the **Configure Amazon Simple Storage Service (S3)** page, enter a useful description for our first estimate. For this first one, we can use “S3 estimate”.  
 
