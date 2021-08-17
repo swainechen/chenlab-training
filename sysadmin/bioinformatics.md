@@ -220,7 +220,7 @@ pip3 install bird_tool_utils'>='0.2.17
 ln -s /usr/local/src/kingfisher-download/bin/kingfisher /usr/local/bin
 ln -s /usr/local/src/kingfisher-download/ena-fast-download.py /usr/local/bin
 ```
-If you've installed [ASCP](#ASCP) as described in this guide (or you're using the CHENLAB-PUBLIC AMI), you the `-m ena-ascp` method will just work, as will the more standard methods.
+If you've installed [ASCP](#ASCP) as described in this guide (or you're using the CHENLAB-PUBLIC AMI), then `-m ena-ascp` method will just work, as will the more standard methods.
 
 #### [pbbam](https://github.com/PacificBiosciences/pbbam)
 Ubuntu LTS version: 1.0.6<br/>
