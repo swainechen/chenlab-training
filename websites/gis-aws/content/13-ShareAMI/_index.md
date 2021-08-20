@@ -14,4 +14,4 @@ In this section of the workshop you will:
 
 1.	Share the AMI with a specific AWS account.
 
-2.	Share an EBS volume with a specific AWS account.  
+2.	Share an EBS snapshot with a specific AWS account.  
