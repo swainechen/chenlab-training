@@ -6,8 +6,8 @@ tags = ["tutorial", "dashboard", "ParallelCluster"]
 
 
 ***A. Before we share an S3 bucket with a collaborator, let us first  
--Copy data from your local machine to your AWS instance and vice versa  
--Copy data from one instance to another instance.***   
+- Copy data from your local machine to your AWS instance and vice versa  
+- Copy data from one instance to another instance.***   
 
 **Copy data from your local machine to your AWS instance and vice versa**
 1.	On your local computer, open a new terminal and create a sample text file. 
@@ -55,9 +55,9 @@ Now let us copy the sample test.txt file from your current instance (CI) to anot
 
 1.	Open a new terminal, and use it to ssh into the instance you started at the beginning of this workshop (AI); if it is unavailable, quickly spin up another instance. The specs do not matter.
 
--Make sure to copy your .pem key (for AI) to your instance (CI). This is the private key file that you are using to log in to the instances, i.e. the key pair you generated in step xx. Be sure to change the permissions as well (chmod 0400 keyname.pem). You can use scp to copy it to your new CI instance. (You will need the key file in order to communicate (SSH or SCP) with another instance with the same key pair)  
--SSH into your AWS instance (AI) from your local machine where you have the text.txt file.  
--Run the following command to copy the file from your current instance to the other (AI)  
+- Make sure to copy your .pem key (for AI) to your instance (CI). This is the private key file that you are using to log in to the instances, i.e. the key pair you have been specifying with the `-i` option in SSH. Be sure to change the permissions as well (chmod 0400 keyname.pem). You can use scp to copy it to your new CI instance. (You will need the key file in order to communicate (SSH or SCP) with another instance with the same key pair)  
+- SSH into your AWS instance (AI) from your local machine where you have the text.txt file.  
+- Run the following command to copy the file from your current instance to the other instance (AI)
 ```bash
 scp -i path/to/key.pem path/to/test.txt ec2-user@<ip-address>:/home/ec2-user/ 
 ```
@@ -73,9 +73,9 @@ ssh -i path/to/key.pem ec2-user@<ip-address>
 
 ---
 ***B. You will now learn to share an S3 Bucket with your collaborator i.e.  
--Transferring data to your private bucket, but giving a collaborator access to one file in that bucket.  
--Giving a collaborator access to a public bucket with their files (and only them)  
--Transferring a file securely to your collaborator’s bucket.***  
+- Transferring data to your private bucket, but giving a collaborator access to one file in that bucket.  
+- Giving a collaborator access to a public bucket with their files (and only them)  
+- Transferring a file securely to your collaborator’s bucket.***  
 
 **Transferring data to your private bucket, but giving a collaborator access to one file in that bucket**
 
@@ -109,7 +109,8 @@ Observe the first button **Bucket Public Access** is selected by default and sho
 
 You will now be shown a message indicating that public access settings to the bucket have been updated successfully.
 
-Next we will update the Access Control List to provide read and write permissions for objects.
+Next we will update the Access Control List to provide read and write permissions for individual objects.
+
 8.	Scroll down to the **Access control list (ACL)** section and click on **Edit**.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic3.png)
@@ -128,7 +129,7 @@ At this point you have effectively shared the S3 bucket. Check with your collabo
 aws s3 ls s3://{Collaborator-Bucket-Name}
 ```
 
-11.	Now let us make a file object downloadable. Select the file you would like to share. Click on **Actions** and **Make public**.
+11.	Just being able to list an object in your S3 bucket is separate from being able to download it. Now let us make a file object downloadable. Select the file you would like to share. Click on **Actions** and **Make public**.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic6.png)
 
