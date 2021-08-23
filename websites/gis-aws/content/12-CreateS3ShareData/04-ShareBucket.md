@@ -5,9 +5,9 @@ tags = ["tutorial", "dashboard", "ParallelCluster"]
 +++
 
 
-A. Before we share an S3 bucket with a collaborator, let us first  
+***A. Before we share an S3 bucket with a collaborator, let us first  
 -Copy data from your local machine to your AWS instance and vice versa  
--Copy data from one instance to another instance. 
+-Copy data from one instance to another instance.***   
 
 **Copy data from your local machine to your AWS instance and vice versa**
 1.	On your local computer, open a new terminal and create a sample text file. 
@@ -72,10 +72,10 @@ ssh -i path/to/key.pem ec2-user@<ip-address>
 3.	Review the file you copied to this instance. Type “exit” to simply return to your earlier instance.
 
 ---
-B. You will now learn to share an S3 Bucket with your collaborator i.e.  
+***B. You will now learn to share an S3 Bucket with your collaborator i.e.  
 -Transferring data to your private bucket, but giving a collaborator access to one file in that bucket.  
 -Giving a collaborator access to a public bucket with their files (and only them)  
--Transferring a file securely to your collaborator’s bucket.
+-Transferring a file securely to your collaborator’s bucket.***  
 
 **Transferring data to your private bucket, but giving a collaborator access to one file in that bucket**
 
@@ -109,8 +109,7 @@ Observe the first button **Bucket Public Access** is selected by default and sho
 
 You will now be shown a message indicating that public access settings to the bucket have been updated successfully.
 
-**Next we will update the Access Control List to provide read and write permissions for objects**
-
+Next we will update the Access Control List to provide read and write permissions for objects.
 8.	Scroll down to the **Access control list (ACL)** section and click on **Edit**.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic3.png)
