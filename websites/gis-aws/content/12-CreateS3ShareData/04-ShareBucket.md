@@ -6,7 +6,7 @@ tags = ["tutorial", "dashboard", "ParallelCluster"]
 
 
 A. Before we share an S3 bucket with a collaborator, let us first  
--Copy data from your local machine to your AWS instance and vice versa 
+-Copy data from your local machine to your AWS instance and vice versa  
 -Copy data from one instance to another instance. 
 
 **Copy data from your local machine to your AWS instance and vice versa**
@@ -149,15 +149,15 @@ Earlier we made the S3 bucket available to **Everyone (public access)**. Now let
 
 1.	Once again click on the bucket created earlier and then on Permissions to view the bucket access configurations. 
 
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPrivate1.png)
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsObjectPrivate1.png)
 
 2.	Next, we will update the Access Control List to provide read and write permissions for objects only to a specific collaborator. Scroll down to the Access control list (ACL) section and click on Edit.  
 
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPrivate2.png)
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsObjectPrivate2.png)
 
 3.	Next under Grantee - Everyone (public access) uncheck List (under Objects) and click on **Add grantee** under **Access for other AWS accounts**.  
 
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPrivate3.png)
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsObjectPrivate3.png)
 
 4.	In order to provide S3 Bucket access to a specific collaborator, ask your collaborator to provide you with an AWS Canonical ID by using the following command  
 
@@ -167,7 +167,7 @@ aws s3api list-buckets --query Owner.ID --output text
 
 5.	Enter your collaborator’s AWS Canonical ID to grant access only to your collaborator. You may provide/ revoke access to multiple AWS accounts by clicking on Add/ Remove grantee. Check the **List** and **Write** boxes under Objects and click on **Save changes**.  
 
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPrivate4.png)
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsObjectPrivate4.png)
 
 You have now successfully shared your S3 Bucket privately with a specific collaborator.
 
