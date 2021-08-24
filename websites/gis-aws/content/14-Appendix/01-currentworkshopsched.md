@@ -6,17 +6,17 @@ weight = 40
 tags = ["schedule", "workshop", "help"]
 +++
 
-Information is current for the 2021 28-29 July workshop. Note that this timing and schedule may change for other workshops, past and future.
+Information is current for the **2021 25-26 August** workshop. Note that this timing and schedule may change for other workshops, past and future.
 
 **Schedule by day**  
-**28 July 2021**  
+**Day 1**  
 *09:00 AM - 09:30 AM*: GIS x AWS Intro and your first cloud instance: Theory  
 *09:30 AM - 10:30 AM*: GIS x AWS Intro and your first cloud instance: Practical  
 *10:30 AM - 10:45 AM*: Break  
 *10:45 AM - 11:15 AM*: Data processing and saving your work: Theory  
 *11:15 AM - 12:00 PM*: Data processing and saving your work: Practical  
    
-**29 July 2021**  
+**Day 2**  
 *09:00 AM - 09:30 AM*: S3 storage and using a saved AMI: Theory  
 *09:30 AM - 10:30 AM*: S3 storage and using a saved AMI: Practical  
 *10:30 AM - 10:45 AM*: Break  

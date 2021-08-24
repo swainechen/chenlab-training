@@ -5,9 +5,9 @@ tags = ["tutorial", "dashboard", "ParallelCluster"]
 +++
 
 
-***A. Before we share an S3 bucket with a collaborator, let us first  
+A. Before we share an S3 bucket with a collaborator, let us first  
 - Copy data from your local machine to your AWS instance and vice versa  
-- Copy data from one instance to another instance.***   
+- Copy data from one instance to another instance.   
 
 **Copy data from your local machine to your AWS instance and vice versa**
 1.	On your local computer, open a new terminal and create a sample text file. 
@@ -55,7 +55,7 @@ Now let us copy the sample test.txt file from your current instance (CI) to anot
 
 1.	Open a new terminal, and use it to ssh into the instance you started at the beginning of this workshop (AI); if it is unavailable, quickly spin up another instance. The specs do not matter.
 
-- Make sure to copy your .pem key (for AI) to your instance (CI). This is the private key file that you are using to log in to the instances, i.e. the key pair you have been specifying with the `-i` option in SSH. Be sure to change the permissions as well (chmod 0400 keyname.pem). You can use scp to copy it to your new CI instance. (You will need the key file in order to communicate (SSH or SCP) with another instance with the same key pair)  
+- Make sure to copy your .pem key (for AI) to your CI. This is the private key file that you are using to log in to the instances, i.e. the key pair you have been specifying with the `-i` option in SSH. Be sure to change the permissions as well (chmod 0400 keyname.pem). You can use scp to copy it to your new CI. (You will need the key file in order to communicate (SSH or SCP) with another instance with the same key pair)  
 - SSH into your AWS instance (AI) from your local machine where you have the text.txt file.  
 - Run the following command to copy the file from your current instance to the other instance (AI)
 ```bash
@@ -72,10 +72,10 @@ ssh -i path/to/key.pem ec2-user@<ip-address>
 3.	Review the file you copied to this instance. Type “exit” to simply return to your earlier instance.
 
 ---
-***B. You will now learn to share an S3 Bucket with your collaborator i.e.  
+B. You will now learn to share an S3 Bucket with your collaborator i.e.  
 - Transferring data to your private bucket, but giving a collaborator access to one file in that bucket.  
 - Giving a collaborator access to a public bucket with their files (and only them)  
-- Transferring a file securely to your collaborator’s bucket.***  
+- Transferring a file securely to your collaborator’s bucket.  
 
 **Transferring data to your private bucket, but giving a collaborator access to one file in that bucket**
 
@@ -133,7 +133,7 @@ aws s3 ls s3://{Collaborator-Bucket-Name}
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic6.png)
 
-12.     Click on **Make public**.
+12.	Click on **Make public**.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic7.png)
 
