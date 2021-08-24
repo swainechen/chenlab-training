@@ -45,7 +45,7 @@ pscp -P 22 -i path/to/key.ppk ubuntu@<ip-address>:/home/ubuntu/test.txt path/to/
 
 Alternative: use rsync:
 ```bash
-rsync -e ‘ssh -i /path/to/key.pem’ -avux ubuntu@<ip-address>:/home/ubuntu/test.txt /path/to/folder/localmachine
+rsync -e 'ssh -i /path/to/key.pem' -avux ubuntu@<ip-address>:/home/ubuntu/test.txt /path/to/folder/localmachine
 ```
 
 5.	Open the copied file to review your edits.
