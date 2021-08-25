@@ -65,9 +65,14 @@ df -h .
 ```
 The above command would show the free space in the volume1 directory.
 
-**NOTE**: At this point, the drive is owned by root and not user. If you would like to edit files in this directory you'll need to change ownership with **chown**. We'll go over this later. 
 
-9.	For your own information, it is possible to later remove this device. Practice unmounting, then remounting it. To unmount the volume, you have to use the following command. Make sure to be outside the directory to unmount the volume.
+9.  At this point, the drive is owned by root and not user. We will want to change ownership of the drive, so that you can change the contents of the drive (Add/remove files, etc).  
+
+```bash  
+sudo chown -R ubuntu /mnt/volume1
+```  
+
+10.	For your own information, it is possible to later remove this device. Practice unmounting, then remounting it. To unmount the volume, you have to use the following command. Make sure to be outside the directory to unmount the volume.
 
 ```bash
 sudo umount /dev/nvme1n1
