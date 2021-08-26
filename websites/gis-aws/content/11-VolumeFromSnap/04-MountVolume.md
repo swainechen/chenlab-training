@@ -55,8 +55,8 @@ df -h .
 
 9.	Ensure your copied data is present on the volume.
 
-10.	You will need to set ownership of this drive from root to user with **chown**.
+10.	You will need to set ownership of this drive from root to user with **chown**. Replace **user** with the username for your current OS (likely ubuntu or ec2-user).  
 
 ```bash
-sudo chown -R user /mnt/volume1
+sudo chown -R <user> /mnt/volume1
 ```
