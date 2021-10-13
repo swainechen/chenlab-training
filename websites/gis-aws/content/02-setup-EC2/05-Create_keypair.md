@@ -35,6 +35,6 @@ In this section of the lab you will create a Linux instance and login to it to r
   
 ![ConsoleEC2AddTags](/images/hpc-aws-parallelcluster-workshop/ConsoleEC2AddTags.png)
   
-7.	The key pair you created should automatically download to your system.  Follow any browser instructions to save the file to the default download location.  Verify that the file has downloaded and you can locate it. Remember the full path to this .ppk/pem file you just downloaded. This file contains your private key for future SSH connections. 
+7.	The key pair you created should automatically download to your system.  Follow any browser instructions to save the file to the default download location.  Verify that the file has downloaded and you can locate it. Remember the full path to this **.ppk/pem** file you just downloaded. This file contains your private key for future SSH connections. 
   
 8.	You will see a message appear at the top of the screen that says **Successfully created key pair**.  You will see the key pair you created listed.

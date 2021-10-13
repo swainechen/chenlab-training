@@ -16,6 +16,6 @@ This section covers:
 - Stopping and Terminating the Linux instance.  
 
 Proceed to page  
-***a.Sign in to Event Engine*** if you are joining this tutorial by live training and were provided with Event Engine credentials.  
+***a. Sign in to AWS Console (via Event Engine)*** if you are attending the live training and were provided with Event Engine credentials.  
 OR  
-***b. Sign in to AWS Console*** if you are going through this tutorial independently.  
+***b. Sign in to AWS Console (direct sign-in)*** if you are going through this tutorial independently.  

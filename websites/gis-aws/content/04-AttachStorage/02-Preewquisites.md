@@ -18,9 +18,11 @@ tags = ["tutorial", "Prerequisite", "ec2"]
 
 4.	In the **Create Volume** page fill out the required size of the volume in GB, e.g. 10 GB or more depending on the data set size.
 
-**Important**: Make sure the **Availability Zone** is the same as the EC2 instance you are going to attach the volume to.
+**NOTE**: For the purposes of this lab 10 GB will suffice.   
 
-**NOTE**: For the purposes of this lab 10 GB will suffice.
+**Important**: Make sure the **Availability Zone** is the same as the EC2 instance you are going to attach the volume to.   
+
+![Copy Paste](/images/hpc-aws-parallelcluster-workshop/CreateVolumeAZ.png)
 
 ![Copy Paste](/images/hpc-aws-parallelcluster-workshop/CreateVolume.png)
 

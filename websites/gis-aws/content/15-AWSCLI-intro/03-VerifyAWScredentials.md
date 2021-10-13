@@ -2,7 +2,7 @@
 title = "b. Verifying AWS credentials"
 date = 2021-06-22T10:46:30-04:00
 draft = false
-weight = 50
+weight = 70
 tags = ["tutorial", "Prerequisite", "ec2"]
 +++
 
@@ -24,6 +24,8 @@ cat ~/.aws/credentials
 cat ~/.aws/config
 ```
 
+---
+---
 _IMPORTANT: If you are using Event Engine for this workshop, make sure to have the **AWS ACCESS KEY ID**, **AWS SECRET ACCESS KEY**, **AWS DEFAULT REGION** match the temporary account's credentials from the Console page on Event Engine. The **AWS SESSION TOKEN** is unique for each Event Engine session (this session token is NOT APPLICABLE for an original AWS account)._
 
 ![EE console](/images/hpc-aws-parallelcluster-workshop/EE_console_login.png) 

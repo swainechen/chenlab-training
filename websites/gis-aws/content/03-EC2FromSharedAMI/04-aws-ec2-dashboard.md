@@ -6,9 +6,7 @@ tags = ["tutorial", "dashboard", "ParallelCluster"]
 
 1.	In the AWS Management Console search bar, type **EC2**.
 
-2.	Choose **EC2** to open the **EC2 Dashboard**. 
-
-Although instances are generally launched through scripts, they can also be launched directly from the EC2 Dashboard. 
+2.	Choose **EC2** to open the **EC2 Dashboard**.  
 
 Spend a few minutes familiarizing yourself with the layout of the dashboard:
 
