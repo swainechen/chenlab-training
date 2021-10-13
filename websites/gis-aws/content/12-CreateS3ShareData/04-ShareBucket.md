@@ -23,7 +23,7 @@ scp -i path/to/key.pem path/to/test.txt ubuntu@<ip-address>:/home/ubuntu/
 
 If you are using windows command prompt and have the PuTTY suite of utilities installed, run the following command   
 ```bash
-pscp -P 22 -i path/to/key.ppk path/	to/test.txt ubuntu@<ip-address>:/home/ubuntu/
+pscp -P 22 -i path/to/key.ppk path/to/test.txt ubuntu@<ip-address>:/home/ubuntu/
 ```
 
 Alternative: use rsync - the options here preserve timestamps and permissions (-a), and only transfer if it would result in an updated version (-u). This can help with tracking what the latest file is; using scp as above will just overwrite the destination even if the file exists at the destination and is newer.
