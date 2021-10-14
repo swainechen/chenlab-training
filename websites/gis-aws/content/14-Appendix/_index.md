@@ -14,7 +14,7 @@ Please see below for the different sections in this website, as well as their us
     If you are currently enrolled in an AWS x GIS workshop, this is where you can find an updated schedule. This will include a time table, as well as workshop-specific information.
 
 **b. Ready to explore more? We've got recipes!**   
-   If you are done with ...... feel free to explore these recipes from.... TO ADD
+    Loading...
 
 **c. Best Practices for AWS**  
     This page will help acquiant you with best practices and habits for making the most out of your AWS EC2, volumes, and S3 resources, as well as save you some extra $$$.
