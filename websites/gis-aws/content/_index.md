@@ -3,7 +3,7 @@ title: "GIS-AWS Cloud Genomics Workshop"
 date: 2019-09-18T10:50:17-04:00
 draft: false
 ---
-><font size="40">_**The next training session is 27-28 Oct 2021, 1-4pm SGT (UTC+8), with another coming in December, 2021. [Register for either one here!](https://forms.gle/Fkdg6Qtx6gZUSrMu9)**_</font>
+<font size="200">**The next training session is 27-28 Oct 2021, 1-4pm SGT (UTC+8), with another coming in December, 2021. [Register for either one here!](https://lnkd.in/gVSp3MC9/)**</font>
 
 # Welcome to the online Cloud Genomics Workshop
 **<font size="30">Genome Institute of Singapore and Amazon Web Services</font>**
