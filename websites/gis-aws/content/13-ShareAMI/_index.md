@@ -2,7 +2,7 @@
 title: "Share an AMI and an EBS snapshot with your Collaborators"
 date: 2020-04-24T7:05:54Z
 weight: 600
-pre: "<b>XIV ⁃ </b>"
+pre: "<b>XIII ⁃ </b>"
 tags: ["HPC", "EFA", "Elastic Fabric Adapter", "Network", "MPI"]
 ---
 

@@ -1,5 +1,5 @@
 +++
-title = "d. About the AMI"
+title = "e. About the AMI"
 date = 2021-05-23T16:24:30-04:00
 draft = false 
 weight = 60

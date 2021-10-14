@@ -6,7 +6,7 @@ weight = 40
 tags = ["schedule", "workshop", "help"]
 +++
 
-Information is current for the **2021 25-26 August** workshop. Note that this timing and schedule may change for other workshops, past and future.
+Information is current for the **2021 27-28 October** workshop. Note that this timing and schedule may change for other workshops, past and future.
 
 **Schedule by day**  
 **Day 1**  

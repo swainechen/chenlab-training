@@ -1,5 +1,5 @@
 +++
-title = "c. Tagging 101"
+title = "d. Tagging 101"
 date = 2021-05-23T16:24:30-04:00
 draft = false
 weight = 55 
