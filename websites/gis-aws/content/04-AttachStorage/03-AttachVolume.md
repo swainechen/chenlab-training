@@ -25,6 +25,6 @@ If attached successfully - In the list of displayed volumes you should see your 
 
 6.	In the EC2 Details section select **Storage** to see the **Block devices** attached to the instance. Notice the new volume just created attached as an additional Block Device with a Volume ID, Device Name and Volume Size.
 
-![Copy Paste](/images/hpc-aws-parallelcluster-workshop/Ec2AttachedVolume.png)
+![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2AttachedVolume.png)
 
 **Important**: Note down the specific device name for the next step of mounting the volume. The drive name may differ from what's shown. **NOTE**: Newer Linux kernels may rename your devices to **/dev/xvdf through /dev/xvdp** internally, even when the device name entered here (and shown in the details) is /dev/sdf through /dev/sdp.

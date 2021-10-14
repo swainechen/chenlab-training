@@ -1,5 +1,5 @@
 ---
-title: " Create S3 bucket, Upload and share data"
+title: " Create S3 bucket, transfer and share data"
 date: 2020-04-24T7:05:54Z
 weight: 500
 pre: "<b>XII ⁃ </b>"
@@ -12,6 +12,6 @@ In this section of the workshop you will:
 
 1.	Create an S3 bucket.
 
-2.	Upload the files to the bucket.
+2.	Transfer files to the bucket.
 
 3.	Share data by providing access to a folder in the bucket.

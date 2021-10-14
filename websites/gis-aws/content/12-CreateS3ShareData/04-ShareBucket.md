@@ -1,6 +1,6 @@
 +++
 title = "c. Share S3 bucket with another Researcher"
-weight = 60
+weight = 90
 tags = ["tutorial", "dashboard", "ParallelCluster"]
 +++
 

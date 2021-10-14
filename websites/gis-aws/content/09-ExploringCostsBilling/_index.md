@@ -1,8 +1,8 @@
 ---
 title: "   Exploring Billing and Costs"
 date: 2020-04-24T7:05:54Z
-weight: 550
-pre: "<b>XIV ⁃ </b>"
+weight: 650
+pre: "<b>XV ⁃ </b>"
 tags: ["HPC", "EFA", "Elastic Fabric Adapter", "Network", "MPI"]
 ---
 
