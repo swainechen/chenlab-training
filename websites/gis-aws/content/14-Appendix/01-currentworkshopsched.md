@@ -6,8 +6,6 @@ weight = 40
 tags = ["schedule", "workshop", "help"]
 +++
 
-Information is current for the **2021 27-28 October** workshop. Note that this timing and schedule may change for other workshops, past and future.
-
 **Schedule by day**  
 **Day 1**  
 *09:00 AM - 09:30 AM*: GIS x AWS Intro and your first cloud instance: Theory  
