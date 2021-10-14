@@ -1600,7 +1600,7 @@ less docs/MANUAL.markdown
 ./install_kraken2.sh /usr/local/src/kraken2-2.1.2/bin
 for i in kraken2 kraken2-build kraken2-inspect; do ln -s /usr/local/src/kraken2-2.1.2/bin/$i /usr/local/bin; done
 
-# install the MiniKraken librarie
+# install the MiniKraken libraries
 mkdir /usr/local/lib/Kraken2
 cd /usr/local/lib/Kraken2
 wget wget ftp://ftp.ccb.jhu.edu/pub/data/kraken2_dbs/old/minikraken2_v2_8GB_201904.tgz
