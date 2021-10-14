@@ -33,7 +33,7 @@ Default region name=ap-southeast-1
 Hit enter to accept the defaults for **output format**
 
 
-5.	Let us rerun the ec2 **describe-instances** command again and check the output.
+5.	Run the ec2 **describe-instances** command and check the output.
 
 ```bash
 aws ec2 describe-instances

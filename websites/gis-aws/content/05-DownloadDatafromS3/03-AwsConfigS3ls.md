@@ -6,7 +6,7 @@ weight = 50
 tags = ["tutorial", "aws console", "ec2"]
 +++
 
-Now that you have access to the AWS CLI, you can use it to download files from an S3 bucket. For more information on Amazon S3, see Amazon Simple Storage Service Documentation. 
+Now that you have access to the AWS CLI, you can use it to download files from an S3 bucket.    
 
 1.	Run an AWS CLI command to list all the S3 buckets associated with the account.
 
@@ -16,9 +16,9 @@ aws s3 ls
 
 The output will list all the S3 buckets (if any) associated with the account.
 
-For the purpose of this workshop we will be using a **named profile** with AWS CLI which is a collection of settings and credentials that you can apply to a AWS CLI command. When you specify a profile to run a command, the specific settings and credentials associated with the profile are used to run that command. This is typically followed when credentials are shared to access resources. Use the AWS CLI with the credentials (for the named profile) provided during the training to access the S3 bucket folders shared with us for this workshop.  
+_For the purpose of this workshop we will be using a **named profile** with AWS CLI which is a collection of settings and credentials that you can apply to a AWS CLI command. When you specify a profile to run a command, the specific settings and credentials associated with the profile are used to run that command. This is typically followed when credentials are shared to access resources. Use the AWS CLI with the credentials (for the named profile) provided during the training to access the S3 bucket folders shared with us for this workshop._    
 
-2.	Enter the AWS CLI command to configure AWS Credentials with a profile named "training":
+2.	Enter the AWS CLI command to configure AWS Credentials with a **profile** named **"training"**.
 
 ```bash
 aws configure  --profile training

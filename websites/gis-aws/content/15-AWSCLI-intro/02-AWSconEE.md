@@ -6,8 +6,21 @@ weight = 50
 tags = ["tutorial", "Prerequisite", "ec2"]
 +++
    
-_Important: if you are using Event Engine for this workshop, you can copy the code snippet with the temporary account's credentials from the Console page and paste it in your command line instead. This will be analogous to going through the manual setting up described in points 1-4 below (you can skip to point 5 directly)._
+_Important: As you are using Event Engine for this workshop, you will be using the code snippet with the temporary account's credentials from the Console page. This will be analogous to going through the manual setting up described next in points 1-4 under "AWS Configure - General Use"._   
 
+1.	Copy the **Credentials/CLI Snippet** onto the command line.  
 ![EE console](/images/hpc-aws-parallelcluster-workshop/EE_console_login.png)    
 
+2.	Now rerun the ec2 **describe-instances** command again and check the output.
 
+```bash
+aws ec2 describe-instances
+```
+
+This gives a description of all the EC2 instances in the account for the specified region.
+
+3.	 Let's take a look at the key-pairs we have for the selected region.
+
+```bash
+aws ec2 describe-key-pairs
+```

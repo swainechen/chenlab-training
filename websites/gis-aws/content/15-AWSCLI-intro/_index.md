@@ -1,5 +1,5 @@
 ---
-title: "Intro to AWS CLI"
+title: "AWS CLI"
 date: 2019-01-24T09:05:54Z
 weight: 200
 pre: "<b>V ⁃ </b>"
