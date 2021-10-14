@@ -2,7 +2,7 @@
 title: " Appendix"
 date: 2020-04-24T7:05:54Z
 weight: 750
-pre: "<b>XVII ⁃ </b>"
+pre: "<b>XVI ⁃ </b>"
 tags: ["HPC", "EFA", "Elastic Fabric Adapter", "Network", "MPI"]
 ---
 
@@ -13,17 +13,20 @@ Please see below for the different sections in this website, as well as their us
 **a. Current Workshop Information**  
     If you are currently enrolled in an AWS x GIS workshop, this is where you can find an updated schedule. This will include a time table, as well as workshop-specific information.
 
-**b. Best Practices for AWS**  
+**b. Ready to explore more? We've got recipes!**   
+   If you are done with ...... feel free to explore these recipes from.... TO ADD
+
+**c. Best Practices for AWS**  
     This page will help acquiant you with best practices and habits for making the most out of your AWS EC2, volumes, and S3 resources, as well as save you some extra $$$.
 
-**c. Tagging 101**  
+**d. Tagging 101**  
     Tagging is a useful utility that AWS uses to track resources. This page will explain a bit more about tagging, and how it can help you keep track of everything in your account.  
   
-**d. About the AMI**  
+**e. About the AMI**  
     Here you can learn more about the AMI used for this workshop, as well as access the github resources availavble.
 
-**e. AWS Glossary**  
+**f. AWS Glossary**  
     AWS has many terms that are unique to AWS. This glossary will have more information on the most important for this training.
 
-**f. FAQ**  
+**g. FAQ**  
     Pretty self explanatory. Here you can find the most frequently asked questions and responses from our trainers.
