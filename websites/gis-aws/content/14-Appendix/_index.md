@@ -14,7 +14,7 @@ Please see below for the different sections in this website, as well as their us
     If you are currently enrolled in an AWS x GIS workshop, this is where you can find an updated schedule. This will include a time table, as well as workshop-specific information.
 
 **b. Ready to explore more? We've got recipes!**   
-    Loading...
+    Successfully completed the training? Check out few more examples for genomics analysis using the pre-built AMI used during this workshop.
 
 **c. Best Practices for AWS**  
     This page will help acquiant you with best practices and habits for making the most out of your AWS EC2, volumes, and S3 resources, as well as save you some extra $$$.
@@ -23,7 +23,7 @@ Please see below for the different sections in this website, as well as their us
     Tagging is a useful utility that AWS uses to track resources. This page will explain a bit more about tagging, and how it can help you keep track of everything in your account.  
   
 **e. About the AMI**  
-    Here you can learn more about the AMI used for this workshop, as well as access the github resources availavble.
+    Here you can learn more about the AMI used for this workshop, as well as access the github resources available.
 
 **f. AWS Glossary**  
     AWS has many terms that are unique to AWS. This glossary will have more information on the most important for this training.
