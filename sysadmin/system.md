@@ -320,3 +320,16 @@ sudo mount <device name> /mnt/volume1
 sudo chown ubuntu:ubuntu /mnt/volume1
 ls -l /mnt/volume1
 ```
+
+#### Adding swap
+In general the idea is you should spin up an instance with enough RAM for what you want to do, so the AWS instances by default have no swap space. However, sometimes you just need a little extra headroom for a temporary burst in memory usage (sometimes forking short processes can eat a lot of RAM, for example). Here's how to add some swap space.
+```
+# Many of these need root privileges
+sudo su -
+# You can change the file location (the of= option)
+# You can also change the size - here it's 4 million blocks of 1024 bytes = 4GB
+dd if=/dev/zero of=/tmp/swap0 bs=1024 count=4M
+chmod 0400 /tmp/swap0
+mkswap /tmp/swap0
+swapon /tmp/swap0
+```
