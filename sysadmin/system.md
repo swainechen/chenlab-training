@@ -326,7 +326,7 @@ In general the idea is you should spin up an instance with enough RAM for what y
 ```
 # Many of these need root privileges
 sudo su -
-# You can change the file location (the of= option)
+# You can change the file location and name (the of= option)
 # You can also change the size - here it's 4 million blocks of 1024 bytes = 4GB
 dd if=/dev/zero of=/tmp/swap0 bs=1024 count=4M
 chmod 0400 /tmp/swap0
