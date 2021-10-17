@@ -64,3 +64,33 @@ exit
 - Try the self-service scan: https://aws.amazon.com/marketplace/management/manage-products
 - Then release
 
+Copying the public AMI to different regions (assuming you are starting in Singapore) - we're parsing with `jq` on the command line:
+```
+AMI_SOURCE=<AMI_ID>
+
+SOURCE_REGION=ap-southeast-1
+IMAGE_NAME=$(aws ec2 describe-images --image-ids $AMI_SOURCE | jq ".Images[].Name" | sed -e 's/^"//' -e 's/"$//')
+IMAGE_DESC=$(aws ec2 describe-images --image-ids $AMI_SOURCE | jq ".Images[].Description" | sed -e 's/^"//' -e 's/"$//')
+NAME_TAG=$(aws ec2 describe-images --image-ids $AMI_SOURCE | jq ".Images[].Tags[]")
+# check to make sure that worked
+echo $IMAGE_NAME
+echo $IMAGE_DESC
+echo $NAME_TAG
+
+# 17 regions accessible by default
+for REGION in us-east-1 us-east-2 us-west-1 us-west-2 ap-south-1 ap-northeast-3 ap-northeast-2 ap-southeast-2 ap-northeast-1 ca-central-1 eu-central-1 eu-west-1 eu-west-2 eu-west-3 eu-north-1 sa-east-1; do
+  NEW_ID=$(aws ec2 copy-image --source-image-id $AMI_SOURCE --source-region $SOURCE_REGION --region $REGION --name "$IMAGE_NAME" | jq ".ImageId" | sed -e 's/^"//' -e 's/"$//')
+  echo $i $NEW_ID
+  aws ec2 create-tags --region $REGION --resources $NEW_ID --tags "[ $NAME_TAG ]"
+done
+
+# tagging snapshots and changing permissions needs to be done later when done
+REGION=<region>
+NEW_ID=<AMI ID>
+NEW_SNAPSHOT=$(aws ec2 describe-images --region $REGION --image-ids $NEW_ID | jq ".Images[].BlockDeviceMappings[].Ebs.SnapshotId" | sed -e 's/^"//' -e 's/"$//')
+aws ec2 create-tags --region $REGION --resources $NEW_SNAPSHOT --tags "[ $NAME_TAG ]"
+aws ec2 modify-image-attribute --region $REGION --image-id $NEW_ID --launch-permission "Add=[{Group=all}]"
+
+# Some regions require activation to access:
+# af-south-1 ap-east-1 eu-south-1 me-south-1
+```
