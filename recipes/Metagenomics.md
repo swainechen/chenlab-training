@@ -10,7 +10,7 @@ For details on the installation of Kraken 2, see [this section of the bioinforma
 The following will grab a relatively small data set from the public databases as an example. This data set is run [`SRR5978047`](https://www.ncbi.nlm.nih.gov/sra/?term=SRR5978047), sample `SRS2467593` aka `SAMN078560824`, from project `SRP112732` aka `PRJNA394877`. The experiment is `SRX3134635: human gut metagenome in setting of bone marrow transplant`.
 ```
 kingfisher get -r SRR5978047 -m ena-ascp
-kraken2 -db /usr/local/lib/Kraken2/minikraken2_v2_8GB_201904_UPDATE SRR5978047.fastq.gz --report SRR5978047.kraken2.report > SRR5978047.kraken2.raw
+kraken2 -db /usr/local/lib/Kraken2/minikraken2_v2_8GB_201904_UPDATE SRR5978047.fastq.gz --report SRR5978047.kraken2.report > SRR5978047.kraken2.raw.txt
 ```
 
-The main report will come out in `SRR5978047.kraken2.report`, and all the raw classification data in the `SRR5978047.kraken2.raw` file.
+The main report will come out in `SRR5978047.kraken2.report`, and all the raw classification data in the `SRR5978047.kraken2.raw.txt` file.
