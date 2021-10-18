@@ -6,7 +6,7 @@ tags = ["tutorial", "cloud9", "s3"]
 
 The operating system of your local computer determines the options that you have to connect from your local computer to your Linux instance. Here are directions to connect from Windows Using PuTTY or OpenSSH, From Linux & MacOS-X using ssh client and from Windows Subsystem for Linux (WSL) using ssh client.
 
-**Note:** If you are using the premade AMI *ami-0e74d7c2a18648802*, your username will be **ubuntu**.  
+**Note:** If you are using the premade AMI *ami-045aea46f368f8aa0*, your username will be **ubuntu**.  
 
 **Connecting from Windows using PuTTY**
 

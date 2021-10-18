@@ -22,7 +22,7 @@ tags = ["schedule", "workshop", "help"]
 *11:15 AM - 12:00 PM*: Sharing data and checking the bill: Demo and Practical  
 
 **Your AMI ID**
-The AMI used for this exercise is `ami-0e74d7c2a18648802`.  
+The AMI used for this exercise is `ami-045aea46f368f8aa0`.  
   
 **Troubleshooting**  
 This is an online workshop and technical difficulties are to be expected.  

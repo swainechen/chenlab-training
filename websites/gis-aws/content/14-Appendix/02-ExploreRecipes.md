@@ -14,6 +14,10 @@ Here are some addditional examples for performing genomics analysis. These examp
 	- Calling MLSTs
 	- Calling resistance and virulence genes
 	- Serotyping
-2.	Lacer - FASTQ quality score recalibration
+2.	Analysis of Klebsiella isolate
+	- Assembly
+	- Annotation with Kleborate
+3.	Classify metagenomic reads using Kraken 2 
+4.	Lacer - FASTQ quality score recalibration
 
 You can use the [Chen Lab public AMI](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/14-appendix/05-aboutyourami.html) for this purpose. For information on recipes and getting started with the AMI, please check out [our github page](https://github.com/swainechen/chenlab-training/tree/main/recipes).
