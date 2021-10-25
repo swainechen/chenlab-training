@@ -8,5 +8,9 @@ tags = ["help", "ami"]
 
 **About the AMI**  
 
-The most updated AMI for this training is currently `ami-07b3bbf5c844d85c9`. This was developed by Associate Professor [Swaine Chen](https://swainechen.github.io/) (National University of Singapore, Department of Medicine). This AMI is a self-contained image that holds everything you need to explore the tutorials on this website. For more information on this AMI, the bioinformatics tools it holds, and information about system administration for your own AMI, please check out [our github page](https://github.com/swainechen/chenlab-training/tree/main/sysadmin).
+The most updated AMI for this training is currently `ami-07b3bbf5c844d85c9`. This was developed by Associate Professor [Swaine Chen](https://swainechen.github.io/) (National University of Singapore, Department of Medicine). 
+
+Trying to access this AMI from any of the other global regions other than Singapore? Simply search for `CHENLAB-PUBLIC` under "Choose an Amazon Machine Image (AMI)" to access the AMI from any of the AWS geographical locations. 
+ 
+This AMI is a self-contained image that holds everything you need to explore the tutorials on this website. For more information on this AMI, the bioinformatics tools it holds, and information about system administration for your own AMI, please check out [our github page](https://github.com/swainechen/chenlab-training/tree/main/sysadmin).
 
