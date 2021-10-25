@@ -46,7 +46,7 @@ aws s3 cp --profile training s3://slchen-lab-transfer/GIS-training/SRR6327950/SR
 5.	Download another data set using the `kingfisher` utility:
 
 ```bash
-kingfisher -r SRR6327875 -m ena-ascp
+kingfisher get -r SRR6327875 -m ena-ascp aws-http prefetch
 ```	
 
 We are now ready to run some data analyses. 
