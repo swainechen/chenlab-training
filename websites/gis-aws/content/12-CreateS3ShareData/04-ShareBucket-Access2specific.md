@@ -37,7 +37,6 @@ You have now successfully shared your S3 Bucket privately with a specific collab
 Now transfer any specific file to your collaborator’s S3 Bucket which you have been granted access to by using the following command
 
 ```bash
-aws s3 cp path/to/filetocopy s3://{Collaborator-Bucket-Name}/
+aws s3 cp path/to/filetocopy s3://{Collaborator-Bucket-Name}/ --acl public-read
 ```
 
->_**Note**: Though you will be able to transfer a file securely to your collaborator's bucket, you will not be able to **copy, download or view** the file transferred to your bucket (by your collaborator), which needs special **bucket permissions**._
