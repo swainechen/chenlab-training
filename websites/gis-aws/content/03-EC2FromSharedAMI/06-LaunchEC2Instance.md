@@ -11,7 +11,9 @@ We will now launch an EC2 Linux-based instance.
 ![EC2LaunchInstance](/images/hpc-aws-parallelcluster-workshop/EC2LaunchInstance.png)
 
 2.	In **Step1: Choose an Amazon Machine Image(AMI)**, enter the AMI ID shared for the training into the **Search for an AMI...** search box. The **AMI** may differ from the one pictured; refer to instructor's directions.  
-For this training, search for `CHENLAB-PUBLIC` and choose the AMI which has ID `ami-07b3bbf5c844d85c9`. You can find out more about this AMI in Appendix: About the AMI. 
+
+**Note:**
+> For this training, search for `CHENLAB-PUBLIC` and choose the AMI which has ID `ami-07b3bbf5c844d85c9`. You can find out more about this AMI in Appendix: About the AMI.
 
 ![EC2SelectAMI](/images/hpc-aws-parallelcluster-workshop/EC2SearchAMI.png)
 
