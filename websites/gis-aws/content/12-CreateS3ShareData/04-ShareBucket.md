@@ -38,15 +38,15 @@ Next we will update the Access Control List to provide read and write permission
 
 8.	Scroll down to the **Access control list (ACL)** section and click on **Edit**.
 
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic3.png)-to update image
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic3.png)  
 
 9.	Next under **Grantee** - **Everyone (public access)** check **List** (under Objects).
 
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic4.png)-to update image
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic4.png)  
 
 10.	Check the **I understand the effects of these changes on my objects and buckets** box and then click on **Save changes**.
 
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic5.png)
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic5.png)  
 
 At this point you have effectively shared the S3 bucket. Check with your collaborators to see if they can list the objects in your shared bucket using the following AWS CLI command.
 
@@ -56,15 +56,15 @@ aws s3 ls s3://{Collaborator-Bucket-Name}
 
 11.	Being able to list an object in your S3 bucket is different from being able to download it. Now let us make a file object downloadable. Select the file you would like to share. Click on **Actions** and **Make public**.
 
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic6.png)-to update image
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic6.png)
 
 12.	Click on **Make public**.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic7.png)
 
-13.	Now let’s try inspecting the image you made public, using a web browser. First, click on the image name in the S3 bucket you created and then copy the Object URL into a web browser.
+13.	Now let’s try inspecting the image you made public, using a web browser. First, **click on the image name** in the S3 bucket you created and then copy the Object URL into a web browser.
 
-[TO INSERT NEW IMAGES]
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsObjectPrivate1.png)
 
 14.	Next, the files you made public should now be downloadable by your collaborator by running the AWS CLI commands.
 
