@@ -1,5 +1,5 @@
 +++
-title = "a. Create Amazon S3 bucket"
+title = "a. Create an S3 bucket"
 weight = 60
 tags = ["tutorial", "dashboard", "ParallelCluster"]
 +++
