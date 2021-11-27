@@ -62,7 +62,7 @@ aws s3 ls s3://{Collaborator-Bucket-Name}
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic7.png)
 
-13.	Now let’s try inspecting the image you made public, using a web browser. First, **click on the image name** in the S3 bucket you created and then copy the Object URL into a web browser.
+13.	Now let’s try inspecting the image you made public, using a web browser. First, **click on the image name** in the S3 bucket you created and then copy the **Object URL** into a web browser.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsObjectPrivate1.png)
 
@@ -72,7 +72,7 @@ aws s3 ls s3://{Collaborator-Bucket-Name}
 aws s3 cp s3://{Collaborator-Bucket-Name}/{object name} ./
 ```
 
-15.	Now let us grant access to a specific AWS account i.e. of your collaborator via **Access for other AWS accounts**. For this we will need to update the Access Control List to provide read and write permissions for objects only to a specific collaborator. Go to the Access control list (ACL) section (**see Steps 8 and 9 above**) and click on Edit.
+15.	Now let us grant access to a specific AWS account i.e. of your collaborator via **Access for other AWS accounts**. For this we will need to update the Access Control List to provide read and write permissions for objects only to a specific collaborator. **Follow Step 3 above** and click on **Permissions**. Scroll down to the **Access control list (ACL)** section and click on **Edit**.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsObjectPrivate2.png)
 
