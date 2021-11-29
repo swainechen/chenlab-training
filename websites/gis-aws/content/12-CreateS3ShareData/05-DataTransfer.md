@@ -1,5 +1,5 @@
 +++
-title = "OPTIONAL-Remote data transfer"
+title = "d. Remote data transfer"
 weight = 120
 tags = ["tutorial", "dashboard", "ParallelCluster"]
 +++

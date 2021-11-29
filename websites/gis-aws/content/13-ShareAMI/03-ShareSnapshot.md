@@ -1,5 +1,5 @@
 +++
-title = "a. Share an EBS snapshot"
+title = "b. Share an EBS snapshot"
 weight = 60
 tags = ["tutorial", "dashboard", "ParallelCluster"]
 +++
