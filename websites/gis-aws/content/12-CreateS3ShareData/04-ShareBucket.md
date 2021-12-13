@@ -62,7 +62,7 @@ At this point you have effectively shared the S3 bucket. Check with your collabo
 aws s3 ls s3://{Collaborator-Bucket-Name}
 ```
 
-13.	Being able to list an object in your S3 bucket is different from being able to download it. Now let us make a file object downloadable. Select the file you would like to share. Click on **Actions** and **Make public**.
+13.	Being able to list an object in your S3 bucket is different from being able to download it. Now let us make a file object downloadable. Select the file you would like to share. Click on **Actions** and **Make public via ACL**.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic6.png)
 
