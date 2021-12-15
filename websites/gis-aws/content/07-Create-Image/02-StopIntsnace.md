@@ -12,7 +12,7 @@ We will now stop the running instance. Before we proceed, it is a good idea to s
 
 1.	Before stopping, copy all the required data from /tmp to a more persistent storage as stopping the instance will clear out /tmp. Copy all the required files to the EBS volume we mounted previously, at **/mnt/volume1**, before proceeding.
 
-Make sure to set the persmissions to the directory prior to copying.  
+Make sure to set the permissions to the directory prior to copying.  
 
 ```bash
 sudo chmod -R 777 /mnt/volume1/
