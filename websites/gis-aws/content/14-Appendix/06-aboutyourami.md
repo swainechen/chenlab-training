@@ -1,12 +1,12 @@
 +++
-title = "e. About the AMI"
+title = "f. About the AMI"
 date = 2021-05-23T16:24:30-04:00
 draft = false 
 weight = 60
 tags = ["help", "ami"]
 +++
 
-**About the AMI**  
+[**Preconfigured AMI**](https://www.youtube.com/watch?v=q6CwmdwItDA)
 
 The most updated AMI for this training is currently `ami-07b3bbf5c844d85c9`. This was developed by Associate Professor [Swaine Chen](https://swainechen.github.io/) (National University of Singapore, Department of Medicine). 
 

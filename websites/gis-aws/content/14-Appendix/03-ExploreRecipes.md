@@ -1,8 +1,8 @@
 +++
-title = "b. Ready to explore more? We've got recipes!"
+title = "c. Explore our recipes!"
 date = 2021-05-23T16:24:30-04:00
 draft = false 
-weight = 40
+weight = 50
 tags = ["schedule", "workshop", "help"]
 +++
 

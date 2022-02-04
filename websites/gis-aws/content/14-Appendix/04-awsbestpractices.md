@@ -1,5 +1,5 @@
 +++
-title = "c. Best Practices for AWS"
+title = "d. Best Practices for AWS"
 date = 2021-05-23T10:46:30-04:00
 draft = false 
 weight = 50

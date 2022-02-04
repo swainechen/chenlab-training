@@ -1,5 +1,5 @@
 +++
-title = "f. AWS Glossary"
+title = "g. AWS Glossary"
 date = 2021-05-23T16:24:30-04:00
 draft = false 
 weight = 70
