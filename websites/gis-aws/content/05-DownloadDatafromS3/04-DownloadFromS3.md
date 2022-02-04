@@ -41,7 +41,9 @@ aws s3 cp --profile training s3://slchen-lab-transfer/GIS-training/SRR6327950/SR
 aws s3 cp --profile training s3://slchen-lab-transfer/GIS-training/SRR6327950/SRR6327950_2.fastq.gz . --region ap-southeast-1
 ```
 
-4.	Verify the MD5 checksum as you would normally do.
+4.	Verify the MD5 checksum for files copied from S3 as you would normally do.
+- SRR6327950_1.fastq.gz - 27920396d2eb46f463f93eb9a2baf4e5
+- SRR6327950_2.fastq.gz - b46c7cf0d45cf3325222506d41fa7329  
 
 5.	Download another data set using the `kingfisher` utility:
 
