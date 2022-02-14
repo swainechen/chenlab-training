@@ -83,7 +83,8 @@ perl -e 'use Math::CDF'
 ```
 
 The next module, `PDL::Parallel::threads`, is required for `lacer`.
-_Until recently (Feb 2022) this has a little bug that required some tweaking, documented [here](https://github.com/run4flat/PDL-Parallel-threads/issues/1)._
+
+_N.B.: Until recently (Feb 2022) this module had a little bug that required some tweaking, documented [here](https://github.com/run4flat/PDL-Parallel-threads/issues/1). As of version 0.04, however, it compiles and installs cleanly with just the commands below._
 ```
 sudo su -
 cnapm PDL::Parallel::threads
