@@ -43,7 +43,7 @@ lacer.pl -bam SRR7349974-MG1655-sort.bam -ref MG1655.fna -stopbases 3000000 -out
 #### Apply the recalibration with lacepr
 There are several options for applying the recalibration. One of the easier ones is to recalibrate the fastq files directly:
 ```
-# or you can recalibrate the fastq files directly
+# recalibrate the fastq files directly
 lacepr --fastq SRR7349974_1.fastq.gz --recal SRR7349974-MG1655.lacer.txt --pair 1 --out SRR7349974-recal_1.fastq.gz
 lacepr --fastq SRR7349974_2.fastq.gz --recal SRR7349974-MG1655.lacer.txt --pair 2 --out SRR7349974-recal_2.fastq.gz
 ```
