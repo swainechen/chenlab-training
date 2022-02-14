@@ -82,20 +82,11 @@ cpanm Math::CDF
 perl -e 'use Math::CDF'
 ```
 
-The next module, `PDL::Parallel::threads`, is required for `lacer`. This has a little bug and requires some tweaking, documented [here](https://github.com/run4flat/PDL-Parallel-threads/issues/1).
+The next module, `PDL::Parallel::threads`, is required for `lacer`.
+_Until recently (Feb 2022) this has a little bug that required some tweaking, documented [here](https://github.com/run4flat/PDL-Parallel-threads/issues/1)._
 ```
 sudo su -
 cnapm PDL::Parallel::threads
-# will see an error. It should point you to a build.log, go to that directory
-# the directory below is what I had - the last part will be different for you
-cd /root/.cpanm/work/1620464035.165032/
-# edit Build.PL as per https://github.com/run4flat/PDL-Parallel-threads/issues/1
-# this was on line 8 for me
-
-perl Build.PL
-./Build
-./Build test
-./Build install
 
 # test to see if it works - no error and no output for the following if ok
 perl -e 'use PDL::Parallel::threads'
