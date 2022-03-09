@@ -41,3 +41,4 @@ The above `describe-instances` and `describe-key-pairs` commands will likely fai
   
 As we have not yet configured the instance with the AWS account's credentials, the **~/.aws/** folder will not be available. Now let us go ahead with **aws configure**.
 
+[View Point 2 of the visual for difference between "Event Engine" and "Direct sign-in"](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/01-hpc-overview/03-awsaccess.html).  
