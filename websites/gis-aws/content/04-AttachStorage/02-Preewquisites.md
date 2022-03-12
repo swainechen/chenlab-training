@@ -14,7 +14,7 @@ tags = ["tutorial", "Prerequisite", "ec2"]
 ![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2Volumes.png)
 
 
-3.	Click on **Create Volume** to create a new volume
+3.	Click on **Create Volume** (on the top right corner) to create a new volume
 
 4.	In the **Create Volume** page fill out the required size of the volume in GB, e.g. 10 GB or more depending on the data set size.
 
@@ -31,6 +31,4 @@ tags = ["tutorial", "Prerequisite", "ec2"]
 
 ![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2VolumeTag.png)
 
-6.	Click on **Create Volume** to Create the volume. If the volume is created you will get the following screen:
-
-![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2VolumeCreated.png)
+6.	Click on **Create Volume** to Create the volume. 

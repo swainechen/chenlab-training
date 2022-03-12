@@ -18,7 +18,7 @@ If attached successfully - In the list of displayed volumes you should see your 
 
 4.	On the left Navigation pane click **EC2 Dashboard** on the very top of the list of items. 
 
-5.	Select **Running instances** and then select your EC2 Instance from the list of instances to which you attached the Volume.
+5.	Select **Instances (running)** and then select your EC2 Instance from the list of instances to which you attached the Volume.
 
 ![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2RunningInstances.png)
  
