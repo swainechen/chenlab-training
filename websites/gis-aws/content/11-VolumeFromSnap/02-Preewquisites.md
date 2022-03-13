@@ -18,7 +18,7 @@ tags = ["tutorial", "Prerequisite", "ec2"]
 
 ![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2SelectSnapshot.png)
 
-4.	Next click on **Actions** and choose **Create Volume** from the drop-down list.
+4.	Next click on **Actions** and choose **Create volume from snapshot** from the drop-down list.
 
 ![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2CreateVolume.png)
 
@@ -28,6 +28,4 @@ tags = ["tutorial", "Prerequisite", "ec2"]
 
 ![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2VolumeTag.png)
 
-7.	**Create Volume** will create a new EBS Volume. If the Volume is created you will see the following screen:
-
-![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2VolumeCreated.png)
+7.	**Create Volume** will now create a new EBS Volume. 

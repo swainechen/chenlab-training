@@ -70,7 +70,7 @@ aws s3 ls s3://{Collaborator-Bucket-Name}
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic7.png)
 
-15.	Now let’s try inspecting the image you made public, using a web browser. First, **click on the image name** in the S3 bucket you created and then copy the **Object URL** into a web browser.
+15.	Now let’s try inspecting the image you made public, using a web browser. First, **click on the image name** in the S3 bucket you created and then copy the link by clicking on **Copy URL** into a web browser.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsObjectPrivate1.png)
 

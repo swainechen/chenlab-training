@@ -11,7 +11,6 @@ tags = ["tutorial", "dashboard", "ParallelCluster"]
 
 2.	In the **Create Snapshot** screen, provide a **Description** for the Volume; this will be an identifier to search for the Snapshot of the Volume.
 
-
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2VolumeCreateSnapshotScreen.png)
 
 
@@ -23,9 +22,7 @@ tags = ["tutorial", "dashboard", "ParallelCluster"]
 4.	Click on **Create Snapshot**.
 
 
-5.	A Snapshot creation task will be started, and a message indicating the same will be displayed. Click on the **Close** button.
-
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2VolumeCreateSnapshotSuccess.png)
+5.	A Snapshot creation task will be started, and a message indicating the same will be displayed in a green bar on the top of the screen. 
 
 6.	Click on **Snapshots** under the **Elastic Block Store** section in the left Navigation pane to view all the snapshots created.
 
