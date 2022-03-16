@@ -12,7 +12,7 @@ tags = ["schedule", "workshop", "help"]
 *09:20 AM - 10:30 AM*: GIS x AWS Intro and your first cloud instance: Practical  
 *10:30 AM - 10:45 AM*: Break  
 *10:45 AM - 11:00 AM*: Data processing and saving your work: Theory  
-*11:00 PM - 12:00 PM*: Data processing and saving your work: Practical  
+*11:00 AM - 12:00 PM*: Data processing and saving your work: Practical  
    
 **Day 2**  
 *09:00 AM - 09:20 AM*: S3 storage and using a saved AMI: Theory  
