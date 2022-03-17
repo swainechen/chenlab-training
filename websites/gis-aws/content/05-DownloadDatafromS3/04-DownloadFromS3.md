@@ -49,6 +49,11 @@ aws s3 cp --profile training s3://slchen-lab-transfer/GIS-training/SRR6327950/SR
 
 ```bash
 kingfisher get -r SRR6327875 -m ena-ascp aws-http prefetch
+
+# if this fails through to using prefetch, it will download uncompressed fastq
+# compress these again to fit other workflows
+gzip SRR6327875_1.fastq
+gzip SRR6327875_2.fastq
 ```	
 
 We are now ready to run some data analyses. 
