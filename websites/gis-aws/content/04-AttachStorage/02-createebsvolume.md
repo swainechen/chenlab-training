@@ -3,7 +3,7 @@ title = "a. Create EBS Volume"
 date = 2019-09-18T10:46:30-04:00
 draft = false
 weight = 40
-tags = ["tutorial", "Prerequisite", "ec2"]
+tags = ["tutorial", "createebsvolume", "ec2"]
 +++
 
 1.	In the AWS Management Console search bar, type EC2 to navigate to the EC2 Service.

@@ -42,7 +42,7 @@ We will now launch an EC2 Linux based instance.
 
 8.	On **Step 5** page, you can choose a friendly name for your instance by clicking "Add Tag", and entering "Name" for the key, and "my-first-EC2" for the value. This Name key, more correctly known as a tag, will appear in the console once the instance launches. It makes it easy to keep track of running machines in a complex environment. Create additional tags similar for the ones you used for the key pair previously - give a user and grant key to this machine, and enter the same values. When ready, click **Next: Configure Security Group**.
 
-![EC2AddTags](/images/hpc-aws-parallelcluster-workshop/EC2AddTags-3.png)
+![EC2AddTags](/images/hpc-aws-parallelcluster-workshop/EC2AddTags.png)
 
 9.	On **Step 6** page, you will be prompted to create a new security group, which will be your firewall rules. Provide a name for your new security group.
 
