@@ -57,7 +57,7 @@ apt install -y automake cmake cpanminus cpanoutdated cython evince fig2dev \
   libsys-meminfo-perl libterm-progressbar-perl libtext-csv-perl libv8-dev \
   libxml-compile-perl libxml-compile-wsdl11-perl libxml2-dev libxslt1-dev \
   mlocate mysql-client openjdk-8-jdk parallel pdl prodigal python \
-  python-numpy snakemake swig xfig zlib1g-dev
+  python-numpy snakemake snp-sites swig xfig zlib1g-dev
 
 # some initial software
 apt install -y cd-hit clonalframeml fastdnaml fastqc fasttree \
