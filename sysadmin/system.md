@@ -38,9 +38,9 @@ Here, though, we're doing the simple version to just run around as root. This ta
 ## Software Repositories and PPAs
 Add some repositories we'll need later:
 ```
-apt install software-properties-common dirmngr
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
-add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/'
+apt install --no-install-recommends software-properties-common dirmngr
+wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
 apt update
 ```
 
@@ -57,12 +57,12 @@ apt install -y automake cmake cpanminus cpanoutdated cython evince fig2dev \
   libsys-meminfo-perl libterm-progressbar-perl libtext-csv-perl libv8-dev \
   libxml-compile-perl libxml-compile-wsdl11-perl libxml2-dev libxslt1-dev \
   mlocate mysql-client openjdk-8-jdk parallel pdl prodigal python \
-  python-numpy snakemake snp-sites swig xfig zlib1g-dev
+  python-numpy snakemake swig xfig zlib1g-dev
 
 # some initial software
 apt install -y cd-hit clonalframeml fastdnaml fastqc fasttree \
-  gubbins njplot ncbi-entrez-direct ncbi-tools-bin paml soapdenovo2 \
-  vcftools mauve-aligner
+  gubbins njplot ncbi-entrez-direct ncbi-tools-bin paml snp-sites \
+  soapdenovo2 vcftools mauve-aligner
 ```
 
 ## Perl 
