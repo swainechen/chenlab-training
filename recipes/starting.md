@@ -36,7 +36,7 @@ install.packages(
 )
 
 # another alternative is rvcheck, which will also take care of BioConductor and devtools installs
-install.packges("rvcheck")
+install.packages("rvcheck")
 rvcheck::update_all(check_R = TRUE, which = c("CRAN", "BioC", "github"))
 ```
 
