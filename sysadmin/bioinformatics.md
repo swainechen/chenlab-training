@@ -118,12 +118,13 @@ Note that the version numbers are included in the commands below - you'll have t
 
 #### [ASCP](http://downloads.asperasoft.com/connect2/)
 This is useful for fast downloads, such as from ENA or Genbank. This seems to be best (and easiest) to install as the user (ubuntu).
+The download page is at [https://www.ibm.com/aspera/connect/](https://www.ibm.com/aspera/connect/), use this to update the link and version below.
 ```
 # make sure you're in a user (ubuntu) shell and not root
 cd /home/ubuntu
-wget https://d3gcli72yxqn2z.cloudfront.net/connect_latest/v4/bin/ibm-aspera-connect-3.11.2.63-linux-g2.12-64.tar.gz
-tar xvzf ibm-aspera-connect-3.11.2.63-linux-g2.12-64.tar.gz
-./ibm-aspera-connect-3.11.2.63-linux-g2.12-64.sh
+wget https://d3gcli72yxqn2z.cloudfront.net/connect_latest/v4/bin/ibm-aspera-connect_4.1.3.93_linux.tar.gz
+tar xvzf ibm-aspera-connect_4.1.3.93_linux.tar.gz
+./ibm-aspera-connect_4.1.3.93_linux.sh
 # update your path to include this (for ex. in .bashrc)
 echo '# path for ascp' >> /home/ubuntu/.bashrc
 echo 'export PATH=$PATH:/home/ubuntu/.aspera/connect/bin' >> /home/ubuntu/.bashrc
@@ -132,16 +133,18 @@ Note that, if needed, the standard key required is at `/home/ubuntu/.aspera/conn
 
 #### [BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
 Ubuntu LTS version: 2.9.0-2<br/>
-Online version: 2.11.0-1
+Online version: 2.13.0-1
 
-The Ubuntu repositories have this, but it's at version 2.9.0-2. The current version right now is at 2.11.0-1. Generally for most users, BLAST has been pretty stable, but here's how to update it if you need the latest version (you'll have to repeat these for each update as well after you do this manual install).
+The Ubuntu repositories have this, but it's at version 2.9.0-2. The current version right now is at 2.13.0-1. Generally for most users, BLAST has been pretty stable, but here's how to update it if you need the latest version (you'll have to repeat these for each update as well after you do this manual install).
+
+The latest version can be found at [https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/](https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/) - you'll have to update the links and version numbers appropriately below.
 
 First check on what we already have and where it is
 ```
 # check the current version
 blastn -h
 # this should be 2.9.0+ if it's from the Ubuntu repositories
-# this will likely be 2.11.0+ or higher if you manually updated it as below
+# this will likely be 2.13.0+ or higher if you manually updated it as below
 
 # check where it's installed
 which blastn
@@ -157,13 +160,13 @@ Install the latest version:
 ```
 sudo su -
 cd /usr/local/src
-wget https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.11.0+-x64-linux.tar.gz
-tar xvzf ncbi-blast-2.11.0+-x64-linux.tar.gz
-cd ncbi-blast-2.11.0+
+wget https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.13.0+-x64-linux.tar.gz
+tar xvzf ncbi-blast-2.13.0+-x64-linux.tar.gz
+cd ncbi-blast-2.13.0+
 # always good to look at the README, though not much in this one
 less README
-cd /usr/local/src/ncbi-blast-2.11.0+/bin
-for i in *; do ln -s /usr/local/src/ncbi-blast-2.11.0+/bin/$i /usr/local/bin; done
+cd /usr/local/src/ncbi-blast-2.13.0+/bin
+for i in *; do ln -s /usr/local/src/ncbi-blast-2.13.0+/bin/$i /usr/local/bin; done
 ```
 
 You can verify that the default version is what you expect with the commands in the first block above. You may also want to remove the older Ubuntu version to avoid any potential confusion: `sudo apt purge ncbi-blast+ ncbi-blast+-legacy blast2`.
@@ -192,9 +195,9 @@ As noted above, I've generally avoided conda when the setup is otherwise simple,
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/veg/hyphy/archive/refs/tags/2.5.31.tar.gz
-tar xvzf 2.5.31.tar.gz
-cd hyphy-2.5.31
+wget https://github.com/veg/hyphy/archive/refs/tags/2.5.36.tar.gz
+tar xvzf 2.5.36.tar.gz
+cd hyphy-2.5.36
 # check the instructions
 less README.md
 
@@ -206,9 +209,13 @@ make install
 ```
 
 #### [Kingfisher](https://github.com/wwood/kingfisher-download)
+**Note: this seems to be changing quite a bit in terms of install and syntax. ENA also seems to be having some issues with ASCP transfers as well. Other options include [ENA's own tool](https://github.com/enasequence/ena-ftp-downloader) or prefetch + fasterq-dump from NCBI's [SRA Tools](#sra-tools)**
+**As of April 2022 the following doesn't work**
+
 This is a convenient tool for downloading public data sets, such as from GenBank or ENA.
 Again, the setup is pretty simple so I've done it without conda.
 Fortunately, this only requires one additional library to install (extern).
+
 ```
 sudo su -
 cd /usr/local/src
@@ -222,110 +229,14 @@ ln -s /usr/local/src/kingfisher-download/ena-fast-download.py /usr/local/bin
 ```
 If you've installed [ASCP](#ASCP) as described in this guide (or you're using the CHENLAB-PUBLIC AMI), then the `-m ena-ascp` method will just work, as will the more standard methods.
 
-#### [pbbam](https://github.com/PacificBiosciences/pbbam)
-Ubuntu LTS version: 1.0.6<br/>
-GitHub version: 1.6.0
-
-This is a set of tools for handling the specific bam files that PacBio used to use.
-
-We'll install the latest release version from GitHub, as it's quite a bit newer than what's in the Ubuntu repositories.
-
-```
-sudo su -
-cd /usr/local/src
-wget https://github.com/PacificBiosciences/pbbam/archive/refs/tags/v1.6.0.tar.gz
-tar xvzf v1.6.0.tar.gz
-cd pbbam-1.6.0
-# check the docs
-less README.md
-less INSTALL.md
-
-# build and test - use meson and ninja
-mkdir build
-cd build
-meson --prefix /usr/local/ -Denable-tests=true ..
-make
-ninja test
-# there are some git errors because we used a release tarball, but everything else works
-ninja install
-# this installs some shared libraries in /usr/local/lib (among other things in /usr/local), so we need to update LD_LIBRARY_PATH
-echo "# For pbbam" >> /home/ubuntu/.bashrc
-echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/x86_64-linux-gnu" >> /home/ubuntu/.bashrc
-
-# test it
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/x86_64-linux-gnu
-pbmerge
-pbindex
-```
-
-#### [samtools](http://www.htslib.org/) (including htslib)
-
-The HTSlib / samtools suite provides core tools and libraries that are also used by many other bioinformatics software tools. Again there is a version in the Ubuntu repositories (1.10), but the current version as of this writing is 1.12. This may or may not matter for what you're doing. If it does, here's how to update it.
-
-Figuring out what version you have currently:
-```
-dpkg --list | grep samtools
-which samtools
-# this generally will be /usr/bin/samtools if it's from the Ubuntu packages
-# this generally will be /usr/local/bin/samtools if you manually installed it
-samtools
-```
-
-Installing the latest version (check the version numbers throughout). We'll install all the packages including the development htslib libraries that other software might need. First, the regular samtools utilities, which will pull in the matching htslib:
-```
-sudo su -
-cd /usr/local/src
-wget https://github.com/samtools/samtools/releases/download/1.12/samtools-1.12.tar.bz2
-tar xvjf samtools-1.12.tar.bz2
-cd samtools-1.12
-# always check the basic docs
-less README
-less INSTALL
-# do the main configuration and installation
-./configure --enable-configure-htslib
-make
-# the default prefix is to install to /usr/local already
-make install
-
-# htslib is configured - go make and install
-cd /usr/local/src/samtools-1.12/htslib-1.12
-make
-make install
-```
-
-Then bcftools:
-```
-sudo su -
-cd /usr/local/src
-wget https://github.com/samtools/bcftools/releases/download/1.12/bcftools-1.12.tar.bz2
-tar xvjf bcftools-1.12.tar.bz2
-cd bcftools-1.12
-# always check the basic docs
-less README
-less INSTALL
-# do the main configuration and installation
-./configure
-make
-# the default prefix is to install to /usr/local already
-make install
-```
-
-Again, you can go back above to verify what version you're now using by default (you may need to do a `hash -r` to have bash update program locations). Also, you can remove the version from the Ubuntu repositories if you want to avoid potential confusion: `sudo apt purge samtools libhts3 bcftools`.
-
-Note a couple useful pieces of information for the hts libraries:
-```
-/usr/local/lib/libhts.a
-/usr/local/include/htslib
-```
-
 #### [meme](http://meme-suite.org/meme/)
-Current version is 5.3.3.
+Current version is 5.4.1.
 ```
 sudo su -
 cd /usr/local/src
-wget https://meme-suite.org/meme/meme-software/5.3.3/meme-5.3.3.tar.gz
-tar xvzf meme-5.3.3.tar.gz
-cd meme-5.3.3
+wget https://meme-suite.org/meme/meme-software/5.4.1/meme-5.4.1.tar.gz
+tar xvzf meme-5.4.1.tar.gz
+cd meme-5.4.1
 
 # always good to check the docs
 less README
@@ -343,11 +254,11 @@ make install
 
 # then, as per instructions, add things to your path (for the user, not necessarily root)
 echo '# path for meme' >> /home/ubuntu/.bashrc
-echo 'export PATH=$PATH:/usr/local/libexec/meme-5.3.3' >> /home/ubuntu/.bashrc
+echo 'export PATH=$PATH:/usr/local/libexec/meme-5.4.1' >> /home/ubuntu/.bashrc
 ```
 
 #### [MUMmer](https://github.com/mummer4/mummer)
-Ubuntu LTS version: 3.23
+Ubuntu LTS version: 3.23<br/>
 Latest GitHub version: 4.0.0 release candidate 1
 
 MUMmer is a venerable suite of programs for aligning DNA and protein sequences. It has recently seen a new incarnation with version 4. We'll therefore install the latest GitHub release, since the Ubuntu LTS repositories have the previous version 3 generation.
@@ -367,23 +278,122 @@ make install
 nucmer -h
 ```
 
+#### [pbbam](https://github.com/PacificBiosciences/pbbam)
+Ubuntu LTS version: 1.0.6<br/>
+GitHub version: 2.0.0
+
+This is a set of tools for handling the specific bam files that PacBio used to use.
+
+We'll install the latest release version from GitHub, as it's quite a bit newer than what's in the Ubuntu repositories.
+
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/PacificBiosciences/pbbam/archive/refs/tags/v1.6.0.tar.gz
+tar xvzf v1.6.0.tar.gz
+cd pbbam-1.6.0
+# check the docs
+less README.md
+less INSTALL.md
+
+# build and test - use meson and ninja
+mkdir build
+cd build
+meson --prefix /usr/local/ -Denable-tests=true ..
+ninja
+ninja test
+# there are some git errors because we used a release tarball, but everything else works
+ninja install
+# this installs some shared libraries in /usr/local/lib (among other things in /usr/local), so we need to update LD_LIBRARY_PATH
+echo "# For pbbam" >> /home/ubuntu/.bashrc
+echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/x86_64-linux-gnu" >> /home/ubuntu/.bashrc
+
+# test it
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/x86_64-linux-gnu
+pbmerge
+pbindex
+```
+
+#### [samtools](http://www.htslib.org/) (including htslib)
+Ubuntu LTS version: 1.10-3<br/>
+GitHub version: 1.15
+
+The HTSlib / samtools suite provides core tools and libraries that are also used by many other bioinformatics software tools. Again there is a version in the Ubuntu repositories (1.10), but the current version as of this writing is 1.15. This may or may not matter for what you're doing. If it does, here's how to update it.
+
+Figuring out what version you have currently:
+```
+dpkg --list | grep samtools
+which samtools
+# this generally will be /usr/bin/samtools if it's from the Ubuntu packages
+# this generally will be /usr/local/bin/samtools if you manually installed it
+samtools
+```
+
+Installing the latest version (check the version numbers throughout). We'll install all the packages including the development htslib libraries that other software might need. First, the regular samtools utilities, which will pull in the matching htslib:
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/samtools/samtools/releases/download/1.15/samtools-1.15.tar.bz2
+tar xvjf samtools-1.15.tar.bz2
+cd samtools-1.15
+# always check the basic docs
+less README
+less INSTALL
+# do the main configuration and installation
+./configure --enable-configure-htslib
+make
+# the default prefix is to install to /usr/local already
+make install
+
+# htslib is configured - go make and install
+cd /usr/local/src/samtools-1.15/htslib-1.15
+make
+make install
+```
+
+Then bcftools:
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/samtools/bcftools/releases/download/1.15/bcftools-1.15.tar.bz2
+tar xvjf bcftools-1.15.tar.bz2
+cd bcftools-1.15
+# always check the basic docs
+less README
+less INSTALL
+# do the main configuration and installation
+./configure
+make
+# the default prefix is to install to /usr/local already
+make install
+```
+
+Again, you can go back above to verify what version you're now using by default (you may need to do a `hash -r` to have bash update program locations). Also, you can remove the version from the Ubuntu repositories if you want to avoid potential confusion: `sudo apt purge samtools libhts3 bcftools`. But these may be pulled in by other packages leading to some complex dependencies, so this step isn't really necessary.
+
+Note a couple useful pieces of information for the hts libraries:
+```
+/usr/local/lib/libhts.a
+/usr/local/include/htslib
+```
+
 #### [sra-tools](https://github.com/ncbi/sra-tools)
 These are useful tools for using data in the GenBank Sequence Read Archives.
 They provide precompiled binaries on their GitHub page.
 ```
 sudo su -
 cd /usr/local/src
-wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.11.0/sratoolkit.2.11.0-ubuntu64.tar.gz
-tar xvzf sratoolkit.2.11.0-ubuntu64.tar.gz 
-cd sratoolkit.2.11.0-ubuntu64
+wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/3.0.0/sratoolkit.3.0.0-ubuntu64.tar.gz
+tar xvzf sratoolkit.3.0.0-ubuntu64.tar.gz 
+cd sratoolkit.3.0.0-ubuntu64
 # check the docs
 less README.md
 less README-blastn
 less README-vdb-config
 
 # link in the binaries - only take the parents, not the version-named ones
-for i in `ls -1 | grep -v '\.2$' | grep -v '2.11.0$'`; do \
-  ln -s /usr/local/src/sratoolkit.2.11.0-ubuntu64/bin/$i /usr/local/bin; 
+cd bin
+for i in `ls -1 | grep -v '\.3$' | grep -v '3.0.0$'`; do \
+  ln -s /usr/local/src/sratoolkit.3.0.0-ubuntu64/bin/$i /usr/local/bin; 
 done
 # this needs to be configured once (both root and ubuntu), even if accepting the defaults
 vdb-config -i
@@ -438,10 +448,13 @@ for i in blastp blastx tblastn tblastx; do ln -s slc-blastn slc-$i; done
 * [Trimmomatic](#Trimmomatic)
 
 #### [bowtie2](https://github.com/BenLangmead/bowtie2)
+Ubuntu LTS version: 2.3.5.1<br/>
+GitHub version: 2.4.5
+
 This is one of the well known short read mappers.
 [SRST2](#SRST2) uses this but has some version requirements (2.2.9).
 The Ubuntu focal LTS repositories include bowtie2 at version 2.3.5.1.
-The latest (May 2021) online at GitHub is version 2.4.2.
+The latest (April 2022) online at GitHub is version 2.4.5.
 
 We'll install the latest release from GitHub as the default. Installing the older 2.2.9 will be dealt with in the [SRST2](#SRST2) section.
 
@@ -458,13 +471,13 @@ Install from the GitHub release (**Recommended**):
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/BenLangmead/bowtie2/releases/download/v2.4.2/bowtie2-2.4.2-linux-x86_64.zip
-unzip bowtie2-2.4.2-linux-x86_64.zip
-cd bowtie2-2.4.2-linux-x86_64
+wget https://github.com/BenLangmead/bowtie2/releases/download/v2.4.5/bowtie2-2.4.5-linux-x86_64.zip
+unzip bowtie2-2.4.5-linux-x86_64.zip
+cd bowtie2-2.4.5-linux-x86_64
 
 # always check the docs
 less README.md
-for i in bowtie*; do ln -s /usr/local/src/bowtie2-2.4.2-linux-x86_64/$i /usr/local/bin; done
+for i in bowtie*; do ln -s /usr/local/src/bowtie2-2.4.5-linux-x86_64/$i /usr/local/bin; done
 
 # check where it is and the version - this should be /usr/local/bin/bowtie2
 which bowtie2
@@ -535,28 +548,31 @@ deML
 
 #### [fastp](https://github.com/OpenGene/fastp)
 Ubuntu LTS version: 0.20.0<br/>
-GitHub version: 0.20.1
+GitHub version: 0.23.2
 
-We'll install the GitHub version. (The Ubuntu version of course is straightforward with an `apt install fastp`).
+This is a utility for preprocessing fastq files. We'll install the GitHub version. (The Ubuntu version of course is straightforward with an `apt install fastp`).
+
 
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/OpenGene/fastp/archive/refs/tags/v0.20.1.tar.gz
-tar xvzf v0.20.1.tar.gz
-cd fastp-0.20.1/
+wget https://github.com/OpenGene/fastp/archive/refs/tags/v0.23.2.tar.gz
+tar xvzf v0.23.2.tar.gz
+cd fastp-0.23.2/
 # check the docs
 less README.md
 
+# Recent versions seem to need deflate and isal libraries
+apt install libdeflate-dev libisal-dev
 make
-ln -s /usr/local/src/fastp-0.20.1/fastp /usr/local/bin
+ln -s /usr/local/src/fastp-0.23.2/fastp /usr/local/bin
 
 # check the binary runs ok
 fastp
 ```
 
 #### [lacer](https://github.com/swainechen/lacer)
-GitHub version: 0.424
+GitHub version: 0.426
 
 This is a base quality score recalibrator (the "Q" in FASTQ files).
 It does not require knowledge of common SNPs and therefore is the only program that can generally recalibrate base quality scores on any organism (programs like GATK's BaseRecalibrator were designed primarily for human sequencing data, for example, and therefore only work well on data from a limited set of organisms).
@@ -598,8 +614,11 @@ ln -s /usr/local/src/lacer/lacepr/lacepr /usr/local/bin
 ```
 
 #### [minimap](https://github.com/lh3/minimap2)
+Ubuntu LTS version: 2.17<br/>
+GitHub version: 2.24
+
 The Ubuntu Focal (20.04) LTS repositories have version 2.17.
-The current release version (May 2021) in GitHub is 2.18.
+The current release version (May 2021) in GitHub is 2.24.
 As this is under active development, we'll have to keep up with new releases (similar instructions to below).
 
 From the Ubuntu repositories:
@@ -615,10 +634,10 @@ From the GitHub release tarball (**Recommended**):
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/lh3/minimap2/releases/download/v2.18/minimap2-2.18_x64-linux.tar.bz2
-tar xvjf minimap2-2.18_x64-linux.tar.bz2
-ln -s /usr/local/src/minimap2-2.18_x64-linux/minimap2 /usr/local/bin
-ln -s /usr/local/src/minimap2-2.18_x64-linux/minimap2.1 /usr/local/man/man1/
+wget https://github.com/lh3/minimap2/releases/download/v2.24/minimap2-2.24_x64-linux.tar.bz2
+tar xvjf minimap2-2.24_x64-linux.tar.bz2
+ln -s /usr/local/src/minimap2-2.24_x64-linux/minimap2 /usr/local/bin
+ln -s /usr/local/src/minimap2-2.24_x64-linux/minimap2.1 /usr/local/man/man1/
 
 # check where it is and the version
 which minimap2
@@ -708,7 +727,7 @@ which seqtk
 seqtk
 ```
 
-#### [STAR](#https://github.com/alexdobin/STAR)
+#### [STAR](https://github.com/alexdobin/STAR)
 This is a fast aligner that is splicing-aware, which is good for mapping host-pathogen combined datasets.
 
 We'll install the latest GitHub release version.
@@ -716,15 +735,15 @@ We'll install the latest GitHub release version.
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/alexdobin/STAR/archive/refs/tags/2.7.9a.tar.gz
-tar xvzf 2.7.9a.tar.gz
-cd STAR-2.7.9a
+wget https://github.com/alexdobin/STAR/archive/refs/tags/2.7.10a.tar.gz
+tar xvzf 2.7.10a.tar.gz
+cd STAR-2.7.10a
 # check the docs
 less README.md
 
 # compile and link the binary over
 cd source
-ln -s /usr/local/src/STAR-2.7.9a/source/STAR /usr/local/bin
+ln -s /usr/local/src/STAR-2.7.10a/bin/Linux_x86_64_static/STAR* /usr/local/bin
 
 # test it
 STAR --help
