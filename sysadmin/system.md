@@ -58,7 +58,7 @@ apt install -y automake cmake cpanminus cpanoutdated cython evince fig2dev \
   libsys-meminfo-perl libterm-progressbar-perl libtext-csv-perl libv8-dev \
   libxml-compile-perl libxml-compile-wsdl11-perl libxml2-dev libxslt1-dev \
   mlocate mysql-client openjdk-8-jdk parallel pdl prodigal python \
-  python-numpy snakemake swig xfig zlib1g-dev
+  python-numpy python3-pip snakemake swig xfig zlib1g-dev
 
 # some initial software
 apt install -y cd-hit clonalframeml fastdnaml fastqc fasttree \
@@ -88,7 +88,7 @@ The next module, `PDL::Parallel::threads`, is required for `lacer`.
 _N.B.: Until recently (Feb 2022) this module had a little bug that required some tweaking, documented [here](https://github.com/run4flat/PDL-Parallel-threads/issues/1). As of version 0.04, however, it compiles and installs cleanly with just the commands below._
 ```
 sudo su -
-cnapm PDL::Parallel::threads
+cpanm PDL::Parallel::threads
 
 # test to see if it works - no error and no output for the following if ok
 perl -e 'use PDL::Parallel::threads'
