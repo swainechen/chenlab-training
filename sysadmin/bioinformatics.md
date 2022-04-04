@@ -768,7 +768,7 @@ dpkg -L trimmomatic
 
 #### [BBMap](https://sourceforge.net/projects/bbmap/)
 Ubuntu focal LTS version: 38.79<br/>
-SourceForge version: 38.90
+SourceForge version: 38.96
 
 This is another mapper (BBMap) that has a read trimmer as well (BBDuk), along with a few other utilities.
 Since the SourceForge version is newer, we'll prefer that.
@@ -788,8 +788,8 @@ sudo su -
 cd /usr/local/src
 # the URL again is generated
 # you may need to get a new URL by clicking from https://sourceforge.net/projects/bbmap/
-wget 'https://downloads.sourceforge.net/project/bbmap/BBMap_38.90.tar.gz?ts=gAAAAABglrnyrwR2Q1MnHROncBIoOt3unY2XNT7spAMQTg8KopS73pB07gOriP7rcnn1yqmDMctWFxcJPSV9x0-K8AUaV6hXJw%3D%3D&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fbbmap%2Ffiles%2Flatest%2Fdownload' -O BBMap_38.90.tar.gz
-tar xvzf BBMap_38.90.tar.gz
+wget 'https://downloads.sourceforge.net/project/bbmap/BBMap_38.96.tar.gz?ts=gAAAAABiSjQCnvRNlvYnDls__gSGWZQaEiWukvpmwTVKm-aJxhDNAq7uYEjTdw-vo6EOemmH_Oy5bUL9V-DKBJesqFCn9Jp3EA%3D%3D&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fbbmap%2Ffiles%2Flatest%2Fdownload' -O BBMap_38.96.tar.gz
+tar xvzf BBMap_38.96.tar.gz
 cd bbmap
 # check the docs
 less README.md
@@ -844,7 +844,7 @@ cd /usr/local/src/a5_miseq_linux_20160825
 
 #### [canu](https://github.com/marbl/canu)
 Ubuntu LTS version: 1.9<br/>
-GitHub version: 2.1.1
+GitHub version: 2.2
 
 This is an assembler designed for noisy long-read sequencing (i.e. Oxford Nanopore and PacBio).
 We'll install the GitHub version since it's newer than the one in the Ubuntu repositories.
@@ -858,17 +858,17 @@ Install from GitHub (**Recommended**):
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/marbl/canu/releases/download/v2.1.1/canu-2.1.1.tar.xz
-tar xvJf canu-2.1.1.tar.xz
-cd canu-2.1.1
+wget https://github.com/marbl/canu/releases/download/v2.2/canu-2.2.tar.xz
+tar xvJf canu-2.2.tar.xz
+cd canu-2.2
 # check the docs
 less README.md
 
 # build and link the binaries
-cd /usr/local/src/canu-2.1.1/src
+cd /usr/local/src/canu-2.2/src
 make
 # this will find the full path despite the symlink, where it will then find the other binaries it needs, so we only need the canu binary linked into /usr/local/bin
-ln -s /usr/local/src/canu-2.1.1/build/bin/canu /usr/local/bin
+ln -s /usr/local/src/canu-2.2/build/bin/canu /usr/local/bin
 
 # test it
 canu
@@ -880,9 +880,9 @@ This is another assembler for long read sequencing (i.e. Oxford Nanopore and Pac
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/fenderglass/Flye/archive/refs/tags/2.8.3.tar.gz
-tar xvzf 2.8.3.tar.gz
-cd Flye-2.8.3
+wget https://github.com/fenderglass/Flye/archive/refs/tags/2.9.tar.gz
+tar xvzf 2.9.tar.gz
+cd Flye-2.9
 # check the docs
 less README.md
 
@@ -891,7 +891,7 @@ python3 setup.py install
 
 # test it
 flye
-python3 /usr/local/src/Flye-2.8.3/flye/tests/test_toy.py
+python3 /usr/local/src/Flye-2.9/flye/tests/test_toy.py
 ```
 
 #### [miniasm](https://github.com/lh3/miniasm)
@@ -903,7 +903,7 @@ This hasn't been updated in a while so we'll go with the Ubuntu repository, as i
 
 Install from Ubuntu repositories (**Recommended**):
 ```
-sudo apt-get install miniasm
+sudo apt install miniasm
 ```
 
 Install from GitHub:
@@ -928,22 +928,19 @@ This is another assembler for long reads (Oxford Nanopore and PacBio).
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/lbcb-sci/raven/archive/refs/tags/1.5.0.tar.gz
-tar xvzf 1.5.0.tar.gz
-cd raven-1.5.0
+wget https://github.com/lbcb-sci/raven/archive/refs/tags/1.8.1.tar.gz
+tar xvzf 1.8.1.tar.gz
+cd raven-1.8.1
 # check the docs
 less README.md
 
 # build and link the binaries
-mkdir build
-cd build
-cmake -DCMAKE_BUILD_TYPE=Release ..
-make
-ln -s /usr/local/src/raven-1.5.0/build/bin/raven /usr/local/bin
+cmake -S ./ -B./build -DRAVEN_BUILD_EXE=1 -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+ln -s /usr/local/src/raven-1.8.1/build/bin/raven /usr/local/bin
 
 # test it
 raven
-/usr/local/src/raven-1.5.0/build/bin/raven_test
 ```
 
 #### [redbean](https://github.com/ruanjue/wtdbg2)
@@ -968,7 +965,7 @@ GitHub version: 0.10.15
 Since this hasn't been updated in a while, and the versions are the same, we'll go with the Ubuntu version.
 
 ```
-sudo apt-get install sga
+sudo apt install sga
 ```
 
 #### [skesa](https://github.com/ncbi/SKESA)
@@ -982,9 +979,9 @@ We'll take the source and compile.
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/ncbi/SKESA/archive/refs/tags/skesa.2.4.0_saute.1.3.0_1.tar.gz
-tar xvzf skesa.2.4.0_saute.1.3.0_1.tar.gz
-cd SKESA-skesa.2.4.0_saute.1.3.0_1
+wget https://github.com/ncbi/SKESA/archive/refs/tags/skesa.2.4.0_saute.1.3.0_2.tar.gz
+tar xvzf skesa.2.4.0_saute.1.3.0_2.tar.gz
+cd SKESA-skesa.2.4.0_saute.1.3.0_2
 # check the docs
 less README.md
 
@@ -994,46 +991,33 @@ less README.md
 make -f Makefile.nongs
 
 # link the binaries
-for i in skesa saute saute_prot gfa_connector kmercounter; do ln -s /usr/local/src/SKESA-skesa.2.4.0_saute.1.3.0_1/$i /usr/local/bin; done
+for i in skesa saute saute_prot gfa_connector kmercounter; do ln -s /usr/local/src/SKESA-skesa.2.4.0_saute.1.3.0_2/$i /usr/local/bin; done
 
-# test that it works
+# test that it works, at least for showing the help screen
 skesa
 saute
 ```
 
 #### [SPAdes](https://cab.spbu.ru/software/spades/)
 Ubuntu LTS version: 3.13.1<br/>
-Online version: 3.15.2
-However, [Unicycler](#Unicycler) needs a version no later than 3.13.0. We'll install the latest online version for regular use, then do a second install with the older version for Unicycler.
+Online version: 3.15.4
 
-The latest version from https://cab.spbu.ru/software/spades/ as default (i.e. in `/usr/local/bin`)
+We'll install the latest version from https://cab.spbu.ru/software/spades/.
 ```
 sudo su -
 cd /usr/local/src
-wget https://cab.spbu.ru/files/release3.15.2/SPAdes-3.15.2-Linux.tar.gz
-tar xvzf SPAdes-3.15.2-Linux.tar.gz
-cd SPAdes-3.15.2-Linux
+wget https://cab.spbu.ru/files/release3.15.4/SPAdes-3.15.4-Linux.tar.gz
+tar xvzf SPAdes-3.15.4-Linux.tar.gz
+cd SPAdes-3.15.4-Linux
 # check the docs
 less share/spades/README.md
 
 # link in the binaries
 cd bin
-for i in *; do ln -s /usr/local/src/SPAdes-3.15.2-Linux/bin/$i /usr/local/bin; done
+for i in *; do ln -s /usr/local/src/SPAdes-3.15.4-Linux/bin/$i /usr/local/bin; done
 
-# check it works ok
-```
-
-The older 3.13.0 version for [Unicycler](#Unicycler) - this can be downloaded at the [SPAdes GitHub repository](https://github.com/ablab/spades)
-We will keep this in /usr/local/src and will need to specify the full path in order to use it:
-```
-sudo su -
-cd /usr/local/src
-wget https://github.com/ablab/spades/releases/download/v3.13.0/SPAdes-3.13.0-Linux.tar.gz
-tar xvzf SPAdes-3.13.0-Linux.tar.gz
-cd SPAdes-3.13.0-Linux
-
-# this was a binary distribution, so it should be done - just check the version
-/usr/local/src/SPAdes-3.13.0-Linux/bin/spades.py
+# check it works ok, at least for the help screen
+spades.py
 ```
 
 #### [velvet](https://github.com/dzerbino/velvet/tree/master)
@@ -1068,9 +1052,9 @@ less README.txt
 make 'MAXKMERLENGTH=255' 'LONGSEQUENCES=1'
 for i in velvetg velveth; do ln -s /usr/local/src/velvet-1.2.10/$i /usr/local/bin; done
 # also pull in some contrib utilities, one of which needs a perl library
-ln -s /usr/local/src/velvet/contrib/VelvetOptimiser-2.2.4/VelvetOptimiser.pl /usr/local/bin
-ln -s /usr/local/src/velvet/contrib/shuffleSequences_fasta/shuffleSeq* /usr/local/bin
-ln -s /usr/local/src/velvet/contrib/VelvetOptimiser-2.2.4/VelvetOpt/ /usr/local/lib/site_perl/
+ln -s /usr/local/src/velvet-1.2.10/contrib/VelvetOptimiser-2.2.4/VelvetOptimiser.pl /usr/local/bin
+ln -s /usr/local/src/velvet-1.2.10/contrib/shuffleSequences_fasta/shuffleSeq* /usr/local/bin
+ln -s /usr/local/src/velvet-1.2.10/contrib/VelvetOptimiser-2.2.4/VelvetOpt/ /usr/local/lib/site_perl/
 ```
 The last line for the VelvetOpt perl libraries goes to `/usr/local/lib/site_perl`.
 This should work on a stock Ubuntu install.
@@ -1083,15 +1067,15 @@ Looking at the installation methods, I prefer to take the latest release to buil
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/rrwick/Trycycler/archive/refs/tags/v0.5.0.tar.gz
-tar xvzf v0.5.0.tar.gz
-cd Trycycler-0.5.0
+wget https://github.com/rrwick/Trycycler/archive/refs/tags/v0.5.3.tar.gz
+tar xvzf v0.5.3.tar.gz
+cd Trycycler-0.5.3
 # check the docs
 less README.md
 less requirements.txt
 
 # install (defaults to /usr/local/bin for the binary)
-pip3 install /usr/local/src/Trycycler-0.5.0/
+pip3 install /usr/local/src/Trycycler-0.5.3/
 
 # test it
 trycycler --help
@@ -1099,7 +1083,7 @@ trycycler --help
 
 #### [Unicycler](https://github.com/rrwick/Unicycler)
 Ubuntu LTS version: 0.4.8<br/>
-GitHub version: 0.4.9
+GitHub version: 0.5.0
 
 We'll use the latest GitHub version.
 
@@ -1115,9 +1099,9 @@ GitHub version (**Recommended**):
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/rrwick/Unicycler/archive/refs/tags/v0.4.9.tar.gz
-tar xvzf v0.4.9.tar.gz
-cd Unicycler-0.4.9
+wget https://github.com/rrwick/Unicycler/archive/refs/tags/v0.5.0.tar.gz
+tar xvzf v0.5.0.tar.gz
+cd Unicycler-0.5.0
 # check the docs
 less README.md
 
@@ -1127,9 +1111,7 @@ python3 setup.py install
 # test it out
 unicycler
 unicycler --help_all
-# unicycler --spades_path /usr/local/src/SPAdes-3.13.0-Linux/bin/spades.py <other options>
 ```
-Note for this you'll probably have to specify `--spades_path /usr/local/src/SPAdes-3.13.0-Linux/bin/spades.py` to use the correct older version of [SPAdes](#SPAdes) (see that section in this guide).
 
 #### [OPERA-LG](https://sourceforge.net/p/operasf/wiki/The%20OPERA%20wiki/)
 This is a scaffolder that can be run after you do your primary assembly (with SOAP, velvet, etc.).
@@ -1462,7 +1444,7 @@ We'll use the GitHub version since it's newer than the one in the Ubuntu reposit
 
 Install from Ubuntu repositories:
 ```
-sudo apt-get install racon
+sudo apt install racon
 ```
 
 Install from GitHub (**Recommended**):
