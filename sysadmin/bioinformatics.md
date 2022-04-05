@@ -1204,13 +1204,10 @@ FinIS test_dataset/soap/conf.config
 * [racon](#racon)
 * [snippy](#snippy)
 
-#### [BLASR](https://github.com/PacificBiosciences/blasr)
+#### [BLASR]
 Ubuntu LTS version: 5.3.3
-GitHub version: 5.3.5
 
-This requires the [pbbam](#pbbam) tools to be installed.
-The build is a little unique as it requires `meson` and `ninja`, but both of these are easy to install from the Ubuntu repositories (and have been included in the [General Sysadmin](system.md) section under [Standard Ubuntu Packages](system.md#Standard-Ubuntu-Packages).
-There seems to be some issue with specifying include directories. For now, just install the Ubuntu version.
+There used to be a Github repository for this (https://github.com/PacificBiosciences/blasr) but now it gives a 404 error. We can still install from the Ubuntu repositories.
 
 ```
 sudo apt install blasr
@@ -1225,24 +1222,24 @@ This is a pipeline for finding mutations in a short read sequencing data set rel
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/barricklab/breseq/releases/download/v0.35.6/breseq-0.35.6-Linux-x86_64.tar.gz
-tar xvzf breseq-0.35.6-Linux-x86_64.tar.gz
-cd breseq-0.35.6-Linux-x86_64
+wget https://github.com/barricklab/breseq/releases/download/v0.36.1/breseq-0.36.1-Linux-x86_64.tar.gz
+tar xvzf breseq-0.36.1-Linux-x86_64.tar.gz
+cd breseq-0.36.1-Linux-x86_64
 # check the docs
 less README
 less documentation/installation.html
 
 # update owners and permissions because we're running around as root
-chown -R root:root /usr/local/src/breseq-0.35.6-Linux-x86_64
-cd /usr/local/src/breseq-0.35.6-Linux-x86_64
+chown -R root:root /usr/local/src/breseq-0.36.1-Linux-x86_64
+cd /usr/local/src/breseq-0.36.1-Linux-x86_64
 chmod -R a+r *
 find . -mindepth 1 -type d | xargs chmod 755
 find . -mindepth 1 -executable -type f | xargs chmod 755
 
 # link over the binary and the share files
-cd /usr/local/src/breseq-0.35.6-Linux-x86_64/bin
-for i in *; do ln -s /usr/local/src/breseq-0.35.6-Linux-x86_64/bin/$i /usr/local/bin; done
-ln -s /usr/local/src/breseq-0.35.6-Linux-x86_64/share/breseq /usr/local/share/
+cd /usr/local/src/breseq-0.36.1-Linux-x86_64/bin
+for i in *; do ln -s /usr/local/src/breseq-0.36.1-Linux-x86_64/bin/$i /usr/local/bin; done
+ln -s /usr/local/src/breseq-0.36.1-Linux-x86_64/share/breseq /usr/local/share/
 
 ```
 
@@ -1250,14 +1247,14 @@ ln -s /usr/local/src/breseq-0.35.6-Linux-x86_64/share/breseq /usr/local/share/
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/broadinstitute/gatk/releases/download/4.2.1.0/gatk-4.2.1.0.zip
-unzip gatk-4.2.1.0.zip
-cd gatk-4.2.1.0
+wget https://github.com/broadinstitute/gatk/releases/download/4.2.5.0/gatk-4.2.5.0.zip
+unzip gatk-4.2.5.0.zip
+cd gatk-4.2.5.0
 # check the docs
 less README.md
 
 # the main gatk invocation script will figure out the original directory, so we can just link this in to /usr/local/bin
-ln -s /usr/local/src/gatk-4.2.1.0/gatk /usr/local/bin
+ln -s /usr/local/src/gatk-4.2.5.0/gatk /usr/local/bin
 
 # test it
 gatk --help
@@ -1297,7 +1294,7 @@ for i in *; do ln -s /usr/local/src/lofreq_star-2.1.5_linux-x86-64/bin/$i /usr/l
 ```
 
 #### [mash](https://mash.readthedocs.io/en/latest/)
-Ubuntu LTS version: 2.2.2
+Ubuntu LTS version: 2.2.2<br/>
 GitHub release version: 2.3
 
 Mash is a tool to estimate sequence distance using MinHash.
