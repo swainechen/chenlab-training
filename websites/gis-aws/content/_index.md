@@ -3,7 +3,7 @@ title: "GIS-AWS Cloud Genomics Workshop"
 date: 2019-09-18T10:50:17-04:00
 draft: false
 ---
-## **The next training session is 22-23 Mar 2022, 9am-12pm SGT (UTC+8)** [Register here!](https://t.co/ca6GyyEJHc)
+## **The next training session is 22-23 Jun 2022, 11am-2pm SGT (UTC+8)** [Register here!](https://forms.gle/hRAmrjQ7wn58jKLL6)
 
 # Welcome to the online Cloud Genomics Workshop
 **<font size="30">Genome Institute of Singapore and Amazon Web Services</font>**
