@@ -427,6 +427,7 @@ git clone https://github.com/swainechen/closet
 cd closet/bin
 for i in *; do ln -s /usr/local/src/closet/bin/$i /usr/local/bin; done
 ln -s /usr/local/src/closet/lib/slchen.pm /usr/local/lib/site_perl
+ln -s /usr/local/src/closet/lib/Slctree.pm /usr/local/lib/site_perl
 
 # some convenient links
 cd /usr/local/bin
@@ -1602,11 +1603,11 @@ for i in kraken2 kraken2-build kraken2-inspect; do ln -s /usr/local/src/kraken2-
 # install the MiniKraken libraries
 mkdir /usr/local/lib/Kraken2
 cd /usr/local/lib/Kraken2
-wget wget ftp://ftp.ccb.jhu.edu/pub/data/kraken2_dbs/old/minikraken2_v2_8GB_201904.tgz
-tar xvzf minikraken2_v2_8GB_201904.tgz
+wget https://genome-idx.s3.amazonaws.com/kraken/k2_standard_8gb_20210517.tar.gz
+tar xvzf k2_standard_8gb_20210517.tar.gz
 
 # then this can be run as (again watch out for RAM - you probably realistically should have 16GB total)
-kraken2 --db /usr/local/lib/Kraken2/minikraken2_v2_8GB_201904_UPDATE fq_1.gz fq2.gz
+kraken2 --db /usr/local/lib/Kraken2/k2_standard_8gb_20210517.tar.gz fq_1.gz fq2.gz
 ```
 
 #### [prokka](https://github.com/tseemann/prokka)
@@ -1926,8 +1927,104 @@ srst2 --input_pe strainA_1.fastq.gz strainA_2.fastq.gz --output strainA_typing -
 * [slcview](#slcview)
 
 #### [Bandage](https://rrwick.github.io/Bandage/)
-#### [BRIG]
+Ubuntu LTS version: 0.8.1<br/>
+GitHub Release version: 0.9.0
+
+This is a program that allows visualization of assembly graphs. This is a graphical application so you'll have to sort out forwarding X packets if you're on a remote connection (like to an AWS EC2 instance).
+
+If you're on Linux and have a window manager, this can be as trivial as adding `-X` or `-Y` to your ssh command. This may be more complicated if you're on Windows or MacOS, though there are quite a few solutions out there.
+
+From the Ubuntu repositories:
+```
+sudo apt install bandage
+```
+
+From GitHub (**Recommended**)
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/rrwick/Bandage/releases/download/v0.9.0/Bandage_Ubuntu-x86-64_v0.9.0_AppImage.zip
+mkdir Bandage-0.9.0
+cd Bandage-0.9.0
+unzip ../Bandage_Ubuntu-x86-64_v0.9.0_AppImage.zip
+ln -s /usr/local/src/Bandage-0.9.0/Bandage_Ubuntu-x86-64_v0.9.0.AppImage /usr/local/bin/Bandage
+```
+
+#### [BRIG](https://sourceforge.net/projects/brig/)
+Ubuntu LTS version: 0.95<br/>
+GitHub Release version: 0.95
+
+BRIG stands for BLAST Ring Image Generator, and is useful for generating the typical bacterial genome comparison figures you see in many papers.
+
+This hasn't been updated in a while, so the version in the Ubuntu respositories is the latest. We'll use that.
+
+This also has a graphical interface, so you'll have to sort out forwarding X packets if you're on an AWS instance.
+
+```
+sudo apt install brig
+
+```
+
 #### [Circos](http://circos.ca/)
-#### [EasyFig]
-#### [SeqFindr]
+Ubuntu LTS version: 0.95<br/>
+GitHub Release version: 0.95
+
+This is another program for generating circular images and is quite general and widely used.
+
+The Ubuntu repositories have the same version as the latest release so we'll use that.
+
+```
+sudo apt install circos
+```
+
+#### [EasyFig](https://mjsull.github.io/Easyfig/)
+This is a program for drawing figures of genetic comparisons between two sequences.
+
+This has a graphical interface so you'll have to sort out forwarding X packets if you're on an AWS instance.
+
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/mjsull/Easyfig/releases/download/2.2.2/Easyfig_2.2.2_linux.tar.gz
+ln -s /usr/local/src/Easyfig_2.2.2_linux/Easyfig /usr/local/bin
+```
+
+On the 20.04 LTS version of Ubuntu, this gives a lot of fontconfig warnings, but it seems to run ok (see https://askubuntu.com/questions/1098809/applications-load-slowly-on-ubuntu-18-10-seems-related-to-fontconfig)
+
+#### [SeqFindr](http://mscook.github.io/SeqFindR/)
+This is a tool to draw presence-absence plots, such as for virulence genes.
+
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/mscook/SeqFindR/archive/refs/tags/v0.35.0.tar.gz
+tar xvzf v0.35.0.tar.gz
+cd SeqFindR-0.35.0
+# check the docs
+less README.rst
+less requirements.txt
+# we generally have python3, so force python2 for the install
+pip2 install SeqFindr
+# this gives some errors on trying to compile matplotlib, but we have it installed from before so it seems to install and find the module fine on running
+
+# check it, at least for the help screen
+SeqFindr -h
+```
+
 #### [slcview](https://github.com/swainechen/slcview)
+This is a program to generate clustergrams, the traditional heatmaps coming from .cdt, .gtr, and .atr files from Mike Eisen's Cluster and Gavin Sherlock's XCluster. There is also an slctree.pl program in my [Closet repository](https://github.com/swainechen/closet) that builds on this - slctree allows scriptable and customizable tree generation, though this has generally been superseded by many good packages in R and other languages.
+
+```
+sudo su -
+cd /usr/local/src
+git clone https://github.com/swainechen/slcview.git
+cd slcview
+# check the docs
+less README
+
+for i in bon.pl slcview.pl; do ln -s /usr/local/src/slcview/$i /usr/local/bin; done
+ln -s /usr/local/src/slcview/Slcview.pm /usr/local/lib/site_perl
+
+# test it, at least for the help screen
+slcview.pl
+```
