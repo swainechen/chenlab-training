@@ -1434,7 +1434,7 @@ That said, this script was for Unicycler and that seems to need the space as per
 
 #### [racon](https://github.com/lbcb-sci/racon)
 Ubuntu LTS version: 1.4.10<br/>
-GitHub version: 1.4.21
+GitHub version: 1.5.0
 
 This is a polisher / consensus module for uncorrected long reads (i.e. Oxford Nanopore and PacBio).
 We'll use the GitHub version since it's newer than the one in the Ubuntu repositories.
@@ -1448,9 +1448,9 @@ Install from GitHub (**Recommended**):
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/lbcb-sci/racon/releases/download/1.4.21/racon-v1.4.21.tar.gz
-tar xvzf racon-v1.4.21.tar.gz
-cd racon-v1.4.21
+wget https://github.com/lbcb-sci/racon/archive/refs/tags/1.5.0.tar.gz
+tar xvzf 1.5.0.tar.gz
+cd racon-1.5.0
 # check the docs
 less README.md
 
@@ -1459,7 +1459,7 @@ mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
 make
-ln -s /usr/local/src/racon-v1.4.21/build/bin/racon /usr/local/bin
+ln -s /usr/local/src/racon-1.5.0/build/bin/racon /usr/local/bin
 
 # test it
 racon
@@ -1473,7 +1473,7 @@ It can also output a core SNP alignment, which can then be used to make a phylog
 sudo su -
 cd /usr/local/src
 wget https://github.com/tseemann/snippy/archive/refs/tags/v4.6.0.tar.gz
-tar xvzf v4.6.0
+tar xvzf v4.6.0.tar.gz
 cd snippy-4.6.0
 # check the docs
 less README.md
@@ -1496,6 +1496,7 @@ snippy --check
 * [referenceseeker](#referenceseeker)
 * [Roary](#Roary)
 * [SeqSero](#SeqSero)
+* [SeqSero2](#SeqSero2)
 * [SRST2](#SRST2)
 
 #### [abricate](https://github.com/tseemann/abricate)
@@ -1517,7 +1518,7 @@ ln -s /usr/local/src/any2fasta-0.4.2/any2fasta /usr/local/bin
 
 # now for abricate
 cd /usr/local/src
-wget https://github.com/tseemann/abricate
+wget https://github.com/tseemann/abricate/archive/refs/tags/v1.0.0.tar.gz
 tar xvzf v1.0.0.tar.gz
 cd abricate-1.0.0
 # check the docs
@@ -1573,7 +1574,7 @@ kleborate -h
 ```
 
 #### [Kraken 2](https://ccb.jhu.edu/software/kraken2/)
-Ubuntu LTS version: 2.0.8-beta
+Ubuntu LTS version: 2.0.8-beta<br/>
 GitHub Release version: 2.1.2
 
 This is a popular tool to do species / taxonomic classification of short reads using k-mers.
@@ -1609,6 +1610,9 @@ kraken2 --db /usr/local/lib/Kraken2/minikraken2_v2_8GB_201904_UPDATE fq_1.gz fq2
 ```
 
 #### [prokka](https://github.com/tseemann/prokka)
+Ubuntu LTS version: 1.14.5<br/>
+GitHub Release version: 1.14.5
+
 This is a popular genome annotation tool.
 This hasn't been updated in about 1-2 years, and the Ubuntu version is the same as the latest GitHub version, so we'll install the Ubuntu version.
 
@@ -1632,19 +1636,19 @@ We'll install the latest Github release.
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/oschwengers/referenceseeker/archive/refs/tags/v1.7.3.tar.gz
-tar xvzf v1.7.3.tar.gz
-cd referenceseeker-1.7.3
+wget https://github.com/oschwengers/referenceseeker/archive/refs/tags/v1.8.0.tar.gz
+tar xvzf v1.8.0.tar.gz
+cd referenceseeker-1.8.0
 # check the docs
 less README.md
 
 # link the binaries over
 cd bin
-for i in *; do ln -s /usr/local/src/referenceseeker-1.7.3/bin/$i /usr/local/bin; done
+for i in *; do ln -s /usr/local/src/referenceseeker-1.8.0/bin/$i /usr/local/bin; done
 
 # test it
 referenceseeker --help
-referenceseeker /usr/local/src/referenceseeker-1.7.3/test/db /usr/local/src/referenceseeker-1.7.3/test/data/Salmonella_enterica_CFSAN000189.fasta
+referenceseeker /usr/local/src/referenceseeker-1.8.0/test/db /usr/local/src/referenceseeker-1.8.0/test/data/Salmonella_enterica_CFSAN000189.fasta
 
 # this requires some quite large databases. Here's an example for archaea (the smallest one
 # I recommend putting them in a "standard" location like /usr/local/lib/referenceseeker
@@ -1693,6 +1697,8 @@ roary -a
 This complains about cd-hit being not the right version - it asks for min 4.6, but we have 4.8.1 installed.
 
 #### [SeqSero](https://github.com/denglab/SeqSero)
+This still works well, but has been superseded by [SeqSero2](#SeqSero2).
+
 This a serotype predictor for Salmonella.
 This has some syntax that is now deprecated, and it also will probably soon need a port to Python 3.
 However, the [patch here](https://github.com/denglab/SeqSero/issues/6) should allow it to run for a while still.
@@ -1713,6 +1719,24 @@ patch -p1 < SeqSero.patch.txt
 ln -s /usr/local/src/SeqSero-1.0.1/SeqSero.py /usr/local/bin
 ```
 Note that this gives a lot of `FASTA-Reader: Title ends with at least 20 valid nucleotide characters` errors from some of the blast steps due to inclusion of primer sequences in the fasta headers from isPcr.
+
+#### [SeqSero2](https://github.com/denglab/SeqSero2)
+This is an updated Salmonella serotype predictor.
+
+```
+sudo su -
+cd /usr/local/src
+wget https://github.com/denglab/SeqSero2/archive/refs/tags/v1.2.1.tar.gz
+tar xvzf v1.2.1.tar.gz
+cd SeqSero2-1.2.1
+# check the docs
+less README.md
+# install - we're doing this as root as discussed above
+python3 -m pip install .
+
+# quick test, at least for the help screen
+SeqSero2_package.py
+```
 
 #### [SRST2](https://github.com/katholt/srst2)
 This is a popular short read analysis program, good for calling MLSTs, resistances, and serotypes directly from short reads.
@@ -1735,6 +1759,7 @@ pip install srst2/
 sudo su -
 cd /usr/local/src
 wget https://github.com/samtools/samtools/archive/refs/tags/0.1.18.tar.gz
+tar xvzf 0.1.18.tar.gz
 cd samtools-0.1.18
 # check the docs
 less INSTALL
