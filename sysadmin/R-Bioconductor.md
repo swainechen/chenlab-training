@@ -36,5 +36,5 @@ BiocManager::install()
 Then install some Bioconductor packages:
 ```
 BiocManager::install(c("Biostrings", "ComplexHeatmap", "DESeq2", "edgeR",
-  "ggtree", "IRanges", "SNPRelate", "SRAdb", "Sushi", "bambu"))
+  "ggtree", "IRanges", "SNPRelate", "SRAdb", "Sushi", "bambu", "ggbio"))
 ```
