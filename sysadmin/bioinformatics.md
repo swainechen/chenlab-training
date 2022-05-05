@@ -209,8 +209,7 @@ make install
 ```
 
 #### [Kingfisher](https://github.com/wwood/kingfisher-download)
-**Note: this seems to be changing quite a bit in terms of install and syntax. ENA also seems to be having some issues with ASCP transfers as well. Other options include [ENA's own tool](https://github.com/enasequence/ena-ftp-downloader) or prefetch + fasterq-dump from NCBI's [SRA Tools](#sra-tools)**
-**As of April 2022 the following doesn't work**
+**Note: this seems to be changing quite a bit in terms of install and syntax, as is the organization of the public repositories. Other options include [ENA's own tool](https://github.com/enasequence/ena-ftp-downloader) or prefetch + fasterq-dump from NCBI's [SRA Tools](#sra-tools). A good place to check for other options is https://www.biostars.org/p/9493498/**
 
 This is a convenient tool for downloading public data sets, such as from GenBank or ENA.
 Again, the setup is pretty simple so I've done it without conda.
@@ -742,8 +741,8 @@ cd STAR-2.7.10a
 # check the docs
 less README.md
 
-# compile and link the binary over
-cd source
+# link the binary over
+cd bin
 ln -s /usr/local/src/STAR-2.7.10a/bin/Linux_x86_64_static/STAR* /usr/local/bin
 
 # test it
@@ -1583,6 +1582,7 @@ This is a popular tool to do species / taxonomic classification of short reads u
 This takes quite a bit of space due to the database.
 It also requires quite a bit of RAM, at least 32GB for the standard library.
 We'll install the MiniKraken database here, which is 8GB - refer to the [website](https://ccb.jhu.edu/software/kraken2/index.shtml?t=downloads) if you need the bigger libraries.
+Note some databases are now available as part of the [Repository of Open Data on AWS](https://aws.amazon.com/opendata/open-data-sponsorship-program/): https://registry.opendata.aws/jhu-indexes/.
 We'll put these in /usr/local/lib/Kraken2
 
 The Ubuntu repositories are behind the latest GitHub release, so we'll use the GitHub version
@@ -1600,7 +1600,7 @@ less docs/MANUAL.markdown
 ./install_kraken2.sh /usr/local/src/kraken2-2.1.2/bin
 for i in kraken2 kraken2-build kraken2-inspect; do ln -s /usr/local/src/kraken2-2.1.2/bin/$i /usr/local/bin; done
 
-# install the MiniKraken libraries
+# install the updated standard 8GB library
 mkdir /usr/local/lib/Kraken2
 cd /usr/local/lib/Kraken2
 wget https://genome-idx.s3.amazonaws.com/kraken/k2_standard_8gb_20210517.tar.gz
@@ -1866,7 +1866,7 @@ if [ $BASE == "SRST2" ]; then
   echo "For example from within /usr/local/lib/SRST2/Ecoli"
   exit
 else
-  # this script comes from the my closet respository
+  # this script comes from the SLC Closet respository
   combine-SRST2-fasta.pl -srst2 $SRST2 -version $VERSION > $BASE-combined-$DATE.fasta
   $BOWTIEBUILD $BASE-combined-$DATE.fasta $BASE-combined-$DATE.fasta
   $SAMTOOLS faidx $BASE-combined-$DATE.fasta
