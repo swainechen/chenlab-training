@@ -1581,8 +1581,8 @@ This is a popular tool to do species / taxonomic classification of short reads u
 
 This takes quite a bit of space due to the database.
 It also requires quite a bit of RAM, at least 32GB for the standard library.
-We'll install the MiniKraken database here, which is 8GB - refer to the [website](https://ccb.jhu.edu/software/kraken2/index.shtml?t=downloads) if you need the bigger libraries.
 Note some databases are now available as part of the [Repository of Open Data on AWS](https://aws.amazon.com/opendata/open-data-sponsorship-program/): https://registry.opendata.aws/jhu-indexes/.
+We'll install the Standard 8GB database here, which has archaea, bacteria, viruses, plasmids, human, and UniVec_Core - refer to the [documentation](https://benlangmead.github.io/aws-indexes/k2) for more details or other databases.
 We'll put these in /usr/local/lib/Kraken2
 
 The Ubuntu repositories are behind the latest GitHub release, so we'll use the GitHub version
