@@ -8,7 +8,7 @@ draft: false
 # Welcome to the online Cloud Genomics Workshop
 **<font size="30">Genome Institute of Singapore and Amazon Web Services</font>**
 
-The Genome Institute of Singapore (GIS) is the national flagship program for the genomic sciences in Singapore, started in 2000 by the Agency for Science, Research and Technology (A*STAR). Our vision is to use the genomic sciences to achieve extraordinary improvements in human health and public prosperity. We read, reveal, and write DNA for a better Singapore and world!
+The Genome Institute of Singapore (GIS) is the national flagship program for the genomic sciences in Singapore, started in 2000 by the Agency for Science, Technology and Research (A*STAR). Our vision is to use the genomic sciences to achieve extraordinary improvements in human health and public prosperity. We read, reveal, and write DNA for a better Singapore and world!
 
 Amazon Web Services provides the most elastic and scalable cloud infrastructure to run your [HPC applications](https://aws.amazon.com/hpc/). With virtually unlimited capacity, engineers, researchers, and HPC system owners can innovate beyond the limitations of on-premises HPC infrastructure.
 
