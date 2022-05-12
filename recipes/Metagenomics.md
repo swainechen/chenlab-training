@@ -9,8 +9,16 @@ For details on the installation of Kraken 2, see [this section of the bioinforma
 ## Get some sample data and run Kraken 2
 The following will grab a relatively small data set from the public databases as an example. This data set is run [`SRR5978047`](https://www.ncbi.nlm.nih.gov/sra/?term=SRR5978047), sample `SRS2467593` aka `SAMN078560824`, from project `SRP112732` aka `PRJNA394877`. The experiment is `SRX3134635: human gut metagenome in setting of bone marrow transplant`.
 ```
-kingfisher get -r SRR5978047 -m ena-ascp
-kraken2 -db /usr/local/lib/Kraken2/minikraken2_v2_8GB_201904_UPDATE SRR5978047.fastq.gz --report SRR5978047.kraken2.report > SRR5978047.kraken2.raw.txt
+mkdir -p /home/ubuntu/fastq/SRR5978047
+aws s3 --no-sign-request sync s3://sra-pub-run-odp/sra/SRR5978047/ /home/ubuntu/fastq/SRR5978047
+# the files are stored in .sra format, so we need to convert to fastq
+cd /home/ubuntu/fastq/SRR5978047
+fasterq-dump SRR5978047
+for i in *.fastq; do gzip $i; done
+# clean up to save some space
+rm /home/ubuntu/fastq/SRR5978047/SRR5978047
+
+kraken2 -db /usr/local/lib/Kraken2/k2_standard_8gb_20210517 SRR5978047.fastq.gz --report SRR5978047.kraken2.report > SRR5978047.kraken2.raw.txt
 ```
 
 The main report will come out in `SRR5978047.kraken2.report`, and all the raw classification data in the `SRR5978047.kraken2.raw.txt` file.

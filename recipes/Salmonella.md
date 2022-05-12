@@ -11,15 +11,22 @@ For this, we'll use (from most specific to least specific):
 
 The "raw" sequencing data is accessed by the "Run" accession.
 Note that a single BioSample may have multiple Runs associated with it (and, in turn, a single Study or BioProject can have multiple BioSamples).
+Fortunately, AWS now has the entire SRA on S3, organized by Run accessions - this can be accessed without credentials (`--no-sign-request` option on the aws CLI).
 
 It's always good to keep your data organized.
 For this example, we'll just use our home directory, but you may want to consider using a dedicated location on additionally mounted storage, for example, to store fastq files.
 
-Downloading this data set requires ~450MB of storage.
+This data set requires ~450MB of storage for the final gzip'd fastq files.
+However, the total storage required for the following commands (due to needing to temporarily store the initial sra file and intermediate fastq files) is ~4GB.
 ```
 mkdir -p /home/ubuntu/fastq/SRR12151671
+aws s3 --no-sign-request sync s3://sra-pub-run-odp/sra/SRR12151671/ /home/ubuntu/fastq/SRR12151671
+# the files are stored in .sra format, so we need to convert to fastq
 cd /home/ubuntu/fastq/SRR12151671
-kingfisher get --run-identifier SRR12151671 -m ena-ascp
+fasterq-dump SRR12151671
+for i in *.fastq; do gzip $i; done
+# clean up to save some space
+rm /home/ubuntu/fastq/SRR12151671/SRR12151671
 ```
 
 ## Assembly and genome annotation
