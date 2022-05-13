@@ -1607,7 +1607,7 @@ wget https://genome-idx.s3.amazonaws.com/kraken/k2_standard_8gb_20210517.tar.gz
 tar xvzf k2_standard_8gb_20210517.tar.gz
 
 # then this can be run as (again watch out for RAM - you probably realistically should have 16GB total)
-kraken2 --db /usr/local/lib/Kraken2/k2_standard_8gb_20210517.tar.gz fq_1.gz fq2.gz
+kraken2 --db /usr/local/lib/Kraken2/k2_standard_8gb_20210517 fq_1.gz fq2.gz
 ```
 
 #### [prokka](https://github.com/tseemann/prokka)

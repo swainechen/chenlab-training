@@ -12,11 +12,16 @@ We'll take an example dataset from NCBI:
 * Study `SRP131304` (3rd generation cephalosporin-resistant E. coli and K. pneumonia (GASREC) Genome sequencing and assembly)
 * BioProject `PRJNA431029` (3rd generation cephalosporin-resistant E. coli and K. pneumonia (GASREC) Genome sequencing and assembly)
 
-Downloading this data set requires ~360MB of storage.
+Downloading this data set requires ~4GB of storage due to the intermediate files, but the final fastq files are only ~360MB.
 ```
 mkdir -p /home/ubuntu/fastq/SRR6505299
+aws s3 --no-sign-request sync s3://sra-pub-run-odp/sra/SRR6505299/ /home/ubuntu/fastq/SRR6505299
+# the files are stored in .sra format, so we need to convert to fastq
 cd /home/ubuntu/fastq/SRR6505299
-kingfisher --run-identifier SRR6505299 -m ena-ascp
+fasterq-dump SRR6505299
+for i in *.fastq; do gzip $i; done
+# clean up to save some space
+rm /home/ubuntu/fastq/SRR6505299/SRR6505299
 ```
 
 ## Assembly
