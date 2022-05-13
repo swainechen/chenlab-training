@@ -54,7 +54,7 @@ aws s3 cp --no-sign-request s3://sg-nex-data/data/annotations/gtf_file/Homo_sapi
 
 The SG-NEx project provides aligned reads that can be used directly with Bambu, however sometimes, raw fastq reads might also be provided instead of aligned reads. In that case, alignment can be done as follows:
 
-Note that we are aligning the reads to the genome fasta and not the transcriptome fasta as ***Bambu** uses intron junctions to distingush novel transcripts.
+Note that we are aligning the reads to the genome fasta and not the transcriptome fasta as ***Bambu*** uses intron junctions to distingush novel transcripts.
 
 ```bash
 # download fastq from s3 bucket
