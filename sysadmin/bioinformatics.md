@@ -1182,13 +1182,13 @@ echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib" >> /home/ubuntu/.b
 
 # we can verify this with test data that comes with the FinIS source
 # there are two test datasets provided
-FinIS test_dataset/velvet/conf.config
+finis test_dataset/velvet/conf.config
 
 # the soap config file needs to drop the num_threads and mosek_runtime lines
 # these seem to have changed as well - comment these two out and the test
 # should run fine - note this requires more memory (~4GB) than
 # a t3a.small instance has (2GB) however
-FinIS test_dataset/soap/conf.config
+finis test_dataset/soap/conf.config
 ```
 
 ### Post-processing, variant calling
