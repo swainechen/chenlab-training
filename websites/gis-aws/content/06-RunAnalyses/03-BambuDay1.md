@@ -1,3 +1,11 @@
++++
+title = "b. RNA-Seq data"
+date = 2019-01-24T09:05:54Z
+weight = 40
+tags = ["bambu", "RNA-seq", "transcript"]
++++
+
+
 We will now run some sample analysis using R
 
 First lets test that everything is installed correctly by running bambu using a small test dataset and see that it runs through without error.

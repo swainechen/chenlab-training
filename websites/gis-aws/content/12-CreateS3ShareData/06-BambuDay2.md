@@ -1,3 +1,10 @@
++++
+title = "e. RNA-Seq data-Bambu"
+weight = 150
+tags = ["S3", "RNA-Seq", "Bambu"]
++++
+
+
 ***Bambu*** is a R package for multi-sample transcript discovery and quantification using long read RNA-Seq data. You can use ***Bambu*** after read alignment to obtain expression estimates for known and novel transcripts and genes. The output from ***Bambu*** can directly be used for visualisation and downstream analysis such as differential gene expression or transcript usage.
 
 Goals:
