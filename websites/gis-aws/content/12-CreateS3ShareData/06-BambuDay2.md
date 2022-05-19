@@ -51,10 +51,11 @@ mkdir bambu_training
 cd bambu_training
 
 # download genome fasta file 
-aws s3 cp --no-sign-request s3://sg-nex-data/data/annotations/genome_fasta/Homo_sapiens.GRCh38.dna.primary_assembly.fa ./
+aws s3 cp --no-sign-request s3://sg-nex-data/data/annotations/genome_fasta/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa ./
+aws s3 cp --no-sign-request s3://sg-nex-data/data/annotations/genome_fasta/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.fai ./
 
 # download gtf file
-aws s3 cp --no-sign-request s3://sg-nex-data/data/annotations/gtf_file/Homo_sapiens.GRCh38.91.sorted.gtf ./
+aws s3 cp --no-sign-request s3://sg-nex-data/data/annotations/gtf_file/Homo_sapiens.GRCh38.91.gtf ./
 ```
 
 ### Downloading and aligning reads
@@ -65,12 +66,12 @@ Note that we are aligning the reads to the genome fasta and not the transcriptom
 
 ```bash
 # download fastq from s3 bucket
-aws s3 cp --no-sign-request s3://sg-nex-data/data/sequencing_data/fastq/SGNex_H9_directRNA_replicate1_run1/SGNex_H9_directRNA_replicate1_run1.fastq.gz ./
+aws s3 cp --no-sign-request s3://sg-nex-data/data/sequencing_data/fastq/SGNex_A549_directRNA_replicate1_run1/SGNex_A549_directRNA_replicate1_run1.fastq.gz ./
 
 # align using Minimap2 
-minimap2 -ax splice -uf -k14 Homo_sapiens.GRCh38.dna.primary_assembly.fa SGNex_H9_directRNA_replicate1_run1.fastq.gz > SGNex_H9_directRNA_replicate1_run1.sam  #needs more than 4gb ram
-samtools view -Sb SGNex_H9_directRNA_replicate1_run1.sam | samtools sort -o SGNex_H9_directRNA_replicate1_run1.bam
-samtools index SGNex_H9_directRNA_replicate1_run1.bam
+minimap2 -ax splice -uf -k14 Homo_sapiens.GRCh38.dna.primary_assembly.fa SGNex_A549_directRNA_replicate1_run1.fastq.gz > SGNex_A549_directRNA_replicate1_run1.sam  #needs more than 4gb ram
+samtools view -Sb SGNex_A549_directRNA_replicate1_run1.sam | samtools sort -o SGNex_A549_directRNA_replicate1_run1.bam
+samtools index SGNex_A549_directRNA_replicate1_run1.bam
 ```
 Depending on your data source, you may need to run minimap2 with different paramters. See below taken from the ***Minimap2*** [documentation](https://github.com/lh3/minimap2)
 
@@ -85,37 +86,31 @@ minimap2 -ax splice:hq -uf ref.fa query.fa > aln.sam    # Final PacBio Iso-seq o
 To save time we will download the aligned bam files for the remaining samples from the S3 bucket.
 
 ```bash
-# download aligned bam files for H9 samples 
-aws s3 cp s3://sg-nex-data/data/sequencing_data/bam/GIS_H9_directRNA_Rep1_Run2_R1.bam ./
-aws s3 cp s3://sg-nex-data/data/sequencing_data/bam/GIS_H9_directRNA_Rep1_Run2_R1.bam.bai ./
-aws s3 cp s3://sg-nex-data/data/sequencing_data/bam/GIS_H9_directRNA_Rep2_Run2_R1.bam ./
-aws s3 cp s3://sg-nex-data/data/sequencing_data/bam/GIS_H9_directRNA_Rep2_Run2_R1.bam.bai ./
-aws s3 cp s3://sg-nex-data/data/sequencing_data/bam/GIS_H9_directRNA_Rep3_Run2_R1.bam ./
-aws s3 cp s3://sg-nex-data/data/sequencing_data/bam/GIS_H9_directRNA_Rep3_Run2_R1.bam.bai ./
+# download aligned bam files for A549 samples 
+# aws s3 cp --no-sign-request s3://sg-nex-data/data/sequencing_data/bam/genome/SGNex_A549_directRNA_replicate1_run1/ ./ --recursive
+aws s3 cp --no-sign-request s3://sg-nex-data/data/sequencing_data/bam/genome/SGNex_A549_directRNA_replicate4_run1/ ./ --recursive
+aws s3 cp --no-sign-request s3://sg-nex-data/data/sequencing_data/bam/genome/SGNex_A549_directRNA_replicate6_run1/ ./ --recursive
 
-# download aligned bam files for HEYA8 samples 
-aws s3 cp s3://sg-nex-data/data/sequencing_data/bam/GIS_HEYA8_directRNA_Rep1_Run2_R1.bam ./
-aws s3 cp s3://sg-nex-data/data/sequencing_data/bam/GIS_HEYA8_directRNA_Rep1_Run2_R1.bam.bai ./
-aws s3 cp s3://sg-nex-data/data/sequencing_data/bam/GIS_HEYA8_directRNA_Rep2_Run2_R1.bam ./
-aws s3 cp s3://sg-nex-data/data/sequencing_data/bam/GIS_HEYA8_directRNA_Rep2_Run2_R1.bam.bai ./
-aws s3 cp s3://sg-nex-data/data/sequencing_data/bam/GIS_HEYA8_directRNA_Rep3_Run1_R1.bam ./
-aws s3 cp s3://sg-nex-data/data/sequencing_data/bam/GIS_HEYA8_directRNA_Rep3_Run1_R1.bam.bai ./
 
+# download aligned bam files for HepG2 samples 
+aws s3 cp --no-sign-request s3://sg-nex-data/data/sequencing_data/bam/genome/SGNex_HepG2_directRNA_replicate1_run3/ ./ --recursive
+aws s3 cp --no-sign-request s3://sg-nex-data/data/sequencing_data/bam/genome/SGNex_HepG2_directRNA_replicate2_run1/ ./ --recursive
+aws s3 cp --no-sign-request s3://sg-nex-data/data/sequencing_data/bam/genome/SGNex_HepG2_directRNA_replicate3_run1/ ./ --recursive
 ```
 ### Quality Control
 
-[***Samtools stats***](http://www.htslib.org/doc/samtools-stats.html) can be used to quickly check the read accuracy and read mappability in the bam files, in the example below, we checked the aligned bam file for the **GIS_H9_directRNA_Rep1_Run2** sample.
+[***Samtools stats***](http://www.htslib.org/doc/samtools-stats.html) can be used to quickly check the read accuracy and read mappability in the bam files, in the example below, we checked the aligned bam file for the **SGNex_A549_directRNA_replicate1_run1** sample.
 
 ```bash
 # quickly check the number of reads mapped in the bam file, and also read accuracy 
-samtools stats GIS_H9_directRNA_Rep1_Run2_R1.bam
+samtools stats SGNex_A549_directRNA_replicate1_run1.bam > SGNex_A549_directRNA_replicate1_run1_run_quality.txt
 ```
 
 
 ### Initializing R 
 
-To summarise the data. We have 6 direct RNA Nanopore long-read samples, 3 replicates each from H9 and HEYA8 human cancer cell line. 
-H9 are embryonic stem stells and HEYA8 are ovary cells extracted from adenocarcinoma tissue. Now that we have all our data, let's start up R
+To summarise the data. We have 6 direct RNA Nanopore long-read samples, 3 replicates each from A549 and HepG2 human cancer cell line. 
+A549 cell line are extracted from lung tissues from a patient with lung cancer and HepG2 are extracted from hepatocellular carcinoma from a patient with liver cancer. Now that we have all our data, let's start up R
 
 ```bash
 R
@@ -130,14 +125,13 @@ setwd("bambu_training")
 
 
 library(bambu)
-fa.file <- "./Homo_sapiens.GRCh38.dna.primary_assembly.fa"
-gtf.file <- "Homo_sapiens.GRCh38.91.sorted.gtf"
+fa.file <- "Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa"
+gtf.file <- "Homo_sapiens.GRCh38.91.gtf"
 annotations <- prepareAnnotations(gtf.file) # this will prepare annotation object for Bambu, gtf file can be loaded directly, but for best practice, you can create annotation object first, and then you can use it repeatedly with Bambu without the need to prepare it again.
 
 
-samplePath  = "./"
-samples.H9 = c("GIS_H9_directRNA_Rep1_Run2_R1.sorted.bam", "GIS_H9_directRNA_Rep2_Run2_R1.sorted.bam", "GIS_H9_directRNA_Rep3_Run2_R1.sorted.bam")
-samples.HEYA8 = c("GIS_HEYA8_directRNA_Rep1_Run2_R1.sorted.bam", "GIS_HEYA8_directRNA_Rep2_Run2_R1.sorted.bam", "GIS_HEYA8_directRNA_Rep3_Run1_R1.sorted.bam")
+samples.A549 = list.files(".", pattern = "A549.*.bam$", full.names = TRUE)
+samples.HepG2 = list.files(".", pattern = "HepG2.*.bam$", full.names = TRUE)
 ```
 
 
@@ -147,8 +141,9 @@ samples.HEYA8 = c("GIS_HEYA8_directRNA_Rep1_Run2_R1.sorted.bam", "GIS_HEYA8_dire
 The default mode to run ***Bambu*** is using a set of aligned reads (bam files), reference genome annotations (gtf file, TxDb object, or bambuAnnotation object), and reference genome sequence (fasta file or BSgenome). ***Bambu*** will return a ***summarizedExperiment*** object with the genomic coordinates for annotated and new transcripts and transcript expression estimates. We highly recommend to use the same annotations that were used for genome alignment. 
 
 ```rscript
-se.H9 = bambu(reads = samples.H9, annotations = annotations, genome = fa.file, rcOutDir = "./rc")
-se.HEYA8 = bambu(reads = samples.HEYA8, annotations = annotations, genome = fa.file, rcOutDir = "./rc")
+rcFolder <-"./rc"
+se.A549 = bambu(reads = samples.A549, annotations = annotations, genome = fa.file, rcOutDir = rcFolder)
+se.HepG2 = bambu(reads = samples.HepG2, annotations = annotations, genome = fa.file, rcOutDir = rcFolder)
 ```
 If you have a gtf file and fasta file you can simply replace `annotations` with `gtf.file` in the above codes.
 
@@ -157,9 +152,9 @@ If you have a gtf file and fasta file you can simply replace `annotations` with 
 ***Bambu*** returns a ***SummarizedExperiment*** object which can be accessed as follows:
 
 ```bash
-assays(se.H9) #returns the transcript abundance estimates as counts or CPM
-rowRanges(se.HEYA8) #returns a GRangesList with all annotated and newly discovered transcripts
-rowData(se.H9) #returns additional information about each transcript such as the gene name and the class of newly discovered transcript
+assays(se.A549) #returns the transcript abundance estimates as counts or CPM
+rowRanges(se.A549) #returns a GRangesList with all annotated and newly discovered transcripts
+rowData(se.A549) #returns additional information about each transcript such as the gene name and the class of newly discovered transcript
 ```
 
 #### Save output
@@ -167,14 +162,14 @@ rowData(se.H9) #returns additional information about each transcript such as the
 As we used the `rcOutDir` argument with ***Bambu*** the read class files were automatically saved, allowing us to restart transcript discovery or quantification. To save the final results we can save the output ***SummarizedExperiment*** object. 
 
 ```rscript
-saveRDS(se.H9, file = "bambu.H9.rds")
-saveRDS(se.HEYA8, file = "bambu.HEYA8.rds")
+saveRDS(se.A549, file = "bambu.A549.rds")
+saveRDS(se.HepG2, file = "bambu.HepG2.rds")
 ```
 
 To reload them
 ```rscript
-se.H9 = loadRDS("bambu.H9.rds")
-se.HEYA8 = loadRDS("bambu.HEYA8.rds")
+se.A549 = loadRDS("bambu.A549.rds")
+se.HepG2 = loadRDS("bambu.HepG2.rds")
 ```
 
 ### Output new annotations as a gtf file
@@ -182,16 +177,16 @@ se.HEYA8 = loadRDS("bambu.HEYA8.rds")
 The `.gtf` format is used by bioinformatic tools to describe the location of genomic features, such as genes. Below is how output the newly discovered annotations from ***Bambu*** as a `.gtf` for use in downstream tools. Keep in mind that the novel annotations are added to the reference annotations, so all original annotations will still be present in the output. To remove the known annotations, filtering needs to be done and will be shown in a later step.
 
 ```rscript
-writeToGTF(rowRanges(se.H9), "./H9_novel_annotations.gtf")
-writeToGTF(rowRanges(se.HEYA8), "./HEYA8_novel_annotations.gtf")
+writeToGTF(rowRanges(se.A549), "./A549_novel_annotations.gtf")
+writeToGTF(rowRanges(se.HepG2), "./HepG2_novel_annotations.gtf")
 ```
 
 ### Identify novel transcripts in one sample and not another
-Now let's find some novel transcripts that occur uniquely in H9 but not in HEYA8 and visualise them. First we will filter the annotations to remove the reference annotations. Then we can sort them by the `txNDR`, which ranks them by how likely they are a real transcript. 
+Now let's find some novel transcripts that occur uniquely in A549 but not in HepG2 and visualise them. First we will filter the annotations to remove the reference annotations. Then we can sort them by the `txNDR`, which ranks them by how likely they are a real transcript. 
 ```rscript
 
-se.H9.filtered <- se.H9[mcols(rowRanges(se.H9))$newTxClass != "annotation",]
-se.HEYA8.filtered <- se.HEYA8[mcols(rowRanges(se.HEYA8))$newTxClass != "annotation",]
+se.A549.filtered <- se.A549[mcols(rowRanges(se.A549))$newTxClass != "annotation",]
+se.HepG2.filtered <- se.HepG2[mcols(rowRanges(se.HepG2))$newTxClass != "annotation",]
 
 #investigate high confidence novel isoforms
 head(mcols(rowRanges(se.filtered))[order(mcols(rowRanges(se.filtered))$txNDR),])
@@ -221,21 +216,21 @@ We can visualise these novel transcripts using a genome browser such as IGV or t
 
 First we need to produce the bed files from the new transcripts:
 ```rscript
-annotations.H9.UCSC = rowRanges(se.H9.filtered)
-seqlevelsStyle(annotations.H9.UCSC) <- "UCSC" #this reformats the chromosome names 
-annotations.H9.UCSC = keepStandardChromosomes(annotations.H9.UCSC, pruning.mode="coarse") #removes chromosomes UCSC doesn't have
-writeToGTF(annotations.H9.UCSC, "./H9_novel_annotations.UCSC.gtf")
+annotations.A549.UCSC = rowRanges(se.A549.filtered)
+seqlevelsStyle(annotations.A549.UCSC) <- "UCSC" #this reformats the chromosome names 
+annotations.A549.UCSC = keepStandardChromosomes(annotations.A549.UCSC, pruning.mode="coarse") #removes chromosomes UCSC doesn't have
+writeToGTF(annotations.A549.UCSC, "./A549_novel_annotations.UCSC.gtf")
 ```
 
 Now we need to create a bucket to store this data so it can be accessed by the UCSC genome browser. We need to upload this so that it is publically accessible. Note: Anyone can access this file now so do not use this method for any files that need to remain private or that you do not want to be accessed by anyone. 
 ```bash
-aws s3 cp H9_novel_annotations.UCSC.gtf s3://bucket/path/ --acl public-read
+aws s3 cp A549_novel_annotations.UCSC.gtf s3://bucket/path/ --acl public-read
 ```
 Now go to https://genome.ucsc.edu/ in your browser                 
 My data > Custom Tracks > add custom tracks                   
 In the box labeled "Paste URLs or data" copy in path of the file you copied onto your bucket                             
 Remember to replace "bucket" and "path" with the real names and path                    
-https://"bucket".s3.ap-southeast-1.amazonaws.com/"path"/H9_novel_annotations.gtf
+https://"bucket".s3.ap-southeast-1.amazonaws.com/"path"/A549_novel_annotations.gtf
 
 ![UCSC brower](/images/bambu/UCSC.png)
 
@@ -274,13 +269,13 @@ plotBambu(se, type = "pca")
 
 ### Identifying differentially expressed genes 
 
-One of the most common tasks when analysing RNA-Seq data is the analysis of differential gene expression across a condition of intertest. Here we use ***DESeq2*** to find the differentially expressed genes between H9 and HEYA8 cell lines. As ***DESeq2*** requires integer estimate input, so we will first round the estimates from ***Bambu***, similar to how results from ***Salmon*** are used, which is the most famous transcript quantification tool for short read RNA-Seq data.
+One of the most common tasks when analysing RNA-Seq data is the analysis of differential gene expression across a condition of intertest. Here we use ***DESeq2*** to find the differentially expressed genes between A549 and HepG2 cell lines. As ***DESeq2*** requires integer estimate input, so we will first round the estimates from ***Bambu***, similar to how results from ***Salmon*** are used, which is the most famous transcript quantification tool for short read RNA-Seq data.
 
 ```rscript
 library(DESeq2)
 
 # add a metadata column to define the differential condition, the cell line here
-colData(se.combined)$condition = c("H9", "H9", "H9", "HEYA8", "HEYA8", "HEYA8")
+colData(se.combined)$condition = c("A549", "A549", "A549", "HepG2", "HepG2", "HepG2")
 
 # convert transcript expression to gene expression
 se.combined.gene = transcriptToGeneExpression(se.combined)
@@ -299,7 +294,7 @@ summary(deGeneRes)
 
 # Log fold change shrinkage for visualization and ranking
 library(apeglm)
-resLFC <- lfcShrink(dds.deseq, coef = "condition_HEYA8_vs_H9", type = "apeglm")
+resLFC <- lfcShrink(dds.deseq, coef = "condition_HepG2_vs_A549", type = "apeglm")
 plotMA(resLFC, ylim = c(-3, 3))
 ```
 ![MA_plot](/images/bambu/DESeq2_MA_plot.png)
