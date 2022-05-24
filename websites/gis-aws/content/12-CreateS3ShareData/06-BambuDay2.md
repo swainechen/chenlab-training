@@ -17,7 +17,7 @@ Software Requirements:
  - R packages: [***Bambu***](http://bioconductor.org/packages/bambu/), [***DeSeq2***](http://bioconductor.org/packages/DESeq2/), [***DEXseq***](http://bioconductor.org/packages/DEXSeq/)
  - Other softwares : [***Minimap2***](https://github.com/lh3/minimap2), [***Samtools***](http://www.htslib.org/), [***Gffcompare***](https://github.com/gpertea/gffcompare)
 
-In terms of machine specification, for this analysis, please spin off an AWS machine of at least 8 Gb RAM. 
+In terms of machine specification, for this analysis, please spin off an AWS machine of at least 32 Gb RAM. 
 
 ### Installation
 The AMI you were provided should have all the requirements installed. But in the case if you want to install locally after the tutorial, we have also included below on how ***Bambu*** can be installed.
@@ -130,8 +130,8 @@ gtf.file <- "Homo_sapiens.GRCh38.91.gtf"
 annotations <- prepareAnnotations(gtf.file) # this will prepare annotation object for Bambu, gtf file can be loaded directly, but for best practice, you can create annotation object first, and then you can use it repeatedly with Bambu without the need to prepare it again.
 
 
-samples.A549 = list.files(".", pattern = "A549.*.bam$", full.names = TRUE)
-samples.HepG2 = list.files(".", pattern = "HepG2.*.bam$", full.names = TRUE)
+samples.A549 <- list.files(".", pattern = "A549.*.bam$", full.names = TRUE)
+samples.HepG2 <- list.files(".", pattern = "HepG2.*.bam$", full.names = TRUE)
 ```
 
 
@@ -142,8 +142,8 @@ The default mode to run ***Bambu*** is using a set of aligned reads (bam files),
 
 ```rscript
 rcFolder <-"./rc"
-se.A549 = bambu(reads = samples.A549, annotations = annotations, genome = fa.file, rcOutDir = rcFolder)
-se.HepG2 = bambu(reads = samples.HepG2, annotations = annotations, genome = fa.file, rcOutDir = rcFolder)
+se.A549 <- bambu(reads = samples.A549, annotations = annotations, genome = fa.file, ncore = 4, rcOutDir = rcFolder) # suggest to run with multiple cores 
+se.HepG2 <- bambu(reads = samples.HepG2, annotations = annotations, genome = fa.file, ncore = 4, rcOutDir = rcFolder) # suggest to run with multiple cores 
 ```
 If you have a gtf file and fasta file you can simply replace `annotations` with `gtf.file` in the above codes.
 
@@ -168,8 +168,8 @@ saveRDS(se.HepG2, file = "bambu.HepG2.rds")
 
 To reload them
 ```rscript
-se.A549 = loadRDS("bambu.A549.rds")
-se.HepG2 = loadRDS("bambu.HepG2.rds")
+se.A549 <- loadRDS("bambu.A549.rds")
+se.HepG2 <- loadRDS("bambu.HepG2.rds")
 ```
 
 ### Output new annotations as a gtf file
@@ -183,13 +183,15 @@ writeToGTF(rowRanges(se.HepG2), "./HepG2_novel_annotations.gtf")
 
 ### Identify novel transcripts in one sample and not another
 Now let's find some novel transcripts that occur uniquely in A549 but not in HepG2 and visualise them. First we will filter the annotations to remove the reference annotations. Then we can sort them by the `txNDR`, which ranks them by how likely they are a real transcript. 
+
+(this part need to be confirmed)
 ```rscript
 
 se.A549.filtered <- se.A549[mcols(rowRanges(se.A549))$newTxClass != "annotation",]
 se.HepG2.filtered <- se.HepG2[mcols(rowRanges(se.HepG2))$newTxClass != "annotation",]
 
 #investigate high confidence novel isoforms
-head(mcols(rowRanges(se.filtered))[order(mcols(rowRanges(se.filtered))$txNDR),])
+head(mcols(rowRanges(se.A549.filtered))[order(mcols(rowRanges(se.A549.filtered))$txNDR),])
 plotBambu(se, type = "annotation", gene_id = "gene.101")
 #no novel genes
 se.filtered.noNovelGene = se.filtered[rowData(se.filtered)$newTxClass != "newGene-spliced",]
