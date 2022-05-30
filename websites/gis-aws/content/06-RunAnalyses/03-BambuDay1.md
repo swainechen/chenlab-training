@@ -5,26 +5,20 @@ weight = 40
 tags = ["bambu", "RNA-seq", "transcript"]
 +++
 
+Long read RNA sequencing, Nanopore sequencing, has been widely adopted in different areas. The ability to produce full-length reads of RNAs has been a great improvement to the previous sequencing technologies. This is shown to have the potential to uncover the full genome picture, same as for transcriptomics, where varying isoforms can be discovered in full, fusion isoforms even. 
 
-We will now run some sample analysis using R
+Here we use this long read RNA sequencing analysis tool, Bambu, a R package that can easily process multiple samples in one command that does both transript discovery and quantification. Comparing to other softwares, this software is comparably more efficient while being more sensitive and precise in transcript discovery, which is very important in transript quantification as well.
 
-First lets test that everything is installed correctly by running bambu using a small test dataset and see that it runs through without error.
+The analysis is run with built-in R, a different language from what you have been using in the rest of the tutorial (bash) and those commands will not work. This session will require a AWS machine of 8GM RAM.
 
-We will open an R session. This will change the terminal to R which is a different language from what you have been using in the rest of the tutorial (bash) and those commands will not work. 
-
-This will show us where R is installed
-```bash
-which R
-```
-
-This will start the R session
+To start an R session
 ```bash
 R
 ```
 
 A workspace image keeps track of all the variables you have stored and can be reopened at a later point. For this part of the tutorial it is not needed
 
-The bambu package has already been installed on your machine and all you need to do is load it into R
+To load the bambu packages, which is already pre-installed:
 ```rscript
 library(bambu)
 ```
