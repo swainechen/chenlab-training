@@ -57,7 +57,7 @@ aws s3 sync --no-sign-request s3://sg-nex-data/data/bambu_training/bam/ ./
 # quickly check the number of reads mapped in the bam file, and also read accuracy 
 samtools stats A549_directRNA_sample1.bam | head -46
 ```
-![stats_output](/images/bambu/samtools_stats_examples.png)
+![stats_examples](/images/bambu/samtools_stats_examples.png)
 
 This bam file has a read mappability of `150602/184107` by taking the ratio between reads mapped and raw total sequences and a read accuracy of `1-0.178599` by minusing 1 with the error rate. Usually we consider a sample with a mappability of 80% above as relatively good, and the read accuracy is also common for Nanopore reads. 
 
