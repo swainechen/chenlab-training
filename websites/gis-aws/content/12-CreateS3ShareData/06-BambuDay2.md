@@ -97,7 +97,8 @@ We highly recommend to use the same annotations that were used for genome alignm
 
 ```rscript
 dir.create("./rc")
-se <- bambu(reads = samples.bam, annotations = annotations, genome = fa.file, rcOutDir = "./rc")  # as this will requires to run for 5-10mins
+# this step will take about 5-10 mins to run, you can just skip this line and run it later in your free time and use the pre-loaded se object as shown in the next line
+se <- bambu(reads = samples.bam, annotations = annotations, genome = fa.file, rcOutDir = "./rc")  
 
 # you can just load pre-saved se object 
 se <- readRDS("./se.rds")
