@@ -75,8 +75,7 @@ gtf.file <- "Homo_sapiens.GRCh38.91.gtf"
 annotations <- prepareAnnotations(gtf.file) # this will prepare annotation object for Bambu, gtf file can be loaded directly, but for best practice, you can create annotation object first, and then you can use it repeatedly with Bambu without the need to prepare it again.
 
 
-samples.A549 <- list.files(".", pattern = "A549.*.bam$", full.names = TRUE)
-samples.HepG2 <- list.files(".", pattern = "HepG2.*.bam$", full.names = TRUE)
+samples.bam <- list.files(".", pattern = ".bam$", full.names = TRUE)
 ```
 
 
@@ -97,45 +96,44 @@ To run ***Bambu*** is using, you will need
 We highly recommend to use the same annotations that were used for genome alignment. 
 
 ```rscript
-rcFolder <-"./rc"
-se.A549 <- bambu(reads = samples.A549, annotations = annotations, genome = fa.file, rcOutDir = rcFolder) # suggest to run with multiple cores 
-se.HepG2 <- bambu(reads = samples.HepG2, annotations = annotations, genome = fa.file, rcOutDir = rcFolder) # suggest to run with multiple cores 
+dir.create("./rc")
+se <- bambu(reads = samples.bam, annotations = annotations, genome = fa.file, rcOutDir = "./rc")  # as this will requires to run for 5-10mins
+
+# you can just load pre-saved se object 
+se <- readRDS("./se.rds")
 ```
 If you have a gtf file and fasta file you can simply replace `annotations` with `gtf.file` in the above codes.
 
+As we used the `rcOutDir` argument with ***Bambu*** the read class files were automatically saved, allowing us to restart transcript discovery or quantification. 
 
 #### Output
 ***Bambu*** returns a ***SummarizedExperiment*** object which can be accessed as follows:
 
-```bash
-assays(se.A549) #returns the transcript abundance estimates as counts or CPM
-rowRanges(se.A549) #returns a GRangesList with all annotated and newly discovered transcripts
-rowData(se.A549) #returns additional information about each transcript such as the gene name and the class of newly discovered transcript
+```rscript
+assays(se) #returns the transcript abundance estimates as counts or CPM
+rowRanges(se) #returns a GRangesList with all annotated and newly discovered transcripts
+rowData(se) #returns additional information about each transcript such as the gene name and the class of newly discovered transcript
 ```
 
-#### Save output
+#### Write output 
 
-As we used the `rcOutDir` argument with ***Bambu*** the read class files were automatically saved, allowing us to restart transcript discovery or quantification. To save the final results we can save the output ***SummarizedExperiment*** object. 
+The output can be written to files:
 
 ```rscript
-saveRDS(se.A549, file = "bambu.A549.rds")
-saveRDS(se.HepG2, file = "bambu.HepG2.rds")
+writeBambuOutput(se, path = "./")
 ```
 
-To reload them
-```rscript
-se.A549 <- loadRDS("bambu.A549.rds")
-se.HepG2 <- loadRDS("bambu.HepG2.rds")
-```
+The above command will write ***Bambu*** output to three files
 
-### Output new annotations as a gtf file
+- extended_annotations.gtf
+- counts_transcripts.txt
+- counts_gene.txt
 
 The `.gtf` format is used by bioinformatic tools to describe the location of genomic features, such as genes. Below is how to output the newly discovered annotations from ***Bambu*** as a `.gtf` for use in downstream tools. Keep in mind that the novel annotations are added to the reference annotations, so all original annotations will still be present in the output. To remove the known annotations, filtering needs to be done and will be shown in a later step.
 
-```rscript
-writeToGTF(rowRanges(se.A549), "./A549_novel_annotations.gtf")
-writeToGTF(rowRanges(se.HepG2), "./HepG2_novel_annotations.gtf")
-```
+Gene and transcript expression are also output to a txt file. 
+
+
 
 ### Identify novel transcripts in one sample and not another
 Now let's find some novel transcripts that occur uniquely in A549 but not in HepG2 and visualise them. First we will filter the annotations to remove the reference annotations. Then we can sort them by the `txNDR`, which ranks them by how likely they are a real transcript. 
@@ -143,29 +141,33 @@ Now let's find some novel transcripts that occur uniquely in A549 but not in Hep
 
 ```rscript
 
-se.A549.filtered <- se.A549[mcols(rowRanges(se.A549))$newTxClass != "annotation",]
-se.HepG2.filtered <- se.HepG2[mcols(rowRanges(se.HepG2))$newTxClass != "annotation",]
+se.filtered <- se[mcols(rowRanges(se))$newTxClass != "annotation",]
 
 #investigate high confidence novel isoforms
-head(mcols(rowRanges(se.A549.filtered))[order(mcols(rowRanges(se.A549.filtered))$txNDR),])
-plotBambu(se, type = "annotation", gene_id = "gene.101")
-
-# visualize their expression in both 
-
+head(mcols(rowRanges(se.filtered))[order(mcols(rowRanges(se.filtered))$txNDR),])
+plotBambu(se, type = "annotation", gene_id = "gene.107") 
+```
+![gene.107](/images/bambu/gene.107.png)
+```rscript
 #no novel genes
 se.filtered.noNovelGene = se.filtered[rowData(se.filtered)$newTxClass != "newGene-spliced",]
-mcols(rowRanges(se.filtered.noNovelGene))[order(mcols(rowRanges(se.filtered.noNovelGene))$txNDR),]
-plotBambu(se, type = "annotation", gene_id = "ENSG00000141429")
+head(mcols(rowRanges(se.filtered.noNovelGene))[order(mcols(rowRanges(se.filtered.noNovelGene))$txNDR),])
+plotBambu(se, type = "annotation", gene_id = "ENSG00000196756")
+```
+![ENSG00000196756](/images/bambu/ENSG00000196756.png)
 
-#find which ones are unique
-se.unique <- !bambu:::isReadClassCompatible(rowRanges(se.filtered), rowRanges(se2.filtered))$equal
-se2.unique <- !bambu:::isReadClassCompatible(rowRanges(se2.filtered), rowRanges(se.filtered))$equal
 
+```rscript
+#find which ones are unique based on counts
+expression.A549 <- apply(assays(se.filtered)$counts[,grep("A549",colnames(se.filtered))],1,mean)
+expression.HepG2 <- apply(assays(se.filtered)$counts[,grep("HepG2",colnames(se.filtered))],1,mean)
+
+
+se.filtered[expression.A549>=1 &(expression.HepG2==0)] # unique in A549
+se.filtered[expression.A549==0 &(expression.HepG2>=1)] # unique in HepG2
 ```
 
-![gene.101](/images/bambu/gene.101.png)
 
-![ENSG00000141429](/images/bambu/ENSG00000141429.png)
 
 
 
@@ -175,15 +177,15 @@ We can visualise these novel transcripts using a genome browser such as IGV or t
 
 First we need to produce the bed files from the new transcripts:
 ```rscript
-annotations.A549.UCSC = rowRanges(se.A549.filtered)
-seqlevelsStyle(annotations.A549.UCSC) <- "UCSC" #this reformats the chromosome names 
-annotations.A549.UCSC = keepStandardChromosomes(annotations.A549.UCSC, pruning.mode="coarse") #removes chromosomes UCSC doesn't have
-writeToGTF(annotations.A549.UCSC, "./A549_novel_annotations.UCSC.gtf")
+annotations.UCSC = rowRanges(se.filtered)
+seqlevelsStyle(annotations.UCSC) <- "UCSC" #this reformats the chromosome names 
+annotations.UCSC = keepStandardChromosomes(annotations.UCSC, pruning.mode="coarse") #removes chromosomes UCSC doesn't have
+writeToGTF(annotations.UCSC, "./novel_annotations.UCSC.gtf")
 ```
 
 Now we can upload the annotations created to the public accessible bucket that we have created before (links).  
 ```bash
-aws s3 cp A549_novel_annotations.UCSC.gtf s3://bucket/path/ --acl public-read
+aws s3 cp novel_annotations.UCSC.gtf s3://bucket/path/ --acl public-read
 ```
 Now go to https://genome.ucsc.edu/ in your browser                 
 My data > Custom Tracks > add custom tracks                   
