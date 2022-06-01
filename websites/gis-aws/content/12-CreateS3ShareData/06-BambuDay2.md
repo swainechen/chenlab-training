@@ -7,7 +7,7 @@ tags = ["S3", "RNA-Seq", "Bambu"]
 
 ## Usage examples of Bambu
 
-In this tutorial we will be using data from human cancer cell-lines from the [SG-NEx project](https://github.com/GoekeLab/sg-nex-data). We have 6 direct RNA Nanopore long-read samples, 3 replicates each from A549 and HepG2 human cancer cell line. A549 cell line are extracted from lung tissues from a patient with lung cancer and HepG2 are extracted from hepatocellular carcinoma from a patient with liver cancer. We will use Bambu to identify and quantify novel isoforms in these two cell lines.  
+In this tutorial we will be using human cancer cell-line data from the [SG-NEx project](https://github.com/GoekeLab/sg-nex-data). In total we will use 6 direct RNA Nanopore long-read samples, 3 replicates each from the A549 and HepG2 cell lines. The A549 cell line was extracted from lung tissues from a patient with lung cancer. HepG2 was extracted from hepatocellular carcinoma from a patient with liver cancer. We will use Bambu to identify and quantify novel isoforms in these two cell lines.  
 
 ### Downloading reference genome and annotations
 
@@ -28,7 +28,7 @@ aws s3 cp --no-sign-request s3://sg-nex-data/data/annotations/gtf_file/Homo_sapi
 
 ### Downloading and aligning reads 
 
-The SG-NEx project provides aligned reads that can be used directly with Bambu, however sometimes, raw fastq reads might also be provided instead of aligned reads. In that case, alignment can be done as follows:
+The SG-NEx project provides aligned reads that can be used directly with Bambu, however sometimes, raw fastq reads might be provided instead of aligned reads. In that case, alignment must be done first and can be done as follows:
 
 Note that we are aligning the reads to the genome fasta and not the transcriptome fasta as ***Bambu*** uses intron junctions to distingush novel transcripts.
 
@@ -41,7 +41,6 @@ minimap2 -ax splice -uf -k14 Homo_sapiens.GRCh38.dna.primary_assembly.fa A549_di
 samtools view -Sb A549_directRNA_sample1.sam | samtools sort -o A549_directRNA_sample1.bam
 samtools index A549_directRNA_sample1.bam
 ```
-
 
 For this analysis, you can directly download the bam files needed from the open S3 bucket
 
@@ -59,8 +58,7 @@ samtools stats A549_directRNA_sample1.bam | head -46
 ```
 ![stats_examples](/images/bambu/samtools_stats_examples.png)
 
-This bam file has a read mappability of `150602/184107` by taking the ratio between reads mapped and raw total sequences and a read accuracy of `1-0.178599` by minusing 1 with the error rate. Usually we consider a sample with a mappability of 80% above as relatively good, and the read accuracy is also common for Nanopore reads. 
-
+This bam file has a read mappability of `150602/184107 (81.8%)` by taking the ratio between reads mapped and raw total sequences and a read accuracy of `1-0.178599 (0.821%)` by minusing 1 with the error rate. Usually we consider a sample with a mappability of 80% above as relatively good, and the read accuracy is also common for Nanopore reads. 
 
 
 ### Preparing data for ***Bambu***
@@ -95,17 +93,22 @@ To run ***Bambu*** is using, you will need
 
 We highly recommend to use the same annotations that were used for genome alignment. 
 
+Running bambu with this data will take about 5-10 mins to run. Therefore we will skip this step and load in the result. Below is the line we used so you can run it later in your free time. 
+
 ```rscript
 dir.create("./rc")
-# this step will take about 5-10 mins to run, you can just skip this line and run it later in your free time and use the pre-loaded se object as shown in the next line
-# se <- bambu(reads = samples.bam, annotations = annotations, genome = fa.file, rcOutDir = "./rc")  
 
+# se <- bambu(reads = samples.bam, annotations = annotations, genome = fa.file, rcOutDir = "./rc")  
+```
+
+As we used the `rcOutDir` argument with ***Bambu*** the read class files were automatically saved, allowing us to restart transcript discovery or quantification. For more details please see the Bambu documentation.
+
+To load in the pre-processed data we prepared earlier. 
+
+```rscript
 # you can just load pre-saved se object 
 se <- readRDS("./se.rds")
 ```
-If you have a gtf file and fasta file you can simply replace `annotations` with `gtf.file` in the above codes.
-
-As we used the `rcOutDir` argument with ***Bambu*** the read class files were automatically saved, allowing us to restart transcript discovery or quantification. 
 
 #### Output
 ***Bambu*** returns a ***SummarizedExperiment*** object which can be accessed as follows:
@@ -141,7 +144,6 @@ Now let's find some novel transcripts that occur uniquely in A549 but not in Hep
 
 
 ```rscript
-
 se.filtered <- se[mcols(rowRanges(se))$newTxClass != "annotation",]
 
 #investigate high confidence novel isoforms
@@ -168,10 +170,6 @@ se.filtered[expression.A549>=1 &(expression.HepG2==0)] # unique in A549
 se.filtered[expression.A549==0 &(expression.HepG2>=1)] # unique in HepG2
 ```
 
-
-
-
-
 ### UCSC genome browser
 
 We can visualise these novel transcripts using a genome browser such as IGV or the UCSC genome browser. For this tutorial we will use the UCSC genome browser. 
@@ -192,7 +190,7 @@ Now go to https://genome.ucsc.edu/ in your browser
 My data > Custom Tracks > add custom tracks                   
 In the box labeled "Paste URLs or data" copy in path of the file you copied onto your bucket                             
 Remember to replace "bucket" and "path" with the real names and path                    
-https://"bucket".s3.ap-southeast-1.amazonaws.com/"path"/A549_novel_annotations.gtf
+https://"bucket".s3.ap-southeast-1.amazonaws.com/"path"/novel_annotations.UCSC.gtf
 
 ![UCSC brower](/images/bambu/UCSC.png)
 
