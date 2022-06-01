@@ -44,7 +44,7 @@ Note that the version numbers are included in the commands below - you'll have t
 * [deML](#deML)
 * [fastp](#fastp)
 * [lacer](#lacer)
-* [minimap](#minimap)
+* [minimap2](#minimap2)
 * [Porechop](#Porechop)
 * [poretools](#poretools)
 * [seqmagick](#seqmagick)
@@ -288,7 +288,7 @@ This is a set of tools for handling the specific bam files that PacBio used to u
 
 The lastest version from the Github repository has some issues with compiling with new gcc versions, so we'll install from the repositories.
 
-Install from the Ubuntu repositories (*Recommended*):
+Install from the Ubuntu repositories (**Recommended**):
 ```
 sudo apt install pbbamtools
 ```
@@ -453,7 +453,7 @@ for i in blastp blastx tblastn tblastx; do ln -s slc-blastn slc-$i; done
 * [deML](#deML)
 * [fastp](#fastp)
 * [lacer](#lacer)
-* [minimap](#minimap)
+* [minimap2](#minimap2)
 * [Porechop](#Porechop)
 * [poretools](#poretools)
 * [seqmagick](#seqmagick)
@@ -462,12 +462,12 @@ for i in blastp blastx tblastn tblastx; do ln -s slc-blastn slc-$i; done
 * [Trimmomatic](#Trimmomatic)
 
 #### [bowtie2](https://github.com/BenLangmead/bowtie2)
-Ubuntu LTS version: 2.3.5.1<br/>
+Ubuntu LTS version: 2.4.4<br/>
 GitHub version: 2.4.5
 
 This is one of the well known short read mappers.
 [SRST2](#SRST2) uses this but has some version requirements (2.2.9).
-The Ubuntu focal LTS repositories include bowtie2 at version 2.3.5.1.
+The Ubuntu focal LTS repositories include bowtie2 at version 2.4.4.
 The latest (April 2022) online at GitHub is version 2.4.5.
 
 We'll install the latest release from GitHub as the default. Installing the older 2.2.9 will be dealt with in the [SRST2](#SRST2) section.
@@ -545,6 +545,8 @@ GitHub release version: 1.1.3
 This is a maximum likelihood demultiplexer that is useful for when you have designed a custom multiplexing strategy. This happens a lot with Tn-seq experiments, for example.
 
 There seem to be some updates since the last release, and the 1.1.3 release tarball doesn't seem to compile, seems to be some issues with changing paths. So we'll install from a clone of the current GitHub repository.
+
+On newer systems, this requires an older compiler (gcc-9 and g++-9 for Ubuntu). I won't go into the details here, but the short version is to install gcc-9 and g++-9 with apt, change the `/usr/bin/gcc` and `/usr/bin/g++` links temporarily to point to those, then do the compile. Remember to revert the `/usr/bin` links back afterwards to use the up-to-date compiler for other things.
 ```
 sudo su -
 cd /usr/local/src
@@ -553,6 +555,7 @@ cd deML
 # check the docs
 less README.md
 
+# build and install
 make
 ln -s /usr/local/src/deML/src/deML /usr/local/bin
 
@@ -561,7 +564,7 @@ deML
 ```
 
 #### [fastp](https://github.com/OpenGene/fastp)
-Ubuntu LTS version: 0.20.0<br/>
+Ubuntu LTS version: 0.20.1<br/>
 GitHub version: 0.23.2
 
 This is a utility for preprocessing fastq files. We'll install the GitHub version. (The Ubuntu version of course is straightforward with an `apt install fastp`).
@@ -606,7 +609,7 @@ less README.md
 ln -s /usr/local/src/lacer/lacer.pl /usr/local/bin
 ```
 
-To get lacepr to compile and install, we need an older version of samtools (up to 1.9). There were many changes starting in samtools/htslib version 1.10 that haven't been incorporated into lacepr yet.
+To get lacepr to compile and install, we need an older version of samtools (up to 1.9). There were changes starting in samtools/htslib version 1.10 that haven't been incorporated into lacepr yet.
 ```
 sudo su -
 cd /usr/local/src/lacer/lacepr
@@ -619,16 +622,19 @@ less INSTALL
 wget https://sourceforge.net/projects/samtools/files/samtools/1.9/samtools-1.9.tar.bz2/download -O samtools-1.9.tar.bz2
 tar xvjf samtools-1.9.tar.bz2
 cd samtools-1.9
+# this compile also require switching to an older gcc-9, as for deML above
 make
+
+# for the actual lacepr compile, you can switch back to gcc-11
 cd /usr/local/src/lacer/lacepr
 SAMTOOLS=/usr/local/src/lacer/lacepr/samtools-1.9
 HTSLIB=/usr/local/src/lacer/lacepr/samtools-1.9/htslib-1.9
-gcc -I$SAMTOOLS -I$HTSLIB lacepr.c -L$SAMTOOLS -L$HTSLIB -lbam -l:libhts.a -lz -lpthread -lm -llzma -lbz2 -o lacepr
+gcc -I$SAMTOOLS -I$HTSLIB lacepr.c -L$SAMTOOLS -L$HTSLIB -lbam -l:libhts.a -lz -lpthread -lm -llzma -lbz2 -ldeflate -lcurl -lcrypto -o lacepr
 ln -s /usr/local/src/lacer/lacepr/lacepr /usr/local/bin
 ```
 
-#### [minimap](https://github.com/lh3/minimap2)
-Ubuntu LTS version: 2.17<br/>
+#### [minimap2](https://github.com/lh3/minimap2)
+Ubuntu LTS version: 2.24<br/>
 GitHub version: 2.24
 
 The Ubuntu Focal (20.04) LTS repositories have version 2.17.
@@ -659,11 +665,14 @@ minimap2
 ```
 
 #### [Porechop](https://github.com/rrwick/Porechop)
+Ubuntu LTS version: 2.4<br/>
+GitHub version: 2.4
+
 This is a tool for adapter trimming for Oxford Nanopore sequencing data.
 It seems to work, but officially is no longer supported.
 Since it hasn't been updated in a while, the Ubuntu version is up-to-date with what's on GitHub, so use that version.
 
-Install from the Ubuntu Focal LTS repositories:
+Install from the Ubuntu Focal LTS repositories (**Recommended**):
 ```
 sudo apt install porechop
 
@@ -701,15 +710,20 @@ poretools --version
 ```
 
 #### [seqmagick](https://fhcrc.github.io/seqmagick/)
+Ubuntu LTS version: 0.8.4<br/>
+Pip version: 0.8.4
+
 This is a useful utility for converting between sequence formats.
-This can be installed with pip (pip3 for python3).
-Installing as root as for other software, this will also be available for the ubuntu user (and others).
+This can be installed with pip (pip3 for python3), but the same version is available from the Ubuntu LTS repositories, so we'll use that.
 ```
-sudo pip3 install seqmagick
+sudo apt install seqmagick
 seqmagick -V
 ```
 
 #### [seqtk](https://github.com/lh3/seqtk)
+Ubuntu LTS version: 1.3<br/>
+GitHub release version: 1.3
+
 This is another useful utility for mangling sequence files.
 This seems to not be updated so frequently as well. Therefore, the Ubuntu LTS repositories have the latest version that's available as a release on the GitHub site (version 1.3). So I'd recomment using the Ubuntu packaged version.
 
@@ -781,7 +795,7 @@ dpkg -L trimmomatic
 ```
 
 #### [BBMap](https://sourceforge.net/projects/bbmap/)
-Ubuntu focal LTS version: 38.79<br/>
+Ubuntu focal LTS version: 38.95<br/>
 SourceForge version: 38.96
 
 This is another mapper (BBMap) that has a read trimmer as well (BBDuk), along with a few other utilities.
