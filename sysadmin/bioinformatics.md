@@ -122,9 +122,9 @@ The download page is at [https://www.ibm.com/aspera/connect/](https://www.ibm.co
 ```
 # make sure you're in a user (ubuntu) shell and not root
 cd /home/ubuntu
-wget https://d3gcli72yxqn2z.cloudfront.net/connect_latest/v4/bin/ibm-aspera-connect_4.1.3.93_linux.tar.gz
-tar xvzf ibm-aspera-connect_4.1.3.93_linux.tar.gz
-./ibm-aspera-connect_4.1.3.93_linux.sh
+wget https://d3gcli72yxqn2z.cloudfront.net/downloads/connect/latest/bin/ibm-aspera-connect_4.2.0.42_linux.tar.gz
+tar xvzf ibm-aspera-connect_4.2.0.42_linux.tar.gz
+./ibm-aspera-connect_4.2.0.42_linux.sh
 # update your path to include this (for ex. in .bashrc)
 echo '# path for ascp' >> /home/ubuntu/.bashrc
 echo 'export PATH=$PATH:/home/ubuntu/.aspera/connect/bin' >> /home/ubuntu/.bashrc
@@ -132,7 +132,7 @@ echo 'export PATH=$PATH:/home/ubuntu/.aspera/connect/bin' >> /home/ubuntu/.bashr
 Note that, if needed, the standard key required is at `/home/ubuntu/.aspera/connect/etc/asperaweb_id_dsa.openssh`.
 
 #### [BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
-Ubuntu LTS version: 2.9.0-2<br/>
+Ubuntu LTS version: 2.12.0<br/>
 Online version: 2.13.0-1
 
 The Ubuntu repositories have this, but it's at version 2.9.0-2. The current version right now is at 2.13.0-1. Generally for most users, BLAST has been pretty stable, but here's how to update it if you need the latest version (you'll have to repeat these for each update as well after you do this manual install).
@@ -191,13 +191,16 @@ less INSTALL
 ```
 
 #### [HYPHY](https://github.com/veg/hyphy)
-As noted above, I've generally avoided conda when the setup is otherwise simple, so that it can be used for other software later without much trouble. This setup is intended to be used for a single person or to drive a specific pipeline. Therefore, we'll compile HYPHY from source using the latest release tarball.
+Ubuntu LTS version: 2.5.36<br/>
+Latest GitHub version: 2.5.39
+
+I've generally avoided conda when the setup is otherwise simple, so that it can be used for other software later without much trouble. This setup is intended to be used for a single person or to drive a specific pipeline. Therefore, we'll compile HYPHY from source using the latest release tarball.
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/veg/hyphy/archive/refs/tags/2.5.36.tar.gz
-tar xvzf 2.5.36.tar.gz
-cd hyphy-2.5.36
+wget https://github.com/veg/hyphy/archive/refs/tags/2.5.39.tar.gz
+tar xvzf 2.5.39.tar.gz
+cd hyphy-2.5.39
 # check the instructions
 less README.md
 
@@ -278,19 +281,25 @@ nucmer -h
 ```
 
 #### [pbbam](https://github.com/PacificBiosciences/pbbam)
-Ubuntu LTS version: 1.0.6<br/>
-GitHub version: 2.0.0
+Ubuntu LTS version: 2.0.0<br/>
+GitHub version: 2.1.0
 
 This is a set of tools for handling the specific bam files that PacBio used to use.
 
-We'll install the latest release version from GitHub, as it's quite a bit newer than what's in the Ubuntu repositories.
+The lastest version from the Github repository has some issues with compiling with new gcc versions, so we'll install from the repositories.
 
+Install from the Ubuntu repositories (*Recommended*):
+```
+sudo apt install pbbamtools
+```
+
+Install from the GitHub release (May 2022 - doesn't work with :
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/PacificBiosciences/pbbam/archive/refs/tags/v1.6.0.tar.gz
-tar xvzf v1.6.0.tar.gz
-cd pbbam-1.6.0
+wget https://github.com/PacificBiosciences/pbbam/archive/refs/tags/v2.1.0.tar.gz
+tar xvzf v2.1.0.tar.gz
+cd pbbam-2.1.0
 # check the docs
 less README.md
 less INSTALL.md
@@ -298,7 +307,8 @@ less INSTALL.md
 # build and test - use meson and ninja
 mkdir build
 cd build
-meson --prefix /usr/local/ -Denable-tests=true ..
+# there's a minor change in the option for tests (it's -Dtests, not -Denable-tests)
+meson --prefix /usr/local/ -Dtests=true ..
 ninja
 ninja test
 # there are some git errors because we used a release tarball, but everything else works
@@ -314,8 +324,8 @@ pbindex
 ```
 
 #### [samtools](http://www.htslib.org/) (including htslib)
-Ubuntu LTS version: 1.10-3<br/>
-GitHub version: 1.15
+Ubuntu LTS version: 1.13-4<br/>
+GitHub version: 1.15.1
 
 The HTSlib / samtools suite provides core tools and libraries that are also used by many other bioinformatics software tools. Again there is a version in the Ubuntu repositories (1.10), but the current version as of this writing is 1.15. This may or may not matter for what you're doing. If it does, here's how to update it.
 
@@ -332,9 +342,9 @@ Installing the latest version (check the version numbers throughout). We'll inst
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/samtools/samtools/releases/download/1.15/samtools-1.15.tar.bz2
-tar xvjf samtools-1.15.tar.bz2
-cd samtools-1.15
+wget https://github.com/samtools/samtools/releases/download/1.15.1/samtools-1.15.1.tar.bz2
+tar xvjf samtools-1.15.1.tar.bz2
+cd samtools-1.15.1
 # always check the basic docs
 less README
 less INSTALL
@@ -345,7 +355,7 @@ make
 make install
 
 # htslib is configured - go make and install
-cd /usr/local/src/samtools-1.15/htslib-1.15
+cd /usr/local/src/samtools-1.15.1/htslib-1.15.1
 make
 make install
 ```
@@ -354,9 +364,9 @@ Then bcftools:
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/samtools/bcftools/releases/download/1.15/bcftools-1.15.tar.bz2
-tar xvjf bcftools-1.15.tar.bz2
-cd bcftools-1.15
+wget https://github.com/samtools/bcftools/releases/download/1.15.1/bcftools-1.15.1.tar.bz2
+tar xvjf bcftools-1.15.1.tar.bz2
+cd bcftools-1.15.1
 # always check the basic docs
 less README
 less INSTALL
@@ -376,8 +386,12 @@ Note a couple useful pieces of information for the hts libraries:
 ```
 
 #### [sra-tools](https://github.com/ncbi/sra-tools)
+Ubuntu LTS version: 2.11.3<br/>
+GitHub version: 3.0.0
+
 These are useful tools for using data in the GenBank Sequence Read Archives.
-They provide precompiled binaries on their GitHub page.
+They provide precompiled binaries on their GitHub page. We'll use these since they're a bit newer than what's in the Ubuntu repositories.
+
 ```
 sudo su -
 cd /usr/local/src
