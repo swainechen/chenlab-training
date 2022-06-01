@@ -8,3 +8,4 @@ All of these assume you're using the environment described here, which can be fo
 * [Assembling and annotating a Klebsiella isolate](Klebsiella.md)
 * [Classifying metagenomic reads](Metagenomics.md)
 * [Recalibrating FASTQ base quality scores - for any organism](Lacer.md)
+* [Long read RNA-seq analysis with Bambu](Bambu.md)
