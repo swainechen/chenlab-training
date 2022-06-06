@@ -44,20 +44,11 @@ se <- bambu(reads = test.bam, annotations = bambuAnnotations, genome = fa.file)
 You can explore the data with a few commands but we will go into more detail with this later
 ```rscript
 se
-```
-```rscript
 rowData(se)
-```
-```rscript
 rowRanges(se)
-```
-```rscript
 assays(se)
-```
-```rscript
 assays(se)$counts
-```
-```rscript
+
 pdf(file = "ENSG00000107104_CPM.pdf", width = 6, height = 8)
 plotBambu(se, type = "annotation", gene_id = "ENSG00000107104")
 dev.off()
