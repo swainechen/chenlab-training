@@ -1,5 +1,5 @@
 +++
-title = "b. RNA-Seq data"
+title = "b. Long-Read RNA-Seq analysis"
 date = 2019-01-24T09:05:54Z
 weight = 40
 tags = ["bambu", "RNA-seq", "transcript"]
@@ -9,7 +9,7 @@ Long read RNA sequencing, Nanopore sequencing, has been widely adopted in differ
 
 Here we use this long read RNA sequencing analysis tool, Bambu, a R package that can easily process multiple samples in one command that does both transript discovery and quantification. Comparing to other softwares, this software is comparably more efficient while being more sensitive and precise in transcript discovery, which is very important in transript quantification as well.
 
-The analysis is run with built-in R, a different language from what you have been using in the rest of the tutorial (bash) and those commands will not work. This session will require a AWS machine of 8GM RAM.
+The analysis is run with built-in R, a different language from what you have been using in the rest of the tutorial (bash) and those commands will not work. This session will require a AWS machine of 8GB RAM.
 
 To start an R session
 ```bash
@@ -41,19 +41,21 @@ bambuAnnotations <- prepareAnnotations(gtf.file)
 se <- bambu(reads = test.bam, annotations = bambuAnnotations, genome = fa.file)
 ```
 
-You can explore the data with a few commands but we will go into more detail with this later
+You can explore the data with a few commands but we will go into more detail with this in a later tutorial
 ```rscript
 se
-rowData(se)
-rowRanges(se)
-assays(se)
-assays(se)$counts
+head(rowData(se))
+head(rowRanges(se))
+head(assays(se))
+head(assays(se)$counts)
+```
 
+The next command will produce a plot showing the different transcripts found for the gene ENSG00000107104 and their expression. We will show you later in the tutorial on how to download this plot to your local machine so you can view it
+```rscript
 pdf(file = "ENSG00000107104_CPM.pdf", width = 6, height = 8)
 plotBambu(se, type = "annotation", gene_id = "ENSG00000107104")
 dev.off()
 ```
-The last command will produce a plot showing the different transcripts found for the gene ENSG00000107104 and their expression. We will show you later in the tutorial on how to download this plot to your local machine so you can view it
 
 ***NOTE:*** To leave the R session at any point once you have opened it. Do not type this in until you have completed the rest of the steps or else you will need to reopen R. 
 ```rscript
@@ -67,4 +69,4 @@ ls
 ```
 You should see a file called ENSG00000107104_CPM.pdf.
 
-Congratulations, you now know how to run transcript discovery and quantification using R on an AWS EC2 instance. Next we will...
+Congratulations, you now know how to run transcript discovery and quantification using R on an AWS EC2 instance. 
