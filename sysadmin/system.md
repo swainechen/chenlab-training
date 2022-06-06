@@ -48,6 +48,9 @@ apt update
 ## Standard Ubuntu Packages
 Install regular Ubuntu packages from the base repositories that we'll need for later. This took about 30 min on a t3a.small AWS instance.
 ```
+####################
+# for Ubuntu 20.04 #
+####################
 apt install -y automake cmake cpanminus cpanoutdated cython evince fig2dev \
   gnuplot-nox imagemagick libbio-samtools-perl libboost-all-dev \
   libcairo2-dev libcurl4-openssl-dev libdatetime-format-dateparse-perl \
@@ -64,6 +67,29 @@ apt install -y automake cmake cpanminus cpanoutdated cython evince fig2dev \
 apt install -y cd-hit clonalframeml fastdnaml fastqc fasttree \
   gubbins njplot ncbi-entrez-direct ncbi-tools-bin paml snp-sites \
   soapdenovo2 vcftools mauve-aligner
+
+####################
+# for Ubuntu 22.04 #
+####################
+apt install -y automake clang cmake cpanminus cpanoutdated evince fig2dev \
+  gnuplot-nox imagemagick libbio-samtools-perl libboost-all-dev libbz2-dev \
+  libcairo2-dev libcurl4-openssl-dev libdatetime-format-dateparse-perl \
+  libdatetime-format-dbi-perl libdb-dev libfile-map-perl libfile-type-perl \
+  libfile-which-perl libhdf5-dev libhtml-template-perl \
+  libimage-magick-perl libjemalloc-dev libjson-perl liblapack-dev \
+  liblzma-dev libmariadb-dev libmemory-usage-perl libmodule-build-perl \
+  libncurses-dev libopenmpi-dev libsparsehash-dev libssl-dev \
+  libsys-info-perl libsys-meminfo-perl libterm-progressbar-perl \
+  libtext-csv-perl libv8-dev libxml-compile-perl \
+  libxml-compile-wsdl11-perl libxml2-dev libxslt1-dev meson mlocate \
+  mysql-client openjdk-8-jdk parallel pdl prodigal python-is-python3 \
+  python3-pip snakemake swig xfig zlib1g-dev
+
+# some initial software
+apt install -y cd-hit clonalframeml fastdnaml fastqc fasttree \
+  gubbins njplot ncbi-entrez-direct ncbi-tools-bin paml snp-sites \
+  soapdenovo2 vcftools mauve-aligner
+
 ```
 
 ## Perl 
@@ -98,7 +124,15 @@ perl -e 'use PDL::Parallel::threads'
 
 Generally we would try to install system packages and relatively stable software from the Ubuntu repositories - this helps with security updates and keeping things organized on the system. One quirk at the time of this writing (May 2021) is that the Ubuntu awscli package is at 1.17.14-1, and there ends up being a library issue (see [here](https://github.com/boto/boto3/issues/2596)) - so we'll use pip3 to do the install (currently at version 1.19.69). (Note that version 2 of the awscli suite seems to require manual install (i.e. therefore requiring manual updates...).)
 ```
+# for version 1
 pip3 install awscli
+
+# for version 2 (installed on CHENLAB-PUBLIC v2.1x AMIs)
+sudo su -
+cd /usr/local/src
+wget https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+unzip awscli-exe-linux-x86_64.zip
+./aws/install
 ```
 
 ## User environment

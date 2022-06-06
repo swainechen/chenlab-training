@@ -8,4 +8,8 @@ tags: ["HPC", "Overview", "Batch"]
 
 In this section we will use the AWS CLI (Command Line Interface) to work with AWS resources like EC2 Instances and S3 Storage Services. In this section you will:
 
--	Use AWS CLI to download data from Amazon S3 Storage Service.
+-	Learn how to use AWS CLI commands for S3 &
+-	Download data from Amazon S3 Storage Service.
+
+>_**Introducing AWS's ODP (Open Data Program)**  
+[Open Data on AWS](https://aws.amazon.com/opendata) is machine-readable, open-licensed, structure and well-maintained. It allows free usage, re-usage and redistribution of data by anyone - subject to the requirement to attribute and share data equitably._

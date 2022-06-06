@@ -44,7 +44,7 @@ Note that the version numbers are included in the commands below - you'll have t
 * [deML](#deML)
 * [fastp](#fastp)
 * [lacer](#lacer)
-* [minimap](#minimap)
+* [minimap2](#minimap2)
 * [Porechop](#Porechop)
 * [poretools](#poretools)
 * [seqmagick](#seqmagick)
@@ -122,9 +122,9 @@ The download page is at [https://www.ibm.com/aspera/connect/](https://www.ibm.co
 ```
 # make sure you're in a user (ubuntu) shell and not root
 cd /home/ubuntu
-wget https://d3gcli72yxqn2z.cloudfront.net/connect_latest/v4/bin/ibm-aspera-connect_4.1.3.93_linux.tar.gz
-tar xvzf ibm-aspera-connect_4.1.3.93_linux.tar.gz
-./ibm-aspera-connect_4.1.3.93_linux.sh
+wget https://d3gcli72yxqn2z.cloudfront.net/downloads/connect/latest/bin/ibm-aspera-connect_4.2.0.42_linux.tar.gz
+tar xvzf ibm-aspera-connect_4.2.0.42_linux.tar.gz
+./ibm-aspera-connect_4.2.0.42_linux.sh
 # update your path to include this (for ex. in .bashrc)
 echo '# path for ascp' >> /home/ubuntu/.bashrc
 echo 'export PATH=$PATH:/home/ubuntu/.aspera/connect/bin' >> /home/ubuntu/.bashrc
@@ -132,7 +132,7 @@ echo 'export PATH=$PATH:/home/ubuntu/.aspera/connect/bin' >> /home/ubuntu/.bashr
 Note that, if needed, the standard key required is at `/home/ubuntu/.aspera/connect/etc/asperaweb_id_dsa.openssh`.
 
 #### [BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
-Ubuntu LTS version: 2.9.0-2<br/>
+Ubuntu LTS version: 2.12.0<br/>
 Online version: 2.13.0-1
 
 The Ubuntu repositories have this, but it's at version 2.9.0-2. The current version right now is at 2.13.0-1. Generally for most users, BLAST has been pretty stable, but here's how to update it if you need the latest version (you'll have to repeat these for each update as well after you do this manual install).
@@ -191,13 +191,16 @@ less INSTALL
 ```
 
 #### [HYPHY](https://github.com/veg/hyphy)
-As noted above, I've generally avoided conda when the setup is otherwise simple, so that it can be used for other software later without much trouble. This setup is intended to be used for a single person or to drive a specific pipeline. Therefore, we'll compile HYPHY from source using the latest release tarball.
+Ubuntu LTS version: 2.5.36<br/>
+Latest GitHub version: 2.5.39
+
+I've generally avoided conda when the setup is otherwise simple, so that it can be used for other software later without much trouble. This setup is intended to be used for a single person or to drive a specific pipeline. Therefore, we'll compile HYPHY from source using the latest release tarball.
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/veg/hyphy/archive/refs/tags/2.5.36.tar.gz
-tar xvzf 2.5.36.tar.gz
-cd hyphy-2.5.36
+wget https://github.com/veg/hyphy/archive/refs/tags/2.5.39.tar.gz
+tar xvzf 2.5.39.tar.gz
+cd hyphy-2.5.39
 # check the instructions
 less README.md
 
@@ -278,19 +281,25 @@ nucmer -h
 ```
 
 #### [pbbam](https://github.com/PacificBiosciences/pbbam)
-Ubuntu LTS version: 1.0.6<br/>
-GitHub version: 2.0.0
+Ubuntu LTS version: 2.0.0<br/>
+GitHub version: 2.1.0
 
 This is a set of tools for handling the specific bam files that PacBio used to use.
 
-We'll install the latest release version from GitHub, as it's quite a bit newer than what's in the Ubuntu repositories.
+The lastest version from the Github repository has some issues with compiling with new gcc versions, so we'll install from the repositories.
 
+Install from the Ubuntu repositories (**Recommended**):
+```
+sudo apt install pbbamtools
+```
+
+Install from the GitHub release (May 2022 - doesn't work with :
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/PacificBiosciences/pbbam/archive/refs/tags/v1.6.0.tar.gz
-tar xvzf v1.6.0.tar.gz
-cd pbbam-1.6.0
+wget https://github.com/PacificBiosciences/pbbam/archive/refs/tags/v2.1.0.tar.gz
+tar xvzf v2.1.0.tar.gz
+cd pbbam-2.1.0
 # check the docs
 less README.md
 less INSTALL.md
@@ -298,7 +307,8 @@ less INSTALL.md
 # build and test - use meson and ninja
 mkdir build
 cd build
-meson --prefix /usr/local/ -Denable-tests=true ..
+# there's a minor change in the option for tests (it's -Dtests, not -Denable-tests)
+meson --prefix /usr/local/ -Dtests=true ..
 ninja
 ninja test
 # there are some git errors because we used a release tarball, but everything else works
@@ -314,8 +324,8 @@ pbindex
 ```
 
 #### [samtools](http://www.htslib.org/) (including htslib)
-Ubuntu LTS version: 1.10-3<br/>
-GitHub version: 1.15
+Ubuntu LTS version: 1.13-4<br/>
+GitHub version: 1.15.1
 
 The HTSlib / samtools suite provides core tools and libraries that are also used by many other bioinformatics software tools. Again there is a version in the Ubuntu repositories (1.10), but the current version as of this writing is 1.15. This may or may not matter for what you're doing. If it does, here's how to update it.
 
@@ -332,9 +342,9 @@ Installing the latest version (check the version numbers throughout). We'll inst
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/samtools/samtools/releases/download/1.15/samtools-1.15.tar.bz2
-tar xvjf samtools-1.15.tar.bz2
-cd samtools-1.15
+wget https://github.com/samtools/samtools/releases/download/1.15.1/samtools-1.15.1.tar.bz2
+tar xvjf samtools-1.15.1.tar.bz2
+cd samtools-1.15.1
 # always check the basic docs
 less README
 less INSTALL
@@ -345,7 +355,7 @@ make
 make install
 
 # htslib is configured - go make and install
-cd /usr/local/src/samtools-1.15/htslib-1.15
+cd /usr/local/src/samtools-1.15.1/htslib-1.15.1
 make
 make install
 ```
@@ -354,9 +364,9 @@ Then bcftools:
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/samtools/bcftools/releases/download/1.15/bcftools-1.15.tar.bz2
-tar xvjf bcftools-1.15.tar.bz2
-cd bcftools-1.15
+wget https://github.com/samtools/bcftools/releases/download/1.15.1/bcftools-1.15.1.tar.bz2
+tar xvjf bcftools-1.15.1.tar.bz2
+cd bcftools-1.15.1
 # always check the basic docs
 less README
 less INSTALL
@@ -376,8 +386,12 @@ Note a couple useful pieces of information for the hts libraries:
 ```
 
 #### [sra-tools](https://github.com/ncbi/sra-tools)
+Ubuntu LTS version: 2.11.3<br/>
+GitHub version: 3.0.0
+
 These are useful tools for using data in the GenBank Sequence Read Archives.
-They provide precompiled binaries on their GitHub page.
+They provide precompiled binaries on their GitHub page. We'll use these since they're a bit newer than what's in the Ubuntu repositories.
+
 ```
 sudo su -
 cd /usr/local/src
@@ -439,7 +453,7 @@ for i in blastp blastx tblastn tblastx; do ln -s slc-blastn slc-$i; done
 * [deML](#deML)
 * [fastp](#fastp)
 * [lacer](#lacer)
-* [minimap](#minimap)
+* [minimap2](#minimap2)
 * [Porechop](#Porechop)
 * [poretools](#poretools)
 * [seqmagick](#seqmagick)
@@ -448,12 +462,12 @@ for i in blastp blastx tblastn tblastx; do ln -s slc-blastn slc-$i; done
 * [Trimmomatic](#Trimmomatic)
 
 #### [bowtie2](https://github.com/BenLangmead/bowtie2)
-Ubuntu LTS version: 2.3.5.1<br/>
+Ubuntu LTS version: 2.4.4<br/>
 GitHub version: 2.4.5
 
 This is one of the well known short read mappers.
 [SRST2](#SRST2) uses this but has some version requirements (2.2.9).
-The Ubuntu focal LTS repositories include bowtie2 at version 2.3.5.1.
+The Ubuntu focal LTS repositories include bowtie2 at version 2.4.4.
 The latest (April 2022) online at GitHub is version 2.4.5.
 
 We'll install the latest release from GitHub as the default. Installing the older 2.2.9 will be dealt with in the [SRST2](#SRST2) section.
@@ -531,6 +545,8 @@ GitHub release version: 1.1.3
 This is a maximum likelihood demultiplexer that is useful for when you have designed a custom multiplexing strategy. This happens a lot with Tn-seq experiments, for example.
 
 There seem to be some updates since the last release, and the 1.1.3 release tarball doesn't seem to compile, seems to be some issues with changing paths. So we'll install from a clone of the current GitHub repository.
+
+On newer systems, this requires an older compiler (gcc-9 and g++-9 for Ubuntu). I won't go into the details here, but the short version is to install gcc-9 and g++-9 with apt, change the `/usr/bin/gcc` and `/usr/bin/g++` links temporarily to point to those, then do the compile. Remember to revert the `/usr/bin` links back afterwards to use the up-to-date compiler for other things.
 ```
 sudo su -
 cd /usr/local/src
@@ -539,6 +555,7 @@ cd deML
 # check the docs
 less README.md
 
+# build and install
 make
 ln -s /usr/local/src/deML/src/deML /usr/local/bin
 
@@ -547,7 +564,7 @@ deML
 ```
 
 #### [fastp](https://github.com/OpenGene/fastp)
-Ubuntu LTS version: 0.20.0<br/>
+Ubuntu LTS version: 0.20.1<br/>
 GitHub version: 0.23.2
 
 This is a utility for preprocessing fastq files. We'll install the GitHub version. (The Ubuntu version of course is straightforward with an `apt install fastp`).
@@ -592,7 +609,7 @@ less README.md
 ln -s /usr/local/src/lacer/lacer.pl /usr/local/bin
 ```
 
-To get lacepr to compile and install, we need an older version of samtools (up to 1.9). There were many changes starting in samtools/htslib version 1.10 that haven't been incorporated into lacepr yet.
+To get lacepr to compile and install, we need an older version of samtools (up to 1.9). There were changes starting in samtools/htslib version 1.10 that haven't been incorporated into lacepr yet.
 ```
 sudo su -
 cd /usr/local/src/lacer/lacepr
@@ -605,16 +622,19 @@ less INSTALL
 wget https://sourceforge.net/projects/samtools/files/samtools/1.9/samtools-1.9.tar.bz2/download -O samtools-1.9.tar.bz2
 tar xvjf samtools-1.9.tar.bz2
 cd samtools-1.9
+# this compile also require switching to an older gcc-9, as for deML above
 make
+
+# for the actual lacepr compile, you can switch back to gcc-11
 cd /usr/local/src/lacer/lacepr
 SAMTOOLS=/usr/local/src/lacer/lacepr/samtools-1.9
 HTSLIB=/usr/local/src/lacer/lacepr/samtools-1.9/htslib-1.9
-gcc -I$SAMTOOLS -I$HTSLIB lacepr.c -L$SAMTOOLS -L$HTSLIB -lbam -l:libhts.a -lz -lpthread -lm -llzma -lbz2 -o lacepr
+gcc -I$SAMTOOLS -I$HTSLIB lacepr.c -L$SAMTOOLS -L$HTSLIB -lbam -l:libhts.a -lz -lpthread -lm -llzma -lbz2 -ldeflate -lcurl -lcrypto -o lacepr
 ln -s /usr/local/src/lacer/lacepr/lacepr /usr/local/bin
 ```
 
-#### [minimap](https://github.com/lh3/minimap2)
-Ubuntu LTS version: 2.17<br/>
+#### [minimap2](https://github.com/lh3/minimap2)
+Ubuntu LTS version: 2.24<br/>
 GitHub version: 2.24
 
 The Ubuntu Focal (20.04) LTS repositories have version 2.17.
@@ -645,11 +665,14 @@ minimap2
 ```
 
 #### [Porechop](https://github.com/rrwick/Porechop)
+Ubuntu LTS version: 2.4<br/>
+GitHub version: 2.4
+
 This is a tool for adapter trimming for Oxford Nanopore sequencing data.
 It seems to work, but officially is no longer supported.
 Since it hasn't been updated in a while, the Ubuntu version is up-to-date with what's on GitHub, so use that version.
 
-Install from the Ubuntu Focal LTS repositories:
+Install from the Ubuntu Focal LTS repositories (**Recommended**):
 ```
 sudo apt install porechop
 
@@ -687,15 +710,20 @@ poretools --version
 ```
 
 #### [seqmagick](https://fhcrc.github.io/seqmagick/)
+Ubuntu LTS version: 0.8.4<br/>
+Pip version: 0.8.4
+
 This is a useful utility for converting between sequence formats.
-This can be installed with pip (pip3 for python3).
-Installing as root as for other software, this will also be available for the ubuntu user (and others).
+This can be installed with pip (pip3 for python3), but the same version is available from the Ubuntu LTS repositories, so we'll use that.
 ```
-sudo pip3 install seqmagick
+sudo apt install seqmagick
 seqmagick -V
 ```
 
 #### [seqtk](https://github.com/lh3/seqtk)
+Ubuntu LTS version: 1.3<br/>
+GitHub release version: 1.3
+
 This is another useful utility for mangling sequence files.
 This seems to not be updated so frequently as well. Therefore, the Ubuntu LTS repositories have the latest version that's available as a release on the GitHub site (version 1.3). So I'd recomment using the Ubuntu packaged version.
 
@@ -767,7 +795,7 @@ dpkg -L trimmomatic
 ```
 
 #### [BBMap](https://sourceforge.net/projects/bbmap/)
-Ubuntu focal LTS version: 38.79<br/>
+Ubuntu focal LTS version: 38.95<br/>
 SourceForge version: 38.96
 
 This is another mapper (BBMap) that has a read trimmer as well (BBDuk), along with a few other utilities.

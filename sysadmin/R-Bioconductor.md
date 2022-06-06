@@ -1,5 +1,5 @@
 # Setting up R and Bioconductor
-R is one of the big engines for bioinformatics research these days. This will install the latest stable version of R along with the latest Bioconductor (as of May, 2021).
+R is one of the big engines for bioinformatics research these days. This will install the latest stable version of R along with the latest Bioconductor (as of May, 2022, this is R 4.2.0 with Bioconductor 3.15).
 
 The default Ubuntu repositories for the LTS releases are not designed to keep up with the latest versions of software like R. So we'll follow the [advice of CRAN](https://cran.r-project.org/bin/linux/ubuntu/) and use their repositories.
 
@@ -30,7 +30,7 @@ Install Bioconductor (following the [standard instructions](https://www.biocondu
 ```
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
-BiocManager::install()
+BiocManager::install(version = "3.15")
 ```
 
 Then install some Bioconductor packages:
