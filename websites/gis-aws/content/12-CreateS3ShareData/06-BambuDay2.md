@@ -148,14 +148,20 @@ se.filtered <- se[mcols(rowRanges(se))$newTxClass != "annotation",]
 
 #investigate high confidence novel isoforms
 head(mcols(rowRanges(se.filtered))[order(mcols(rowRanges(se.filtered))$txNDR),])
-plotBambu(se, type = "annotation", gene_id = "gene.107") 
+
+png("gene.107.png")
+plotBambu(se, type = "annotation", gene_id = "gene.107")
+dev.off()
 ```
 ![gene.107](/images/bambu/gene.107.png)
 ```rscript
 #no novel genes
 se.filtered.noNovelGene = se.filtered[rowData(se.filtered)$newTxClass != "newGene-spliced",]
 head(mcols(rowRanges(se.filtered.noNovelGene))[order(mcols(rowRanges(se.filtered.noNovelGene))$txNDR),])
+
+png("ENSG00000196756.png")
 plotBambu(se, type = "annotation", gene_id = "ENSG00000196756")
+dev.off()
 ```
 ![ENSG00000196756](/images/bambu/ENSG00000196756.png)
 
@@ -169,6 +175,7 @@ expression.HepG2 <- apply(assays(se.filtered)$counts[,grep("HepG2",colnames(se.f
 se.filtered[expression.A549>=1 &(expression.HepG2==0)] # unique in A549
 se.filtered[expression.A549==0 &(expression.HepG2>=1)] # unique in HepG2
 ```
+If you have tex installed, then you can directly visualize with the `plotBambu` command. However, if you don't have tex pre-installed, then you can follow the commands above to generate the png first and then upload them to the S3 bukcet for visualization. 
 
 ### UCSC genome browser
 
