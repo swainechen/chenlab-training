@@ -871,7 +871,7 @@ cd /usr/local/src/a5_miseq_linux_20160825
 ```
 
 #### [canu](https://github.com/marbl/canu)
-Ubuntu LTS version: 1.9<br/>
+Ubuntu LTS version: 2.0<br/>
 GitHub version: 2.2
 
 This is an assembler designed for noisy long-read sequencing (i.e. Oxford Nanopore and PacBio).
@@ -1204,7 +1204,7 @@ for i in lmgrd lmutil mampl mosek MOSEKLM moseksi mskdgopt mskexpopt mskscopt ms
 # libraries
 for i in libiomp5.so libmosek64.so libmosek64.so.6.0 libmosekglb64.so.6.0 libmosekglbnoomp64.so.6.0 libmosekjava6_0.so libmoseknoomp64.so libmoseknoomp64.so.6.0 libmosekxx6_0.so libscopt.so; do ln -s /usr/local/src/mosek/6/tools/platform/linux64x86/bin/$i /usr/local/lib/; done
 # then LD_LIBRARY_PATH needs to get set
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 echo "# for MOSEK 6" >> /home/ubuntu/.bashrc
 echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib" >> /home/ubuntu/.bashrc
 
@@ -1233,7 +1233,7 @@ finis test_dataset/soap/conf.config
 * [snippy](#snippy)
 
 #### [BLASR]
-Ubuntu LTS version: 5.3.3
+Ubuntu LTS version: 5.3.5
 
 There used to be a Github repository for this (https://github.com/PacificBiosciences/blasr) but now it gives a 404 error. We can still install from the Ubuntu repositories.
 
@@ -1250,24 +1250,24 @@ This is a pipeline for finding mutations in a short read sequencing data set rel
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/barricklab/breseq/releases/download/v0.36.1/breseq-0.36.1-Linux-x86_64.tar.gz
-tar xvzf breseq-0.36.1-Linux-x86_64.tar.gz
-cd breseq-0.36.1-Linux-x86_64
+wget https://github.com/barricklab/breseq/releases/download/v0.37.0/breseq-0.37.0-Linux-x86_64.tar.gz
+tar xvzf breseq-0.37.0-Linux-x86_64.tar.gz
+cd breseq-0.37.0-Linux-x86_64
 # check the docs
 less README
 less documentation/installation.html
 
 # update owners and permissions because we're running around as root
-chown -R root:root /usr/local/src/breseq-0.36.1-Linux-x86_64
-cd /usr/local/src/breseq-0.36.1-Linux-x86_64
+chown -R root:root /usr/local/src/breseq-0.37.0-Linux-x86_64
+cd /usr/local/src/breseq-0.37.0-Linux-x86_64
 chmod -R a+r *
 find . -mindepth 1 -type d | xargs chmod 755
 find . -mindepth 1 -executable -type f | xargs chmod 755
 
 # link over the binary and the share files
-cd /usr/local/src/breseq-0.36.1-Linux-x86_64/bin
-for i in *; do ln -s /usr/local/src/breseq-0.36.1-Linux-x86_64/bin/$i /usr/local/bin; done
-ln -s /usr/local/src/breseq-0.36.1-Linux-x86_64/share/breseq /usr/local/share/
+cd /usr/local/src/breseq-0.37.0-Linux-x86_64/bin
+for i in *; do ln -s /usr/local/src/breseq-0.37.0-Linux-x86_64/bin/$i /usr/local/bin; done
+ln -s /usr/local/src/breseq-0.37.0-Linux-x86_64/share/breseq /usr/local/share/
 
 ```
 
@@ -1275,14 +1275,14 @@ ln -s /usr/local/src/breseq-0.36.1-Linux-x86_64/share/breseq /usr/local/share/
 ```
 sudo su -
 cd /usr/local/src
-wget https://github.com/broadinstitute/gatk/releases/download/4.2.5.0/gatk-4.2.5.0.zip
-unzip gatk-4.2.5.0.zip
-cd gatk-4.2.5.0
+wget https://github.com/broadinstitute/gatk/releases/download/4.2.6.1/gatk-4.2.6.1.zip
+unzip gatk-4.2.6.1.zip
+cd gatk-4.2.6.1
 # check the docs
 less README.md
 
 # the main gatk invocation script will figure out the original directory, so we can just link this in to /usr/local/bin
-ln -s /usr/local/src/gatk-4.2.5.0/gatk /usr/local/bin
+ln -s /usr/local/src/gatk-4.2.6.1/gatk /usr/local/bin
 
 # test it
 gatk --help
@@ -1322,11 +1322,17 @@ for i in *; do ln -s /usr/local/src/lofreq_star-2.1.5_linux-x86-64/bin/$i /usr/l
 ```
 
 #### [mash](https://mash.readthedocs.io/en/latest/)
-Ubuntu LTS version: 2.2.2<br/>
+Ubuntu LTS version: 2.3<br/>
 GitHub release version: 2.3
 
-Mash is a tool to estimate sequence distance using MinHash.
+Mash is a tool to estimate sequence distance using MinHash. Since the Ubuntu LTS version is the same, we'll use that.
 
+Install from Ubuntu repositories (**Recommended**):
+```
+sudo apt install mash
+```
+
+Install from Github:
 ```
 sudo su -
 cd /usr/local/src
@@ -1338,6 +1344,8 @@ ln -s /usr/local/src/mash-Linux64-v2.3/mash /usr/local/bin
 ```
 
 #### [medaka](https://github.com/nanoporetech/medaka)
+** As of this writing, medaka seems to require an update to work with Python 3.0, which is what is distributed with Ubuntu 22.04 **
+
 This is a sequence polisher for Oxford Nanopore data.
 There are a few ways to install this.
 The recommended build uses a virtual environment in python.
@@ -1359,8 +1367,8 @@ medaka_haploid_variant
 ```
 
 #### [nanopolish](https://github.com/jts/nanopolish)
-Ubuntu LTS version: 0.11.3<br/>
-GitHub version: 0.13.3
+Ubuntu LTS version: 0.13.3<br/>
+GitHub version: 0.14.0
 
 This is a signal-level polisher for Oxford Nanopore data.
 We'll use the GitHub version since it's newer.
@@ -1389,7 +1397,7 @@ nanopolish
 ```
 
 #### [pilon](https://github.com/broadinstitute/pilon/wiki)
-Ubuntu LTS version: 1.23<br/>
+Ubuntu LTS version: 1.24<br/>
 GitHub version: 1.24
 
 This is a sequence polisher that is popular for refining assemblies with short read sequencing data.
@@ -1399,7 +1407,7 @@ As the ones related to bioinformatics are usually like "programs", I typically p
 Another option would be to write a simple shell script that calls `java` with all the right options, including the full path to the `jar` file, but that will hide some of the details and require some translation from online documentation.
 The `jar` files are usually specified with a full path anyway so it doesn't really matter that much, so long as you know where it is.
 
-From the Ubuntu repositories:
+From the Ubuntu repositories (**Recommended**):
 ```
 sudo apt install pilon
 ```
@@ -1419,7 +1427,7 @@ export JAVA_CMD=java
 run_java -Xms128M -Xmx16384m -jar /usr/share/java/pilon.jar "$@"
 ```
 
-From the website (**Recommended**)
+From the website:
 ```
 sudo su -
 cd /usr/local/src
@@ -1461,18 +1469,18 @@ However, note that calling the `pilon` script asks for 16GB of heap space, which
 That said, this script was for Unicycler and that seems to need the space as per the [referenced link](https://github.com/rrwick/Unicycler/issues/63).
 
 #### [racon](https://github.com/lbcb-sci/racon)
-Ubuntu LTS version: 1.4.10<br/>
+Ubuntu LTS version: 1.5.0<br/>
 GitHub version: 1.5.0
 
 This is a polisher / consensus module for uncorrected long reads (i.e. Oxford Nanopore and PacBio).
 We'll use the GitHub version since it's newer than the one in the Ubuntu repositories.
 
-Install from Ubuntu repositories:
+Install from Ubuntu repositories (**Recommended**):
 ```
 sudo apt install racon
 ```
 
-Install from GitHub (**Recommended**):
+Install from GitHub:
 ```
 sudo su -
 cd /usr/local/src
@@ -1602,7 +1610,7 @@ kleborate -h
 ```
 
 #### [Kraken 2](https://ccb.jhu.edu/software/kraken2/)
-Ubuntu LTS version: 2.0.8-beta<br/>
+Ubuntu LTS version: 2.1.2<br/>
 GitHub Release version: 2.1.2
 
 This is a popular tool to do species / taxonomic classification of short reads using k-mers.
@@ -1613,7 +1621,14 @@ Note some databases are now available as part of the [Repository of Open Data on
 We'll install the Standard 8GB database here, which has archaea, bacteria, viruses, plasmids, human, and UniVec_Core - refer to the [documentation](https://benlangmead.github.io/aws-indexes/k2) for more details or other databases.
 We'll put these in /usr/local/lib/Kraken2
 
-The Ubuntu repositories are behind the latest GitHub release, so we'll use the GitHub version
+The Ubuntu repositories are up-to-date with the latest GitHub release, so we'll prefer to install from the repositories.
+
+Install from Ubuntu repositories (**Recommended**):
+```
+sudo apt install kraken2
+```
+
+Install from Github:
 ```
 sudo su -
 cd /usr/local/src
@@ -1627,10 +1642,15 @@ less docs/MANUAL.markdown
 # compile then link over the binaries
 ./install_kraken2.sh /usr/local/src/kraken2-2.1.2/bin
 for i in kraken2 kraken2-build kraken2-inspect; do ln -s /usr/local/src/kraken2-2.1.2/bin/$i /usr/local/bin; done
+```
 
-# install the updated standard 8GB library
+Kraken needs libraries to run - we'll put these in `/usr/local/lib/Kraken2`, and they will need to be specified when you run, as noted below:
+```
 mkdir /usr/local/lib/Kraken2
 cd /usr/local/lib/Kraken2
+# install the updated standard 8GB library
+mkdir /usr/local/lib/Kraken2/k2_standard_8gb_20210517
+cd /usr/local/lib/Kraken2/k2_standard_8gb_20210517
 wget https://genome-idx.s3.amazonaws.com/kraken/k2_standard_8gb_20210517.tar.gz
 tar xvzf k2_standard_8gb_20210517.tar.gz
 
@@ -1639,20 +1659,20 @@ kraken2 --db /usr/local/lib/Kraken2/k2_standard_8gb_20210517 fq_1.gz fq2.gz
 ```
 
 #### [prokka](https://github.com/tseemann/prokka)
-Ubuntu LTS version: 1.14.5<br/>
+Ubuntu LTS version: 1.14.6<br/>
 GitHub Release version: 1.14.5
 
 This is a popular genome annotation tool.
-This hasn't been updated in about 1-2 years, and the Ubuntu version is the same as the latest GitHub version, so we'll install the Ubuntu version.
+This hasn't been updated in about 1-2 years according to GitHub, but somehow the Ubuntu repositories have a newer one! We'll install the Ubuntu version.
 
 ```
 sudo apt install prokka
-# setup databases
-prokka --setupdb
-prokka --list
 
 # this has another issue with licensing with Debian/Ubuntu. Check /usr/share/doc/prokka/README.Debian
+# note the default directory for these is ~/.local/lib/prokka/db
+# so run this as the ubuntu user, not as root
 sh /usr/share/doc/prokka/get-additional-data
+prokka --list
 ```
 For reference, these libraries get stored in `/var/lib/prokka/db`
 This throws an error because it assumes a numeric version number for BioPerl, but the version is ok and this still runs.
@@ -1670,6 +1690,9 @@ tar xvzf v1.8.0.tar.gz
 cd referenceseeker-1.8.0
 # check the docs
 less README.md
+
+# we need to install xopen
+pip3 install xopen
 
 # link the binaries over
 cd bin
@@ -1689,7 +1712,7 @@ wget https://zenodo.org/record/4415843/files/archaea-refseq.tar.gz
 tar xvzf archaea-refseq.tar.gz
 ```
 
-The AMI provided has all the RefSeq databases downloaded and installed already from [https://github.com/oschwengers/referenceseeker#databases](https://github.com/oschwengers/referenceseeker#databases).
+The CHENLAB-PUBLIC AMI has all the RefSeq databases downloaded and installed already from [https://github.com/oschwengers/referenceseeker#databases](https://github.com/oschwengers/referenceseeker#databases).
 These can be used by specifying one of the following as the db location (first argument) for `referenceseeker`:
 * /usr/local/lib/referenceseeker/archaea-refseq
 * /usr/local/lib/referenceseeker/bacteria-refseq
@@ -1698,10 +1721,23 @@ These can be used by specifying one of the following as the db location (first a
 * /usr/local/lib/referenceseeker/viral-refseq
 
 #### [Roary](https://github.com/sanger-pathogens/Roary)
-This is a popular pan genome prediction tool.
-This hasn't been updated in about 18 months, and the Ubuntu and GitHub versions are the same.
-The Ubuntu packages seem to depend strictly on R version 3, and we have 4 installed. So we'll install from the GitHub release.
+Ubuntu LTS version: 3.13.0<br/>
+GitHub Release version: 3.13.0
 
+This is a popular pan genome prediction tool.
+This hasn't been updated in about 18 months, and the Ubuntu and GitHub versions are the same. So we'll install from the Ubuntu repositories.
+
+(Note previously for Ubuntu LTS 20.04, the Ubuntu packages seemed to depend strictly on R version 3, which is why we previously preferred the GitHub release; but this seems to be resolved in 22.04.)
+
+Install from Ubuntu repositories (**Recommended*):
+```
+sudo apt install roary
+
+# check it out
+roary -a
+```
+
+Install from GitHub:
 ```
 sudo su -
 cd /usr/local/src
@@ -1743,6 +1779,8 @@ less README.md
 # patch the file libs/Otype_determine_analysis.py as in https://github.com/denglab/SeqSero/issues/6
 wget https://github.com/denglab/SeqSero/files/6603725/SeqSero.patch.txt
 patch -p1 < SeqSero.patch.txt
+# as of Python 3.10 it also needs this touch up
+sed -i -e 's/print /print(/' -e '/print/s/$/)/' SeqSero.py
 
 # link the binary
 ln -s /usr/local/src/SeqSero-1.0.1/SeqSero.py /usr/local/bin
@@ -1779,6 +1817,7 @@ Then there's some customization with environment variables and setting up the re
 sudo su -
 cd /usr/local/src
 wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
+apt install python2 python2-dev
 python2 get-pip.py
 pip install scipy
 git clone https://github.com/katholt/srst2
@@ -1867,11 +1906,11 @@ wget http://www.mgc.ac.cn/VFs/Down/VFDB_setB_nt.fas.gz
 gunzip VFDB_setB_nt.fas.gz
 # we need an old version of biopython for python 2.7, which the SRST2 scripts require
 pip install biopython==1.76
-python /usr/local/src/srst2/database_clustering/VFDBgenus.py --infile VFDB_setB_nt.fas
+python2 /usr/local/src/srst2/database_clustering/VFDBgenus.py --infile VFDB_setB_nt.fas
 for i in *.fsa; do 
   cd-hit -i $i -o ${i%.*}_cdhit90 -c 0.9 > ${i%.*}_cdhit90.stdout &&
-  python /usr/local/src/srst2/database_clustering/VFDB_cdhit_to_csv.py --cluster_file ${i%.*}_cdhit90.clstr --infile $i --outfile ${i%.*}_cdhit90.csv &&
-  python /usr/local/src/srst2/database_clustering/csv_to_gene_db.py -t ${i%.*}_cdhit90.csv -o ${i%.*}_VF_clustered.fasta -s 5 &&
+  python2 /usr/local/src/srst2/database_clustering/VFDB_cdhit_to_csv.py --cluster_file ${i%.*}_cdhit90.clstr --infile $i --outfile ${i%.*}_cdhit90.csv &&
+  python2 /usr/local/src/srst2/database_clustering/csv_to_gene_db.py -t ${i%.*}_cdhit90.csv -o ${i%.*}_VF_clustered.fasta -s 5 &&
   $BTBUILD ${i%.*}_VF_clustered.fasta ${i%.*}_VF_clustered.fasta &&
   $SAMTOOLS faidx ${i%.*}_VF_clustered.fasta
 done
@@ -1955,19 +1994,19 @@ srst2 --input_pe strainA_1.fastq.gz strainA_2.fastq.gz --output strainA_typing -
 * [slcview](#slcview)
 
 #### [Bandage](https://rrwick.github.io/Bandage/)
-Ubuntu LTS version: 0.8.1<br/>
+Ubuntu LTS version: 0.9.0<br/>
 GitHub Release version: 0.9.0
 
 This is a program that allows visualization of assembly graphs. This is a graphical application so you'll have to sort out forwarding X packets if you're on a remote connection (like to an AWS EC2 instance).
 
 If you're on Linux and have a window manager, this can be as trivial as adding `-X` or `-Y` to your ssh command. This may be more complicated if you're on Windows or MacOS, though there are quite a few solutions out there.
 
-From the Ubuntu repositories:
+From the Ubuntu repositories (**Recommended**):
 ```
 sudo apt install bandage
 ```
 
-From GitHub (**Recommended**)
+From GitHub:
 ```
 sudo su -
 cd /usr/local/src
@@ -1994,8 +2033,8 @@ sudo apt install brig
 ```
 
 #### [Circos](http://circos.ca/)
-Ubuntu LTS version: 0.95<br/>
-GitHub Release version: 0.95
+Ubuntu LTS version: 0.69-9<br/>
+Website Release version: 0.69-9
 
 This is another program for generating circular images and is quite general and widely used.
 
@@ -2014,6 +2053,7 @@ This has a graphical interface so you'll have to sort out forwarding X packets i
 sudo su -
 cd /usr/local/src
 wget https://github.com/mjsull/Easyfig/releases/download/2.2.2/Easyfig_2.2.2_linux.tar.gz
+tar xvzf Easyfig_2.2.2_linux.tar.gz
 ln -s /usr/local/src/Easyfig_2.2.2_linux/Easyfig /usr/local/bin
 ```
 
@@ -2024,16 +2064,9 @@ This is a tool to draw presence-absence plots, such as for virulence genes.
 
 ```
 sudo su -
-cd /usr/local/src
-wget https://github.com/mscook/SeqFindR/archive/refs/tags/v0.35.0.tar.gz
-tar xvzf v0.35.0.tar.gz
-cd SeqFindR-0.35.0
-# check the docs
-less README.rst
-less requirements.txt
 # we generally have python3, so force python2 for the install
 pip2 install SeqFindr
-# this gives some errors on trying to compile matplotlib, but we have it installed from before so it seems to install and find the module fine on running
+# this gives some errors on trying to compile matplotlib due to C++ standards, but it seems to install using some legacy method and imports fine into python2 after this
 
 # check it, at least for the help screen
 SeqFindr -h
