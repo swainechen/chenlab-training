@@ -16,6 +16,6 @@ This section covers:
 - Stopping and Terminating the Linux instance.  
 
 Proceed to page  
-***a. Sign in to AWS Console (via Event Engine)*** if you are attending the live training.  
+***[a. Sign in to AWS Console (via Event Engine)](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/02-setup-ec2/02-eventengine.html)*** if you are attending the live training.  
 OR  
-***b. Sign in to AWS Console (direct sign-in)*** if you are going through this tutorial independently.  
+***[b. Sign in to AWS Console (direct sign-in)](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/02-setup-ec2/03-aws-console-login.html)*** if you are going through this tutorial independently.  

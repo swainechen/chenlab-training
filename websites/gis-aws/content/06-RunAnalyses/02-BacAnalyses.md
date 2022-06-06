@@ -1,5 +1,5 @@
 ---
-title: "a. Genome Sequence data"
+title: "a. Bacterial Genome analysis"
 date: 2019-01-24T09:05:54Z
 weight: 30
 tags: ["Bacteria", "Genome", "Analyses"]
@@ -22,7 +22,7 @@ Output shows where samtools is installed.
   
 
 
-**Basic Bacterial Genome Sequencing Analyses**
+**Basic Bacterial Genome Sequence Analysis**
 
 
 1. Get a reference sequence:
