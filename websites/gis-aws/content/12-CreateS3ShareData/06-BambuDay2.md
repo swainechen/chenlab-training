@@ -1,6 +1,6 @@
 +++
 title = "e. RNA-Seq data-Bambu"
-weight = 150
+weight = 120
 tags = ["S3", "RNA-Seq", "Bambu"]
 +++
 
@@ -184,14 +184,18 @@ annotations.UCSC = keepStandardChromosomes(annotations.UCSC, pruning.mode="coars
 writeToGTF(annotations.UCSC, "./novel_annotations.UCSC.gtf")
 ```
 
-Now we can upload the annotations created to the public accessible bucket that we have created before (links).  
+Now we can upload the annotations created to the public accessible bucket that we have created before in [Section XIIc-Step 12](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/12-creates3sharedata/04-sharebucket.html). We will need to manage access to the object using the **access control lists (ACLs)**. 
 ```bash
 aws s3 cp novel_annotations.UCSC.gtf s3://bucket/path/ --acl public-read
 ```
 Now go to https://genome.ucsc.edu/ in your browser                 
 My data > Custom Tracks > add custom tracks                   
-In the box labeled "Paste URLs or data" copy in path of the file you copied onto your bucket                             
-Remember to replace "bucket" and "path" with the real names and path                    
+In the box labeled "Paste URLs or data" copy in path of the file you copied onto your bucket.
+
+Obtaining the **S3 URL** of the object in the S3 bucket  
+-Click on the object name in the S3 bucket (here "novel_annotations.UCSC.gtf")  
+-Copy the link under "Object URL"  
+Remember to verify the correct "bucket" and "path" names                     
 https://"bucket".s3.ap-southeast-1.amazonaws.com/"path"/A549_novel_annotations.gtf
 
 ![UCSC brower](/images/bambu/UCSC.png)

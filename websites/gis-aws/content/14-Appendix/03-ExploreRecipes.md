@@ -19,5 +19,6 @@ Here are some addditional examples for performing genomics analysis. These examp
 	- Annotation with Kleborate
 3.	[Classify metagenomic reads using Kraken 2](https://github.com/swainechen/chenlab-training/blob/main/recipes/Metagenomics.md) 
 4.	[Lacer - FASTQ quality score recalibration](https://github.com/swainechen/chenlab-training/blob/main/recipes/Lacer.md)
+5.	[Bambu - Transcript discovery and quantification for long read RNA-seq data](https://github.com/swainechen/chenlab-training/blob/main/recipes/Bambu.md) 
 
 You can use the [Chen Lab public AMI](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/14-appendix/05-aboutyourami.html) for this purpose. For information on recipes and getting started with the AMI, please check out [our github page](https://github.com/swainechen/chenlab-training/tree/main/recipes).

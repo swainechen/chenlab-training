@@ -56,55 +56,8 @@ Next we will update the Access Control List to provide read and write permission
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic5.png)  
 
-At this point you have effectively shared the S3 bucket. Check with your collaborators to see if they can list the objects in your shared bucket using the following AWS CLI command.
+At this point you have effectively shared the S3 bucket. Being able to list an object in your S3 bucket is different from being able to download it. This needs object permissions via the ACL (Access control list).  
 
-```bash
-aws s3 ls s3://{Collaborator-Bucket-Name}
-```
-
-13.	Being able to list an object in your S3 bucket is different from being able to download it. Now let us make a file object downloadable. Select the file you would like to share. Click on **Actions** and **Make public via ACL**.
-
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic6.png)
-
-14.	Click on **Make public**.
-
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic7.png)
-
-15.	Now let’s try inspecting the image you made public, using a web browser. First, **click on the image name** in the S3 bucket you created and then copy the link by clicking on **Copy URL** into a web browser.
-
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsObjectPrivate1.png)
-
-16.	Next, the files you made public should now be downloadable by your collaborator by running the AWS CLI commands.
-
-```bash
-aws s3 cp s3://{Collaborator-Bucket-Name}/{object name} ./
-```
-
-17.	Now let us grant access to a specific AWS account i.e. of your collaborator via **Access for other AWS accounts**. For this we will need to update the Access Control List to provide read and write permissions for objects only to a specific collaborator. **Follow Step 3 above** and click on **Permissions**. Scroll down to the **Access control list (ACL)** section and click on **Edit**.
-
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsObjectPrivate2.png)
-
-18.	Next under Grantee - Everyone (public access) uncheck List (under Objects) and click on **Add grantee** under **Access for other AWS accounts**.
-
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsObjectPrivate3.png)
-
-19.	In order to provide S3 Bucket access to a specific collaborator, ask your collaborator to provide you with an AWS Canonical ID by using the following command
-
-```bash
-aws s3api list-buckets --query Owner.ID --output text
-```
-
-20.	Enter your collaborator’s AWS Canonical ID to grant access only to your collaborator. You may provide/ revoke access to multiple AWS accounts by clicking on Add/ Remove grantee. Check the **List** and **Write** boxes under Objects and click on **Save changes**.
-
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsObjectPrivate4.png)
-
-You have now successfully shared your S3 Bucket privately with a specific collaborator.
-
-**Transferring a file securely to your collaborator’s bucket**
-
-Now transfer any specific file to your collaborator’s S3 Bucket which you have been granted access to by using the following command
-
-```bash
-aws s3 cp path/to/filetocopy s3://{Collaborator-Bucket-Name}/ --acl public-read
-```
-
+_We will now run a larger analyses using the RNA-seq data and explore the following features of S3   
+-S3 access control lists (ACLs) to enable public read access.  
+-Accessing an object in the S3 bucket through its URL._  
