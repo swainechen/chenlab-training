@@ -38,10 +38,17 @@ Here, though, we're doing the simple version to just run around as root. This ta
 ## Software Repositories and PPAs
 Add some repositories we'll need later:
 ```
+# For R
 sudo su -
 apt install --no-install-recommends software-properties-common dirmngr
 wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
 add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+apt update
+
+# For Docker
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 apt update
 ```
 
@@ -71,7 +78,8 @@ apt install -y cd-hit clonalframeml fastdnaml fastqc fasttree \
 ####################
 # for Ubuntu 22.04 #
 ####################
-apt install -y automake clang cmake cpanminus cpanoutdated evince fig2dev \
+apt install -y automake clang cmake cpanminus cpanoutdated docker-ce \
+  docker-ce-cli containerd.io docker-compose-plugin evince fig2dev \
   gnuplot-nox imagemagick libbio-samtools-perl libboost-all-dev libbz2-dev \
   libcairo2-dev libcurl4-openssl-dev libdatetime-format-dateparse-perl \
   libdatetime-format-dbi-perl libdb-dev libfile-map-perl libfile-type-perl \
