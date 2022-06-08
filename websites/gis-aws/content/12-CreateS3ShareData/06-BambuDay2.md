@@ -37,7 +37,7 @@ Note that we are aligning the reads to the genome fasta and not the transcriptom
 aws s3 cp --no-sign-request s3://sg-nex-data/data/bambu_training/fastq/A549_directRNA_sample1.fastq.gz ./
 
 # align using Minimap2 
-minimap2 -ax splice -uf -k14 Homo_sapiens.GRCh38.dna.primary_assembly.fa A549_directRNA_sample1.fastq.gz > A549_directRNA_sample1.sam  #needs more than 4gb ram
+minimap2 -ax splice -uf -k14 Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa A549_directRNA_sample1.fastq.gz > A549_directRNA_sample1.sam  #needs more than 4gb ram
 samtools view -Sb A549_directRNA_sample1.sam | samtools sort -o A549_directRNA_sample1.bam
 samtools index A549_directRNA_sample1.bam
 ```
@@ -63,8 +63,10 @@ This bam file has a read mappability of `150602/184107 (81.8%)` by taking the ra
 
 ### Preparing data for ***Bambu***
 ```rscript
+R  
+
 # set work directory 
-setwd("bambu_training")
+setwd("bambu_training") #if you are in a different directory
 
 
 library(bambu)
@@ -124,7 +126,9 @@ rowData(se) #returns additional information about each transcript such as the ge
 The output can be written to files:
 
 ```rscript
-writeBambuOutput(se, path = "./")
+writeBambuOutput(se, path = "./") 
+
+q()  
 ```
 
 The above command will write ***Bambu*** output to three files
