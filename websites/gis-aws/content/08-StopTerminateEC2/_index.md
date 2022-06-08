@@ -13,9 +13,9 @@ In this section of the workshop we will provide a brief introduction to costs as
 
 In this section you will :
 
-- Explore Instance States and associated costs.
-
-- Save a snaphot of the EBS Volume.
-
-- Terminate EC2 instance and delete EBS Volumes.
+**a.	[Explore Instance States.](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/08-stopterminateec2/03-exploreec2lifecycle.html)**  
+**b.	[Detach additional EBS volumes.](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/08-stopterminateec2/04-detachvolume.html)**  
+**c.	[Save a snaphot of the detached EBS Volume.](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/08-stopterminateec2/06-createsnapshotofvolume.html)**  
+**d.	[Delete the detached EBS volume.](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/08-stopterminateec2/07-deletevoume.html)**  
+**e.	[Terminate EC2 instance.](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/08-stopterminateec2/09-terminateec2instance.html)**  
  
