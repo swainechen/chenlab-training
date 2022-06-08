@@ -1,5 +1,5 @@
 +++
-title = "c. Make objects public"
+title = "c. Make bucket public"
 weight = 90
 tags = ["tutorial", "dashboard", "ParallelCluster"]
 +++

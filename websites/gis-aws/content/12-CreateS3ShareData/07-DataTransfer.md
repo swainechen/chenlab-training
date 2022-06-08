@@ -1,6 +1,6 @@
 +++
-title = "MOVE/REMOVE? Remote data transfer"
-weight = 150
+title = "Opt2: Remote data transfer"
+weight = 180
 tags = ["tutorial", "dashboard", "ParallelCluster"]
 +++
 
