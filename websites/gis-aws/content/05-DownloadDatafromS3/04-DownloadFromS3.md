@@ -45,15 +45,20 @@ aws s3 cp --profile training s3://slchen-lab-transfer/GIS-training/SRR6327950/SR
 - SRR6327950_1.fastq.gz - 27920396d2eb46f463f93eb9a2baf4e5
 - SRR6327950_2.fastq.gz - b46c7cf0d45cf3325222506d41fa7329  
 
-5.	Download another data set using the `kingfisher` utility:
+5.	Download another data set using from the NCBI SRA repository on S3 (in the AWS Repository of Open Data):
 
 ```bash
-kingfisher get -r SRR6327875 -m ena-ascp aws-http prefetch
+mkdir -p /tmp/fastq/SRR6327875
+cd /tmp/fastq/SRR6327875
 
-# if this fails through to using prefetch, it will download uncompressed fastq
-# compress these again to fit other workflows
+# note here the --no-sign-request makes an anonymous request to this public S3 bucket
+aws s3 sync --no-sign-request s3://sra-pub-run-odp/sra/SRR6327875/ /tmp/fastq/SRR6327875/
+
+# convert the sra formatted file to fastq, then gzip them and clean up
+fasterq-dump ./SRR6327875
 gzip SRR6327875_1.fastq
 gzip SRR6327875_2.fastq
-```	
+rm -f SRR6327875
+```
 
 We are now ready to run some data analyses. 
