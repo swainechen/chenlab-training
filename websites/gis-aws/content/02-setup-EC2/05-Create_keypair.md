@@ -22,7 +22,7 @@ In this section of the lab you will create a Linux instance and login to it to r
 
 ![ConsoleEC2CreateKeyPair](/images/hpc-aws-parallelcluster-workshop/EC2CreateKeyPair.png)
 
-5.	In the resulting pop up window, provide a key pair name of your choosing and select **.ppk** or **.pem** depending on which ssh client you will use to connect to the EC2 Instance (for PuTTY select **.ppk** .For  Windows Subsystem Linux, MacOS-X ssh Client, Linux ssh client,  Windows ssh client select **.pem**).  
+5.	In the resulting pop up window, provide a key pair name of your choosing and select **.ppk** or **.pem** depending on which ssh client you will use to connect to the EC2 Instance (For PuTTY select **.ppk**. For Windows Subsystem Linux, MacOS-X ssh Client, Linux ssh client,  Windows ssh client select **.pem**).  
 
 
 **NOTE**: For the purpose of this workshop please provide a unique key pair name, so that it might not clash with key pair names provided by other participants using the same AWS account. You could use your name initials in the key pair for easy identification.

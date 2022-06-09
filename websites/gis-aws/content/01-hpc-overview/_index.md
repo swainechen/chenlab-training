@@ -21,11 +21,13 @@ Welcome to the GIS x AWS training on cloud computing for genomics researchers.
 
 This series of workshops will familiarize you with the components of Amazon Web Services and best practices to setup a cloud compute server and run genomics workloads using AWS.
 
-**Target audience and requirements**:
-
-- Genomics researchers who have some experience of Linux commands
+**Target audience and requirements**: 
+- Genomics researchers who have some experience of Linux commands.  
 - Participants have either an IAM account created for them (either by PI's lab or free credits by AWS) and they have their credentials available, or they will be given an Event Engine account during the training.
 - Little to no exposure to cloud computing. We will cover fundamental AWS concepts and not advanced topics such as AWS Batch.
 - No bioinformatics training will be provided in this course.
 
-**Background**: Your team has been asked to align raw reads from bacterial genome sequences. You will run your analysis on AWS compute services and upload the data onto AWS storage services.
+**Background**: Your team has been asked to
+- Align raw reads from bacterial genome sequences.  
+- Perform long-read RNA-Seq analysis.  
+You will run your analysis on AWS compute services and upload the data onto AWS storage services.

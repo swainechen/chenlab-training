@@ -12,7 +12,7 @@ Now let us stop and terminate the instance - **before following these steps, lis
 
 3.	Click on **Instances** under the **Instances** section in the left navigation pane to view all the instances that are Running, Stopped and Terminated.
 
-4.	Select the instance created and click on **Actions** button and click on **Instance State**, then **Stop instance**.
+4.	Select the instance created and click on **Instance State**, then **Stop instance**.
 
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2StopInstance.png)
@@ -25,12 +25,12 @@ The instance will now attempt to stop, wait for a few moments for the instance t
 
 We will now terminate the EC2 instance.
 
-6.	Select the EC2 instance from the list of instances. Click on **Actions**, then **Instance State**, and then click on **Terminate instance**.
+6.	Select the EC2 instance from the list of instances. Click on **Instance State**, and then click on **Terminate instance**.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2InstanceTerminate.png)
 
 
-7.	In the Terminate Instance dialog, observe the note **Associated resources may incur costs after these instances are terminated** and further click **Delete EBS volume** to read the additional note. To proceed, select **Terminate**.
+7.	In the Terminate Instance dialog, observe the note **On an EBS-backed instance, the default action is for the root EBS volume to be deleted when the instance in terminated. Storage on any local drives will be lost**. To proceed, select **Terminate**.
 
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2InstanceTerminateConfirm.png)

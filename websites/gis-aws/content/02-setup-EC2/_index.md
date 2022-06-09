@@ -11,8 +11,8 @@ This workshop section walks you through setting up your own EC2 Linux instance a
 This section covers:
 
 - Signing in to the AWS Management Console and exploring it.
-- Create an Amazon EC2 instance and the related configurations.
-- SSH into an EC2 instance and run Linux commands.
+- Creating an Amazon EC2 instance and the related configurations.
+- SSHing into an EC2 instance and run Linux commands.
 - Stopping and Terminating the Linux instance.  
 
 Proceed to page  
