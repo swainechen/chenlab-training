@@ -36,8 +36,8 @@ Note that we are aligning the reads to the genome fasta and not the transcriptom
 # download fastq from s3 bucket
 aws s3 cp --no-sign-request s3://sg-nex-data/data/bambu_training/fastq/A549_directRNA_sample1.fastq.gz ./
 
-# align using Minimap2 
-minimap2 -ax splice -uf -k14 Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa A549_directRNA_sample1.fastq.gz > A549_directRNA_sample1.sam  #needs more than 4gb ram
+# align using Minimap2 - note this step needs more than 8GB of RAM, otherwise it will get killed automatically after a minute or so
+minimap2 -ax splice -uf -k14 Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa A549_directRNA_sample1.fastq.gz > A549_directRNA_sample1.sam
 samtools view -Sb A549_directRNA_sample1.sam | samtools sort -o A549_directRNA_sample1.bam
 samtools index A549_directRNA_sample1.bam
 ```

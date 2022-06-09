@@ -8,6 +8,8 @@ tags: ["HPC", "Introduction", "EC2", "Optional"]
 
 This workshop section walks you through setting up your own EC2 Linux instance from a premade AMI, which you will use to run analyses in later sections of the workshop.
 
+We'll be using an image built by the Chen Lab at NUS and GIS. This has a lot of common tools useful for bacterial (and general) genomics installed. We have documented [what is on this AMI and how it was set up](https://github.com/swainechen/chenlab-training/tree/main/sysadmin) on our [accompanying GitHub repository](https://github.com/swainechen/chenlab-training). Those instructions may be useful if you want to set up the same software on another system and may help you with some hints when installing other software as well for your own work.
+
 Specifically, you learn how to:
 
 **a.	[Sign in to the AWS Management Console and explore it.](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/03-ec2fromsharedami/04-aws-ec2-dashboard.html)**  
