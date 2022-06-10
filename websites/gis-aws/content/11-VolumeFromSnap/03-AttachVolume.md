@@ -12,7 +12,7 @@ tags = ["tutorial", "aws console", "ec2"]
 
 3.	In the **Attach Volume** dialog, click on the **Instance** field and select the EC2 Instance either by looking for the Instance ID or Name Tag. Click **Attach** to attach the Volume. In the list of displayed Volumes you should see your new Volume is **In Use**.
 
-![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2AttachVolume.png)
+![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2AttachVolume-2.png)
 
 4.	On the left navigation pane click **EC2 Dashboard** at the very top. 
 
@@ -23,5 +23,5 @@ tags = ["tutorial", "aws console", "ec2"]
 
 6.	In the **Description** tab below scroll down to **Block Devices** to view the new block device added (e.g. /dev/sdh). **Important**: This device name could be different from what is shown below. Keep track of the device name and size; you'll need that information for mounting the volume later. 
 
-![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2AttachedVolume.png)
+![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2AttachedVolume-2.png)
 

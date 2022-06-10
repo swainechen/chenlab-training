@@ -40,7 +40,7 @@ Observe that by default, the image is set to Private. Keep that option checked, 
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2AMIPermissionsDialog2.png)
 
-Your AMI has now been shared with this specific AWS Account Number provided. Invite your collaborator to click on **Launch Instance** on the **EC2 Dashboard** and search for the AMI you recently shared under **My AMIs** > **Shared with me**.  
+Your AMI has now been shared with this specific AWS Account Number provided. Invite your collaborator to click on **Launch Instance** on the **EC2 Dashboard** and search for the AMI you recently shared under **Application and OS images (Amazon Machine Image)** > **My AMIs** > **Shared with me**.  
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2AMIshared.png)
 

@@ -1,6 +1,6 @@
 +++
-title = "d. RNA-Seq data-Bambu"
-weight = 120
+title = "Add'l-3: RNA-Seq data-Bambu"
+weight = 180
 tags = ["S3", "RNA-Seq", "Bambu"]
 +++
 
