@@ -7,7 +7,12 @@ tags = ["bambu", "RNA-seq", "transcript"]
 
 Long read RNA sequencing, Nanopore sequencing, has been widely adopted in different areas. The ability to produce full-length reads of RNAs has been a great improvement to the previous sequencing technologies. This is shown to have the potential to uncover the full genome picture, same as for transcriptomics, where varying isoforms can be discovered in full, fusion isoforms even. 
 
-Here we use this long read RNA sequencing analysis tool, Bambu, a R package that can easily process multiple samples in one command that does both transript discovery and quantification. Comparing to other softwares, this software is comparably more efficient while being more sensitive and precise in transcript discovery, which is very important in transript quantification as well.
+Here we use this long read RNA sequencing analysis tool, Bambu, a R package that can easily process multiple samples in one command that does both transript discovery and quantification. Comparing to other softwares, this software is comparably more efficient while being more sensitive and precise in transcript discovery, which is very important in transcript quantification as well. 
+
+```bash 
+mkdir -p /tmp/RNASeq
+cd /tmp/RNASeq
+```
 
 The analysis is run with built-in R, a different language from what you have been using in the rest of the tutorial (bash) and those commands will not work. This session will require a AWS machine of 8GB RAM.
 
@@ -69,4 +74,4 @@ ls
 ```
 You should see a file called ENSG00000107104_CPM.pdf.
 
-Congratulations, you now know how to run transcript discovery and quantification using R on an AWS EC2 instance. 
+Congratulations, you now know how to run transcript discovery and quantification using R on an AWS EC2 instance. Next, we'll look at how to make an AMI from your own machine. 

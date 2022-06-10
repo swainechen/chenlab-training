@@ -14,14 +14,14 @@ We will now launch an EC2 Linux-based instance.
 
 ![EC2LaunchInstance](/images/hpc-aws-parallelcluster-workshop/EC2InstanceName-2.png)
 
-3.	Click on "Add additional tags" and  "Add Tag". You will find the "Name" you provided for your instance. Now enter the key and value. These keys, more correctly known as a tags, will appear in the console once the instance launches. It makes it easy to keep track of running machines in a complex environment. Create additional tags similar for the ones you used for the key pair previously - give a user and grant key to this machine, and enter the same values. When ready, select **Instances, Volumes, Network interfaces** under the **Resource types**.
+3.	Click on **Add additional tags** and  "Add Tag". You will find the "Name" you provided for your instance. Now enter the key and value. These keys, more correctly known as a tags, will appear in the console once the instance launches. It makes it easy to keep track of running machines in a complex environment. Create additional tags similar for the ones you used for the key pair previously - give a user and grant key to this machine, and enter the same values. When ready, select **Instances, Volumes, Network interfaces** under the **Resource types**.
 
 ![EC2AddTags](/images/hpc-aws-parallelcluster-workshop/EC2AddTags-2.png)
 
-4.	In **Step1: Choose an Amazon Machine Image(AMI)**, enter the AMI ID shared for the training into the **Search for an AMI...** search box. The **AMI** may differ from the one pictured; refer to instructor's directions.  
+4.	Under **Application and OS images (Amazon Machine Image)** enter the AMI ID shared for the training into the search box. The **AMI** may differ from the one pictured; refer to instructor's directions.  
 
 **Note:**
-> For this training, search for `CHENLAB-PUBLIC` and choose the AMI which has ID `ami-07b3bbf5c844d85c9`. You can find out more about this AMI in Appendix: About the AMI.
+> For this training, search for `CHENLAB-PUBLIC` and choose the AMI which has ID `ami-07e12d19a1d2d37bb`. You can find out more about this AMI in Appendix: About the AMI.
 
 ![EC2SelectAMI](/images/hpc-aws-parallelcluster-workshop/EC2SearchAMI.png)
 
