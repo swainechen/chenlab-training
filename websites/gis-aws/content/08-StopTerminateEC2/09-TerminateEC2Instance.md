@@ -8,7 +8,7 @@ We will now Terminate the EC2 Instance.
 
 **NOTE**: Ensure your previous EC2 Image was successful; we'll be using it in the next portion of the workshop. In this segment, you will be terminating your EC2 Instance. This is permanent and irreversible. However, using this EC2 Image, it is possible to spin up an identical machine. In general, be very cautious when terminating machines.
 
-1.	Select the EC2 Instance from the list of instances. Click on **Actions** > **Instance State** > **Terminate Instance**.
+1.	Select the EC2 Instance from the list of instances. Click on **Instance State** > **Terminate Instance**.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2InstanceTerminate-2.png)
 

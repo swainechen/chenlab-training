@@ -73,4 +73,4 @@ spades.py -t 2 -1 /tmp/fastq/SRR6327950/SRR6327950_1.fastq.gz -2 /tmp/fastq/SRR6
 
 **NOTE**: This assembly above will complete on a t3a.large and takes about 5 hours. 
    
-Excellent! This is a pretty routine task that can easily be run on an AWS EC2 instance. As experienced when conducting the assembly in Step 3, selecting the right machine for the job is incredibly important. If you run out of RAM or space on your disk, your job may quit. Luckily, these can be easily addressed by changing your instance type or by attaching another EBS volume to your machine. Next, we'll look at how to make an AMI from your own machine. 
+Excellent! This is a pretty routine task that can easily be run on an AWS EC2 instance. As experienced when conducting the assembly in Step 3, selecting the right machine for the job is incredibly important. If you run out of RAM or space on your disk, your job may quit. Luckily, these can be easily addressed by changing your instance type or by attaching another EBS volume to your machine.  

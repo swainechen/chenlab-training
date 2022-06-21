@@ -1,6 +1,6 @@
 +++
-title = "Opt1: Sharing data with a collaborator"
-weight = 150
+title = "d. S3 exercises: Add'l-1: Sharing data with a collaborator"
+weight = 120
 tags = ["tutorial", "dashboard", "ParallelCluster"]
 +++
 

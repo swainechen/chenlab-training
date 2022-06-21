@@ -15,5 +15,5 @@ Now that a Snapshot has been taken of the volume, we will delete the volume itse
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2VolumeDeleteDialogConfirm.png)
 
-3.	On the **Delete Volume** dialog click on **Yes, Delete** to confirm the delete. The EBS Volume will now be deleted. This volume no longer exists on AWS, and you will no longer be charged for it. 
+3.	On the **Delete Volume** dialog click on **Delete** to confirm the delete. The EBS Volume will now be deleted. This volume no longer exists on AWS, and you will no longer be charged for it. 
 
