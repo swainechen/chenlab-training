@@ -1030,7 +1030,7 @@ saute
 Ubuntu LTS version: 3.13.1<br/>
 Online version: 3.15.4
 
-We'll install the latest version from https://cab.spbu.ru/software/spades/. Note that since we're on a newer kernel / system / libc, we'll have to compile fro msource.
+We'll install the latest version from https://cab.spbu.ru/software/spades/. Note that since we're on a newer kernel / system / libc, we'll have to compile from source.
 ```
 sudo su -
 cd /usr/local/src
