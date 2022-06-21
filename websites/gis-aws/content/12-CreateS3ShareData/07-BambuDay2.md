@@ -126,9 +126,7 @@ rowData(se) #returns additional information about each transcript such as the ge
 The output can be written to files:
 
 ```rscript
-writeBambuOutput(se, path = "./") 
-
-q()  
+writeBambuOutput(se, path = "./")   
 ```
 
 The above command will write ***Bambu*** output to three files

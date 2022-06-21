@@ -18,7 +18,7 @@ This will open the Volumes page showing the specific Volume details.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2VolumeDetach.png)
 
-5.	In the **Detach Volume** dialog box, click **Yes, Detach**; the volume will now be detached and in a few moments the **Status** of the volume will change to **available**, indicating that it could be attached to another instance if required.
+5.	In the **Detach Volume** dialog box, click **Detach**; the volume will now be detached and in a few moments the **Status** of the volume will change to **available**, indicating that it could be attached to another instance if required.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2VolumeDetachDialog.png)
 

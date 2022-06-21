@@ -36,13 +36,7 @@ The AMI ID will now appear.
 
 ![EC2SelectAMI](/images/hpc-aws-parallelcluster-workshop/EC2SearchAMISharedWithMe.png)
 
-5.	Click on the **Select** button to select the AMI.
-
-
-
-
-
-
+5.	Click on the **Select** button to select the AMI. 
 
 6.	Under **Instance type**, click on the drop-down arrow and type **c5.2xlarge** into the search bar.
 **Note:** This is a large instance - we're doing this on purpose. This will not be a default instance you should use until you've considered the resources you need for your project.
