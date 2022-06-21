@@ -1030,22 +1030,21 @@ saute
 Ubuntu LTS version: 3.13.1<br/>
 Online version: 3.15.4
 
-We'll install the latest version from https://cab.spbu.ru/software/spades/.
+We'll install the latest version from https://cab.spbu.ru/software/spades/. Note that since we're on a newer kernel / system / libc, we'll have to compile fro msource.
 ```
 sudo su -
 cd /usr/local/src
-wget https://cab.spbu.ru/files/release3.15.4/SPAdes-3.15.4-Linux.tar.gz
-tar xvzf SPAdes-3.15.4-Linux.tar.gz
-cd SPAdes-3.15.4-Linux
+wget https://cab.spbu.ru/files/release3.15.4/SPAdes-3.15.4.tar.gz
+tar xvzf SPAdes-3.15.4.tar.gz
+cd SPAdes-3.15.4
 # check the docs
-less share/spades/README.md
+less README.md
 
-# link in the binaries
-cd bin
-for i in *; do ln -s /usr/local/src/SPAdes-3.15.4-Linux/bin/$i /usr/local/bin; done
+# compile and install
+PREFIX=/usr/local ./spades_compile.sh
 
-# check it works ok, at least for the help screen
-spades.py
+# check it works ok
+spades.py --test
 ```
 
 #### [velvet](https://github.com/dzerbino/velvet/tree/master)
