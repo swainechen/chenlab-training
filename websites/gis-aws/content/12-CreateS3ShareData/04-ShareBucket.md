@@ -58,6 +58,6 @@ Next we will update the Access Control List to provide read and write permission
 
 At this point you have effectively shared the S3 bucket. Being able to list an object in your S3 bucket is different from being able to download it. This needs object permissions via the ACL (Access control list).  
 
-_We will now run a larger analyses using the RNA-seq data and explore the following features of S3   
+_We will now run a [larger analyses using the long-read RNA-Seq data](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/12-creates3sharedata/07-bambuday2.html) and explore the following features of S3   
 -S3 access control lists (ACLs) to enable public read access.  
 -Accessing an object in the S3 bucket through its URL._  
