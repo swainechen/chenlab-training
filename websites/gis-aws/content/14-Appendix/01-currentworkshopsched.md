@@ -22,7 +22,7 @@ tags = ["schedule", "workshop", "help"]
 1:30 PM - 2:00 PM: Sharing data and checking the bill: Demo and Practical  
 
 **Your AMI ID**
-The AMI used for this exercise is `ami-07b3bbf5c844d85c9`.  
+The AMI used for this exercise is `CHENLAB-PUBLIC-220621-v2.10`, which as ID `ami-0e688975feec36afb`.  
   
 **Troubleshooting**  
 This is an online workshop and technical difficulties are to be expected.  

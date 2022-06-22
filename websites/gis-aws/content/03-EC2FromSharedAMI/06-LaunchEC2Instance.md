@@ -21,7 +21,7 @@ We will now launch an EC2 Linux-based instance.
 4.	Under **Application and OS images (Amazon Machine Image)** enter the AMI ID shared for the training into the search box. The **AMI** may differ from the one pictured; refer to instructor's directions.  
 
 **Note:**
-> For this training, search for `CHENLAB-PUBLIC` and choose the AMI which has ID `ami-07e12d19a1d2d37bb`. You can find out more about this AMI in Appendix: About the AMI.
+> For this training, search for `CHENLAB-PUBLIC` and choose the most recent AMI version; as of June, 2022 this is v2.10, which has ID `ami-0e688975feec36afb`. You can find out more about CHENLAB-PUBLIC AMIs in [Appendix: About the AMI](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/14-appendix/06-aboutyourami.html).
 
 ![EC2SelectAMI](/images/hpc-aws-parallelcluster-workshop/EC2SearchAMI.png)
 
