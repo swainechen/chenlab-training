@@ -38,8 +38,8 @@ The AMI ID will now appear.
 
 5.	Click on the **Select** button to select the AMI. 
 
-6.	Under **Instance type**, click on the drop-down arrow and type **c5.2xlarge** into the search bar.
-**Note:** This is a large instance - we're doing this on purpose. This will not be a default instance you should use until you've considered the resources you need for your project.
+6.	Under **Instance type**, click on the drop-down arrow and type **t3a.medium** into the search bar.
+**Note:** We're doing this on purpose. This will not be a default instance you should use until you've considered the resources you need for your project.
 
 ![EC2ChooseInstancetype](/images/hpc-aws-parallelcluster-workshop/EC2ChooseInstanceType-2.png)
 
