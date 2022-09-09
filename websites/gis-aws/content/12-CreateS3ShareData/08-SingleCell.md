@@ -124,6 +124,11 @@ You can now inspect the results by transferring this file to your local machine.
 
 ####	2. Example of [RCAv2 package](https://github.com/prabhakarlab/RCAv2) for identifying major cell types by projecting single cell gene expression profiles against reference transcriptomes.
 
+Now let us download an RDS that contains a pre-processed Seurat object with cell cluster and RCA annotation information. 
+
+```bash
+wget https://gisxaws-training.s3.ap-southeast-1.amazonaws.com/pbmc3k_final_withRCA2.rds
+``` 
 
 1.	 Identify marker genes for every cluster compared to all other cells
 ```bash
