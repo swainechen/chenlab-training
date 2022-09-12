@@ -32,4 +32,8 @@ Please see below for the different sections in this website, as well as their us
     AWS has many terms that are unique to AWS. This glossary will have more information on the most important for this training.
 
 **h. [FAQ](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/14-appendix/08-faq.html)**  
-    Pretty self explanatory. Here you can find the most frequently asked questions and responses from our trainers.
+    Pretty self explanatory. Here you can find the most frequently asked questions and responses from our trainers.  
+
+**i. [Linux commands](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/14-appendix/09-linuxcomm.html)**   
+    Here are some basic commands for the linux command line also known as the terminal, shell, console, and many others.   
+
