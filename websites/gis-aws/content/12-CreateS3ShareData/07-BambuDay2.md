@@ -205,6 +205,6 @@ To obtain the **S3 URL** of the object in the S3 bucket
 Remember to verify the correct "bucket" name and the "path"                     
 https://"bucket".s3.ap-southeast-1.amazonaws.com/"path"/novel_annotations.UCSC.gtf
 
-![UCSC brower](/images/bambu/UCSC.png)
+![UCSC browser](/images/bambu/UCSC.png)
 
 
