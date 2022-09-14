@@ -8,7 +8,7 @@ tags = ["basics", "commands", "terminal"]
 
 |1. File/directory commands|Description|
 |---|---|
-|ls|List the files in the current folder|  
+|_**ls**_|List the files in the current folder|  
 |ls -al|Same as above but the ‘a’ flag is for “all the files” and the ‘l’ flag is for long format|
 |ls -trlh |List files but with ‘t’ flag to sort files by time, ‘r’ flag to sort files in reverse order, and ‘h’ flag to covert bytes to human-readable format (kB, MB, GB, etc)|   
 |mkdir folder/|Create folder|   
