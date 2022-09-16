@@ -83,7 +83,7 @@ apt install -y automake clang cmake cpanminus cpanoutdated docker-ce \
   gnuplot-nox imagemagick libbio-samtools-perl libboost-all-dev libbz2-dev \
   libcairo2-dev libcurl4-openssl-dev libdatetime-format-dateparse-perl \
   libdatetime-format-dbi-perl libdb-dev libfile-map-perl libfile-type-perl \
-  libfile-which-perl libhdf5-dev libhtml-template-perl \
+  libfile-which-perl libgeos-dev libhdf5-dev libhtml-template-perl \
   libimage-magick-perl libjemalloc-dev libjson-perl liblapack-dev \
   liblzma-dev libmariadb-dev libmemory-usage-perl libmodule-build-perl \
   libncurses-dev libopenmpi-dev libsparsehash-dev libssl-dev \
