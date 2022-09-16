@@ -13,22 +13,22 @@ Today we will use a pre-processed Seurat object to illustrate the difference bet
 cd \
 mkdir single-cell
 cd single-cell
-wget https://gisxaws-training.s3.ap-southeast-1.amazonaws.com/pbmc3k_final_withoutRCA2.rds
-
+aws s3 cp s3://gisxaws-training/pbmc3k_final_withoutRCA2.rds .
+```
+Observe that the pbmc\_withoutRCA file is without annotations prior to running RCAv2
+![Seurat\_pbmc](/images/rcav2/pbmc_withoutRCA.png)
+```
 R
 
 library(dplyr)
 library(Seurat)
-pbmc_withoutRCA <- readRDS(file = "pbmc3k_final_withoutRCA2.rds")
-pbmc_withoutRCA <- RunUMAP(pbmc_withoutRCA, dims = 1:10)
+pbmc_withoutRCA <- readRDS(file = "pbmc3k_final_withoutRCA2.rds")  
+pbmc_withoutRCA <- RunUMAP(pbmc_withoutRCA, dims = 1:10)  
 Seurat <- DimPlot(pbmc_withoutRCA, reduction = "umap", group.by = "seurat_clusters", label = TRUE, label.size = 5)+
-  NoLegend()
+  NoLegend()  
  
 head(pbmc_withoutRCA)
 ```
-Observe that the pbmc\_withoutRCA file is without annotations prior to running RCAv2
-![Seurat\_pbmc](/images/rcav2/pbmc_withoutRCA.png)
-
 
 ####	2. Example of [RCAv2 package](https://github.com/prabhakarlab/RCAv2) for identifying major cell types by projecting single cell gene expression profiles against reference transcriptomes.  
 Now let us process the above Seurat object with cell cluster and RCA annotation information.  
@@ -92,7 +92,8 @@ RCA <- DimPlot(pbmc, reduction = "umap", group.by = "RCA.annotation", label = TR
 gridExtra::grid.arrange(Seurat,RCA,ncol=1)
 q()
 # type in 'n' in response to "Save workspace image?"
-
+```
+```
 mv Rplots.pdf SeuratVSRCA.pdf
 ```
 ![Seurat\_pbmc](/images/rcav2/SeuratVSRCA.png)
@@ -106,7 +107,7 @@ You can now inspect the plots in SeuratVSRCA.pdf by transferring this file to yo
 	3) Visualisation of major cell type annotations made using RCA2_   
 
 ```bash
-wget https://gisxaws-training.s3.ap-southeast-1.amazonaws.com/pbmc3k_final_withRCA2.rds
+aws s3 cp s3://gisxaws-training/pbmc3k_final_withRCA2.rds
 
 R
 
