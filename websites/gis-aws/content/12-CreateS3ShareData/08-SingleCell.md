@@ -4,22 +4,32 @@ weight = 210
 tags = ["S3", "Single-cell", "RCAv2"]
 +++
 
-In this tutorial we will be processing and analysing a 10x Genomics PBMC single cell gene expression dataset using the Seurat package to - identify marker genes and major cell types, visualise quality control metrics of single cell data. Additionally, we will also see an example of how an R package, RCAv2, can be used to identify major cell types by projecting single cell gene expression profiles against reference transcriptomes.  
+In this tutorial we will be analysing and annotating a 10x Genomics PBMC single cell gene expression dataset that has been pre-processed using the Seurat R package. One of the first analyses of interest for single cell datasets is the identification of cell types. We will be using an R package, [RCAv2](https://github.com/prabhakarlab/RCAv2), for this purpose. 
 
-####	1. A 10x Genomics PBMC single cell gene expression dataset can be processed by the [Satija Lab Seurat Guided Clustering](https://satijalab.org/seurat/articles/pbmc3k_tutorial.html)
-Today we will use a pre-processed Seurat object to illustrate the difference between using the Seurat package along with RCAv2. 
+RCA2 combines reference projection, allowing for robustness to batch effects, with graph-based clustering, allowing for scalability in analyses [(Schmidt et al., 2021)](https://academic.oup.com/nar/article/49/15/8505/6329577). The RCAv2 R package contains reference panels for human and mouse, and facilitates cell type-specific quality control measures. 
+
+We will focus on the reference projection functions within the RCAv2 R package in this session. These functions project query single cell gene expression profiles of interest against reference transcriptomes in the RCAv2 reference panels, and allow for identification of major cell types present in the dataset.
+
+####	1. Process a 10x Genomics PBMC single cell gene expression dataset
+
+Today we will analyse a pre-processed Seurat object. We have performed quality control measures and used the Louvain method for clustering on this dataset. For a sample pre-processing workflow, please see the [Satija Lab Seurat Guided Clustering Tutorial](https://satijalab.org/seurat/articles/pbmc3k_tutorial.html). 
+
+We have made this pre-processed object available as “pbmc3k_final_withoutRCA2.rds”. We will perform dimensionality reduction for visualisation of the dataset: 
+
 
 ```bash
-cd \
+cd ~
 mkdir single-cell
 cd single-cell
 aws s3 cp s3://gisxaws-training/pbmc3k_final_withoutRCA2.rds .
+
+# Now we'll open the R environment
+R
 ```
 Observe that the pbmc\_withoutRCA file is without annotations prior to running RCAv2
 ![Seurat\_pbmc](/images/rcav2/pbmc_withoutRCA.png)
 ```
-R
-
+# Conduct the following in R:
 library(dplyr)
 library(Seurat)
 pbmc_withoutRCA <- readRDS(file = "pbmc3k_final_withoutRCA2.rds")  
@@ -29,16 +39,18 @@ Seurat <- DimPlot(pbmc_withoutRCA, reduction = "umap", group.by = "seurat_cluste
  
 head(pbmc_withoutRCA)
 ```
+Take a look at the metadata for this Seurat object, prior to the addition of cell annotations:
 
-####	2. Example of [RCAv2 package](https://github.com/prabhakarlab/RCAv2) for identifying major cell types by projecting single cell gene expression profiles against reference transcriptomes.  
-Now let us process the above Seurat object with cell cluster and RCA annotation information.  
+####	2. Use the [RCAv2 package](https://github.com/prabhakarlab/RCAv2) to identify major cell types by projecting single cell gene expression profiles against reference transcriptomes  
+
+Now let us analyse the above Seurat object and add cell annotations using RCAv2:
 
 ```bash
 library(RCAv2)
 pbmc <- pbmc_withoutRCA
 ```
 
-1.	Perform major cell type annotation using RCAv2 package on the Seurat object without RCA annotation
+1.	Identify major cell types present in the dataset using the RCAv2 R package	
 ```bash
 RCA_from_Seurat<-RCAv2::createRCAObject(pbmc@assays$RNA@counts, pbmc@assays$RNA@data)
 RCA_from_Seurat<-RCAv2::dataProject(rca.obj = RCA_from_Seurat)
@@ -46,7 +58,7 @@ RCA_from_Seurat<-RCAv2::dataClust(RCA_from_Seurat)
 RCA_from_Seurat<-RCAv2::estimateCellTypeFromProjection(RCA_from_Seurat)
 ```  
 
-2.	Add annotations from RCAv2 to Seurat object
+2.	Add annotations from RCAv2 to the Seurat object
 ```bash
 df_RCA_cell <- data.frame(barcode = colnames(RCA_from_Seurat$projection.data),
                           cell = unlist(RCA_from_Seurat$cell.Type.Estimate))
@@ -54,7 +66,7 @@ rownames(df_RCA_cell) <- df_RCA_cell$barcode
 pbmc$RCA.proj.cell <- df_RCA_cell[colnames(pbmc),"cell"]
 ```  
 
-3.	Aggregate annotations from RCA2 per Seurat cluster
+3.	Aggregate annotations from RCAv2 per Seurat cluster
 ```bash
 df_RCA_results <- FetchData(pbmc, vars = c("seurat_clusters","RCA.proj.cell"))
 df_RCA_results$count <- 1
@@ -69,7 +81,7 @@ for (i in 0:(length(vec_RCA_cluster_annotations)-1)){
 }
 ```    
 
-4.	Annotate each cell with its Seurat cluster's RCA annotation
+4.	Annotate each cell with its Seurat cluster's RCAv2 annotation
 ```bash
 df_umap_cluster_RCA2 <- FetchData(pbmc, vars = c("UMAP_1","UMAP_2","seurat_clusters"))
 df_umap_cluster_RCA2$cell <- NA
@@ -82,7 +94,7 @@ pbmc$RCA.annotation <- df_umap_cluster_RCA2[colnames(pbmc),"cell"]
 
 head(pbmc)
 ```
-Observe the pbmc\_withRCA file which now has RCA annotations
+Observe the pbmc object, which now contains RCA annotations
 ![SeuratRCA\_pbmc](/images/rcav2/pbmc_withRCA.png)
 
 5.	Visualise UMAP with RCA annotations
@@ -94,34 +106,32 @@ q()
 # type in 'n' in response to "Save workspace image?"
 ```
 ```
-mv Rplots.pdf SeuratVSRCA.pdf
+mv Rplots.pdf Seurat_RCA.pdf
 ```
 ![Seurat\_pbmc](/images/rcav2/SeuratVSRCA.png)
 
-You can now inspect the plots in SeuratVSRCA.pdf by transferring this file to your local machine. Refer to [Local machine to EC2 instance and vice-versa - Step4](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/12-creates3sharedata/07-datatransfer.html)
+You can now inspect the plots in Seurat_RCA.pdf by transferring this file to your local machine. Refer to [Local machine to EC2 instance and vice-versa - Step4](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/12-creates3sharedata/07-datatransfer.html)
 
 
->_**Optional**: Now let us review single cell datasets and try few more visualizations using a pre-processed Seurat object with RCA annotation information   
-	1) How to identify marker genes in single cell datasets   
-	2) Visualisation of marker gene expression in single cell datasets   
-	3) Visualisation of major cell type annotations made using RCA2_   
+>_**Optional**: We can try a few more analyses and visualizations using the pre-processed Seurat object, such as:
+	1) Identifying marker genes in single cell datasets   
+	2) Visualising marker gene expression in single cell datasets   
+	3) Visualising major cell type annotations made using RCA2_   
 
 ```bash
-aws s3 cp s3://gisxaws-training/pbmc3k_final_withRCA2.rds
-
 R
 
 library(dplyr)
 library(Seurat)
 pbmc <- readRDS(file = "pbmc3k_final_withRCA2.rds")
 
-### Identify marker genes for every cluster compared to all other cells
+### Identify marker genes for every cluster compared to all other cells 
 pbmc.markers <- FindAllMarkers(pbmc, only.pos = TRUE, min.pct = 0.25, logfc.threshold = 0.25)
 pbmc.markers %>%
   group_by(cluster) %>%
   slice_max(n = 2, order_by = avg_log2FC)
 
-### Plot raw counts of marker genes of interest, and visualise marker gene expression, and major cell type annotations made using RCA2
+### Plot raw counts of marker genes of interest, and visualise marker gene expression
 VlnPlot(pbmc, features = c("NKG7", "PF4"), slot = "counts", log = TRUE)
 FeaturePlot(pbmc, features = c("MS4A1", "CD3E", "CD4", "CD8A",
                                "GNLY", "CD14", "FCGR3A", "LYZ",
