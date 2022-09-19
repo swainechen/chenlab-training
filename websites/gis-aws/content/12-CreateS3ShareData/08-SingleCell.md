@@ -137,6 +137,8 @@ library(Seurat)
 pbmc <- readRDS(file = "pbmc3k_final_withoutRCA2.rds")
 
 # Identify marker genes for every cluster compared to all other cells 
+pbmc.markers <- FindAllMarkers(pbmc, only.pos = TRUE, min.pct = 0.25, logfc.threshold = 0.25)
+
 vec_marker_genes <- (pbmc.markers %>%
   group_by(cluster) %>%
   slice_max(n = 2, order_by = avg_log2FC))$gene
@@ -149,7 +151,7 @@ dev.off()
 q()
 ```   
   
-These plots provide the specific expression level of different marker genes and visualise the location of different marker genes across the different clusters. Feel free to explore this dataset further.  
+These plots provide the specific expression level of different marker genes and visualise the expression of different marker genes across the different clusters. Feel free to explore this dataset further.  
 
 
 ![Violin\_pbmc](/images/rcav2/optional_violin.png)
