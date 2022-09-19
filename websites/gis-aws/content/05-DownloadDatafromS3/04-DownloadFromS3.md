@@ -6,14 +6,14 @@ weight = 50
 tags = ["tutorial", "aws console", "ec2"]
 +++
 
-Now that you have access to the shared S3 bucket let us download data from the S3 bucket to your machine.
+Now that you have access to the shared S3 bucket, we will download data from the S3 bucket to your machine.
 
-1.	Run the command to list the folders of the S3 bucket:
+1.	First, list the folders in the S3 bucket:
 
 ```bash
 aws s3 ls --profile training --region ap-southeast-1 s3://slchen-lab-transfer/GIS-training/
 ```
-you will find the sub-folders of the **slchen-lab-transfer** in the list under the "GIS-training" folder. 
+You will find the sub-folders of the **slchen-lab-transfer** in the list under the "GIS-training" folder. 
 
 **NOTE**: Only a specific few folders may have been shared. Users are able to select which folders are available to the public within a bucket.  
 
@@ -21,7 +21,7 @@ We will now copy files from a specific location within this folder to your machi
 
 Before that, let's create a directory on your machine to store this data.
 
-2.	Run the following commands to create a directory to hold the data and cd to that directory.
+2.	Run the following commands to create a directory to hold the data and cd to that directory:
 
 ```bash
 mkdir -p /tmp/fastq/SRR6327950
