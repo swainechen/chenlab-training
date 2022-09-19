@@ -8,27 +8,27 @@ tags = ["basics", "commands", "terminal"]
 
 |1. FILE/DIRECTORY COMMANDS|DESCRIPTION|
 |---|---|
-|**ls**|_List the files in the current folder_|  
-|**ls -al**|_Same as above but the ‘a’ flag is for “all the files” and the ‘l’ flag is for long format_|
-|**ls -trlh**|_List files but with ‘t’ flag to sort files by time, ‘r’ flag to sort files in reverse order, and ‘h’ flag to covert bytes to human-readable format (kB, MB, GB, etc)_|   
-|**mkdir folder/**|_Create folder_|   
-|**mkdir -p path/folder/**|_Create folder (creating intermediate folders as necessary, does not fail if the folder already exists)_|
-|**cd /home/ec2-user/**|_Change directory to folder /home/ec2-user/_|   
-|**mv my_file destination_folder/**|_Move file into destination folder_|
-|**cp my_file ~/destination_folder/**|_Copy file into destination folder. The tilde ~ refers to the home directory_|
-|**cp -ax /tmp/fastq /mnt/volume1**|_Same as above but with ‘a’ flag for ‘archive’ (preserve file attributes) and ‘x’ flag for ‘stay on this file system’_| 
-|**df -h**|_Display free disk space. The ‘h’ flag is to convert disk size info into human-readable format (GB, TB, etc)_|
-|**which executable_file**|_Shows folder location of the executable file (if it is in the path)_|
-|**chmod 600 ~/.ssh/id_rsa**|_Set the ssh key permissions so that only the file owner can read and write it_|
-|**chmod 600 my_ssh_key.pem**|_Same as above but applied to my_ssh_key.pem_|   
+|``` ls ```|_List the files in the current folder_|
+|```ls -al```|_Same as above but the ‘a’ flag is for “all the files” and the ‘l’ flag is for long format_|
+|```ls -trlh```|_List files but with ‘t’ flag to sort files by time, ‘r’ flag to sort files in reverse order, and ‘h’ flag to covert bytes to human-readable format (kB, MB, GB, etc)_|   
+|```mkdir folder/```|_Create folder_|   
+|```mkdir -p path/folder/```|_Create folder (creating intermediate folders as necessary, does not fail if the folder already exists)_|
+|```cd /home/ec2-user/```|_Change directory to folder /home/ec2-user/_|   
+|```mv my_file destination_folder/```|_Move file into destination folder_|
+|```cp my_file ~/destination_folder/```|_Copy file into destination folder. The tilde ~ refers to the home directory_|
+|```cp -ax /tmp/fastq /mnt/volume1```|_Same as above but with ‘a’ flag for ‘archive’ (preserve file attributes) and ‘x’ flag for ‘stay on this file system’_| 
+|```df -h```|_Display free disk space. The ‘h’ flag is to convert disk size info into human-readable format (GB, TB, etc)_|
+|```which executable_file```|_Shows folder location of the executable file (if it is in the path)_|
+|```chmod 600 ~/.ssh/id_rsa```|_Set the ssh key permissions so that only the file owner can read and write it_|
+|```chmod 600 my_ssh_key.pem```|_Same as above but applied to my_ssh_key.pem_|   
 |||   
 |**2. FILE TRANSFER COMMANDS**|
-|**wget https://hostname/path/file_to_download**|_Download file at the URL specified_|
-|**curl -LO https://hostname/path/file_to_download**|_Download file at the URL specified ‘L’ flag to handle redirects, ‘O’ flag to use the last bit of the URL after the slash as the filename_| 	
-|**scp my_file ubuntu\@32.18.231.125:/home/ubuntu/**|_Copy the file my_file to the server at 32.18.231.125, at folder /home/ubuntu/, logging in as the user ‘ubuntu’ (you will be prompted for password)_|
-|**scp -I my_ssh_keypair.pem my_file ubuntu\@32.18.231.125:/home/ubuntu/**|_Same as above but specifying the keypair as my_ssh_keypair.pem_|
-|**pscp -P 22 -I my_ssh_keypair.ppk my_file ubuntu\@32.18.231.125:/home/ubuntu/**|_Same as above but using pscp (PuTTY secure copy client)_|
-|**rsync -e 'ssh -I my_ssh_keypair.pem’ -avxu my_file ubuntu\@32.18.231.125:/home/ubuntu/**|_Same as above but using rsync_|
+|```wget https://hostname/path/file_to_download```|_Download file at the URL specified_|
+|```curl -LO https://hostname/path/file_to_download```|_Download file at the URL specified ‘L’ flag to handle redirects, ‘O’ flag to use the last bit of the URL after the slash as the filename_| 	
+|```scp my_file ubuntu\@32.18.231.125:/home/ubuntu/```|_Copy the file my_file to the server at 32.18.231.125, at folder /home/ubuntu/, logging in as the user ‘ubuntu’ (you will be prompted for password)_|
+|```scp -I my_ssh_keypair.pem my_file ubuntu\@32.18.231.125:/home/ubuntu/```|_Same as above but specifying the keypair as my_ssh_keypair.pem_|
+|```pscp -P 22 -I my_ssh_keypair.ppk my_file ubuntu\@32.18.231.125:/home/ubuntu/```|_Same as above but using pscp (PuTTY secure copy client)_|
+|```rsync -e 'ssh -I my_ssh_keypair.pem’ -avxu my_file ubuntu\@32.18.231.125:/home/ubuntu/```|_Same as above but using rsync_|
 |**Shortcuts (requires configuring ~/.ssh/config)**||
 |**scp my_file myserver:/home/ubuntu/**||
 |**rsync -avxu my_file my_server:/home/ubuntu/**||
@@ -39,13 +39,13 @@ tags = ["basics", "commands", "terminal"]
     IdentityFile ~/.ssh/my_ssh_keypair.pem"|   
 |||
 |**3. SSH (SECURE SHELL) COMMANDS**|	
-|**ssh ec2-user\@32.18.231.125**|_Uses SSH to log in to the server at IP address 32.18.231.125, with the username “ec2-user”_|
-|**ssh -i my_ssh_keypair.pem ec2-user\@32.18.231.125**|_Same as above but specifying my_ssh_keypair.pem as the keypair (for password-less login)_|
-|**ssh ec2-user\@32.18.231.125 “ls -al”**|_Same as first line, but runs command “ls -al” on the server and then logs out_|  
+|```ssh ec2-user\@32.18.231.125```|_Uses SSH to log in to the server at IP address 32.18.231.125, with the username “ec2-user”_|
+|```ssh -i my_ssh_keypair.pem ec2-user\@32.18.231.125```|_Same as above but specifying my_ssh_keypair.pem as the keypair (for password-less login)_|
+|```ssh ec2-user\@32.18.231.125 “ls -al”```|_Same as first line, but runs command “ls -al” on the server and then logs out_|  
 |||     	
 |**4. MOUNT, FORMAT, UNMOUNT A VOLUME**|	
-|**lsblk**|_List block devices_|
-|**sudo file -s /dev/nvme1n1**|_Check if the volume has any data_|
+|```lsblk```|_List block devices_|
+|```sudo file -s /dev/nvme1n1```|_Check if the volume has any data_|
 |**sudo mkfs -t ext4 /dev/nvme1n1**|_Format the volume to the ext4 filesystem_|
 |**sudo mkdir /mnt/volume1**|_Create a folder where the volume will be mounted_|
 |**sudo mount /dev/nvme1n1 /mnt/volume1**|_Mount the volume “/dev/nvme1n1” to the folder “/mnt/volume1”_|
