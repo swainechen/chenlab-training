@@ -4,7 +4,9 @@ weight = 70
 tags = ["tutorial", "cloud9", "ParallelCluster"]
 +++
 
-In this section of the lab you will create a Linux instance and login to it to run a few Linux commands. To manage the instance, you need to be able to connect to it via SSH. The following steps outline how to create a unique SSH key pair for this purpose.
+In this section of the lab you will create a Linux instance and login to it to run a few Linux commands. To log in to an instance, you need to be able to connect via SSH. There are several layers of security for accessing instances that are enabled by default by AWS. One of these is with an SSH key pair, which can (very roughly) be thought of as like a unique username and password.
+
+The following steps outline how to create a new SSH key pair that then you will use to log in to a new Linux instance.
 
 1.	Sign into the AWS Management Console and open the Amazon EC2 console at 
 [https://console.aws.amazon.com/ec2](https://console.aws.amazon.com/ec2)

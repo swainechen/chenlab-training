@@ -1,5 +1,5 @@
 ---
-title: " Setup a Linux Machine"
+title: " Start a virtual Linux machine"
 date: 2019-01-24T09:05:54Z
 weight: 20
 pre: "<b>II ⁃ </b>"

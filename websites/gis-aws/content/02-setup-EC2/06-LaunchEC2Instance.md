@@ -32,8 +32,9 @@ We will now launch an EC2 Linux based instance.
 
 ![EC2SelectAMI](/images/hpc-aws-parallelcluster-workshop/EC2SelectAMI.png)
 
-7.	Under **Instance type**, click on the drop-down arrow and type **c5.2xlarge** into the search bar.   
-**Note:** This is a large instance - we're doing this on purpose. This will not be a default instance you should use until you've considered the resources you need for your project.
+7.	Under **Instance type**, click on the drop-down arrow and type **c5.2xlarge** into the search bar.
+
+**Note:** This is a somewhat large instance; in general, you should pick these instances based on an analysis of how much RAM and CPU you will need for your job / analysis.
 
 ![EC2ChooseInstancetype](/images/hpc-aws-parallelcluster-workshop/EC2ChooseInstanceType-1.png)
 

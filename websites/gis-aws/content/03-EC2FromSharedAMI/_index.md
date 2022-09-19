@@ -1,5 +1,5 @@
 ---
-title: " Setup Linux machine from shared Image"
+title: " Start a Linux machine from a shared AMI"
 date: 2019-01-24T09:05:54Z
 weight: 20
 pre: "<b>III ⁃ </b>"

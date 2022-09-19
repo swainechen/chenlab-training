@@ -11,7 +11,7 @@ tags = ["tutorial", "dashboard", "ParallelCluster"]
 
 2.	Choose **EC2** to open the **EC2 Dashboard**. 
 
-Although instances are generally launched through scripts, they can also be launched directly from the EC2 Dashboard. 
+Instances may be launched via a graphical user interface (the console) or with command line scripts. We'll start with the graphical console interface first, known as the **EC2 Dashbord**.
 
 Spend a few minutes familiarizing yourself with the layout of the dashboard:
 
