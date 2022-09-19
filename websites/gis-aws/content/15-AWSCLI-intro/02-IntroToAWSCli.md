@@ -11,7 +11,7 @@ The [AWS CLI](https://aws.amazon.com/cli/) allows you to manage services using t
 Connect to an EC2 instance and paste the following command. AWS CLI is already installed on your machine, but this will initiate an update. There are a few ways to check this, depending on how it was installed
 
 ```bash
-sudo apt update && sudo apt upgrade; dpkg --list | grep awscli
+dpkg --list | grep awscli
 pip3 list | grep awscli
 ```
 

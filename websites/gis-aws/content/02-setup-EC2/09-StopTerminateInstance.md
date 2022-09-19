@@ -37,5 +37,5 @@ We will now terminate the EC2 instance.
 
 The instance will now be terminated.
 
-8.	After a minute, the **Instance State** of the instance which will now show **Terminated**.
+8.	After a few minutes, the **Instance State** of the instance will update to show that it's **Terminated**.
 

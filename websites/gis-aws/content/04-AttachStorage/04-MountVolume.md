@@ -14,7 +14,16 @@ lsblk
 	
 The output will list the disks attached to your instance.
 
-**NOTE**: Newer Linux kernels may rename your devices to **/dev/xvdf** through **/dev/xvdp** internally, even when the device name entered here (and shown in the details) is /dev/sdf through /dev/sdp.
+**NOTE**: Depending on the Linux version and the machine type, the device names may differ. The EC2 Console will generally show **/dev/sdX**, where X is a lower-case letter, but you may see **/dev/xvdX** or **/dev/nvmeYn1**. The following table may help with translating. Another way to help track is to pick different sizes for your EBS volumes (such as 151, 152, 153 GB for different volumes).
+
+| Device name (Console) | Alternate 1 | Alternate 2 |
+| --- | --- | --- |
+| /dev/sda | /dev/xvda | /dev/nvme0n1 |
+| /dev/sdb | /dev/xvdb | /dev/nvme1n1 |
+| /dev/sdc | /dev/xvdc | /dev/nvme2n1 |
+| /dev/sdd | /dev/xvdd | /dev/nvme3n1 |
+| /dev/sde | /dev/xvde | /dev/nvme4n1 |
+| /dev/sdf | /dev/xvdf | /dev/nvme5n1 |
 
 3.	Check for an unmounted filesystem of size 10GB. For example: "nvme1n1" as shown below:
 

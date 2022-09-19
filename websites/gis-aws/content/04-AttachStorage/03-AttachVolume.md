@@ -1,5 +1,5 @@
 +++
-title = "b. Attach EBS Volume to Instance"
+title = "b. Attach an EBS Volume to a running Instance"
 date = 2019-09-18T10:46:30-04:00
 draft = false
 weight = 50
@@ -27,4 +27,15 @@ If attached successfully - In the list of displayed volumes you should see your 
 
 ![Copy Paste](/images/hpc-aws-parallelcluster-workshop/EC2AttachedVolume.png)
 
-**Important**: Note down the specific device name for the next step of mounting the volume. The drive name may differ from what's shown. **NOTE**: Newer Linux kernels may rename your devices to **/dev/xvdf through /dev/xvdp** internally, even when the device name entered here (and shown in the details) is /dev/sdf through /dev/sdp.
+**Important**: Note down the specific device name for the next step of mounting the volume. The drive name may differ from what's shown.
+
+**NOTE**: Depending on the Linux version and the machine type, the device names may differ. The EC2 Console will generally show **/dev/sdX**, where X is a lower-case letter, but you may see **/dev/xvdX** or **/dev/nvmeYn1**. The following table may help with translating. Another way to help track is to pick different sizes for your EBS volumes (such as 151, 152, 153 GB for different volumes).
+| Device name (Console) | Alternate 1 | Alternate 2 |
+| --- | --- | --- |
+| /dev/sda | /dev/xvda | /dev/nvme0n1 |
+| /dev/sdb | /dev/xvdb | /dev/nvme1n1 |
+| /dev/sdc | /dev/xvdc | /dev/nvme2n1 |
+| /dev/sdd | /dev/xvdd | /dev/nvme3n1 |
+| /dev/sde | /dev/xvde | /dev/nvme4n1 |
+| /dev/sdf | /dev/xvdf | /dev/nvme5n1 |
+

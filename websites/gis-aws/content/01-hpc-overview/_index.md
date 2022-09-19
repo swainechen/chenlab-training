@@ -27,7 +27,8 @@ This series of workshops will familiarize you with the components of Amazon Web 
 - Little to no exposure to cloud computing. We will cover fundamental AWS concepts and not advanced topics such as AWS Batch.
 - No bioinformatics training will be provided in this course.
 
-**Background**: Your team has been asked to
-- Align raw reads from bacterial genome sequences.  
+**Background**: Your team has been asked to do one of the following:
+- Call SNPs from a bacterial resequencing data set.
 - Perform long-read RNA-Seq analysis.  
+- Perform annotation of cell types from a single cell RNA-seq dataset.
 You will run your analysis on AWS compute services and upload the data onto AWS storage services.

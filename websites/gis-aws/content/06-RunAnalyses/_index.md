@@ -1,5 +1,5 @@
 ---
-title: "Run your analyses"
+title: "Run a basic analysis"
 date: 2019-01-24T09:05:54Z
 weight: 300
 pre: "<b>VII ⁃ </b>"

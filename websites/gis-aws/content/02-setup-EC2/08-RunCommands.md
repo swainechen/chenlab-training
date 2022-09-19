@@ -42,6 +42,6 @@ Now the command should be recognized! There we go. Try seqtk again:
 ```bash
 ./seqtk
 ```
-  
-As you can see, working from an empty instance can be quite troublesome. You'll need to download absolutely everything you need. AWS offers **AMIs** - Amazon Machine Instances - that can act as templates for pre-built machines. Let's get ready to try that.
+
+As you can see, the default "base" images are exactly that - clean initial installations of just the operating system. These are perfect for customizing so that you have exactly the software you might need - but some setup will be required. Another option is to use an **AMI** (Amazon Machine Image) that already has some software installed. We've made our lab's AMI, which has quite a bit of genomics sofware pre-installed, available for all to use. We'll do this in the next section.
 

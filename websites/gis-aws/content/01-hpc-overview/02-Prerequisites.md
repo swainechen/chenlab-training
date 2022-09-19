@@ -16,3 +16,13 @@ The following prerequisites are required for the HPC workshops:
 This workshop includes multiple code samples that you can copy and paste using the button shown below.
 
 ![Copy Paste](/images/introductory-steps/copy-paste.png)
+
+The above is just an image to illustrate where the button is. You can try this out by doing a copy-paste with these basic commands below:
+
+```bash
+cat /etc/issue
+```
+
+```bash
+uname -a
+```
