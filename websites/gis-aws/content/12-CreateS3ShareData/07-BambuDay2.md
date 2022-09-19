@@ -46,7 +46,7 @@ For this analysis, you can directly download the bam files needed from the open 
 
 ```bash
 # download aligned bam files for A549 samples 
-aws s3 sync --no-sign-request s3://sg-nex-data/data/bambu_training/bam/ ./ 
+aws s3 sync --no-sign-request s3://sg-nex-data/data/data_tutorial/bam/ ./ 
 ```
 ### Quality Control
 
