@@ -6,7 +6,7 @@ tags = ["S3", "Single-cell", "RCAv2"]
 
 In this tutorial we will be analysing and annotating a 10x Genomics PBMC single cell gene expression dataset that has been pre-processed using the Seurat R package. One of the first analyses of interest for single cell datasets is the identification of cell types. We will be using an R package, [RCAv2](https://github.com/prabhakarlab/RCAv2), for this purpose. 
 
-RCAv2 combines reference projection, allowing for robustness to batch effects, with graph-based clustering, allowing for scalability in analyses [(Schmidt et al., 2021)](https://academic.oup.com/nar/article/49/15/8505/6329577). The RCAv2 R package contains reference panels for human and mouse, and facilitates cell type-specific quality control measures. 
+RCAv2 combines reference projection, allowing for robustness to batch effects, with graph-based clustering, allowing for scalability in analyses [(Schmidt et al., 2021)](https://academic.oup.com/nar/article/49/15/8505/6329577). The RCAv2 R package contains reference panels for human and mouse, allowing users at all levels of scientific background and knowledge to quickly annotate cell types that are present in both their datasets and the RCAv2 reference panels. This also facilitates cell type-specific quality control measures.
 
 We will focus on the reference projection functions within the RCAv2 R package in this session. These functions project query single cell gene expression profiles of interest against reference transcriptomes in the RCAv2 reference panels, and allow for identification of major cell types present in the dataset.
 
@@ -137,17 +137,20 @@ library(Seurat)
 pbmc <- readRDS(file = "pbmc3k_final_withoutRCA2.rds")
 
 # Identify marker genes for every cluster compared to all other cells 
-pbmc.markers <- FindAllMarkers(pbmc, only.pos = TRUE, min.pct = 0.25, logfc.threshold = 0.25)
-pbmc.markers %>%
+vec_marker_genes <- (pbmc.markers %>%
   group_by(cluster) %>%
-  slice_max(n = 2, order_by = avg_log2FC)
-
+  slice_max(n = 2, order_by = avg_log2FC))$gene
+ 
 # Plot raw counts of marker genes of interest, and visualise marker gene expression
-VlnPlot(pbmc, features = c("NKG7", "PF4"), slot = "counts", log = TRUE)
-FeaturePlot(pbmc, features = c("MS4A1", "CD3E", "CD4", "CD8A",
-                               "GNLY", "CD14", "FCGR3A", "LYZ",
-                               "FCER1A", "PPBP"))
+VlnPlot(pbmc, features = c(vec_marker_genes[1], vec_marker_genes[3]), slot = "counts", log = TRUE)
+FeaturePlot(pbmc, features = vec_marker_genes)                               
+                              
 dev.off()
 q()
 ```   
+  
+These plots provide the specific expression level of different marker genes and visualise the location of different marker genes across the different clusters. Feel free to explore this dataset further.  
 
+
+![Violin\_pbmc](/images/rcav2/optional_violin.png)
+![Feature\_pbmc](/images/rcav2/optional_feature.png)
