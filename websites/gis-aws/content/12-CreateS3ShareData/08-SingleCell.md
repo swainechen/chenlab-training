@@ -131,6 +131,7 @@ You can now inspect the plots in Seurat\_RCA.pdf by transferring this file to yo
 # Make sure to open the R environment
 R
 
+# Load your resources
 library(dplyr)
 library(Seurat)
 pbmc <- readRDS(file = "pbmc3k_final_withoutRCA2.rds")

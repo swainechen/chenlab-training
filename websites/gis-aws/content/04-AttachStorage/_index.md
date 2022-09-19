@@ -1,7 +1,7 @@
 ---
 title: "Attach additional storage"
 date: 2019-01-24T09:05:54Z
-weight: 20
+weight: 60 
 pre: "<b>IV ⁃ </b>"
 tags: ["HPC", "Introduction", "EC2", "Optional"]
 ---
