@@ -18,7 +18,7 @@ You will now learn how to share an S3 Bucket with your collaborator and make the
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3SelectBucketLink.png)
 
 4.	Click on **Permissions** to view the bucket access configurations.
-Observe the first button **Bucket Public Access** is selected by default and shows the **Block all public access** setting is **on**. Note this only allows objects in this bucket to be public; but you still have to make the individual objects public as well.
+Observe under the **Block Public Access (bucket settings)** the **Block all public access** setting is **on**. Note this only allows objects in this bucket to be public; but you still have to make the individual objects public as well.
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissions.png)
 

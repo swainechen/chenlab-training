@@ -6,7 +6,7 @@ tags = ["tutorial", "cloud9", "s3"]
 
 The operating system of your local computer determines the options that you have to connect from your local computer to your Linux instance. Here are directions to connect from Windows Using PuTTY or OpenSSH, From Linux & MacOS-X using ssh client and from Windows Subsystem for Linux (WSL) using ssh client.
 
-**Note:** If you are using a premade CHENLAB-PUBLIC AMI, your username will be **ubuntu**.  
+####	**Note:** The premade CHENLAB-PUBLIC AMI is Ubuntu, so your username will be **"ubuntu"** 
 
 **Connecting from Windows using PuTTY**
 

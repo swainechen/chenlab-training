@@ -1,5 +1,5 @@
 ---
-title: "a. Bacterial Genome analysis"
+title: "a. Bacterial Genome data"
 date: 2019-01-24T09:05:54Z
 weight: 30
 tags: ["Bacteria", "Genome", "Analyses"]

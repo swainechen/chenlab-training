@@ -1,5 +1,5 @@
 +++
-title = "b. Long-Read RNA-Seq analysis"
+title = "b. Long-Read RNA-Seq data"
 date = 2019-01-24T09:05:54Z
 weight = 40
 tags = ["bambu", "RNA-seq", "transcript"]

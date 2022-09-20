@@ -1,11 +1,14 @@
 +++
-title = "c. Single Cell RNA-Seq Data Summary"
+title = "c. Single-cell RNA-Seq data"
 date = 2022-09-19T09:05:54Z
 weight = 50
 tags = ["RCAv2", "RNA-seq", "single-cell"]
 +++
 
-Recent advances in sequencing technology has allowed for single-cell transcriptomics, in which the RNA from a single cell can be quantified and measured. This allows for the identification of cell type simply from the levels of marker gene expression. Day 2 will involve a [more in-depth analysis](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/12-creates3sharedata/08-singlecell.html) of single-cell data; for this exercise, we will just get used to using R in the AWS EC2 terminal. 
+
+Bulk RNA sequencing allows researchers to discern the average gene expression profiles of their samples of interest, but the results are limited in their resolution, and affected by variation in cell type composition. The application of microfluidics and / or multi-step barcoding strategies to molecular biology along with advances in next-generation sequencing technologies have allowed researchers to utilise single cell technologies, such as droplet-based and combinatorial barcoding approaches, at a high-throughput scale. Single cell measurements complement bulk RNA sequencing profiles by allowing for granular insights into gene expression and gene regulatory networks, and facilitating an understanding of cell type composition and cell-to-cell heterogeneity in samples of interest. 
+
+In this introductory session on Day 1 of the GIS-AWS training, we will explore the data and metadata structure of a single cell dataset. This exercise features a single cell dataset that we have pre-processed using [Seurat](https://satijalab.org/seurat/index.html), one of the most popular single cell analysis R packages. Today, we will get familiarised with using R in the AWS EC2 environment. On Day 2 of the GIS-AWS training, we will identify major cell types present in this single cell dataset. 
 
 First, let's make a directory for this exercise and download some data:
 
@@ -16,8 +19,8 @@ cd /tmp/SingleCell
 aws s3 cp s3://gisxaws-training/pbmc3k_final_withoutRCA2.rds .
 ```
 
-The analysis is run with built-in R. Start the R environment:
-```bash
+The analysis is run with the installation of R from the Chen lab AMI, which includes multiple R packages useful for single cell analysis. Start up the R environment:
+```R
 R
 ```
 
@@ -28,34 +31,29 @@ library(Seurat)
 
 data <- readRDS(file = "pbmc3k_final_withoutRCA2.rds")
 ```
+We will analyse this dataset on Day 2, but for now familiarise yourself with navigating in R. R allows users to perform statistical analyses and data visualisation. There is a graphic user interface known as RStudio, but for this workshop we will be the R terminal interface only. 
 
-We will study this dataset in-depth later, but for now familiarise yourself with navigating R. R has many strengths, including statistical analyses and data visualisation. There is a graphic user interface known as Rstudio, but for this workshop we will be using our terminals only.
-
-First, familiarise yourself with this data- what does the data structure look like? How large is it?:
-
+1.	 Examine the data object: data is a pre-processed Seurat object and contains a gene-cell matrix, along with metadata and quality control (QC) metrics for each cell. How many genes and cells are there in this pre-processed dataset?
 ```R
-# Let's take a look:
-head(data)
-
-nrow(data)
-
-colnames(data)
-
-class(data)
-
-typeof(data)
+data
 ```
+![Seurat\_data](/images/rcav2/data.png) 
+2.	 Examine the gene-cell matrix containing the raw counts.
+```R
+head(data[["RNA"]]@counts)
+```
+_Each row corresponds to a specific gene ("feature"), and each column corresponds to a specific cell ("sample"). This gene-cell matrix takes the form of a sparse matrix (where "0"s are represented by ".") for optimising memory usage and computational speed._
+![Seurat\_headcounts](/images/rcav2/headcounts.png)    
+3.	Examine the metadata and QC metrics for each cell.
+```R
+head(data)
+```
+_Each row corresponds to a specific cell ("sample")._
+![Seurat\_pbmc](/images/rcav2/pbmc_withoutRCA.png)
 
-In this file, the columns represent the follows:
+>**There are several QC metrics in this pre-processed Seurat object, including:**  
+**nCount_RNA** -> The number of unique molecular identifiers (UMIs, corresponding to the number of unique molecules) detected within a single cell  
+**nFeature_RNA** -> The number of detected genes within a single cell  
+**percent.mt** -> Percentage of mitochondrial UMIs out of the total UMIs in a cell  
 
-**orig.ident**          -> The name of the original dataset  
-**nCount\_RNA**         -> The number of UMI reads per cell  
-**nFeature\_RNA**       -> The number of detected genes per same cell  
-**percent.mt**          -> Percent of Features that are mitochondrial  
-**RNA\_snn\_res.0.5**   -> Cluster ID based on SNN, with a resolution of 0.5  
-**seurat\_clusters**    -> Seurat cluster ID   
-
-Each row represents a single feature- a single molecule of genetic information.  
-We can also see that this is a _Seurat Object_, and is S4 class. 
-
-We will take a look at the number of detected genes in single cell datasets, and see how the different clusters compare on Day 2. If you have remaining time, please feel free to explore the [Seurat tutorial](https://satijalab.org/seurat/articles/pbmc3k_tutorial.html) hosted by the Satija Lab. Here, you can download the raw data used to generate this file and explore the different QC measures used to process and cluster the 10x sequencing data.
+For a sample single cell gene expression pre-processing workflow, please see the [Seurat Guided Clustering Tutorial from the Satija Lab](https://satijalab.org/seurat/articles/pbmc3k_tutorial.html). For more details on interacting with Seurat objects, please see the documentation of essential [Seurat R package commands](https://satijalab.org/seurat/articles/essential_commands.html). 
