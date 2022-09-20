@@ -18,10 +18,8 @@ We have made this pre-processed object available as “pbmc3k\_final\_withoutRCA
 
 
 ```bash
-cd ~
-
-mkdir single-cell
-cd single-cell
+mkdir /home/ubuntu/single-cell
+cd /home/ubuntu/single-cell
 
 # Download the data needed for this exercise
 aws s3 cp s3://gisxaws-training/pbmc3k_final_withoutRCA2.rds .

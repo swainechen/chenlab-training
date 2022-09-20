@@ -10,16 +10,13 @@ Recent advances in sequencing technology has allowed for single-cell transcripto
 First, let's make a directory for this exercise and download some data:
 
 ```bash 
-cd ~
-mkdir explore 
-cd explore
+mkdir -p /tmp/SingleCell
+cd /tmp/SingleCell
 
 aws s3 cp s3://gisxaws-training/pbmc3k_final_withoutRCA2.rds .
 ```
 
-The analysis is run with built-in R, a different language from what you have been using in the rest of the tutorial (bash) and those commands will not work. This session will require a AWS machine of 8GB RAM.
-
-Next, start the R environment:
+The analysis is run with built-in R. Start the R environment:
 ```bash
 R
 ```
@@ -54,17 +51,11 @@ In this file, the columns represent the follows:
 **orig.ident**          -> The name of the original dataset  
 **nCount\_RNA**         -> The number of UMI reads per cell  
 **nFeature\_RNA**       -> The number of detected genes per same cell  
-**percent.mt**          -> Percent of Features that are mitochondial  
+**percent.mt**          -> Percent of Features that are mitochondrial  
 **RNA\_snn\_res.0.5**   -> Cluster ID based on SNN, with a resolution of 0.5  
 **seurat\_clusters**    -> Seurat cluster ID   
 
 Each row represents a single feature- a single molecule of genetic information.  
 We can also see that this is a _Seurat Object_, and is S4 class. 
 
-Let's take a look at the number of detected genes per same cell, and see how the different clusters compare:
-
-```R
-
-```
-
-We will continue our analysis of this file in Day 2. If you have remaining time, please feel free to explore the [Seurat tutorial](https://satijalab.org/seurat/articles/pbmc3k_tutorial.html) hosted by the Satija Lab. Here, you can download the raw data used to generate this file and explore the different QC measures used to process and cluster the 10x sequencing data.
+We will take a look at the number of detected genes in single cell datasets, and see how the different clusters compare on Day 2. If you have remaining time, please feel free to explore the [Seurat tutorial](https://satijalab.org/seurat/articles/pbmc3k_tutorial.html) hosted by the Satija Lab. Here, you can download the raw data used to generate this file and explore the different QC measures used to process and cluster the 10x sequencing data.

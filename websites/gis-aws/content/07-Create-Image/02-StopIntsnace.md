@@ -19,17 +19,8 @@ sudo chmod -R 777 /mnt/volume1/
 ```
 
 ```bash
-cp -ax /tmp/fastq /mnt/volume1/
+cp -ax /tmp/fastq /tmp/outbreaks /tmp/RNASeq /tmp/SingleCell /mnt/volume1/
 ```
-
-```bash
-cp -ax /tmp/outbreaks /mnt/volume1/
-```
-
-```bash
-cp -ax /tmp/RNASeq /mnt/volume1/
-```  
-
 2.	Login to the AWS Console, and in the AWS Management Console search bar, type **EC2**.
 
 3.	Choose **EC2** to open the **EC2 Dashboard**.

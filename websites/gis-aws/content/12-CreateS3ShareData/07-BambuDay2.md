@@ -14,9 +14,9 @@ In this tutorial we will be using human cancer cell-line data from the [SG-NEx p
 As mentioned in #Bambu-Day 1, the default mode to run ***Bambu*** is using a set of aligned reads (bam files), reference genome annotations (gtf file, TxDb object, or bambuAnnotation object), and reference genome sequence (fasta file or BSgenome). Here we use the ensembl GRCh 38 genome sequence and annotation files, which we have downloaded and stored in the SG-NEx data open S3 bucket. 
 
 ```bash
-# create work directory
-mkdir bambu_training
-cd bambu_training
+# create working directory
+mkdir /home/ubuntu/bambu_training
+cd /home/ubuntu/bambu_training
 
 # download genome fasta file 
 aws s3 cp --no-sign-request s3://sg-nex-data/data/annotations/genome_fasta/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa ./
@@ -34,7 +34,7 @@ Note that we are aligning the reads to the genome fasta and not the transcriptom
 
 ```bash
 # download fastq from s3 bucket
-aws s3 cp --no-sign-request s3://sg-nex-data/data/bambu_training/fastq/A549_directRNA_sample1.fastq.gz ./
+aws s3 cp --no-sign-request s3://sg-nex-data/data/data_tutorial/fastq/A549_directRNA_sample1.fastq.gz ./
 
 # align using Minimap2 - note this step needs more than 8GB of RAM, otherwise it will get killed automatically after a minute or so
 minimap2 -ax splice -uf -k14 Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa A549_directRNA_sample1.fastq.gz > A549_directRNA_sample1.sam
@@ -45,8 +45,9 @@ samtools index A549_directRNA_sample1.bam
 For this analysis, you can directly download the bam files needed from the open S3 bucket
 
 ```bash
-# download aligned bam files for A549 samples 
-aws s3 sync --no-sign-request s3://sg-nex-data/data/data_tutorial/bam/ ./ 
+# download aligned bam files for A549 samples and a pre-processed se (summarizedExperiment) object
+aws s3 sync --no-sign-request s3://sg-nex-data/data/data_tutorial/bam/ ./ --exclude "*" --include "A549_directRNA*"
+aws s3 cp --no-sign-request s3://sg-nex-data/data/data_tutorial/bam/se.rds ./ 
 ```
 ### Quality Control
 
@@ -62,7 +63,7 @@ This bam file has a read mappability of `150602/184107 (81.8%)` by taking the ra
 
 
 ### Preparing data for ***Bambu***
-```rscript
+```R
 R  
 
 # set work directory 
@@ -97,9 +98,8 @@ We highly recommend to use the same annotations that were used for genome alignm
 
 Running bambu with this data will take about 5-10 mins to run. Therefore we will skip this step and load in the result. Below is the line we used so you can run it later in your free time. 
 
-```rscript
+```R
 dir.create("./rc")
-
 # se <- bambu(reads = samples.bam, annotations = annotations, genome = fa.file, rcOutDir = "./rc")  
 ```
 
@@ -107,7 +107,7 @@ As we used the `rcOutDir` argument with ***Bambu*** the read class files were au
 
 To load in the pre-processed data we prepared earlier. 
 
-```rscript
+```R
 # you can just load pre-saved se object 
 se <- readRDS("./se.rds")
 ```
@@ -115,7 +115,7 @@ se <- readRDS("./se.rds")
 #### Output
 ***Bambu*** returns a ***SummarizedExperiment*** object which can be accessed as follows:
 
-```rscript
+```R
 assays(se) #returns the transcript abundance estimates as counts or CPM
 rowRanges(se) #returns a GRangesList with all annotated and newly discovered transcripts
 rowData(se) #returns additional information about each transcript such as the gene name and the class of newly discovered transcript
@@ -125,7 +125,7 @@ rowData(se) #returns additional information about each transcript such as the ge
 
 The output can be written to files:
 
-```rscript
+```R
 writeBambuOutput(se, path = "./")   
 ```
 
@@ -145,7 +145,7 @@ Gene and transcript expression are also output to a txt file.
 Now let's find some novel transcripts that occur uniquely in A549 but not in HepG2 and visualise them. First we will filter the annotations to remove the reference annotations. Then we can sort them by the `txNDR`, which ranks them by how likely they are a real transcript. 
 
 
-```rscript
+```R
 se.filtered <- se[mcols(rowRanges(se))$newTxClass != "annotation",]
 
 #investigate high confidence novel isoforms
@@ -156,7 +156,7 @@ plotBambu(se, type = "annotation", gene_id = "gene.107")
 dev.off()
 ```
 ![gene.107](/images/bambu/gene.107.png)
-```rscript
+```R
 #no novel genes
 se.filtered.noNovelGene = se.filtered[rowData(se.filtered)$newTxClass != "newGene-spliced",]
 head(mcols(rowRanges(se.filtered.noNovelGene))[order(mcols(rowRanges(se.filtered.noNovelGene))$txNDR),])
@@ -168,7 +168,7 @@ dev.off()
 ![ENSG00000196756](/images/bambu/ENSG00000196756.png)
 
 
-```rscript
+```R
 #find which ones are unique based on counts
 expression.A549 <- apply(assays(se.filtered)$counts[,grep("A549",colnames(se.filtered))],1,mean)
 expression.HepG2 <- apply(assays(se.filtered)$counts[,grep("HepG2",colnames(se.filtered))],1,mean)
@@ -184,11 +184,13 @@ If you have tex installed, then you can directly visualize with the `plotBambu` 
 We can visualise these novel transcripts using a genome browser such as IGV or the UCSC genome browser. For this tutorial we will use the UCSC genome browser. 
 
 First we need to produce the bed files from the new transcripts:
-```rscript
+```R
 annotations.UCSC = rowRanges(se.filtered)
 seqlevelsStyle(annotations.UCSC) <- "UCSC" #this reformats the chromosome names 
 annotations.UCSC = keepStandardChromosomes(annotations.UCSC, pruning.mode="coarse") #removes chromosomes UCSC doesn't have
 writeToGTF(annotations.UCSC, "./novel_annotations.UCSC.gtf")
+q()
+n
 ```
 
 Now we can upload the annotations created to the public accessible bucket that we have created before in [Section XIIc-Step 12](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/12-creates3sharedata/04-sharebucket.html). We will need to manage access to the object using the **access control lists (ACLs)**. 

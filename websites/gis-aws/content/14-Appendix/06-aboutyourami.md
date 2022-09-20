@@ -8,7 +8,7 @@ tags = ["help", "ami"]
 
 [**Preconfigured AMI**](https://www.youtube.com/watch?v=q6CwmdwItDA)
 
-The most updated AMI for this training is currently `CHENLAB-PUBLIC-220621-v2.10`, which has ID `ami-0e688975feec36afb`. This was developed by the lab of Associate Professor [Swaine Chen](https://swainechen.github.io/) (National University of Singapore, Department of Medicine). 
+The most updated AMI for this training is currently `CHENLAB-PUBLIC-220916-v2.10b`, which has ID `ami-0bf420c98bedabe91`. This was developed by the lab of Associate Professor [Swaine Chen](https://swainechen.github.io/) (National University of Singapore, Department of Medicine). 
 
 Trying to access this AMI from any of the other global regions other than Singapore? Simply search for `CHENLAB-PUBLIC` under "Choose an Amazon Machine Image (AMI)" to access the AMI from any of the AWS geographical locations. 
  
