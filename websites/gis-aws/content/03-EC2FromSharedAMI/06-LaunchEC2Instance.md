@@ -30,25 +30,25 @@ The results of the search appear  **in Community AMIs** and **in AWS Marketplace
 ![EC2SelectAMI](/images/hpc-aws-parallelcluster-workshop/EC2SearchAMIResult.png)
 
 
-4.	Click on the results **in Community AMIs**.
+5.	Click on the results **in Community AMIs**.
 
 The AMI ID will now appear.
 
 ![EC2SelectAMI](/images/hpc-aws-parallelcluster-workshop/EC2SearchAMISharedWithMe.png)
 
-5.	Click on the **Select** button to select the AMI. 
+6.	Click on the **Select** button to select the AMI. **Be sure to select the lastest version of the AMI (see above, Step 4. Note).**
 
-6.	Under **Instance type**, click on the drop-down arrow and type **t3a.medium** into the search bar.
+7.	Under **Instance type**, click on the drop-down arrow and type **t3a.medium** into the search bar.
 
 **Note:** The choice of instance type should be based on the amount of CPU and RAM that you will need for your job or analysis.
 
 ![EC2ChooseInstancetype](/images/hpc-aws-parallelcluster-workshop/EC2ChooseInstanceType-2.png)
 
-7.	Select the key pair that you created in the beginning of this lab from the drop-down list under **Key pair (login)**.
+8.	Select the key pair that you created in the beginning of this lab from the drop-down list under **Key pair (login)**.
 
 ![EC2ConfigSecGroups](/images/hpc-aws-parallelcluster-workshop/EC2SelectKeypair-2.png)
 
-8.	Next click on **Edit** against **Network settings**. You will be prompted to provide **Subnet** and **Security group** details. The security groups will be your firewall rules.  
+9.	Next click on **Edit** against **Network settings**. You will be prompted to provide **Subnet** and **Security group** details. The security groups will be your firewall rules.  
 &nbsp;&nbsp;&nbsp; a.   Note that the Subnet field can be configured to launch the instance in a specific Availability Zone; while we are keeping the default for this workshop, this gives you control over the location of your machine.  
 &nbsp;&nbsp;&nbsp; b.   Provide a name for your new security group. **NOTE**: For the purpose of this lab use your "[Your initials]-sec-group".  
 &nbsp;&nbsp;&nbsp; c.   Confirm an existing SSH rule exists which allows TCP port 22.  
@@ -56,17 +56,17 @@ The AMI ID will now appear.
 
 ![EC2ConfigSecGroups](/images/hpc-aws-parallelcluster-workshop/EC2ConfigSecGroups-2.png)
 
-9.	Under **Configure storage**, you have the ability to modify or add storage and disk drives to the instance. For this lab, we will simply accept the storage defaults.
+10.	Under **Configure storage**, you have the ability to modify or add storage and disk drives to the instance. For this lab, we will simply accept the storage defaults.
 
 ![EC2ChooseInstancetype](/images/hpc-aws-parallelcluster-workshop/EC2AddStorage-2.png)
 
-10.	Review your configuration under **Summary** and click **Launch Instance**.
+11.	Review your configuration under **Summary** and click **Launch Instance**.
 
 ![EC2ChooseInstancetype](/images/hpc-aws-parallelcluster-workshop/EC2StepConfigureInstance-2.png)
 
 Your instance will now start, which may take a moment. You will be shown the **Launch Status** page with the message **Successfully initiated launch of instance**.
 
-11.	On the lower right of the page click on **View all Instances** to view the list of EC2 instances. Click on your instance. It will go through an initialization process. Once your instance has launched, you will see your Linux server as well as the Availability Zone the instance is in, and the publicly routable DNS name.
+12.	On the lower right of the page click on **View all Instances** to view the list of EC2 instances. Click on your instance. It will go through an initialization process. Once your instance has launched, you will see your Linux server as well as the Availability Zone the instance is in, and the publicly routable DNS name.
 
 ![EC2ViewInstances](/images/hpc-aws-parallelcluster-workshop/EC2ViewInstances-2.png)
 
