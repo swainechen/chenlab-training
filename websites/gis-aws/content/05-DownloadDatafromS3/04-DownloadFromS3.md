@@ -42,6 +42,10 @@ aws s3 cp --profile training s3://slchen-lab-transfer/GIS-training/SRR6327950/SR
 ```
 
 4.	Verify the MD5 checksum for files copied from S3 as you would normally do.
+```bash
+md5sum *.fastq.gz
+```
+The original MD5 hashes for these files are:
 - SRR6327950_1.fastq.gz - 27920396d2eb46f463f93eb9a2baf4e5
 - SRR6327950_2.fastq.gz - b46c7cf0d45cf3325222506d41fa7329  
 
