@@ -1,5 +1,4 @@
-#baseURL = "https://aws.amazon.com/"
-baseURL = "http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/"
+baseURL = "https://d3dxnowv1fnvq7.cloudfront.net/"
 languageCode = "en-us"
 title = "AWS HPC Workshops"
 theme = "hugo-theme-learn"
@@ -13,7 +12,6 @@ googleAnalytics = "UA-148357634-1"
 hrefTargetBlank = true
 
 [params]
-#editURL = "https://aws.amazon.com/"
 themeVariant = "mine"
 showVisitedLinks = true
 description = "AWS HPC Workshops"
@@ -50,11 +48,6 @@ page = [ "HTML", "AMP"]
     disable = false
     privacyEnhanced = false
 
-#[[menu.shortcuts]]
-#name = "<i class='fab fa-github'></i> Github"
-#url = "https://aws.amazon.com/"
-#weight = 10
-
 [[menu.shortcuts]]
 name = "<i class='fas fa-bookmark'></i> AWS Console"
 url = "https://aws.amazon.com"
@@ -69,9 +62,3 @@ weight = 20
 name = "<i class='fas fa-envelope'></i> Feedback / Questions?"
 url = "mailto:slchen@gis.a-star.edu.sg"
 weight = 30
-
-
-#[[menu.shortcuts]]
-#name = "<i class='fas fa-tags'></i> Tags"
-#url = "/tags"
-#weight = 40
