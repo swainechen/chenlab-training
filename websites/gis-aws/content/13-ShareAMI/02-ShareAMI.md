@@ -44,4 +44,4 @@ Your AMI has now been shared with this specific AWS Account Number provided. Inv
 
 ![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/EC2AMIshared.png)
 
-Your collaborator will now be able to create an EC2 instance from your shared AMI (Refer to [Section X](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/10-recreateinstanceami/06-launchec2instance.html) about setting up a linux machine from a previously created AMI).
+Your collaborator will now be able to create an EC2 instance from your shared AMI (Refer to [Section X]({{< ref "10-recreateinstanceami/06-launchec2instance.html" >}}) about setting up a linux machine from a previously created AMI).

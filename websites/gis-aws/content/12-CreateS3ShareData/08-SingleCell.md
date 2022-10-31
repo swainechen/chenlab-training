@@ -118,7 +118,7 @@ n
 ```
 ![Seurat\_pbmc](/images/rcav2/SeuratVSRCA.png)
 
-You can now inspect the plots in Seurat\_RCA.pdf by transferring this file to your local machine. Refer to the page discussing [Remote Data Transfer - Step 4.](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/12-creates3sharedata/07-datatransfer.html)
+You can now inspect the plots in Seurat\_RCA.pdf by transferring this file to your local machine. Refer to the page discussing [Remote Data Transfer - Step 4.]({{< ref "12-creates3sharedata/06-datatransfer.html" >}})
 
 
 >_**Optional**: We can try a few more analyses and visualizations using the pre-processed Seurat object, such as:  

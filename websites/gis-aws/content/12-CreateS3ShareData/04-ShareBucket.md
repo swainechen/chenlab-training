@@ -34,31 +34,31 @@ Observe under the **Block Public Access (bucket settings)** the **Block all publ
 
 You will now be shown a message indicating that public access settings to the bucket have been updated successfully.
 
-Next we will update the Access Control List to provide read and write permissions for individual objects.  
+Next we will update the Access Control List to provide read and write permissions for individual objects.
 
-8.	Now click on **Edit** against **Object Ownership**.  
+8.	Now click on **Edit** against **Object Ownership**.
 
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic2-2.png)  
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic2-2.png)
 
-9.	Select **ACLs enabled**, tick the **I acknowledge that ACLs will be restored** and **Save changes**.  
+9.	Select **ACLs enabled**, tick the **I acknowledge that ACLs will be restored** and **Save changes**.
 
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic2-3.png)  
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic2-3.png)
 
 10.	Scroll down to the **Access control list (ACL)** section and click on **Edit**.
 
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic3.png)  
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic3.png)
 
 11.	Next under **Grantee** - **Everyone (public access)** check **List** (under Objects).
 
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic4.png)  
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic4.png)
 
 12.	Check the **I understand the effects of these changes on my objects and buckets** box and then click on **Save changes**.
 
-![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic5.png)  
+![AWS Management Console](/images/hpc-aws-parallelcluster-workshop/S3/S3BucketPermissionsBucketPublic5.png)
 
-At this point you have effectively shared the S3 bucket. Being able to list an object in your S3 bucket is different from being able to download it. This needs object permissions via the ACL (Access control list).  
+At this point you have effectively shared the S3 bucket. Being able to list an object in your S3 bucket is different from being able to download it. This needs object permissions via the ACL (Access control list).
 
-_We will now run a larger analyses using the [long-read RNA-Seq data](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/12-creates3sharedata/07-bambuday2.html) and [Single-cell data](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/12-creates3sharedata/08-singlecell.html) to explore the following features of S3   
--Downloading data from a publicly shared S3 bucket  
--S3 access control lists (ACLs) to enable public read access    
--Accessing an object in the S3 bucket through its URL_  
+_We will now run a larger analyses using the [long-read RNA-Seq data]({{< ref "12-creates3sharedata/07-bambuday2.html" >}}) and [Single-cell data]({{< ref "12-creates3sharedata/08-singlecell.html" >}}) to explore the following features of S3
+-Downloading data from a publicly shared S3 bucket
+-S3 access control lists (ACLs) to enable public read access
+-Accessing an object in the S3 bucket through its URL_

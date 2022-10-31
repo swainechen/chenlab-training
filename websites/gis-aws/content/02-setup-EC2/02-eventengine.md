@@ -22,4 +22,4 @@ If you ever need to access the **Team Dashboard** again during this training, cl
    
 When ready, click **Open AWS Console**, and proceed to tutorial step ***c. Launch the EC2 Dashboard***. 
 
-[View Point 1 of the visual for difference between "Event Engine" and "Direct sign-in"](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/01-hpc-overview/03-awsaccess.html).
+[View Point 1 of the visual for difference between "Event Engine" and "Direct sign-in"]({{< ref "01-hpc-overview/03-awsaccess.html" >}}).

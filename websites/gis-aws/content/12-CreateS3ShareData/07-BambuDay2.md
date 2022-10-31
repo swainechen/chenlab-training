@@ -193,7 +193,7 @@ q()
 n
 ```
 
-Now we can upload the annotations created to the public accessible bucket that we have created before in [Section XIIc-Step 12](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/12-creates3sharedata/04-sharebucket.html). We will need to manage access to the object using the **access control lists (ACLs)**. 
+Now we can upload the annotations created to the public accessible bucket that we have created before in [Section XIIc-Step 12]({{< ref "12-creates3sharedata/04-sharebucket.html" >}}). We will need to manage access to the object using the **access control lists (ACLs)**. 
 ```bash
 aws s3 cp novel_annotations.UCSC.gtf s3://bucket/path/ --acl public-read
 ```

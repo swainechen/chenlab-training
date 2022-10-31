@@ -42,7 +42,7 @@ The files will be uploaded to the S3 folder and the file object names will appea
 
 ---
 **Using AWS CLI (from the EC2 instance)** 
->_**IMPORTANT**: Make sure you have configured the AWS CLI credentials (Refer to [Section V.a](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/15-awscli-intro/02-introtoawscli.html) for AWS CLI configure commands)._
+>_**IMPORTANT**: Make sure you have configured the AWS CLI credentials (Refer to [Section V.a]({{< ref "15-awscli-intro/02-introtoawscli.html" >}}) for AWS CLI configure commands)._
 
 1.	Run the AWS CLI command to list all the S3 buckets associated with the account in the region configured with **aws configure**.
 
@@ -73,7 +73,7 @@ aws s3 cp s3://{Bucket Name}/{object name} ./
 
 Verify the download by listing the directory and confirm the object is present.
 
-For more detailed steps on AWS CLI for S3 refer to Section VI ([**Download data shared using Amazon S3**](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/05-downloaddatafroms3.html)) of the workshop.
+For more detailed steps on AWS CLI for S3 refer to Section VI ([**Download data shared using Amazon S3**]({{< ref "05-downloaddatafroms3.html" >}})) of the workshop.
 
 
 **Upload files to the S3 bucket**
