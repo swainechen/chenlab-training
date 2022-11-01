@@ -6,7 +6,7 @@ All materials here are licensed under the MIT license - so feel free to explore,
 
 We hope these materials help you!
 
-## [Website](http://slchen-lab-training.s3-website-ap-southeast-1.amazonaws.com/)
+## [Website](https://d3dxnowv1fnvq7.cloudfront.net/)
 
 ## [Recipes](recipes)
 
