@@ -19,4 +19,5 @@ In this section we will:
 **c. 	[Format and mount the new volume.]({{< ref "04-attachstorage/04-mountvolume.html" >}})**
 
 &nbsp;&nbsp;&nbsp;	1.	Format the new volume with a filesystem.
+
 &nbsp;&nbsp;&nbsp;	2.	Mount the volume and copy some data into it.
