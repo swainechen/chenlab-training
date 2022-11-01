@@ -13,5 +13,6 @@ You can launch an instance from an existing AMI, customize the instance, and the
 In this section of the workshop you will learn to: 
 
 **a.	[Prepare the EC2 instance for creating an AMI.]({{< ref "07-create-image/02-stopintsnace.html" >}})**
+
 **b.	[Create an AMI from an EC2 instance.]({{< ref "07-create-image/03-createimage.html" >}})**
 

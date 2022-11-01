@@ -17,5 +17,7 @@ This section covers:
 
 Proceed to page  
 a.	**(Event Engine account for trainings)** [Sign in to AWS Console (via Event Engine)]({{< ref "02-setup-ec2/02-eventengine.html" >}}) if you are attending the live training.  
+
 OR  
+
 b.	**(Normal account after the training)** [Sign in to AWS Console (direct sign-in)]({{< ref "02-setup-ec2/03-aws-console-login.html" >}}) if you are going through this tutorial independently.  

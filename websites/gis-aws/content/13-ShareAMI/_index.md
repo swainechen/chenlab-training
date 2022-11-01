@@ -13,4 +13,6 @@ In such cases we could share the AMI as well as the snapshot of the EBS volume w
 In this section of the workshop you will:
 
 **a.	[Share an AMI with a specific AWS account.]({{< ref "13-shareami/02-shareami.html" >}})**
+
 **b.	[Share an EBS snapshot with a specific AWS account.]({{< ref "13-shareami/03-sharesnapshot.html" >}})**
+

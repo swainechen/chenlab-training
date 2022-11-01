@@ -14,8 +14,12 @@ In this section of the workshop we will provide a brief introduction to costs as
 In this section you will :
 
 **a.	[Explore Instance States.]({{< ref "08-stopterminateec2/03-exploreec2lifecycle.html" >}})**
+
 **b.	[Detach additional EBS volumes.]({{< ref "08-stopterminateec2/04-detachvolume.html" >}})**
+
 **c.	[Save a snaphot of the detached EBS Volume.]({{< ref "08-stopterminateec2/06-createsnapshotofvolume.html" >}})**
+
 **d.	[Delete the detached EBS volume.]({{< ref "08-stopterminateec2/07-deletevoume.html" >}})**
+
 **e.	[Terminate EC2 instance.]({{< ref "08-stopterminateec2/09-terminateec2instance.html" >}})**
  
